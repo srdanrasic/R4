@@ -63,11 +63,23 @@
 
 - (void)drawView:(id)sender
 {
+  [self.scene update:CACurrentMediaTime()];
+  
+  // evaluate actions
+  [self.scene didEvaluateActions];
+  
+  // simulate physics
+  [self.scene didSimulatePhysics];
+  
   [self.rendered render:self.scene];
 }
 
 - (void)layoutSubviews
 {
+  if (self.scene.scaleMode == R4SceneScaleModeResizeFill) {
+    self.scene.size = self.frame.size;
+  }
+  
   [self.rendered resizeFromLayer:(CAEAGLLayer *)self.layer];
   [self drawView:nil];
 }
@@ -96,6 +108,12 @@
 {
   self.scene = scene;
   self.scene.view = self;
+
+  if (scene.scaleMode == R4SceneScaleModeResizeFill) {
+    self.scene.size = self.frame.size;
+  }
+
+  [self.scene didMoveToView:self];
 }
 
 - (void)presentScene:(R4Scene *)scene transition:(R4Transition *)transition
@@ -128,7 +146,7 @@
 
 - (GLKMatrix4)projectionMatrix
 {
-  float aspect = fabsf(self.bounds.size.width / self.bounds.size.height);
+  float aspect = fabsf(self.scene.size.width / self.scene.size.height);
   return GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
 }
 

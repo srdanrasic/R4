@@ -24,6 +24,9 @@
     _children = [NSMutableArray array];
     _actions = [NSMutableArray array];
     _dirty = YES;
+    _position = GLKVector3Make(0, 0, 0);
+    _scale = GLKVector3Make(1, 1, 1);
+    _orientation = GLKQuaternionIdentity;
   }
   return self;
 }
@@ -215,8 +218,8 @@
 {
   if (_dirty) {
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(self.position.x, self.position.y, self.position.z);
-    GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
-    GLKMatrix4Rotate(modelViewMatrix, self.orientation.w, self.orientation.x, self.orientation.y, self.orientation.z);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
+    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, GLKMatrix4MakeWithQuaternion(self.orientation));
     
     if (self.parent) {
       modelViewMatrix = GLKMatrix4Multiply(self.parent.modelViewMatrix, modelViewMatrix);

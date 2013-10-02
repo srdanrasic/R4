@@ -14,7 +14,7 @@
 
 + (instancetype)sceneWithSize:(CGSize)size
 {
-  return [[R4Scene alloc] initWithSize:size];
+  return [[[self class] alloc] initWithSize:size];
 }
 
 - (instancetype)initWithSize:(CGSize)size
@@ -39,21 +39,6 @@
   return GLKVector3Make(0, 0, 0);
 }
 
-- (GLKVector3)scale
-{
-  return GLKVector3Make(1, 1, 1);
-}
-
-- (GLKQuaternion)orientation
-{
-  return GLKQuaternionIdentity;
-}
-
-- (GLKMatrix4)modelViewMatrix
-{
-  return GLKMatrix4Identity;
-}
-
 - (CGRect)frame
 {
   return CGRectMake(-self.size.width * self.anchorPoint.x, -self.size.height * self.anchorPoint.y,
@@ -65,10 +50,37 @@
   return self.frame;
 }
 
+- (void)setSize:(CGSize)size
+{
+  if (!CGSizeEqualToSize(_size, size)) {
+    _size = size;
+    [self didChangeSize:size];
+  }
+}
 
 #pragma mark - Instance methods
 
 - (void)didChangeSize:(CGSize)oldSize
+{
+}
+
+- (void)didMoveToView:(R4View *)view
+{
+}
+
+- (void)willMoveFromView:(R4View *)view
+{
+}
+
+- (void)didEvaluateActions
+{
+}
+
+- (void)didSimulatePhysics
+{
+}
+
+- (void)update:(NSTimeInterval)currentTime
 {
 }
 
