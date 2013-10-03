@@ -10,8 +10,6 @@
 
 @interface R4PrimitiveNode : R4Node
 
-+ (instancetype)planeWithSize:(CGSize)size;
-+ (instancetype)boxWithSize:(GLKVector3)size;
-+ (instancetype)spereWithRadius:(CGFloat)radius;
++ (instancetype)box;
 
 @end

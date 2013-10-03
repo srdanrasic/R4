@@ -14,11 +14,16 @@
   
   CGRect _accumulatedFrame;
   BOOL _dirty;
+  BOOL _visited;
 }
 
 @property (nonatomic, readwrite) R4Scene *scene;
 @property (nonatomic, readwrite) R4Node *parent;
 
 @property (nonatomic) GLKMatrix4 modelViewMatrix;
+
+- (void)willTraverse;
+- (void)draw;
+- (void)didTraverse;
 
 @end

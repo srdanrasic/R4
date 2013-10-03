@@ -9,9 +9,13 @@
 #import "R4ViewController.h"
 #import <R4/R4View.h>
 #import <R4/R4Scene.h>
+#import <R4/R4PrimitiveNode.h>
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : R4Scene
+
+@property (strong, nonatomic) R4Node *spaceship2;
+
 @property (assign, nonatomic) NSTimeInterval timeOfLastUpdate;
 @end
 
@@ -20,12 +24,20 @@
 
 - (void)didMoveToView:(R4View *)view
 {
-  R4Node *spaceship = [R4Node node];
+  R4Node *spaceship = [R4PrimitiveNode box];
   spaceship.name = @"spaceship";
-  spaceship.position = GLKVector3Make(0, 0, -3);
+  spaceship.position = GLKVector3Make(0, 0, -5);
   spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
   
   [self addChild:spaceship];
+  
+  self.spaceship2 = [R4PrimitiveNode box];
+  self.spaceship2.name = @"spaceship";
+  self.spaceship2.position = GLKVector3Make(0, 1, 0);
+  self.spaceship2.scale = GLKVector3Make(0.1, 0.1, 3);
+  ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
+  
+  [spaceship addChild:self.spaceship2];
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
@@ -36,7 +48,9 @@
   NSLog(@"FPS: %f", 1.0/elapsedTime);
   [self childNodeWithName:@"spaceship"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"spaceship"].orientation,
                                                                             GLKQuaternionMakeWithAngleAndAxis(1*elapsedTime, 0, 0, 1));
-  
+  self.spaceship2.orientation = GLKQuaternionMultiply(self.spaceship2.orientation,
+                                                     GLKQuaternionMakeWithAngleAndAxis(5*elapsedTime, 0, 1, 0));
+
   self.timeOfLastUpdate = currentTime;
 }
 

@@ -216,11 +216,11 @@
 
 - (GLKMatrix4)modelViewMatrix
 {
-  if (_dirty) {
+  if (1) {
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(self.position.x, self.position.y, self.position.z);
-    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
     modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, GLKMatrix4MakeWithQuaternion(self.orientation));
-    
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
+
     if (self.parent) {
       modelViewMatrix = GLKMatrix4Multiply(self.parent.modelViewMatrix, modelViewMatrix);
     }
@@ -257,6 +257,18 @@
 - (CGFloat)boundingRadius
 {
   return 10;
+}
+
+- (void)willTraverse
+{
+}
+
+- (void)draw
+{
+}
+
+- (void)didTraverse
+{
 }
 
 @end

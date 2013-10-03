@@ -37,6 +37,7 @@
 		EC0C8F3917F88D1600E8B229 /* R4Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Math.h; sourceTree = "<group>"; };
 		EC0C8F8617F89D5700E8B229 /* R4Scene_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Scene_Private.h; sourceTree = "<group>"; };
 		EC6FD69F17F8777300ED6AAA /* R4Node_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Node_Private.h; sourceTree = "<group>"; };
+		ECA854E017FE18C800E65E69 /* R4PrimitiveNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4PrimitiveNode_Private.h; sourceTree = "<group>"; };
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "R4-Prefix.pch"; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 				ECC58D4517F8521900BBAD28 /* R4Node.m */,
 				EC0C8F8617F89D5700E8B229 /* R4Scene_Private.h */,
 				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
+				ECA854E017FE18C800E65E69 /* R4PrimitiveNode_Private.h */,
 				ECC58D5317F85E2700BBAD28 /* R4PrimitiveNode.m */,
 				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
 				ECC58D4E17F8538900BBAD28 /* R4Texture.m */,
