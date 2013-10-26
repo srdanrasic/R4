@@ -19,6 +19,13 @@
 		ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CE617F8500D00BBAD28 /* Images.xcassets */; };
 		ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3B17F850B900BBAD28 /* libR4.a */; };
 		ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */; };
+		ECC78C85181C4009000FBC19 /* 747.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C7E181C4009000FBC19 /* 747.obj */; };
+		ECC78C87181C4009000FBC19 /* corn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C80181C4009000FBC19 /* corn.mtl */; };
+		ECC78C88181C4009000FBC19 /* corn.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C81181C4009000FBC19 /* corn.obj */; };
+		ECC78C89181C4009000FBC19 /* f16.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C82181C4009000FBC19 /* f16.obj */; };
+		ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C83181C4009000FBC19 /* novcic.mtl */; };
+		ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C84181C4009000FBC19 /* novcic.obj */; };
+		ECC78C8D181C40C0000FBC19 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +57,13 @@
 		ECC58D3917F8509900BBAD28 /* R4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = R4.xcodeproj; path = ../R4/R4.xcodeproj; sourceTree = "<group>"; };
 		ECC58D3B17F850B900BBAD28 /* libR4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libR4.a; path = "../R4/build/Debug-iphoneos/libR4.a"; sourceTree = "<group>"; };
 		ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		ECC78C7E181C4009000FBC19 /* 747.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 747.obj; sourceTree = "<group>"; };
+		ECC78C80181C4009000FBC19 /* corn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corn.mtl; sourceTree = "<group>"; };
+		ECC78C81181C4009000FBC19 /* corn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corn.obj; sourceTree = "<group>"; };
+		ECC78C82181C4009000FBC19 /* f16.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = f16.obj; sourceTree = "<group>"; };
+		ECC78C83181C4009000FBC19 /* novcic.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.mtl; sourceTree = "<group>"; };
+		ECC78C84181C4009000FBC19 /* novcic.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.obj; sourceTree = "<group>"; };
+		ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC78C8D181C40C0000FBC19 /* libstdc++.dylib in Frameworks */,
 				ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */,
 				ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */,
 				ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */,
@@ -96,6 +111,7 @@
 		ECC58CCA17F8500D00BBAD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */,
 				ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */,
 				ECC58D3B17F850B900BBAD28 /* libR4.a */,
 				ECC58D3917F8509900BBAD28 /* R4.xcodeproj */,
@@ -109,6 +125,7 @@
 		ECC58CD117F8500D00BBAD28 /* R4 iOS Demo */ = {
 			isa = PBXGroup;
 			children = (
+				ECC78C7B181C3FFE000FBC19 /* Resources */,
 				ECC58CDA17F8500D00BBAD28 /* R4AppDelegate.h */,
 				ECC58CDB17F8500D00BBAD28 /* R4AppDelegate.m */,
 				ECC58CDD17F8500D00BBAD28 /* Main_iPhone.storyboard */,
@@ -130,6 +147,28 @@
 				ECC58CD917F8500D00BBAD28 /* R4 iOS Demo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECC78C7B181C3FFE000FBC19 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ECC78C7D181C4009000FBC19 /* Meshes */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		ECC78C7D181C4009000FBC19 /* Meshes */ = {
+			isa = PBXGroup;
+			children = (
+				ECC78C7E181C4009000FBC19 /* 747.obj */,
+				ECC78C80181C4009000FBC19 /* corn.mtl */,
+				ECC78C81181C4009000FBC19 /* corn.obj */,
+				ECC78C82181C4009000FBC19 /* f16.obj */,
+				ECC78C83181C4009000FBC19 /* novcic.mtl */,
+				ECC78C84181C4009000FBC19 /* novcic.obj */,
+			);
+			name = Meshes;
+			path = Resources/Meshes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,10 +240,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC78C89181C4009000FBC19 /* f16.obj in Resources */,
+				ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */,
+				ECC78C87181C4009000FBC19 /* corn.mtl in Resources */,
 				ECC58CE217F8500D00BBAD28 /* Main_iPad.storyboard in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
+				ECC78C88181C4009000FBC19 /* corn.obj in Resources */,
+				ECC78C85181C4009000FBC19 /* 747.obj in Resources */,
 				ECC58CDF17F8500D00BBAD28 /* Main_iPhone.storyboard in Resources */,
 				ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */,
+				ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

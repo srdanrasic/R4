@@ -67,6 +67,7 @@
 - (void)wasAddedToTarget:(id)target atTime:(NSTimeInterval)time
 {
   self.finished = NO;
+  vars->current = 0;
   [[_actions objectAtIndex:0] wasAddedToTarget:target atTime:time];
 }
 

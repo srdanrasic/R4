@@ -10,8 +10,6 @@
 #import "R4Node_.h"
 #import "R4Renderer.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
 @interface R4PrimitiveNode () {
   GLuint _vertexBuffer;
 }
@@ -85,19 +83,23 @@ GLfloat gCubeVertexData[216] =
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
   }
   return self;
 }
 
 - (void)draw
 {
+  glEnableVertexAttribArray(GLKVertexAttribPosition);
+  glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+  
+  glEnableVertexAttribArray(GLKVertexAttribNormal);
+  glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+
   glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
   glDrawArrays(GL_TRIANGLES, 0, 36);
+  
+  glDisableVertexAttribArray(GLKVertexAttribPosition);
+  glDisableVertexAttribArray(GLKVertexAttribNormal);
 }
 
 @end

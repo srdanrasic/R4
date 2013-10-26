@@ -7,3 +7,6 @@
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
 #endif
+
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+

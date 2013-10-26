@@ -23,6 +23,7 @@
 		ECC58D4F17F8538900BBAD28 /* R4Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4E17F8538900BBAD28 /* R4Texture.m */; };
 		ECC58D5417F85E2700BBAD28 /* R4PrimitiveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D5317F85E2700BBAD28 /* R4PrimitiveNode.m */; };
 		ECC58D5917F866A100BBAD28 /* R4Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D5817F866A100BBAD28 /* R4Renderer.m */; };
+		ECC78C79181C2B1B000FBC19 /* R4ModelNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECC78C78181C2B1B000FBC19 /* R4ModelNode.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,9 @@
 		ECC58D5617F8639800BBAD28 /* R4View_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4View_.h; sourceTree = "<group>"; };
 		ECC58D5717F866A100BBAD28 /* R4Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Renderer.h; sourceTree = "<group>"; };
 		ECC58D5817F866A100BBAD28 /* R4Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Renderer.m; sourceTree = "<group>"; };
+		ECC78C77181C2B1B000FBC19 /* R4ModelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4ModelNode.h; path = R4/R4ModelNode.h; sourceTree = "<group>"; };
+		ECC78C78181C2B1B000FBC19 /* R4ModelNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4ModelNode.mm; sourceTree = "<group>"; };
+		ECC78C7A181C2D6E000FBC19 /* R4ModelNode_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ModelNode_.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
 				ECA854E017FE18C800E65E69 /* R4PrimitiveNode_.h */,
 				ECC58D5317F85E2700BBAD28 /* R4PrimitiveNode.m */,
+				ECC78C7A181C2D6E000FBC19 /* R4ModelNode_.h */,
+				ECC78C78181C2B1B000FBC19 /* R4ModelNode.mm */,
 				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
 				ECC58D4E17F8538900BBAD28 /* R4Texture.m */,
 				EC5BB398180067E100AB7FE8 /* R4Action */,
@@ -178,6 +184,7 @@
 				ECC58D4417F8521900BBAD28 /* R4Node.h */,
 				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
 				ECC58D5217F85E2700BBAD28 /* R4PrimitiveNode.h */,
+				ECC78C77181C2B1B000FBC19 /* R4ModelNode.h */,
 				EC5BB3951800672F00AB7FE8 /* R4Action.h */,
 			);
 			name = "Public headers";
@@ -246,6 +253,7 @@
 				ECC58D5917F866A100BBAD28 /* R4Renderer.m in Sources */,
 				EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */,
 				ECC58D5417F85E2700BBAD28 /* R4PrimitiveNode.m in Sources */,
+				ECC78C79181C2B1B000FBC19 /* R4ModelNode.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +334,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Verve Wireless, Inc. (N76G7Q2CP2)";
 				DSTROOT = /tmp/R4.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
@@ -339,6 +349,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Verve Wireless, Inc. (N76G7Q2CP2)";
 				DSTROOT = /tmp/R4.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";

@@ -11,6 +11,7 @@
 #import <R4/R4Scene.h>
 #import <R4/R4Action.h>
 #import <R4/R4PrimitiveNode.h>
+#import <R4/R4ModelNode.h>
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : R4Scene
@@ -25,11 +26,11 @@
 
 - (void)didMoveToView:(R4View *)view
 {
-  R4Node *spaceship = [R4PrimitiveNode box];
+  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"corn.obj"];
   spaceship.name = @"spaceship";
-  spaceship.position = GLKVector3Make(0, 0, -5);
+  spaceship.position = GLKVector3Make(0, 0, -2);
   spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  spaceship.scale = GLKVector3Make(1, 2, 1);
+  //spaceship.scale = GLKVector3Make(1, 1, 1);
   spaceship.speed = 2;
   
   [self addChild:spaceship];
@@ -46,6 +47,7 @@
                                                                           [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
                                                                           [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
                                                                           ]]]];
+  [spaceship removeAllActions];
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
