@@ -7,10 +7,10 @@
 //
 
 #import "R4Renderer.h"
-#import "R4Node_Private.h"
-#import "R4Scene_Private.h"
-#import "R4View_Private.h"
-#import "R4PrimitiveNode_Private.h"
+#import "R4Node_.h"
+#import "R4Scene_.h"
+#import "R4View_.h"
+#import "R4PrimitiveNode_.h"
 
 @interface R4Renderer () {
   EAGLContext* _context;

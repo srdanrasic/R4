@@ -1,5 +1,5 @@
 //
-//  R4Scene_Private.h
+//  R4Scene_.h
 //  R4
 //
 //  Created by Srđan Rašić on 9/29/13.

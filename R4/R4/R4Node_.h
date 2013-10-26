@@ -1,5 +1,5 @@
 //
-//  R4Node_Private.h
+//  R4Node_.h
 //  R4
 //
 //  Created by Srđan Rašić on 9/29/13.
@@ -25,5 +25,7 @@
 - (void)willTraverse;
 - (void)draw;
 - (void)didTraverse;
+
+- (void)updateActionsAtTime:(NSTimeInterval)time;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  R4PrimitiveNode_Private.h
+//  R4PrimitiveNode_.h
 //  R4
 //
 //  Created by Srđan Rašić on 10/3/13.

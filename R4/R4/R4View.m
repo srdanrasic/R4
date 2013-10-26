@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4View_Private.h"
-#import "R4Scene_Private.h"
+#import "R4View_.h"
+#import "R4Scene_.h"
+#import "R4Node_.h"
 #import "R4Renderer.h"
 
 @interface R4View ()
@@ -58,19 +59,21 @@
 {
   self.frameInterval = 1;
   self.userInteractionEnabled = YES;
-  self.ignoresSiblingOrder = NO;
 }
 
 - (void)drawView:(id)sender
 {
-  [self.scene update:CACurrentMediaTime()];
-  
-  // evaluate actions
-  [self.scene didEvaluateActions];
-  
-  // simulate physics
-  [self.scene didSimulatePhysics];
-  
+  if (!self.isPaused) {
+    [self.scene update:CACurrentMediaTime()];
+    
+    // evaluate actions
+    [self.scene updateActionsAtTime:CACurrentMediaTime()];
+    [self.scene didEvaluateActions];
+    
+    // simulate physics
+    [self.scene didSimulatePhysics];
+  }
+
   [self.rendered render:self.scene];
 }
 
@@ -103,6 +106,12 @@
 }
 
 #pragma mark - Instance methods
+
+- (void)setPaused:(BOOL)paused
+{
+  _paused = paused;
+  [self.scene setPaused:paused];
+}
 
 - (void)presentScene:(R4Scene *)scene
 {

@@ -30,8 +30,8 @@ typedef NS_ENUM(NSInteger, R4SceneScaleMode) {
 //@property (nonatomic, readonly) R4PhysicsWorld *physicsWorld;
 @property (nonatomic, weak, readonly) R4View *view;
 
-- (GLKVector3)convertPointFromView:(CGPoint)point;
-- (CGPoint)convertPointToView:(GLKVector3)point;
+//- (GLKVector3)convertPointFromView:(CGPoint)point;
+//- (CGPoint)convertPointToView:(GLKVector3)point;
 
 - (void)update:(NSTimeInterval)currentTime;
 - (void)didEvaluateActions;

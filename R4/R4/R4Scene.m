@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Scene_Private.h"
-#import "R4Node_Private.h"
-#import "R4View_Private.h"
+#import "R4Scene_.h"
+#import "R4Node_.h"
+#import "R4View_.h"
 
 @implementation R4Scene
 

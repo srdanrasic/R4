@@ -7,7 +7,7 @@
 //
 
 #import "R4PrimitiveNode.h"
-#import "R4Node_Private.h"
+#import "R4Node_.h"
 #import "R4Renderer.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))

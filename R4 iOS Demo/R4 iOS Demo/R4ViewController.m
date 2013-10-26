@@ -9,6 +9,7 @@
 #import "R4ViewController.h"
 #import <R4/R4View.h>
 #import <R4/R4Scene.h>
+#import <R4/R4Action.h>
 #import <R4/R4PrimitiveNode.h>
 #import <SpriteKit/SpriteKit.h>
 
@@ -28,6 +29,8 @@
   spaceship.name = @"spaceship";
   spaceship.position = GLKVector3Make(0, 0, -5);
   spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
+  spaceship.scale = GLKVector3Make(1, 2, 1);
+  spaceship.speed = 2;
   
   [self addChild:spaceship];
   
@@ -39,19 +42,26 @@
   
   [spaceship addChild:self.spaceship2];
   
+  [spaceship runAction:[R4Action repeatActionForever:[R4Action sequence:@[
+                                                                          [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
+                                                                          [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
+                                                                          ]]]];
+  
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
 
 - (void)update:(NSTimeInterval)currentTime
 {
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
-  NSLog(@"FPS: %f", 1.0/elapsedTime);
+  //NSLog(@"FPS: %f", 1.0/elapsedTime);
   [self childNodeWithName:@"spaceship"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"spaceship"].orientation,
                                                                             GLKQuaternionMakeWithAngleAndAxis(1*elapsedTime, 0, 0, 1));
   self.spaceship2.orientation = GLKQuaternionMultiply(self.spaceship2.orientation,
                                                      GLKQuaternionMakeWithAngleAndAxis(5*elapsedTime, 0, 1, 0));
 
   self.timeOfLastUpdate = currentTime;
+  
+  //NSLog(@"%@", NSStringFromGLKVector3([[self childNodeWithName:@"spaceship"] scale]));
 }
 
 @end
@@ -64,9 +74,15 @@
 
 @implementation R4ViewController
 
+- (BOOL)prefersStatusBarHidden
+{
+  return YES;
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
 	self.r4view = [[R4View alloc] initWithFrame:self.view.bounds];
   self.r4view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   [self.view addSubview:self.r4view];
@@ -75,12 +91,29 @@
   self.scene.scaleMode = R4SceneScaleModeAspectFit;
   self.scene.anchorPoint = CGPointMake(0.0, 0.0);
   [self.r4view presentScene:self.scene];
+  
+  UIButton *pauseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  pauseButton.frame = CGRectMake(10, 10, 200, 30);
+  [pauseButton setTitle:@"Pause scene" forState:UIControlStateNormal];
+  [pauseButton addTarget:self action:@selector(pauseGame:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pauseButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+- (void)pauseGame:(id)sender
+{
+  [self.scene setPaused:!self.scene.isPaused];
+  [sender setTitle:self.scene.isPaused ? @"Resume scene" : @"Pause scene" forState:UIControlStateNormal];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [self.scene childNodeWithName:@"spaceship"].speed += 2;
 }
 
 @end

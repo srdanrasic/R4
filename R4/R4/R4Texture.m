@@ -10,4 +10,24 @@
 
 @implementation R4Texture
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+  self = [super init];
+  if (self) {
+    // TODO
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+  // TODO
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  // TODO
+  return nil;
+}
+
 @end

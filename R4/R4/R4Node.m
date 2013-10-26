@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Node_Private.h"
-#import "R4Scene_Private.h"
-#import "R4View_Private.h"
+#import "R4Node_.h"
+#import "R4Scene_.h"
+#import "R4View_.h"
+#import "R4Action_.h"
 
 @implementation R4Node
 
@@ -27,8 +28,35 @@
     _position = GLKVector3Make(0, 0, 0);
     _scale = GLKVector3Make(1, 1, 1);
     _orientation = GLKQuaternionIdentity;
+    _speed = 1.0;
+    _alpha = 1.0;
+    _paused = NO;
+    _hidden = NO;
+    _parent = nil;
+    _userInteractionEnabled = NO;
+    _userData = [NSMutableDictionary dictionary];
   }
   return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+  self = [super init];
+  if (self) {
+    // TODO
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+  // TODO
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  // TODO
+  return nil;
 }
 
 #pragma mark - Instance methods
@@ -118,18 +146,29 @@
 
 - (void)runAction:(R4Action *)action
 {
-  [self runAction:action completion:nil];
+  [self runAction:action withKey:nil completion:nil];
 }
 
 - (void)runAction:(R4Action *)action completion:(void (^)())block
 {
-  [_actions addObject:action];
-  // TODO
+  [self runAction:action withKey:nil completion:block];
 }
 
 - (void)runAction:(R4Action *)action withKey:(NSString *)key
 {
-  // TODO
+  [self runAction:action withKey:key completion:nil];
+}
+
+- (void)runAction:(R4Action *)action withKey:(NSString *)key completion:(void (^)())block
+{
+  id _block = block, _key = key;
+  
+  if (_block == nil) _block = [NSNull null];
+  if (_key == nil) _key = [NSNull null];
+  
+  [_actions addObject:[NSMutableArray arrayWithObjects:action, _key, _block, @(NO), nil]];
+  
+  [action wasAddedToTarget:self atTime:CACurrentMediaTime()];
 }
 
 - (BOOL)hasActions
@@ -139,18 +178,32 @@
 
 - (R4Action *)actionForKey:(NSString *)key
 {
-  // TODO
+  for (NSArray *action in _actions) {
+    if (![action[1] isEqual:[NSNull null]] && [action[1] isEqualToString:key]) {
+      return action[0];
+    }
+  }
+  
   return nil;
 }
 
 - (void)removeActionForKey:(NSString *)key
 {
-  // TODO
+  for (NSInteger i = _actions.count - 1; i >= 0; i-- ) {
+    if (![_actions[i][1] isEqual:[NSNull null]] && [_actions[i][1] isEqualToString:key]) {
+      [_actions[i][0] wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+      [_actions removeObjectAtIndex:i];
+    }
+  }
 }
 
 - (void)removeAllActions
 {
-  // TODO
+  for (NSArray *action in _actions) {
+    [action[0] wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+  }
+  
+  [_actions removeAllObjects];
 }
 
 - (BOOL)containsPoint:(CGPoint)p
@@ -181,7 +234,7 @@
   return nodes;
 }
 
-#pragma mark - Private methods
+#pragma mark -  methods
 
 - (R4Scene *)scene
 {
@@ -194,6 +247,32 @@
     }
   }
   return nil;
+}
+
+- (void)setPaused:(BOOL)paused
+{
+  if (self.parent && self.parent.paused && !paused) {
+    return; // if parent is paused, I must not resume myself!
+  }
+  
+  if (_paused != paused) {
+    _paused = paused;
+
+    for (R4Node *node in self.children) {
+      [node setPaused:paused];
+      
+      NSTimeInterval time = CACurrentMediaTime();
+      if (paused) {
+        for (NSArray *action in _actions) {
+          [action[0] wasPausedWithTarget:self atTime:time];
+        }
+      } else {
+        for (NSArray *action in _actions) {
+          [action[0] willResumeWithTarget:self atTime:time];
+        }
+      }
+    }
+  }
 }
 
 - (void)setPosition:(GLKVector3)position
@@ -269,6 +348,34 @@
 
 - (void)didTraverse
 {
+}
+
+- (void)updateActionsAtTime:(NSTimeInterval)time
+{
+  if (self.paused) {
+    return;
+  }
+  
+  for (R4Node *node in _children) {
+    [node updateActionsAtTime:time];
+  }
+  
+  for (NSInteger i = _actions.count - 1; i >= 0; i--) {
+    R4Action *action = _actions[i][0];
+    BOOL started = [_actions[i][3] boolValue];
+    
+    if (!started) {
+      [action willStartWithTarget:self atTime:time];
+      _actions[i][3] = @(YES);
+    }
+    
+    [action updateWithTarget:self forTime:time];
+    
+    if (action.finished) {
+      [_actions removeObjectAtIndex:i];
+      [action wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+    }
+  }
 }
 
 @end

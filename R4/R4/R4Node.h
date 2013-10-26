@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
 @property (nonatomic) GLKQuaternion orientation;
 @property (nonatomic) GLKVector3 scale;
 
-@property (nonatomic) CGFloat zPosition;
+//@property (nonatomic) CGFloat zPosition;
 
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat alpha;
@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, readonly) R4Scene* scene;
-@property (nonatomic, strong) R4PhysicsBody *physicsBody;
+//@property (nonatomic, strong) R4PhysicsBody *physicsBody;
 @property (nonatomic, strong) NSMutableDictionary *userData;
 
 - (CGRect)calculateAccumulatedFrame;
@@ -80,10 +80,10 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
 - (R4Node *)nodeAtPoint:(CGPoint)p;
 - (NSArray *)nodesAtPoint:(CGPoint)p;
 
-- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
-- (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
+//- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
+//- (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
 
-- (BOOL)intersectsNode:(R4Node *)node;
+//- (BOOL)intersectsNode:(R4Node *)node;
 
 @end
 

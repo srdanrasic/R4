@@ -14,16 +14,16 @@
 
 @property (strong, nonatomic, readonly) R4Scene *scene;
 @property (assign, nonatomic, getter = isPaused) BOOL paused;
-@property (assign, nonatomic) BOOL showFPS;
-@property (assign, nonatomic) BOOL showDrawCount;
-@property (assign, nonatomic) BOOL showNodeCount;
+//@property (assign, nonatomic) BOOL showFPS;
+//@property (assign, nonatomic) BOOL showDrawCount;
+//@property (assign, nonatomic) BOOL showNodeCount;
 @property (assign, nonatomic) NSInteger frameInterval;
-@property (assign, nonatomic) BOOL ignoresSiblingOrder;
+//@property (assign, nonatomic) BOOL ignoresSiblingOrder;
 
 - (void)presentScene:(R4Scene *)scene;
-- (void)presentScene:(R4Scene *)scene transition:(R4Transition *)transition;
+//- (void)presentScene:(R4Scene *)scene transition:(R4Transition *)transition;
 
-- (R4Texture *)textureFromNode:(R4Node *)node;
+//- (R4Texture *)textureFromNode:(R4Node *)node;
 
 - (CGPoint)convertPoint:(CGPoint)point fromScene:(R4Scene *)scene;
 - (CGPoint)convertPoint:(CGPoint)point toScene:(R4Scene *)scene;
