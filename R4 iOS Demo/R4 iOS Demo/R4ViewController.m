@@ -26,7 +26,7 @@
 
 - (void)didMoveToView:(R4View *)view
 {
-  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"corn.obj"];
+  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"f16.obj"];
   spaceship.name = @"spaceship";
   spaceship.position = GLKVector3Make(0, 0, -2);
   spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);

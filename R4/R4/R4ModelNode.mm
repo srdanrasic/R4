@@ -126,9 +126,12 @@
   //shared_ptr<VertexData> indices(new BufferedVertexData(element_count * sizeof(unsigned), 0, GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER, NULL));
   //shared_ptr<VertexData> vbo(new BufferedVertexData(stride * vertex_count, stride, GL_STATIC_DRAW, GL_ARRAY_BUFFER, NULL));
   
+  glGenVertexArraysOES(1, &_vertexArray);
+  glBindVertexArrayOES(_vertexArray);
+  
   glGenBuffers(2, &_vertexBuffer);
   glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-  glBufferData(GL_ARRAY_BUFFER, _stride * _vertexCount, NULL, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, _stride * _vertexCount * sizeof(GLfloat), NULL, GL_STATIC_DRAW);
   unsigned char *vbo_array = (unsigned char *)glMapBufferOES(GL_ARRAY_BUFFER, GL_WRITE_ONLY_OES);
   
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
@@ -204,20 +207,22 @@
   
   //textured_mesh->setMaterial(material);
   
+  
+  glEnableVertexAttribArray(GLKVertexAttribPosition);
+  glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(0));
+  
+  //glEnableVertexAttribArray(GLKVertexAttribNormal);
+  //glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(sizeof(GLKVector3)));
+
+  glBindVertexArrayOES(0);
+  
   return YES;
 }
 
 - (void)draw
 {
-  glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-
-  glEnableVertexAttribArray(GLKVertexAttribPosition);
-  glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(0));
-  
-  glEnableVertexAttribArray(GLKVertexAttribNormal);
-  glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(sizeof(GLKVector3)*2));
-  
+  glDisable(GL_CULL_FACE);
+  glBindVertexArrayOES(_vertexArray);
   glDrawElements(GL_TRIANGLES, _elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
 }
 

@@ -9,6 +9,7 @@
 #import "R4ModelNode.h"
 
 @interface R4ModelNode () {
+  GLuint _vertexArray;
   GLuint _vertexBuffer;
   GLuint _indexBuffer;
   GLuint _vertexCount;
