@@ -15,6 +15,8 @@
   GLuint _vertexCount;
   GLuint _elementCount;
   GLuint _stride;
+  GLKEffectPropertyMaterial *_material;
+  GLKTextureInfo *_texture;
   BOOL _hasTextures;
   BOOL _hasNormals;
 }

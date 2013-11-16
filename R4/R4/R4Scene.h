@@ -8,7 +8,7 @@
 
 #import "R4Node.h"
 
-@class R4View, R4PhysicsWorld;
+@class R4View, R4Camera, R4PhysicsWorld;
 
 typedef NS_ENUM(NSInteger, R4SceneScaleMode) {
   R4SceneScaleModeFill,
@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, R4SceneScaleMode) {
 @property (nonatomic) CGPoint anchorPoint;
 //@property (nonatomic, readonly) R4PhysicsWorld *physicsWorld;
 @property (nonatomic, weak, readonly) R4View *view;
+@property (nonatomic, strong, readonly) R4Camera *currentCamera;
 
 //- (GLKVector3)convertPointFromView:(CGPoint)point;
 //- (CGPoint)convertPointToView:(GLKVector3)point;

@@ -157,23 +157,17 @@
   glUnmapBufferOES(GL_ARRAY_BUFFER);
   glUnmapBufferOES(GL_ELEMENT_ARRAY_BUFFER);
   
-  //vbo->setAttribute("in_position", VertexData::AttribProps(position_offset, 3, GL_FLOAT));
-  
-  //if (have_texcoords)
-    ;//vbo->setAttribute("in_texcoord", VertexData::AttribProps(texcoord_offset, 2, GL_FLOAT));
-  
-  //if (have_normals)
-    ;//vbo->setAttribute("in_normal", VertexData::AttribProps(normal_offset, 3, GL_FLOAT));
-  
-  //shared_ptr<TexturedMesh> textured_mesh(new TexturedMesh(indices, vbo, GL_TRIANGLES, element_count));
-  //shared_ptr<Material> material(new Material());
-  
+
   // Load material info
   if (material_filename.size() > 1) {
     NSString *directory = [path stringByDeletingLastPathComponent];
     NSString *materialPath = [directory stringByAppendingPathComponent:[NSString stringWithCString:material_filename.c_str() encoding:NSUTF8StringEncoding]];
     
     std::ifstream mat_file([materialPath cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    if (mat_file.good()) {
+      _material = [[GLKEffectPropertyMaterial alloc] init];
+    }
     
     while (mat_file.good()) {
       char c;
@@ -184,39 +178,62 @@
       if (line[0] == 'K' && line[1] == 'a') {
         GLKVector4 color;
         ss >> c >> c >> color.r >> color.g >> color.b;
-        //material->setAmbientColor(color);
+        _material.ambientColor = color;
       } else if (line[0] == 'K' && line[1] == 'd') {
         GLKVector4 color;
         ss >> c >> c >> color.r >> color.g >> color.b;
-        //material->setDiffuseColor(color);
+         _material.diffuseColor = color;
       } else if (line[0] == 'K' && line[1] == 's') {
         GLKVector4 color;
         ss >> c >> c >> color.r >> color.g >> color.b;
-        //material->setSpecularColor(color);
+        _material.specularColor = color;
       } else if (line[0] == 'N' && line[1] == 's') {
         float shininess;
         ss >> c >> c >> shininess;
-        //material->setShininess(shininess);
-      } else if (1/*startsWith(line, "map_Kd")*/) {
-        //String texture_filename;
-        //ss >> texture_filename >> texture_filename;
-        //textured_mesh->setTexture(Application::get().getResourceManager().getTexture(texture_filename));
+        _material.shininess = shininess;
+      } else if (line.compare(0, 6, std::string("map_Kd")) == 0) {
+        std::string texture_filename;
+        ss >> texture_filename >> texture_filename;
+        NSString *texturePath = [directory stringByAppendingPathComponent:[NSString stringWithCString:texture_filename.c_str() encoding:NSUTF8StringEncoding]];
+        
+        NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES]};
+        _texture = [GLKTextureLoader textureWithContentsOfFile:texturePath options:options error:nil];
       }
     }
   }
-  
-  //textured_mesh->setMaterial(material);
   
   
   glEnableVertexAttribArray(GLKVertexAttribPosition);
   glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(0));
   
-  //glEnableVertexAttribArray(GLKVertexAttribNormal);
-  //glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(sizeof(GLKVector3)));
+  if (_hasNormals) {
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(sizeof(GLKVector3)));
+  }
+  
+  if (_hasTextures) {
+    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, _stride, BUFFER_OFFSET(sizeof(GLKVector3)));
+  }
 
   glBindVertexArrayOES(0);
   
   return YES;
+}
+
+- (void)prepareEffect:(GLKBaseEffect *)effect
+{
+  effect.material.ambientColor = _material.ambientColor;
+  effect.material.diffuseColor = _material.diffuseColor;
+  effect.material.specularColor = _material.specularColor;
+  effect.material.shininess = _material.shininess;
+  
+  if (_texture) {
+    effect.texture2d0.name = _texture.name;
+    effect.texture2d0.enabled = GL_TRUE;
+  } else {
+    effect.texture2d0.enabled = GL_FALSE;
+  }
 }
 
 - (void)draw

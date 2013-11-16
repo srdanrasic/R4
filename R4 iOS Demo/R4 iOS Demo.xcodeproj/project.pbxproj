@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0C192A1837C67200148E7B /* corntext.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19281837C67200148E7B /* corntext.png */; };
+		EC0C192B1837C67200148E7B /* novcictext.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19291837C67200148E7B /* novcictext.png */; };
+		EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19461837DCEE00148E7B /* stacy.mtl */; };
+		EC0C19491837DCEE00148E7B /* stacy.obj in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19471837DCEE00148E7B /* stacy.obj */; };
+		EC0C194B1837DD6500148E7B /* stacy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C194A1837DD6500148E7B /* stacy.png */; };
 		ECC58CCC17F8500D00BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCB17F8500D00BBAD28 /* Foundation.framework */; };
 		ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */; };
 		ECC58CD017F8500D00BBAD28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCF17F8500D00BBAD28 /* UIKit.framework */; };
@@ -39,6 +44,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC0C19281837C67200148E7B /* corntext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corntext.png; sourceTree = "<group>"; };
+		EC0C19291837C67200148E7B /* novcictext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = novcictext.png; sourceTree = "<group>"; };
+		EC0C19461837DCEE00148E7B /* stacy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.mtl; sourceTree = "<group>"; };
+		EC0C19471837DCEE00148E7B /* stacy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.obj; sourceTree = "<group>"; };
+		EC0C194A1837DD6500148E7B /* stacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stacy.png; sourceTree = "<group>"; };
 		ECC58CC817F8500D00BBAD28 /* R4 iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "R4 iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58CCB17F8500D00BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -160,6 +170,11 @@
 		ECC78C7D181C4009000FBC19 /* Meshes */ = {
 			isa = PBXGroup;
 			children = (
+				EC0C194A1837DD6500148E7B /* stacy.png */,
+				EC0C19461837DCEE00148E7B /* stacy.mtl */,
+				EC0C19471837DCEE00148E7B /* stacy.obj */,
+				EC0C19281837C67200148E7B /* corntext.png */,
+				EC0C19291837C67200148E7B /* novcictext.png */,
 				ECC78C7E181C4009000FBC19 /* 747.obj */,
 				ECC78C80181C4009000FBC19 /* corn.mtl */,
 				ECC78C81181C4009000FBC19 /* corn.obj */,
@@ -244,7 +259,12 @@
 				ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */,
 				ECC78C87181C4009000FBC19 /* corn.mtl in Resources */,
 				ECC58CE217F8500D00BBAD28 /* Main_iPad.storyboard in Resources */,
+				EC0C192B1837C67200148E7B /* novcictext.png in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
+				EC0C19491837DCEE00148E7B /* stacy.obj in Resources */,
+				EC0C194B1837DD6500148E7B /* stacy.png in Resources */,
+				EC0C192A1837C67200148E7B /* corntext.png in Resources */,
+				EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */,
 				ECC78C88181C4009000FBC19 /* corn.obj in Resources */,
 				ECC78C85181C4009000FBC19 /* 747.obj in Resources */,
 				ECC58CDF17F8500D00BBAD28 /* Main_iPhone.storyboard in Resources */,

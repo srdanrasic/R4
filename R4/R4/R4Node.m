@@ -295,7 +295,7 @@
 
 - (GLKMatrix4)modelViewMatrix
 {
-  if (1) {
+  if (1) { // if dirty 
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(self.position.x, self.position.y, self.position.z);
     modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, GLKMatrix4MakeWithQuaternion(self.orientation));
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
@@ -339,6 +339,10 @@
 }
 
 - (void)willTraverse
+{
+}
+
+- (void)prepareEffect:(GLKBaseEffect *)effect
 {
 }
 

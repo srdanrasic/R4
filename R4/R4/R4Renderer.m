@@ -11,6 +11,7 @@
 #import "R4Scene_.h"
 #import "R4View_.h"
 #import "R4PrimitiveNode_.h"
+#import "R4Camera_.h"
 
 @interface R4Renderer () {
   EAGLContext* _context;
@@ -54,7 +55,7 @@
   self.effect = [[GLKBaseEffect alloc] init];
   self.effect.light0.enabled = GL_TRUE;
   self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-  self.effect.light0.position = GLKVector4Make(0, -1, 0, 0);
+  self.effect.lightingType = GLKLightingTypePerPixel;
   
   return YES;
 }
@@ -121,11 +122,16 @@
   
   // Render the scene
   self.effect.transform.projectionMatrix = [scene.view projectionMatrix];
+  self.effect.transform.modelviewMatrix = GLKMatrix4Identity;
+  self.effect.light0.position = GLKVector4Make(0, 0, -1, 0);
+  
+  GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
   
   __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
     for (R4Node *node in root.children) {
       dfs(node);
-      self.effect.transform.modelviewMatrix = node.modelViewMatrix;
+      self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, node.modelViewMatrix);
+      [node prepareEffect:self.effect];
       [self.effect prepareToDraw];
       [node draw];
     }

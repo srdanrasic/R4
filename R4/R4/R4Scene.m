@@ -9,6 +9,7 @@
 #import "R4Scene_.h"
 #import "R4Node_.h"
 #import "R4View_.h"
+#import "R4Camera_.h"
 
 @implementation R4Scene
 
@@ -25,6 +26,7 @@
     self.anchorPoint = CGPointMake(0, 0);
     self.scaleMode = R4SceneScaleModeResizeFill;
     self.backgroundColor = [R4Color colorWithRed:0.15 green:0.15 blue:0.15 alpha:1.0];
+    self.currentCamera = [R4Camera cameraAtPosition:GLKVector3Make(0, 1, 2) lookingAt:GLKVector3Make(0, 0, 0)];
   }
   return self;
 }

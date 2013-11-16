@@ -99,6 +99,14 @@ GLfloat gCubeVertexData[216] =
   return self;
 }
 
+- (void)prepareEffect:(GLKBaseEffect *)effect
+{
+  effect.material.ambientColor = GLKVector4Make(0.2, 0.2, 0.2, 1.0);
+  effect.material.diffuseColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
+  effect.material.specularColor = GLKVector4Make(0.5, 0.5, 0.5, 1.0);
+  effect.material.shininess = 0.5;
+}
+
 - (void)draw
 {
   glBindVertexArrayOES(_vertexArray);

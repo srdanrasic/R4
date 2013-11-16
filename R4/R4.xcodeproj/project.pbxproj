@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0C194E1837E46A00148E7B /* R4Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4Camera.m */; };
 		EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */; };
 		EC4A943E181BC2AF008B9DC4 /* R4SequenceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */; };
 		EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3961800672F00AB7FE8 /* R4Action.m */; };
@@ -40,6 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EC0C194C1837E46A00148E7B /* R4Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Camera.h; path = R4/R4Camera.h; sourceTree = "<group>"; };
+		EC0C194D1837E46A00148E7B /* R4Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Camera.m; sourceTree = "<group>"; };
+		EC0C194F1837E67400148E7B /* R4Camera_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Camera_.h; sourceTree = "<group>"; };
 		EC0C8F3917F88D1600E8B229 /* R4Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Math.h; sourceTree = "<group>"; };
 		EC0C8F8617F89D5700E8B229 /* R4Scene_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Scene_.h; sourceTree = "<group>"; };
 		EC4A9439181BB41B008B9DC4 /* R4MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4MoveAction.h; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				ECC58D4517F8521900BBAD28 /* R4Node.m */,
 				EC0C8F8617F89D5700E8B229 /* R4Scene_.h */,
 				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
+				EC0C194F1837E67400148E7B /* R4Camera_.h */,
+				EC0C194D1837E46A00148E7B /* R4Camera.m */,
 				ECA854E017FE18C800E65E69 /* R4PrimitiveNode_.h */,
 				ECC58D5317F85E2700BBAD28 /* R4PrimitiveNode.m */,
 				ECC78C7A181C2D6E000FBC19 /* R4ModelNode_.h */,
@@ -183,6 +189,7 @@
 				ECC58D4D17F8538900BBAD28 /* R4Texture.h */,
 				ECC58D4417F8521900BBAD28 /* R4Node.h */,
 				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
+				EC0C194C1837E46A00148E7B /* R4Camera.h */,
 				ECC58D5217F85E2700BBAD28 /* R4PrimitiveNode.h */,
 				ECC78C77181C2B1B000FBC19 /* R4ModelNode.h */,
 				EC5BB3951800672F00AB7FE8 /* R4Action.h */,
@@ -247,6 +254,7 @@
 				ECC58D4917F8524F00BBAD28 /* R4Scene.m in Sources */,
 				ECC58D4317F8519900BBAD28 /* R4View.m in Sources */,
 				ECC58D4C17F8531B00BBAD28 /* R4Transition.m in Sources */,
+				EC0C194E1837E46A00148E7B /* R4Camera.m in Sources */,
 				EC4A943E181BC2AF008B9DC4 /* R4SequenceAction.m in Sources */,
 				EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */,
 				ECC58D4617F8521900BBAD28 /* R4Node.m in Sources */,

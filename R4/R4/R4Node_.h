@@ -23,6 +23,7 @@
 @property (nonatomic) GLKMatrix4 modelViewMatrix;
 
 - (void)willTraverse;
+- (void)prepareEffect:(GLKBaseEffect *)effect;
 - (void)draw;
 - (void)didTraverse;
 

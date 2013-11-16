@@ -12,6 +12,7 @@
 #import <R4/R4Action.h>
 #import <R4/R4PrimitiveNode.h>
 #import <R4/R4ModelNode.h>
+#import <R4/R4Camera.h>
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : R4Scene
@@ -26,18 +27,18 @@
 
 - (void)didMoveToView:(R4View *)view
 {
-  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"f16.obj"];
-  spaceship.name = @"spaceship";
-  spaceship.position = GLKVector3Make(0, 0, -2);
-  spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  //spaceship.scale = GLKVector3Make(1, 1, 1);
+  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"stacy.obj"];
+  spaceship.name = @"stacy";
+  spaceship.position = GLKVector3Make(0, 0, 0);
+  spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
+  spaceship.scale = GLKVector3Make(2, 2, 2);
   spaceship.speed = 2;
   
   [self addChild:spaceship];
   
   self.spaceship2 = [R4PrimitiveNode box];
   self.spaceship2.name = @"spaceship";
-  self.spaceship2.position = GLKVector3Make(0, 1, 0);
+  self.spaceship2.position = GLKVector3Make(1, 1.1, 0);
   self.spaceship2.scale = GLKVector3Make(0.1, 0.1, 3);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
   
@@ -49,6 +50,9 @@
                                                                           ]]]];
   [spaceship removeAllActions];
   
+  self.currentCamera.position = GLKVector3Make(0, 2, 4);
+  self.currentCamera.targetNode = self.spaceship2;
+  
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
 
@@ -56,8 +60,9 @@
 {
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
   //NSLog(@"FPS: %f", 1.0/elapsedTime);
-  [self childNodeWithName:@"spaceship"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"spaceship"].orientation,
-                                                                            GLKQuaternionMakeWithAngleAndAxis(1*elapsedTime, 0, 0, 1));
+  [self childNodeWithName:@"stacy"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacy"].orientation,
+                                                                            GLKQuaternionMakeWithAngleAndAxis(elapsedTime, 0, 1, 0));
+  
   self.spaceship2.orientation = GLKQuaternionMultiply(self.spaceship2.orientation,
                                                      GLKQuaternionMakeWithAngleAndAxis(5*elapsedTime, 0, 1, 0));
 
