@@ -101,6 +101,7 @@
   
 	self.r4view = [[R4View alloc] initWithFrame:self.view.bounds];
   self.r4view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  self.r4view.showFPS = YES;
   [self.view addSubview:self.r4view];
   
   self.scene = [MyScene sceneWithSize:[UIScreen mainScreen].bounds.size];
@@ -108,7 +109,7 @@
   [self.r4view presentScene:self.scene];
   
   UIButton *pauseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  pauseButton.frame = CGRectMake(10, 10, 200, 30);
+  pauseButton.frame = CGRectMake(10, 10, 120, 30);
   [pauseButton setTitle:@"Pause scene" forState:UIControlStateNormal];
   [pauseButton addTarget:self action:@selector(pauseGame:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:pauseButton];

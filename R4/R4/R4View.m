@@ -15,6 +15,8 @@
 @property (nonatomic, strong, readwrite) R4Scene *scene;
 @property (nonatomic, strong) R4Renderer *rendered;
 @property (nonatomic, strong) CADisplayLink *displayLink;
+@property (nonatomic, assign) NSTimeInterval timeOfLastUpdate;
+@property (nonatomic, strong) UILabel *fpsLabel;
 @end
 
 @implementation R4View
@@ -63,11 +65,14 @@
 
 - (void)drawView:(id)sender
 {
+  NSTimeInterval currentTime = CACurrentMediaTime();
+  NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
+  
   if (!self.isPaused) {
-    [self.scene update:CACurrentMediaTime()];
+    [self.scene update:currentTime];
     
     // evaluate actions
-    [self.scene updateActionsAtTime:CACurrentMediaTime()];
+    [self.scene updateActionsAtTime:currentTime];
     [self.scene didEvaluateActions];
     
     // simulate physics
@@ -75,6 +80,9 @@
   }
 
   [self.rendered render:self.scene];
+  
+  self.fpsLabel.text = [NSString stringWithFormat:@"%.1f", 1.0/elapsedTime];
+  self.timeOfLastUpdate = currentTime;
 }
 
 - (void)layoutSubviews
@@ -106,6 +114,23 @@
 }
 
 #pragma mark - Instance methods
+
+- (void)setShowFPS:(BOOL)showFPS
+{
+  _showFPS = showFPS;
+  
+  if (showFPS) {
+    self.fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 80, 10, 70, 30)];
+    self.fpsLabel.font = [UIFont systemFontOfSize:20];
+    self.fpsLabel.textColor = [UIColor whiteColor];
+    self.fpsLabel.textAlignment = NSTextAlignmentRight;
+    self.fpsLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [self addSubview:self.fpsLabel];
+  } else {
+    [self.fpsLabel removeFromSuperview];
+    self.fpsLabel = nil;
+  }
+}
 
 - (void)setPaused:(BOOL)paused
 {

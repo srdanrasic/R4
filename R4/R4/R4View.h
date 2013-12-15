@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic, readonly) R4Scene *scene;
 @property (assign, nonatomic, getter = isPaused) BOOL paused;
-//@property (assign, nonatomic) BOOL showFPS;
+@property (assign, nonatomic) BOOL showFPS;
 //@property (assign, nonatomic) BOOL showDrawCount;
 //@property (assign, nonatomic) BOOL showNodeCount;
 @property (assign, nonatomic) NSInteger frameInterval;
