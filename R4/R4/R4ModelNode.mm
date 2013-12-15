@@ -14,7 +14,7 @@
 
 @implementation R4ModelNode
 
-- (instancetype)initWithModelNamed:(NSString *)name
+- (instancetype)initWithModelNamed:(NSString *)name normalize:(BOOL)normalize center:(BOOL)center
 {
   self = [super init];
   if (self) {
@@ -28,7 +28,7 @@
     }
     
     if ([path hasSuffix:@".obj"]) {
-      loaded = [self loadObjFile:path];
+      loaded = [self loadObjFile:path normalize:normalize center:center];
     } // TODO add other formats
     
     if (!loaded) {
@@ -38,7 +38,7 @@
   return self;
 }
 
-- (BOOL)loadObjFile:(NSString *)path
+- (BOOL)loadObjFile:(NSString *)path normalize:(BOOL)normalize center:(BOOL)center
 {
   std::ifstream obj_file([path cStringUsingEncoding:NSUTF8StringEncoding]);
   
@@ -56,7 +56,12 @@
   std::vector<GLKVector3> texcoords;
   std::vector<GLKVector3> normals;
   std::vector<FaceIndices> faces;
+  
   float max_length = 0.0;
+  
+  GLKVector3 centerOffset = GLKVector3Make(0, 0, 0);
+  GLKVector3 min = GLKVector3Make(9999, 9999, 9999);
+  GLKVector3 max = GLKVector3Make(-9999, -9999, -9999);
   
   std::string material_filename;
   
@@ -70,6 +75,8 @@
       GLKVector3 p;
       ss >> c >> p.x >> p.y >> p.z;
       vertices.push_back(p);
+      min = GLKVector3Minimum(min, p);
+      max = GLKVector3Maximum(max, p);
       
       if (GLKVector3Length(p) > max_length)
         max_length = GLKVector3Length(p);
@@ -103,8 +110,22 @@
     }
   }
   
+  if (normalize) {
+    min = GLKVector3DivideScalar(min, max_length);
+    max = GLKVector3DivideScalar(max, max_length);
+  }
+  
+  centerOffset = GLKVector3Negate(GLKVector3Lerp(min, max, 0.5));
+  
+  if (center) {
+    min = GLKVector3Add(min, centerOffset);
+    max = GLKVector3Add(max, centerOffset);
+  }
+  
   self.drawableObject = [[R4DrawableObject alloc] init];
   
+  self.drawableObject.geometryBoundingBox = R4BoxMake(min, max);
+
   self.drawableObject->hasTextures = texcoords.size() > 0;
   self.drawableObject->hasNormals = normals.size() > 0;
   
@@ -143,7 +164,17 @@
       unsigned short index = i * 3 + j;
       index_array[index] = faces[i].position[j];  // copy index to array of indices
       
-      ((GLKVector3 *)(vbo_array + index_array[index] * self.drawableObject->stride + position_offset))[0] = GLKVector3DivideScalar(vertices[faces[i].position[j] - 1], max_length);
+      GLKVector3 position = vertices[faces[i].position[j] - 1];
+      
+      if (normalize) {
+        position = GLKVector3DivideScalar(position, max_length);
+      }
+      
+      if (center) {
+        position = GLKVector3Add(position, centerOffset);
+      }
+      
+      ((GLKVector3 *)(vbo_array + index_array[index] * self.drawableObject->stride + position_offset))[0] = position;
       
       if (self.drawableObject->hasTextures)
         ((GLKVector3 *)(vbo_array + index_array[index] * self.drawableObject->stride + texcoord_offset))[0] = texcoords[faces[i].texcoord[j] - 1];
@@ -196,6 +227,7 @@
         if (texture) {
           self.drawableObject.effect.texture2d0.name = texture.name;
           self.drawableObject.effect.texture2d0.enabled = GL_TRUE;
+          self.drawableObject.effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         }
       }
     }
@@ -219,11 +251,9 @@
   return YES;
 }
 
-- (void)draw
+- (void)prepareToDraw
 {
   glDisable(GL_CULL_FACE);
-  glBindVertexArrayOES(self.drawableObject->vertexArray);
-  glDrawElements(GL_TRIANGLES, self.drawableObject->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
 }
 
 @end

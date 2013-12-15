@@ -17,9 +17,8 @@
 
 @interface MyScene : R4Scene
 
-@property (strong, nonatomic) R4Node *spaceship2;
-
 @property (assign, nonatomic) NSTimeInterval timeOfLastUpdate;
+
 @end
 
 @implementation MyScene
@@ -27,41 +26,42 @@
 
 - (void)didMoveToView:(R4View *)view
 {
-  R4Node *spaceship = [[R4ModelNode alloc] initWithModelNamed:@"stacy.obj"];
-  spaceship.name = @"stacy";
-  spaceship.position = GLKVector3Make(0, 0, 0);
-  spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
-  spaceship.scale = GLKVector3Make(2, 2, 2);
-  spaceship.speed = 1;
-  [self addChild:spaceship];
-  
-  [spaceship runAction:[R4Action repeatActionForever:[R4Action sequence:@[
+  R4DrawableNode *stacy = [[R4ModelNode alloc] initWithModelNamed:@"stacy.obj" normalize:YES center:NO];
+  stacy.name = @"stacy";
+  stacy.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
+  stacy.scale = GLKVector3Make(1, 1, 1);
+  stacy.speed = 1;
+  stacy.blendMode = R4BlendModeAlpha;
+  [self addChild:stacy];
+
+  [stacy runAction:[R4Action repeatActionForever:[R4Action sequence:@[
                                                                           [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
                                                                           [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
                                                                           ]]]];
-  //[spaceship removeAllActions];
   
-  for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10; j++) {
-      R4Node *c2 = [spaceship copy];
-      c2.position = GLKVector3Make(i, 0, -1 - j);
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      R4Node *c2 = [stacy copy];
+      c2.position = GLKVector3Make(-2 + i, 0, 1-j);
       [self addChild:c2];
     }
   }
   
-  spaceship.position = GLKVector3Make(1, 0, 0);
+  [stacy removeAllActions];
+  stacy.highlightColor = [UIColor redColor];
+  stacy.position = GLKVector3Make(0, 0, 3);
 
-  self.spaceship2 = [R4PrimitiveNode box];
-  self.spaceship2.name = @"spaceship";
-  self.spaceship2.position = GLKVector3Make(1, 1.1, 0);
-  self.spaceship2.scale = GLKVector3Make(0.1, 0.1, 3);
+  R4DrawableNode *base = [R4PrimitiveNode box];
+  base.name = @"base";
+  base.position = GLKVector3Make(0, 0, 0);
+  base.scale = GLKVector3Make(12, .01, 12);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  
-  [spaceship addChild:self.spaceship2];
+  base.highlightColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0];
+  [self addChild:base];
 
-  
-  self.currentCamera.position = GLKVector3Make(-1, 2, 4);
-  self.currentCamera.targetNode = spaceship;
+  self.currentCamera.position = GLKVector3Make(-4, 2, -1);
+  self.currentCamera.targetNode = stacy;
+  [stacy addChild:self.currentCamera];
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
@@ -69,16 +69,14 @@
 - (void)update:(NSTimeInterval)currentTime
 {
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
-  //NSLog(@"FPS: %f", 1.0/elapsedTime);
-  [self childNodeWithName:@"stacy"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacy"].orientation,
-                                                                            GLKQuaternionMakeWithAngleAndAxis(elapsedTime, 0, 1, 0));
   
-  self.spaceship2.orientation = GLKQuaternionMultiply(self.spaceship2.orientation,
-                                                     GLKQuaternionMakeWithAngleAndAxis(5*elapsedTime, 0, 1, 0));
+  [self childNodeWithName:@"stacy"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacy"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime, 0, 1, 0));
+  //[self childNodeWithName:@"base"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"base"].orientation, GLKQuaternionMakeWithAngleAndAxis(2*elapsedTime, 0, 1, 0));
+  
+  //self.currentCamera.position = GLKVector3Make(-sinf(currentTime) * 3, 2, cosf(currentTime) * 3);
 
   self.timeOfLastUpdate = currentTime;
-  
-  //NSLog(@"%@", NSStringFromGLKVector3([[self childNodeWithName:@"spaceship"] scale]));
+  //NSLog(@"FPS: %f", 1.0/elapsedTime);
 }
 
 @end

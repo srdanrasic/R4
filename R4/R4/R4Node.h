@@ -10,23 +10,12 @@
 
 @class R4View, R4Action, R4Scene, R4Texture, R4PhysicsBody;
 
-typedef NS_ENUM(NSInteger, R4BlendMode) {
-  R4BlendModeAlpha        = 0,    // Blends the source and destination colors by multiplying the source alpha value.
-  R4BlendModeAdd          = 1,    // Blends the source and destination colors by adding them up.
-  R4BlendModeSubtract     = 2,    // Blends the source and destination colors by subtracting the source from the destination.
-  R4BlendModeMultiply     = 3,    // Blends the source and destination colors by multiplying them.
-  R4BlendModeMultiplyX2   = 4,    // Blends the source and destination colors by multiplying them and doubling the result.
-  R4BlendModeScreen       = 5,    // FIXME: Description needed
-  R4BlendModeReplace      = 6     // Replaces the destination with the source (ignores alpha).
-};
-
-
 @interface R4Node : UIResponder <NSCopying, NSCoding>
 
 + (instancetype)node;
 
 @property (nonatomic, readonly) CGRect frame; // bounding box after projection
-@property (nonatomic, readonly) CGFloat boundingRadius;
+@property (nonatomic, readonly) R4Box boundingBox;
 
 @property (nonatomic) GLKVector3 position;
 @property (nonatomic) GLKQuaternion orientation;

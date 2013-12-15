@@ -32,8 +32,13 @@
   GLKVector3 up = _upVector;
   GLKVector3 center;
   
+  if (self.parent) {
+    eye = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.parent.modelViewMatrix, GLKVector4MakeWithVector3(self.position, 1)).v);
+  }
+  
   if (self.targetNode) {
-    center = GLKMatrix4MultiplyVector3(self.targetNode.parent.modelViewMatrix, self.targetNode.position);
+    GLKVector3 target = GLKVector3Add(self.targetNode.position, GLKVector3Lerp(self.targetNode.boundingBox.min, self.targetNode.boundingBox.max, .5f));
+    center = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.targetNode.parent.modelViewMatrix, GLKVector4MakeWithVector3(target, 1)).v);
   } else {
     center = _lookAt;
   }

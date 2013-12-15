@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
+#import "R4Base.h"
 #import "R4Renderer.h"
 #import "R4DrawableNode_private.h"
 #import "R4Node_private.h"
@@ -71,6 +72,7 @@ GLfloat gCubeVertexData[216] =
   if (self) {
     
     self.drawableObject = [[R4DrawableObject alloc] init];
+    self.drawableObject->elementCount = 36;
     
     glGenVertexArraysOES(1, &self.drawableObject->vertexArray);
     glBindVertexArrayOES(self.drawableObject->vertexArray);
@@ -86,14 +88,10 @@ GLfloat gCubeVertexData[216] =
     glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
 
     glBindVertexArrayOES(0);
+    
+    self.drawableObject.geometryBoundingBox = R4BoxMake(GLKVector3Make(-.5f, -.5f, -.5f), GLKVector3Make(.5f, .5f, .5f));
   }
   return self;
-}
-
-- (void)draw
-{
-  glBindVertexArrayOES(self.drawableObject->vertexArray);
-  glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 @end

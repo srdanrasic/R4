@@ -7,18 +7,25 @@
 //
 
 #import "R4DrawableNode_private.h"
+#import "R4Node_private.h"
 
 @implementation R4DrawableNode
 
-- (void)draw
+- (R4Box)boundingBox
 {
-  @throw [NSException exceptionWithName:@"Error: - (void)draw; not implemented" reason:nil userInfo:nil];
+  return self.drawableObject.geometryBoundingBox;
+}
+
+- (void)prepareToDraw
+{
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
   R4DrawableNode *drawableNode = [super copyWithZone:zone];
   drawableNode.drawableObject = self.drawableObject;
+  drawableNode.blendMode = self.blendMode;
+  drawableNode.highlightColor = [self.highlightColor copyWithZone:zone];
   return drawableNode;
 }
 

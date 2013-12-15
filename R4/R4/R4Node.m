@@ -331,11 +331,11 @@
     GLKVector3 startPoint = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, self.position);
   
     GLKVector3 leftAxis = GLKVector3MakeWithArray(GLKMatrix4GetColumn(self.parent.modelViewMatrix, 0).v);
-    leftAxis = GLKVector3MultiplyScalar(leftAxis, self.boundingRadius);
+    leftAxis = GLKVector3MultiplyScalar(leftAxis, self.boundingBox.max.x);
     leftAxis = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, GLKVector3Add(self.position, leftAxis));
     
     GLKVector3 upAxis = GLKVector3MakeWithArray(GLKMatrix4GetColumn(self.parent.modelViewMatrix, 1).v);
-    upAxis = GLKVector3MultiplyScalar(upAxis, self.boundingRadius);
+    upAxis = GLKVector3MultiplyScalar(upAxis, self.boundingBox.max.x);
     upAxis = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, GLKVector3Add(self.position, upAxis));
     
     GLKVector3 sizeX = GLKVector3Subtract(leftAxis, startPoint);
@@ -346,9 +346,9 @@
   return _accumulatedFrame;
 }
 
-- (CGFloat)boundingRadius
+- (R4Box)boundingBox
 {
-  return 10;
+  return R4BoxZero;
 }
 
 - (void)willTraverse

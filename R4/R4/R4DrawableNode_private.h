@@ -13,6 +13,6 @@
 
 @property (strong, nonatomic) R4DrawableObject *drawableObject;
 
-- (void)draw;
+- (void)prepareToDraw;
 
 @end

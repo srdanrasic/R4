@@ -22,5 +22,6 @@
 }
 
 @property (strong, nonatomic, readonly) GLKBaseEffect *effect;
+@property (assign, nonatomic) R4Box geometryBoundingBox;
 
 @end

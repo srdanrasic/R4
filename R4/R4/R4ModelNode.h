@@ -10,6 +10,6 @@
 
 @interface R4ModelNode : R4DrawableNode
 
-- (instancetype)initWithModelNamed:(NSString *)name;
+- (instancetype)initWithModelNamed:(NSString *)name normalize:(BOOL)normalize center:(BOOL)center;
 
 @end

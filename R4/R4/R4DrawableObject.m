@@ -23,6 +23,9 @@
     self.effect.material.diffuseColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
     self.effect.material.specularColor = GLKVector4Make(0.5, 0.5, 0.5, 1.0);
     self.effect.material.shininess = 0.5;
+    
+    vertexBuffer = GL_INVALID_VALUE;
+    indexBuffer = GL_INVALID_VALUE;
   }
   return self;
 }

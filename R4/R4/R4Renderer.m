@@ -18,6 +18,7 @@
   EAGLContext* _context;
   GLuint _defaultFramebuffer, _depthRenderbuffer, _colorRenderbuffer;
   GLint _backingWidth, _backingHeight;
+  R4BlendMode _currentBlendMode;
 }
 
 @end
@@ -30,6 +31,7 @@
   self = [super init];
   if (self) {
     if (![self initOpenGL]) return nil;
+    _currentBlendMode = -1;
   }
   return self;
 }
@@ -51,7 +53,6 @@
   glGenRenderbuffers(1, &_depthRenderbuffer);
   glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderbuffer);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
-
   
   return YES;
 }
@@ -72,6 +73,32 @@
     [EAGLContext setCurrentContext:nil];
   
   _context = nil;
+}
+
+void setupBlendMode(R4BlendMode mode)
+{
+  if (mode == R4BlendModeAlpha) {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeAdd) {
+    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeSubtract) {
+    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendEquation(GL_FUNC_SUBTRACT);
+  } else if (mode == R4BlendModeMultiply) {
+    glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeMultiplyX2) {
+    glBlendFunc(GL_DST_COLOR, GL_SRC_COLOR);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeScreen) {
+    glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ONE);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeReplace) {
+    glBlendFunc(GL_ONE, GL_ZERO);
+    glBlendEquation(GL_FUNC_ADD);
+  }
 }
 
 - (void)render:(R4Scene *)scene
@@ -110,32 +137,77 @@
   
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
-  
+
   GLfloat r, g, b, a;
   [scene.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
   glClearColor(r, g, b, a);
   glClear(GL_COLOR_BUFFER_BIT);
   
-  // Render the scene
-  GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
-  
+  glEnable(GL_BLEND);
+
+  // Get sorted drawables (TODO cache)
+  NSMutableDictionary *drawables = [NSMutableDictionary dictionary];
   __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
     for (R4Node *node in root.children) {
       dfs(node);
       
       if ([node isKindOfClass:[R4DrawableNode class]]) {
         R4DrawableNode *drawable = (R4DrawableNode *)node;
+        NSValue *key = [NSValue valueWithNonretainedObject:drawable.drawableObject];
+        NSMutableArray *array = [drawables objectForKey:key];
         
-        drawable.drawableObject.effect.transform.projectionMatrix = [scene.view projectionMatrix];
-        drawable.drawableObject.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, node.modelViewMatrix);
-        drawable.drawableObject.effect.light0.position = GLKVector4Make(0, 0, -1, 0);
-        [drawable.drawableObject.effect prepareToDraw];
-        [drawable draw];
+        if (!array) {
+          array = [NSMutableArray array];
+          [drawables setObject:array forKey:key];
+        }
+        
+        [array addObject:drawable];
       }
     }
   };
   dfs(scene);
   
+  
+  // Render the scene
+  GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
+  for (NSValue *key in drawables.allKeys) {
+    R4DrawableObject *drawableObject = [key nonretainedObjectValue];
+    GLKBaseEffect *effect = drawableObject.effect;
+    BOOL hasElements = (drawableObject->indexBuffer != GL_INVALID_VALUE);
+    
+    effect.transform.projectionMatrix = [scene.view projectionMatrix];
+    
+    glBindVertexArrayOES(drawableObject->vertexArray);
+
+    for (R4DrawableNode *drawable in drawables[key]) {
+      GLKVector4 constantColor = effect.constantColor;
+      
+      effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, drawable.modelViewMatrix);
+      effect.light0.position = GLKVector4Make(0, 0, -1, 0);
+      
+      if (drawable.highlightColor) {
+        GLfloat r, g, b, a;
+        [drawable.highlightColor getRed:&r green:&g blue:&b alpha:&a];
+        effect.constantColor = GLKVector4Make(r, g, b, a);
+      }
+      
+      [effect prepareToDraw];
+      
+      if (_currentBlendMode != drawable.blendMode) {
+        setupBlendMode(drawable.blendMode);
+        _currentBlendMode = drawable.blendMode;
+      }
+      
+      if (hasElements) {
+        glDrawElements(GL_TRIANGLES, drawableObject->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+      } else {
+        glDrawArrays(GL_TRIANGLES, 0, drawableObject->elementCount);
+      }
+      
+      effect.constantColor = constantColor;
+    }
+  }
+
   glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);
   [_context presentRenderbuffer:GL_RENDERBUFFER];
   
