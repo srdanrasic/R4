@@ -34,15 +34,16 @@
   stacy.blendMode = R4BlendModeAlpha;
   [self addChild:stacy];
 
-  [stacy runAction:[R4Action repeatActionForever:[R4Action sequence:@[
-                                                                          [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
-                                                                          [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
-                                                                          ]]]];
   
   for (int i = 0; i < 5; i++) {
     for (int j = 0; j < 5; j++) {
       R4Node *c2 = [stacy copy];
       c2.position = GLKVector3Make(-2 + i, 0, 1-j);
+      CGFloat duration = 0.5 + (arc4random() % 100) / 50.0;
+      [c2 runAction:[R4Action repeatActionForever:[R4Action sequence:@[
+                                                                       [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:duration],
+                                                                       [R4Action scaleTo:GLKVector3Make(1, .5, 1) duration:duration]
+                                                                       ]]]];
       [self addChild:c2];
     }
   }
@@ -103,7 +104,7 @@
   [self.view addSubview:self.r4view];
   
   self.scene = [MyScene sceneWithSize:[UIScreen mainScreen].bounds.size];
-  self.scene.scaleMode = R4SceneScaleModeAspectFit;
+  self.scene.scaleMode = R4SceneScaleModeResizeFill;
   [self.r4view presentScene:self.scene];
   
   UIButton *pauseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

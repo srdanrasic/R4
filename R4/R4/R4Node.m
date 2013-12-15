@@ -268,23 +268,24 @@
     return; // if parent is paused, I must not resume myself!
   }
   
-  if (_paused != paused) {
+  if (self.paused != paused) {
     _paused = paused;
 
     for (R4Node *node in self.children) {
       [node setPaused:paused];
-      
-      NSTimeInterval time = CACurrentMediaTime();
-      if (paused) {
-        for (R4ActionDescriptor *actionDescriptor in _actions) {
-          [actionDescriptor.action wasPausedWithTarget:self atTime:time];
-        }
-      } else {
-        for (R4ActionDescriptor *actionDescriptor in _actions) {
-          [actionDescriptor.action willResumeWithTarget:self atTime:time];
-        }
+    }
+    
+    NSTimeInterval time = CACurrentMediaTime();
+    if (_paused) {
+      for (R4ActionDescriptor *actionDescriptor in _actions) {
+        [actionDescriptor.action wasPausedWithTarget:self atTime:time];
+      }
+    } else {
+      for (R4ActionDescriptor *actionDescriptor in _actions) {
+        [actionDescriptor.action willResumeWithTarget:self atTime:time];
       }
     }
+
   }
 }
 
