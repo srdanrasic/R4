@@ -6,16 +6,10 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4PrimitiveNode.h"
-#import "R4Node_.h"
 #import "R4Renderer.h"
-
-@interface R4PrimitiveNode () {
-  GLuint _vertexArray;
-  GLuint _vertexBuffer;
-}
-
-@end
+#import "R4DrawableNode_private.h"
+#import "R4Node_private.h"
+#import "R4PrimitiveNode.h"
 
 @implementation R4PrimitiveNode
 
@@ -71,21 +65,18 @@ GLfloat gCubeVertexData[216] =
   return [[[self class] alloc] initBox];
 }
 
-- (void)dealloc
-{
-  glDeleteBuffers(1, &_vertexBuffer);
-}
-
 - (instancetype)initBox
 {
   self = [super init];
   if (self) {
     
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
+    self.drawableObject = [[R4DrawableObject alloc] init];
     
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    glGenVertexArraysOES(1, &self.drawableObject->vertexArray);
+    glBindVertexArrayOES(self.drawableObject->vertexArray);
+    
+    glGenBuffers(1, &self.drawableObject->vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, self.drawableObject->vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
@@ -99,17 +90,9 @@ GLfloat gCubeVertexData[216] =
   return self;
 }
 
-- (void)prepareEffect:(GLKBaseEffect *)effect
-{
-  effect.material.ambientColor = GLKVector4Make(0.2, 0.2, 0.2, 1.0);
-  effect.material.diffuseColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
-  effect.material.specularColor = GLKVector4Make(0.5, 0.5, 0.5, 1.0);
-  effect.material.shininess = 0.5;
-}
-
 - (void)draw
 {
-  glBindVertexArrayOES(_vertexArray);
+  glBindVertexArrayOES(self.drawableObject->vertexArray);
   glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "R4Camera.h"
-#import "R4Node_.h"
+#import "R4Node_private.h"
 
 @interface R4Camera () {
   GLKVector3 _lookAt;

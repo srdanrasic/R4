@@ -72,4 +72,11 @@
   [_repeatedAction wasPausedWithTarget:target atTime:time];
 }
 
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  R4RepeatAction *repeatAction = [super copyWithZone:zone];
+  repeatAction->_repeatedAction = [_repeatedAction copyWithZone:zone];
+  return repeatAction;
+}
+
 @end

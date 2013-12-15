@@ -7,7 +7,7 @@
 //
 
 #import "R4ScaleAction.h"
-#import "R4Node_.h"
+#import "R4Node_private.h"
 
 @implementation R4ScaleAction
 

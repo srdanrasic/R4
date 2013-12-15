@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Node.h"
+#import "R4DrawableNode.h"
 
-@interface R4ModelNode : R4Node
+@interface R4ModelNode : R4DrawableNode
 
 - (instancetype)initWithModelNamed:(NSString *)name;
 

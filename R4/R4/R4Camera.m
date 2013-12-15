@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Camera_.h"
+#import "R4Camera_private.h"
 
 @implementation R4Camera
 

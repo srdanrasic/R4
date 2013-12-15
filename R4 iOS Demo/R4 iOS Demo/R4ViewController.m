@@ -32,10 +32,25 @@
   spaceship.position = GLKVector3Make(0, 0, 0);
   spaceship.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
   spaceship.scale = GLKVector3Make(2, 2, 2);
-  spaceship.speed = 2;
-  
+  spaceship.speed = 1;
   [self addChild:spaceship];
   
+  [spaceship runAction:[R4Action repeatActionForever:[R4Action sequence:@[
+                                                                          [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
+                                                                          [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
+                                                                          ]]]];
+  //[spaceship removeAllActions];
+  
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      R4Node *c2 = [spaceship copy];
+      c2.position = GLKVector3Make(i, 0, -1 - j);
+      [self addChild:c2];
+    }
+  }
+  
+  spaceship.position = GLKVector3Make(1, 0, 0);
+
   self.spaceship2 = [R4PrimitiveNode box];
   self.spaceship2.name = @"spaceship";
   self.spaceship2.position = GLKVector3Make(1, 1.1, 0);
@@ -43,15 +58,10 @@
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
   
   [spaceship addChild:self.spaceship2];
+
   
-  [spaceship runAction:[R4Action repeatActionForever:[R4Action sequence:@[
-                                                                          [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:1],
-                                                                          [R4Action scaleTo:GLKVector3Make(1, 2, 1) duration:1]
-                                                                          ]]]];
-  [spaceship removeAllActions];
-  
-  self.currentCamera.position = GLKVector3Make(0, 2, 4);
-  self.currentCamera.targetNode = self.spaceship2;
+  self.currentCamera.position = GLKVector3Make(-1, 2, 4);
+  self.currentCamera.targetNode = spaceship;
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
@@ -94,9 +104,8 @@
   self.r4view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   [self.view addSubview:self.r4view];
   
-  self.scene = [MyScene sceneWithSize:CGSizeMake(320, 480)];
+  self.scene = [MyScene sceneWithSize:[UIScreen mainScreen].bounds.size];
   self.scene.scaleMode = R4SceneScaleModeAspectFit;
-  self.scene.anchorPoint = CGPointMake(0.0, 0.0);
   [self.r4view presentScene:self.scene];
   
   UIButton *pauseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

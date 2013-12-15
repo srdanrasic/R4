@@ -19,12 +19,12 @@
 
 @property (nonatomic, readwrite) R4Scene *scene;
 @property (nonatomic, readwrite) R4Node *parent;
+@property (nonatomic, readwrite) NSArray *children;
+@property (nonatomic, readwrite) NSArray *actions;
 
 @property (nonatomic) GLKMatrix4 modelViewMatrix;
 
 - (void)willTraverse;
-- (void)prepareEffect:(GLKBaseEffect *)effect;
-- (void)draw;
 - (void)didTraverse;
 
 - (void)updateActionsAtTime:(NSTimeInterval)time;

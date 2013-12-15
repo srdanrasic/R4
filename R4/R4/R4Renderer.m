@@ -7,11 +7,12 @@
 //
 
 #import "R4Renderer.h"
-#import "R4Node_.h"
-#import "R4Scene_.h"
-#import "R4View_.h"
-#import "R4PrimitiveNode_.h"
-#import "R4Camera_.h"
+#import "R4Node_private.h"
+#import "R4Scene_private.h"
+#import "R4View_private.h"
+#import "R4Camera_private.h"
+#import "R4DrawableNode_private.h"
+#import "R4DrawableObject.h"
 
 @interface R4Renderer () {
   EAGLContext* _context;
@@ -51,11 +52,6 @@
   glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderbuffer);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
 
-  
-  self.effect = [[GLKBaseEffect alloc] init];
-  self.effect.light0.enabled = GL_TRUE;
-  self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-  self.effect.lightingType = GLKLightingTypePerPixel;
   
   return YES;
 }
@@ -121,19 +117,21 @@
   glClear(GL_COLOR_BUFFER_BIT);
   
   // Render the scene
-  self.effect.transform.projectionMatrix = [scene.view projectionMatrix];
-  self.effect.transform.modelviewMatrix = GLKMatrix4Identity;
-  self.effect.light0.position = GLKVector4Make(0, 0, -1, 0);
-  
   GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
   
   __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
     for (R4Node *node in root.children) {
       dfs(node);
-      self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, node.modelViewMatrix);
-      [node prepareEffect:self.effect];
-      [self.effect prepareToDraw];
-      [node draw];
+      
+      if ([node isKindOfClass:[R4DrawableNode class]]) {
+        R4DrawableNode *drawable = (R4DrawableNode *)node;
+        
+        drawable.drawableObject.effect.transform.projectionMatrix = [scene.view projectionMatrix];
+        drawable.drawableObject.effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, node.modelViewMatrix);
+        drawable.drawableObject.effect.light0.position = GLKVector4Make(0, 0, -1, 0);
+        [drawable.drawableObject.effect prepareToDraw];
+        [drawable draw];
+      }
     }
   };
   dfs(scene);

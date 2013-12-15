@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Action_.h"
+#import "R4Action_private.h"
 #import "R4MoveAction.h"
 #import "R4ScaleAction.h"
 #import "R4RepeatAction.h"
@@ -82,5 +82,41 @@
 - (void)wasAddedToTarget:(id)target atTime:(NSTimeInterval)time {}
 - (void)willResumeWithTarget:(id)target atTime:(NSTimeInterval)time {}
 - (void)wasPausedWithTarget:(id)target atTime:(NSTimeInterval)time {}
+
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  R4Action *action = [[[self class] allocWithZone:zone] init];
+  action.duration = self.duration;
+  action.speed = self.speed;
+  action.finished = self.finished;
+  memcpy(action->vars, vars, sizeof(R4ActionProperties));
+  return action;
+}
+
+@end
+
+
+@implementation R4ActionDescriptor
+
+- (instancetype)initWithAction:(R4Action *)action key:(NSString *)key block:(id)block
+{
+  self = [super init];
+  if (self) {
+    self.action = action;
+    self.key = key;
+    self.block = block;
+  }
+  return self;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  R4ActionDescriptor *descriptor = [[[self class] allocWithZone:zone] init];
+  descriptor.action = [self.action copyWithZone:zone];
+  descriptor.key = [self.key copyWithZone:zone];
+  descriptor.block = [self.block copyWithZone:zone];
+  descriptor.started = self.started;
+  return descriptor;
+}
 
 @end

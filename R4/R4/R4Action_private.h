@@ -34,3 +34,15 @@ typedef struct {
 - (void)wasPausedWithTarget:(id)target atTime:(NSTimeInterval)time;
 
 @end
+
+
+@interface R4ActionDescriptor : NSObject <NSCopying>
+
+@property (nonatomic, strong) R4Action *action;
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic, assign) BOOL started;
+@property (nonatomic, copy) id block;
+
+- (instancetype)initWithAction:(R4Action *)action key:(NSString *)key block:(id)block;
+
+@end

@@ -12,8 +12,6 @@
 
 @interface R4Renderer : NSObject
 
-@property (strong, nonatomic) GLKBaseEffect *effect;
-
 - (void)render:(R4Scene *)scene;
 - (void)resizeFromLayer:(CAEAGLLayer*)layer;
 

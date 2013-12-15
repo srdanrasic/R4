@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Node_.h"
-#import "R4Scene_.h"
-#import "R4View_.h"
-#import "R4Action_.h"
+#import "R4Node_private.h"
+#import "R4Scene_private.h"
+#import "R4View_private.h"
+#import "R4Action_private.h"
 
 @implementation R4Node
 
@@ -55,8 +55,21 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-  // TODO
-  return nil;
+  R4Node *node = [[[self class] allocWithZone:zone] init];
+  
+  node.position = self.position;
+  node.scale = self.scale;
+  node.orientation = self.orientation;
+  node.speed = self.speed;
+  node.alpha = self.alpha;
+  node.paused = self.paused;
+  node.hidden = self.hidden;
+  node.userInteractionEnabled = node.userInteractionEnabled;
+  node.name = self.name;
+  node.children = [[NSMutableArray alloc] initWithArray:self.children copyItems:YES];
+  node.actions = [[NSMutableArray alloc] initWithArray:self.actions copyItems:YES];
+  
+  return node;
 }
 
 #pragma mark - Instance methods
@@ -166,7 +179,7 @@
   if (_block == nil) _block = [NSNull null];
   if (_key == nil) _key = [NSNull null];
   
-  [_actions addObject:[NSMutableArray arrayWithObjects:action, _key, _block, @(NO), nil]];
+  [_actions addObject:[[R4ActionDescriptor alloc] initWithAction:action key:key block:block]];
   
   [action wasAddedToTarget:self atTime:CACurrentMediaTime()];
 }
@@ -178,9 +191,9 @@
 
 - (R4Action *)actionForKey:(NSString *)key
 {
-  for (NSArray *action in _actions) {
-    if (![action[1] isEqual:[NSNull null]] && [action[1] isEqualToString:key]) {
-      return action[0];
+  for (R4ActionDescriptor *actionDescriptor in _actions) {
+    if ([actionDescriptor.key isEqualToString:key]) {
+      return actionDescriptor.action;
     }
   }
   
@@ -190,8 +203,8 @@
 - (void)removeActionForKey:(NSString *)key
 {
   for (NSInteger i = _actions.count - 1; i >= 0; i-- ) {
-    if (![_actions[i][1] isEqual:[NSNull null]] && [_actions[i][1] isEqualToString:key]) {
-      [_actions[i][0] wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+    if ([[_actions[i] key] isEqualToString:key]) {
+      [[_actions[i] action] wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
       [_actions removeObjectAtIndex:i];
     }
   }
@@ -199,8 +212,8 @@
 
 - (void)removeAllActions
 {
-  for (NSArray *action in _actions) {
-    [action[0] wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+  for (R4ActionDescriptor *actionDescriptor in _actions) {
+    [actionDescriptor.action wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
   }
   
   [_actions removeAllObjects];
@@ -263,12 +276,12 @@
       
       NSTimeInterval time = CACurrentMediaTime();
       if (paused) {
-        for (NSArray *action in _actions) {
-          [action[0] wasPausedWithTarget:self atTime:time];
+        for (R4ActionDescriptor *actionDescriptor in _actions) {
+          [actionDescriptor.action wasPausedWithTarget:self atTime:time];
         }
       } else {
-        for (NSArray *action in _actions) {
-          [action[0] willResumeWithTarget:self atTime:time];
+        for (R4ActionDescriptor *actionDescriptor in _actions) {
+          [actionDescriptor.action willResumeWithTarget:self atTime:time];
         }
       }
     }
@@ -365,19 +378,18 @@
   }
   
   for (NSInteger i = _actions.count - 1; i >= 0; i--) {
-    R4Action *action = _actions[i][0];
-    BOOL started = [_actions[i][3] boolValue];
+    R4ActionDescriptor *actionDescriptor = _actions[i];
     
-    if (!started) {
-      [action willStartWithTarget:self atTime:time];
-      _actions[i][3] = @(YES);
+    if (!actionDescriptor.started) {
+      [actionDescriptor.action willStartWithTarget:self atTime:time];
+      actionDescriptor.started = YES;
     }
     
-    [action updateWithTarget:self forTime:time];
+    [actionDescriptor.action updateWithTarget:self forTime:time];
     
-    if (action.finished) {
+    if (actionDescriptor.action.finished) {
       [_actions removeObjectAtIndex:i];
-      [action wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
+      [actionDescriptor.action wasRemovedFromTarget:self atTime:CACurrentMediaTime()];
     }
   }
 }

@@ -8,7 +8,7 @@
 
 #import "R4Base.h"
 
-@interface R4Action : NSObject
+@interface R4Action : NSObject <NSCopying>
 
 @property(nonatomic) NSTimeInterval duration;
 @property(nonatomic) CGFloat speed;
