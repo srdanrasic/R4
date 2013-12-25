@@ -13,6 +13,7 @@
 #import <R4/R4PrimitiveNode.h>
 #import <R4/R4ModelNode.h>
 #import <R4/R4Camera.h>
+#import <R4/R4LightNode.h>
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : R4Scene
@@ -35,8 +36,8 @@
   [self addChild:stacy];
 
   
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
       R4Node *c2 = [stacy copy];
       c2.position = GLKVector3Make(-2 + i, 0, 1-j);
       CGFloat duration = 0.5 + (arc4random() % 100) / 50.0;
@@ -52,15 +53,19 @@
   stacy.highlightColor = [UIColor redColor];
   stacy.position = GLKVector3Make(0, 0, 3);
 
-  R4DrawableNode *base = [R4PrimitiveNode box];
+  R4DrawableNode *base = [R4PrimitiveNode boxWithSize:GLKVector3Make(12, 0.01, 12)];
   base.name = @"base";
   base.position = GLKVector3Make(0, 0, 0);
-  base.scale = GLKVector3Make(12, .01, 12);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  base.highlightColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0];
+  base.highlightColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.1 alpha:1.0];
   [self addChild:base];
+  
+  R4LightNode *light = [R4LightNode pointLightAtPosition:GLKVector3Make(0, 1, 2)];
+  light.constantAttenuation = 0;
+  light.linearAttenuation = 1;
+  [self addChild:light];
 
-  self.currentCamera.position = GLKVector3Make(-4, 2, -1);
+  self.currentCamera.position = GLKVector3Make(-3, 2, -1);
   self.currentCamera.targetNode = stacy;
   [stacy addChild:self.currentCamera];
   
@@ -104,7 +109,9 @@
   self.r4view.showFPS = YES;
   [self.view addSubview:self.r4view];
   
-  self.scene = [MyScene sceneWithSize:[UIScreen mainScreen].bounds.size];
+  CGFloat scale = [UIScreen mainScreen].scale;
+  CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width * scale, [UIScreen mainScreen].bounds.size.height * scale);
+  self.scene = [MyScene sceneWithSize:size];
   self.scene.scaleMode = R4SceneScaleModeResizeFill;
   [self.r4view presentScene:self.scene];
   

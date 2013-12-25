@@ -61,12 +61,12 @@ GLfloat gCubeVertexData[216] =
   -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
 };
 
-+ (instancetype)box
++ (instancetype)boxWithSize:(GLKVector3)size
 {
-  return [[[self class] alloc] initBox];
+  return [[[self class] alloc] initBoxWithSize:size];
 }
 
-- (instancetype)initBox
+- (instancetype)initBoxWithSize:(GLKVector3)size
 {
   self = [super init];
   if (self) {
@@ -79,7 +79,18 @@ GLfloat gCubeVertexData[216] =
     
     glGenBuffers(1, &self.drawableObject->vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, self.drawableObject->vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
+    
+    GLfloat vertexData[sizeof(gCubeVertexData)];
+    for (int i = 0; i < sizeof(gCubeVertexData); i=i+6) {
+      vertexData[i+0] = gCubeVertexData[i+0] * size.x;
+      vertexData[i+1] = gCubeVertexData[i+1] * size.y;
+      vertexData[i+2] = gCubeVertexData[i+2] * size.z;
+      vertexData[i+3] = gCubeVertexData[i+3];
+      vertexData[i+4] = gCubeVertexData[i+4];
+      vertexData[i+5] = gCubeVertexData[i+5];
+    }
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), vertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));

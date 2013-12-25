@@ -10,6 +10,6 @@
 
 @interface R4PrimitiveNode : R4DrawableNode
 
-+ (instancetype)box;
++ (instancetype)boxWithSize:(GLKVector3)size;
 
 @end

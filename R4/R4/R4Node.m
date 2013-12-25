@@ -112,6 +112,11 @@
   [self.parent removeChildrenInArray:@[self]];
 }
 
+- (void)setParent:(R4Node *)parent
+{
+  _parent = parent;
+}
+
 - (R4Node *)childNodeWithName:(NSString *)name
 {
   __block R4Node *child = nil;
@@ -249,17 +254,14 @@
 
 #pragma mark -  methods
 
-- (R4Scene *)scene
+- (void)setScene:(R4Scene *)scene
 {
-  R4Node *node = self;
-  while (node) {
-    if ([node isKindOfClass:[R4Scene class]]) {
-      return (R4Scene *)node;
-    } else {
-      node = node.parent;
+  if (_scene != scene) {
+    _scene = scene;
+    for (R4Node *node in _children) {
+      node.scene = scene;
     }
   }
-  return nil;
 }
 
 - (void)setPaused:(BOOL)paused

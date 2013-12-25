@@ -11,6 +11,7 @@
 #import "R4Scene_private.h"
 #import "R4View_private.h"
 #import "R4Camera_private.h"
+#import "R4LightNode_Private.h"
 #import "R4DrawableNode_private.h"
 #import "R4DrawableObject.h"
 
@@ -147,6 +148,7 @@ void setupBlendMode(R4BlendMode mode)
 
   // Get sorted drawables (TODO cache)
   NSMutableDictionary *drawables = [NSMutableDictionary dictionary];
+  NSMutableArray *lights = [NSMutableArray array];
   __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
     for (R4Node *node in root.children) {
       dfs(node);
@@ -162,11 +164,16 @@ void setupBlendMode(R4BlendMode mode)
         }
         
         [array addObject:drawable];
+      } else if ([node isKindOfClass:[R4LightNode class]]) {
+        [lights addObject:node];
       }
     }
   };
   dfs(scene);
   
+  if (lights.count > 3) {
+    @throw [NSException exceptionWithName:@"Error" reason:@"Scene is limited to 3 lights." userInfo:nil];
+  }
   
   // Render the scene
   GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
@@ -177,13 +184,40 @@ void setupBlendMode(R4BlendMode mode)
     
     effect.transform.projectionMatrix = [scene.view projectionMatrix];
     
+    int lightNumber = 0;
+    for (GLKEffectPropertyLight *effectProperty in @[effect.light0, effect.light1, effect.light2]) {
+      if (lightNumber < lights.count) {
+        R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
+        effectProperty.enabled = GL_TRUE;
+        effect.lightingType = GLKLightingTypePerVertex;
+        effectProperty.ambientColor = lightNode.ambientColor;
+        effectProperty.diffuseColor = lightNode.diffuseColor;
+        effectProperty.specularColor = lightNode.specularColor;
+        effectProperty.spotCutoff = lightNode.spotCutoff;
+        effectProperty.spotExponent = lightNode.spotExponent;
+        effectProperty.constantAttenuation = lightNode.constantAttenuation;
+        effectProperty.linearAttenuation = lightNode.linearAttenuation;
+        effectProperty.quadraticAttenuation = lightNode.quadraticAttenuation;
+      } else {
+        effectProperty.enabled = GL_FALSE;
+      }
+    }
+
     glBindVertexArrayOES(drawableObject->vertexArray);
 
     for (R4DrawableNode *drawable in drawables[key]) {
       GLKVector4 constantColor = effect.constantColor;
       
       effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, drawable.modelViewMatrix);
-      effect.light0.position = GLKVector4Make(0, 0, -1, 0);
+
+      int lightNumber = 0;
+      for (GLKEffectPropertyLight *effectProperty in @[effect.light0, effect.light1, effect.light2]) {
+        if (lightNumber < lights.count) {
+          R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
+          effectProperty.position = lightNode.homogeneousPosition;
+          effectProperty.spotDirection = lightNode.spotDirection;
+        }
+      }
       
       if (drawable.highlightColor) {
         GLfloat r, g, b, a;
@@ -216,6 +250,7 @@ void setupBlendMode(R4BlendMode mode)
 
 - (void)resizeFromLayer:(CAEAGLLayer *)layer
 {
+  layer.contentsScale = 2;
   glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);
   [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:layer];
   

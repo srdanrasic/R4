@@ -228,6 +228,7 @@
           self.drawableObject.effect.texture2d0.name = texture.name;
           self.drawableObject.effect.texture2d0.enabled = GL_TRUE;
           self.drawableObject.effect.texture2d0.envMode = GLKTextureEnvModeModulate;
+          self.drawableObject.effect.colorMaterialEnabled = GL_TRUE;
         }
       }
     }
@@ -247,13 +248,12 @@
   }
 
   glBindVertexArrayOES(0);
-  
   return YES;
 }
 
 - (void)prepareToDraw
 {
-  glDisable(GL_CULL_FACE);
+  //glDisable(GL_CULL_FACE);
 }
 
 @end

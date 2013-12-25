@@ -31,6 +31,18 @@
   return self;
 }
 
+- (void)addChild:(R4Node *)node
+{
+  [super addChild:node];
+  node.scene = self;
+}
+
+- (void)insertChild:(R4Node *)node atIndex:(NSInteger)index
+{
+  [super insertChild:node atIndex:index];
+  node.scene = self;
+}
+
 - (R4Scene *)scene
 {
   return self;

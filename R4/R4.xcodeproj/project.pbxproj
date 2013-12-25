@@ -13,6 +13,7 @@
 		EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3961800672F00AB7FE8 /* R4Action.m */; };
 		EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */; };
 		EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
+		EC678738186B08CC009921C2 /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
 		ECC58D1017F8505600BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D0F17F8505600BBAD28 /* Foundation.framework */; };
 		ECC58D1517F8505600BBAD28 /* R4Base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = ECC58D1417F8505600BBAD28 /* R4Base.h */; };
 		ECC58D3717F8508000BBAD28 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3517F8508000BBAD28 /* GLKit.framework */; };
@@ -58,6 +59,9 @@
 		EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ScaleAction.m; sourceTree = "<group>"; };
 		EC5BB3A018006B6D00AB7FE8 /* R4RepeatAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4RepeatAction.h; sourceTree = "<group>"; };
 		EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4RepeatAction.m; sourceTree = "<group>"; };
+		EC678736186B08CC009921C2 /* R4LightNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4LightNode.h; path = R4/R4LightNode.h; sourceTree = "<group>"; };
+		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
+		EC678739186B0ACD009921C2 /* R4LightNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNode_Private.h; sourceTree = "<group>"; };
 		EC6FD69F17F8777300ED6AAA /* R4Node_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Node_private.h; sourceTree = "<group>"; };
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -166,6 +170,8 @@
 				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
 				EC0C194F1837E67400148E7B /* R4Camera_private.h */,
 				EC0C194D1837E46A00148E7B /* R4Camera.m */,
+				EC678739186B0ACD009921C2 /* R4LightNode_Private.h */,
+				EC678737186B08CC009921C2 /* R4LightNode.m */,
 				ECCB5360185DFC9400CB6D74 /* R4DrawableObject.h */,
 				ECCB5361185DFC9400CB6D74 /* R4DrawableObject.m */,
 				ECCB535C185DF39500CB6D74 /* R4DrawableNode_private.h */,
@@ -196,6 +202,7 @@
 				ECC58D4417F8521900BBAD28 /* R4Node.h */,
 				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
 				EC0C194C1837E46A00148E7B /* R4Camera.h */,
+				EC678736186B08CC009921C2 /* R4LightNode.h */,
 				ECCB5359185DF32A00CB6D74 /* R4DrawableNode.h */,
 				ECC58D5217F85E2700BBAD28 /* R4PrimitiveNode.h */,
 				ECC78C77181C2B1B000FBC19 /* R4ModelNode.h */,
@@ -269,6 +276,7 @@
 				ECCB5362185DFC9400CB6D74 /* R4DrawableObject.m in Sources */,
 				EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */,
 				ECC58D5417F85E2700BBAD28 /* R4PrimitiveNode.m in Sources */,
+				EC678738186B08CC009921C2 /* R4LightNode.m in Sources */,
 				ECC78C79181C2B1B000FBC19 /* R4ModelNode.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
