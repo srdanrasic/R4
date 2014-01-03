@@ -7,6 +7,7 @@
 //
 
 #import "R4Renderer.h"
+#import "R4Shaders.h"
 #import "R4Node_private.h"
 #import "R4Scene_private.h"
 #import "R4View_private.h"
@@ -14,6 +15,23 @@
 #import "R4LightNode_Private.h"
 #import "R4DrawableNode_private.h"
 #import "R4DrawableObject.h"
+
+typedef enum {
+  R4VertexAttribPosition,
+  R4VertexAttribTexCoord,
+  R4VertexAttribColor,
+  R4VertexAttribColorBlendFactor,
+  R4VertexAttribAlpha,
+  R4VertexAttribMVM
+} R4VertexAttrib;
+
+enum
+{
+  UNIFORM_MODELVIEWPROJECTION_MATRIX,
+  NUM_UNIFORMS
+};
+GLint uniforms[NUM_UNIFORMS];
+
 
 @interface R4Renderer () {
   EAGLContext* _context;
@@ -54,6 +72,159 @@
   glGenRenderbuffers(1, &_depthRenderbuffer);
   glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderbuffer);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
+  
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE);
+  
+  [self loadShaders];
+
+  return YES;
+}
+  
+- (BOOL)loadShaders
+{
+  GLuint vertShader, fragShader;
+  
+  // Create shader program.
+  GLuint program = glCreateProgram();
+  
+  // Create and compile vertex shader.
+  if (![self compileShader:&vertShader type:GL_VERTEX_SHADER source:vshParticleShaderSourceString]) {
+    NSLog(@"Failed to compile vertex shader");
+    return NO;
+  }
+  
+  // Create and compile fragment shader.
+  if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER source:fshParticleShaderSourceString]) {
+    NSLog(@"Failed to compile fragment shader");
+    return NO;
+  }
+  
+  // Attach vertex shader to program.
+  glAttachShader(program, vertShader);
+  
+  // Attach fragment shader to program.
+  glAttachShader(program, fragShader);
+  
+  // Bind attribute locations.
+  // This needs to be done prior to linking.
+  glBindAttribLocation(program, R4VertexAttribPosition, "position");
+  glBindAttribLocation(program, R4VertexAttribTexCoord, "texcoord");
+  glBindAttribLocation(program, R4VertexAttribAlpha, "instanceAlpha");
+  glBindAttribLocation(program, R4VertexAttribColor, "instanceColor");
+  glBindAttribLocation(program, R4VertexAttribColorBlendFactor, "instanceColorBlendFactor");
+  glBindAttribLocation(program, R4VertexAttribMVM, "instanceMVM");
+
+  // Link program.
+  if (![self linkProgram:program]) {
+    NSLog(@"Failed to link program: %d", program);
+    
+    if (vertShader) {
+      glDeleteShader(vertShader);
+      vertShader = 0;
+    }
+    if (fragShader) {
+      glDeleteShader(fragShader);
+      fragShader = 0;
+    }
+    if (program) {
+      glDeleteProgram(program);
+      program = 0;
+    }
+    
+    return NO;
+  }
+  
+  // Get uniform locations.
+  uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(program, "model_view_projection_matrix");
+  
+  // Release vertex and fragment shaders.
+  if (vertShader) {
+    glDetachShader(program, vertShader);
+    glDeleteShader(vertShader);
+  }
+  if (fragShader) {
+    glDetachShader(program, fragShader);
+    glDeleteShader(fragShader);
+  }
+  
+  return YES;
+}
+
+- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type source:(const char *)source
+{
+  GLint status;
+  
+  if (!source) {
+    NSLog(@"Failed to load vertex shader");
+    return NO;
+  }
+  
+  *shader = glCreateShader(type);
+  glShaderSource(*shader, 1, &source, NULL);
+  glCompileShader(*shader);
+  
+#if defined(DEBUG)
+  GLint logLength;
+  glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0) {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetShaderInfoLog(*shader, logLength, &logLength, log);
+    NSLog(@"Shader compile log:\n%s", log);
+    free(log);
+  }
+#endif
+  
+  glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
+  if (status == 0) {
+    glDeleteShader(*shader);
+    return NO;
+  }
+  
+  return YES;
+}
+
+- (BOOL)linkProgram:(GLuint)prog
+{
+  GLint status;
+  glLinkProgram(prog);
+  
+#if defined(DEBUG)
+  GLint logLength;
+  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0) {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetProgramInfoLog(prog, logLength, &logLength, log);
+    NSLog(@"Program link log:\n%s", log);
+    free(log);
+  }
+#endif
+  
+  glGetProgramiv(prog, GL_LINK_STATUS, &status);
+  if (status == 0) {
+    return NO;
+  }
+  
+  return YES;
+}
+
+- (BOOL)validateProgram:(GLuint)prog
+{
+  GLint logLength, status;
+  
+  glValidateProgram(prog);
+  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
+  if (logLength > 0) {
+    GLchar *log = (GLchar *)malloc(logLength);
+    glGetProgramInfoLog(prog, logLength, &logLength, log);
+    NSLog(@"Program validate log:\n%s", log);
+    free(log);
+  }
+  
+  glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
+  if (status == 0) {
+    return NO;
+  }
   
   return YES;
 }
@@ -136,8 +307,6 @@ void setupBlendMode(R4BlendMode mode)
     glScissor(0, 0, _backingWidth, _backingHeight);
   }
   
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
 
   GLfloat r, g, b, a;
   [scene.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
@@ -189,7 +358,7 @@ void setupBlendMode(R4BlendMode mode)
       if (lightNumber < lights.count) {
         R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
         effectProperty.enabled = GL_TRUE;
-        effect.lightingType = GLKLightingTypePerVertex;
+        effect.lightingType = GLKLightingTypePerPixel;
         effectProperty.ambientColor = lightNode.ambientColor;
         effectProperty.diffuseColor = lightNode.diffuseColor;
         effectProperty.specularColor = lightNode.specularColor;
@@ -241,6 +410,9 @@ void setupBlendMode(R4BlendMode mode)
       effect.constantColor = constantColor;
     }
   }
+
+  const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
+  glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
 
   glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);
   [_context presentRenderbuffer:GL_RENDERBUFFER];

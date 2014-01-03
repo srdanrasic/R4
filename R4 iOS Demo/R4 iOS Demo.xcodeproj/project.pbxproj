@@ -12,6 +12,8 @@
 		EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19461837DCEE00148E7B /* stacy.mtl */; };
 		EC0C19491837DCEE00148E7B /* stacy.obj in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19471837DCEE00148E7B /* stacy.obj */; };
 		EC0C194B1837DD6500148E7B /* stacy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C194A1837DD6500148E7B /* stacy.png */; };
+		EC67873C186B2D91009921C2 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC67873A186B2D91009921C2 /* MyParticle.sks */; };
+		EC67873D186B2D91009921C2 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC67873B186B2D91009921C2 /* spark.png */; };
 		ECC58CCC17F8500D00BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCB17F8500D00BBAD28 /* Foundation.framework */; };
 		ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */; };
 		ECC58CD017F8500D00BBAD28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCF17F8500D00BBAD28 /* UIKit.framework */; };
@@ -49,6 +51,8 @@
 		EC0C19461837DCEE00148E7B /* stacy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.mtl; sourceTree = "<group>"; };
 		EC0C19471837DCEE00148E7B /* stacy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.obj; sourceTree = "<group>"; };
 		EC0C194A1837DD6500148E7B /* stacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stacy.png; sourceTree = "<group>"; };
+		EC67873A186B2D91009921C2 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = MyParticle.sks; path = Resources/MyParticle.sks; sourceTree = "<group>"; };
+		EC67873B186B2D91009921C2 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Resources/spark.png; sourceTree = "<group>"; };
 		ECC58CC817F8500D00BBAD28 /* R4 iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "R4 iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58CCB17F8500D00BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC78C7D181C4009000FBC19 /* Meshes */,
+				EC67873A186B2D91009921C2 /* MyParticle.sks */,
+				EC67873B186B2D91009921C2 /* spark.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				EC0C192B1837C67200148E7B /* novcictext.png in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
 				EC0C19491837DCEE00148E7B /* stacy.obj in Resources */,
+				EC67873C186B2D91009921C2 /* MyParticle.sks in Resources */,
 				EC0C194B1837DD6500148E7B /* stacy.png in Resources */,
 				EC0C192A1837C67200148E7B /* corntext.png in Resources */,
 				EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */,
@@ -270,6 +277,7 @@
 				ECC58CDF17F8500D00BBAD28 /* Main_iPhone.storyboard in Resources */,
 				ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */,
 				ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */,
+				EC67873D186B2D91009921C2 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
