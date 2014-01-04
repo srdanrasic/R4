@@ -75,6 +75,9 @@
     [self.scene updateActionsAtTime:currentTime];
     [self.scene didEvaluateActions];
     
+    // simulate particles
+    [self.scene updateParticleEmittersAtTime:currentTime];
+    
     // simulate physics
     [self.scene didSimulatePhysics];
   }

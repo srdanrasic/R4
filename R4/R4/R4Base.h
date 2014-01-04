@@ -48,7 +48,7 @@ static const R4Box R4BoxZero = {{0, 0, 0}, {0, 0, 0}};
 
 static inline CGFloat randCGFloat(CGFloat min, CGFloat max)
 {
-  return (min + (arc4random() % 1000) / 1000 * (max - min));
+  return (min + (arc4random() % 1000) / 1000.0 * (max - min));
 }
 
 static inline GLKVector3 randGLKVector3(CGFloat min, CGFloat max)

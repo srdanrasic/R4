@@ -221,7 +221,8 @@
         ss >> texture_filename >> texture_filename;
         NSString *texturePath = [directory stringByAppendingPathComponent:[NSString stringWithCString:texture_filename.c_str() encoding:NSUTF8StringEncoding]];
         
-        NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES]};
+        NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES],
+                                  GLKTextureLoaderGenerateMipmaps: [NSNumber numberWithBool:YES]};
         GLKTextureInfo *texture = [GLKTextureLoader textureWithContentsOfFile:texturePath options:options error:nil];
         
         if (texture) {

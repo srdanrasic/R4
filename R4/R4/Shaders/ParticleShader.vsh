@@ -15,15 +15,15 @@ attribute vec4  instanceColor;
 attribute float instanceColorBlendFactor;
 attribute mat4  instanceMVM;
 
-varying lowp float  out_alpha;
+//varying lowp float  out_alpha;
 varying lowp vec4   out_color;
 varying lowp vec2   out_texcoord;
 varying lowp float  out_colorBlendFactor;
 
 void main()
 {
-  out_alpha = instanceAlpha;
-  out_color = instanceColor;
+//  out_alpha = instanceAlpha;
+  out_color = instanceColor * vec4(1.0, 1.0, 1.0, instanceAlpha);
   out_texcoord = texcoord;
   out_colorBlendFactor = instanceColorBlendFactor;
   

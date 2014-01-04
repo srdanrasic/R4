@@ -15,15 +15,8 @@
 #import "R4LightNode_Private.h"
 #import "R4DrawableNode_private.h"
 #import "R4DrawableObject.h"
-
-typedef enum {
-  R4VertexAttribPosition,
-  R4VertexAttribTexCoord,
-  R4VertexAttribColor,
-  R4VertexAttribColorBlendFactor,
-  R4VertexAttribAlpha,
-  R4VertexAttribMVM
-} R4VertexAttrib;
+#import "R4EmitterNode_Private.h"
+#import "R4PrimitiveNode.h"
 
 enum
 {
@@ -37,6 +30,7 @@ GLint uniforms[NUM_UNIFORMS];
   EAGLContext* _context;
   GLuint _defaultFramebuffer, _depthRenderbuffer, _colorRenderbuffer;
   GLint _backingWidth, _backingHeight;
+  GLuint particleProgram;
   R4BlendMode _currentBlendMode;
 }
 
@@ -77,7 +71,7 @@ GLint uniforms[NUM_UNIFORMS];
   glEnable(GL_CULL_FACE);
   
   [self loadShaders];
-
+  
   return YES;
 }
   
@@ -148,6 +142,7 @@ GLint uniforms[NUM_UNIFORMS];
     glDeleteShader(fragShader);
   }
   
+  particleProgram = program;
   return YES;
 }
 
@@ -314,10 +309,12 @@ void setupBlendMode(R4BlendMode mode)
   glClear(GL_COLOR_BUFFER_BIT);
   
   glEnable(GL_BLEND);
-
+  setupBlendMode(R4BlendModeAlpha);
+  
   // Get sorted drawables (TODO cache)
   NSMutableDictionary *drawables = [NSMutableDictionary dictionary];
   NSMutableArray *lights = [NSMutableArray array];
+  NSMutableArray *emitters = [NSMutableArray array];
   __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
     for (R4Node *node in root.children) {
       dfs(node);
@@ -335,6 +332,8 @@ void setupBlendMode(R4BlendMode mode)
         [array addObject:drawable];
       } else if ([node isKindOfClass:[R4LightNode class]]) {
         [lights addObject:node];
+      } else if ([node isKindOfClass:[R4EmitterNode class]]) {
+        [emitters addObject:node];
       }
     }
   };
@@ -346,6 +345,7 @@ void setupBlendMode(R4BlendMode mode)
   
   // Render the scene
   GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
+  
   for (NSValue *key in drawables.allKeys) {
     R4DrawableObject *drawableObject = [key nonretainedObjectValue];
     GLKBaseEffect *effect = drawableObject.effect;
@@ -409,6 +409,20 @@ void setupBlendMode(R4BlendMode mode)
       
       effect.constantColor = constantColor;
     }
+  }
+  
+  glUseProgram(particleProgram);
+  for (R4EmitterNode *emitter in emitters) {
+    setupBlendMode(emitter.particleBlendMode);
+    
+    glBindVertexArrayOES(emitter->particleAttributesVertexArray);
+    glBindBuffer(GL_ARRAY_BUFFER, emitter->particleAttributesVertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
+    
+    GLKMatrix4 mvpm = GLKMatrix4Multiply(scene.view.projectionMatrix, cameraTransform);
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, GL_FALSE, mvpm.m);
+
+    glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 36, emitter.particleCount);
   }
 
   const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};

@@ -10,6 +10,7 @@
 #import "R4Node_private.h"
 #import "R4View_private.h"
 #import "R4Camera_private.h"
+#import "R4EmitterNode_Private.h"
 
 @implementation R4Scene
 
@@ -96,6 +97,15 @@
 
 - (void)update:(NSTimeInterval)currentTime
 {
+}
+
+- (void)updateParticleEmittersAtTime:(NSTimeInterval)time
+{
+  for (id child in self.children) {
+    if ([child isKindOfClass:[R4EmitterNode class]]) {
+      [child updateAtTime:time];
+    }
+  }
 }
 
 @end

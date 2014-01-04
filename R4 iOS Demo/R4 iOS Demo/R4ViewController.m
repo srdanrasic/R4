@@ -14,6 +14,7 @@
 #import <R4/R4ModelNode.h>
 #import <R4/R4Camera.h>
 #import <R4/R4LightNode.h>
+#import <R4/R4EmitterNode.h>
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : R4Scene
@@ -27,15 +28,19 @@
 
 - (void)didMoveToView:(R4View *)view
 {
+  R4Node *stacyBase = [R4Node node];
+  stacyBase.name = @"stacyBase";
+  [self addChild:stacyBase];
+  
   R4DrawableNode *stacy = [[R4ModelNode alloc] initWithModelNamed:@"stacy.obj" normalize:YES center:NO];
   stacy.name = @"stacy";
   stacy.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
   stacy.scale = GLKVector3Make(1, 1, 1);
   stacy.speed = 1;
   stacy.blendMode = R4BlendModeAlpha;
-  [self addChild:stacy];
+  [stacyBase addChild:stacy];
 
-  
+#if 1
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       R4Node *c2 = [stacy copy];
@@ -48,26 +53,32 @@
       [self addChild:c2];
     }
   }
+#endif
   
   [stacy removeAllActions];
   stacy.highlightColor = [UIColor redColor];
-  stacy.position = GLKVector3Make(0, 0, 3);
+  stacy.position = GLKVector3Make(0, 0, 4);
 
   R4DrawableNode *base = [R4PrimitiveNode boxWithSize:GLKVector3Make(12, 0.01, 12)];
   base.name = @"base";
   base.position = GLKVector3Make(0, 0, 0);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  base.highlightColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.1 alpha:1.0];
+  base.highlightColor = [UIColor colorWithRed:0.1 green:0.05 blue:0.1 alpha:1.0];
   [self addChild:base];
   
+#if 0
   R4LightNode *light = [R4LightNode pointLightAtPosition:GLKVector3Make(0, 1, 2)];
   light.constantAttenuation = 0;
   light.linearAttenuation = 1;
   [self addChild:light];
+#endif
 
-  self.currentCamera.position = GLKVector3Make(-3, 2, -1);
+  self.currentCamera.position = GLKVector3Make(0, 3, 8);
   self.currentCamera.targetNode = stacy;
-  [stacy addChild:self.currentCamera];
+  //[stacy addChild:self.currentCamera];
+  
+  R4EmitterNode *emitter = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"MyParticle"];
+  [self addChild:emitter];
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
@@ -76,7 +87,7 @@
 {
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
   
-  [self childNodeWithName:@"stacy"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacy"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime, 0, 1, 0));
+  [self childNodeWithName:@"stacyBase"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacyBase"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime, 0, 1, 0));
   //[self childNodeWithName:@"base"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"base"].orientation, GLKQuaternionMakeWithAngleAndAxis(2*elapsedTime, 0, 1, 0));
   
   //self.currentCamera.position = GLKVector3Make(-sinf(currentTime) * 3, 2, cosf(currentTime) * 3);

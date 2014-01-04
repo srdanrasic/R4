@@ -221,6 +221,11 @@
 				CLASSPREFIX = R4;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Srđan Rašić";
+				TargetAttributes = {
+					ECC58CC717F8500D00BBAD28 = {
+						DevelopmentTeam = 7483NBERMM;
+					};
+				};
 			};
 			buildConfigurationList = ECC58CC317F8500D00BBAD28 /* Build configuration list for PBXProject "R4 iOS Demo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -407,6 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "R4 iOS Demo/R4 iOS Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -416,6 +422,7 @@
 				);
 				INFOPLIST_FILE = "R4 iOS Demo/R4 iOS Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -426,8 +433,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "R4 iOS Demo/R4 iOS Demo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -437,6 +444,7 @@
 				);
 				INFOPLIST_FILE = "R4 iOS Demo/R4 iOS Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
