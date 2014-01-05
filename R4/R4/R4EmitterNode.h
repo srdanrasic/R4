@@ -49,8 +49,7 @@
 
 //@property (nonatomic) CGFloat emissionAngle;
 @property (nonatomic) GLKVector3 emissionAxis;
-//@property (nonatomic) CGFloat emissionAngleRange;
-@property (nonatomic) GLKVector3 emissionAxisRange;
+@property (nonatomic) GLKVector3 emissionAngleRange;
 
 @property (nonatomic) CGFloat xAcceleration;
 @property (nonatomic) CGFloat yAcceleration;

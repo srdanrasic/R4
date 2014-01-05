@@ -21,6 +21,7 @@
 enum
 {
   UNIFORM_MODELVIEWPROJECTION_MATRIX,
+  UNIFORM_TEXTURE_SAMPLER,
   NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -68,7 +69,6 @@ GLint uniforms[NUM_UNIFORMS];
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
   
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
   
   [self loadShaders];
   
@@ -104,7 +104,6 @@ GLint uniforms[NUM_UNIFORMS];
   // This needs to be done prior to linking.
   glBindAttribLocation(program, R4VertexAttribPosition, "position");
   glBindAttribLocation(program, R4VertexAttribTexCoord, "texcoord");
-  glBindAttribLocation(program, R4VertexAttribAlpha, "instanceAlpha");
   glBindAttribLocation(program, R4VertexAttribColor, "instanceColor");
   glBindAttribLocation(program, R4VertexAttribColorBlendFactor, "instanceColorBlendFactor");
   glBindAttribLocation(program, R4VertexAttribMVM, "instanceMVM");
@@ -131,6 +130,7 @@ GLint uniforms[NUM_UNIFORMS];
   
   // Get uniform locations.
   uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(program, "model_view_projection_matrix");
+  uniforms[UNIFORM_TEXTURE_SAMPLER] = glGetUniformLocation(program, "texture_sampler");
   
   // Release vertex and fragment shaders.
   if (vertShader) {
@@ -248,7 +248,7 @@ void setupBlendMode(R4BlendMode mode)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBlendEquation(GL_FUNC_ADD);
   } else if (mode == R4BlendModeAdd) {
-    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glBlendEquation(GL_FUNC_ADD);
   } else if (mode == R4BlendModeSubtract) {
     glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
@@ -274,6 +274,9 @@ void setupBlendMode(R4BlendMode mode)
   
   glBindFramebuffer(GL_FRAMEBUFFER, _defaultFramebuffer);
   
+  glEnable(GL_CULL_FACE);
+  glDepthMask(GL_TRUE);
+
   glClearColor(0, 0, 0, 1);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   
@@ -411,6 +414,8 @@ void setupBlendMode(R4BlendMode mode)
     }
   }
   
+  glDepthMask(GL_FALSE);
+
   glUseProgram(particleProgram);
   for (R4EmitterNode *emitter in emitters) {
     setupBlendMode(emitter.particleBlendMode);
@@ -420,11 +425,16 @@ void setupBlendMode(R4BlendMode mode)
     glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
     
     GLKMatrix4 mvpm = GLKMatrix4Multiply(scene.view.projectionMatrix, cameraTransform);
+    //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, GL_FALSE, mvpm.m);
-
-    glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 36, emitter.particleCount);
+    
+    glUniform1i(uniforms[UNIFORM_TEXTURE_SAMPLER], 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(emitter.particleDrawable.drawableObject.effect.texture2d0.target, emitter.particleDrawable.drawableObject.effect.texture2d0.name);
+    
+    glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, emitter.particleCount);
   }
-
+  
   const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
   glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
 

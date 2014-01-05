@@ -14,7 +14,8 @@ varying lowp float  out_colorBlendFactor;
 
 void main()
 {
-  lowp vec4 texel = texture2D(texture_sampler, out_texcoord) + vec4(texture_mask, texture_mask, texture_mask, texture_mask);
-  lowp vec4 color = out_color; //mix(texel, out_color, out_colorBlendFactor);
-  gl_FragColor = clamp(color, 0.0, 1.0);
+  lowp vec4 tex = texture2D(texture_sampler, out_texcoord);
+  lowp float alpha = tex.a;
+  lowp vec3 color = mix(vec3(tex), vec3(out_color), out_colorBlendFactor);
+  gl_FragColor = vec4(color, alpha * out_color.a);
 }

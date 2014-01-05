@@ -14,7 +14,6 @@ typedef enum {
   R4VertexAttribTexCoord,
   R4VertexAttribColor,
   R4VertexAttribColorBlendFactor,
-  R4VertexAttribAlpha,
   R4VertexAttribMVM
 } R4VertexAttrib;
 
@@ -23,13 +22,13 @@ typedef struct {
   GLKVector4 color;
   GLKVector3 direction;
   CGFloat colorBlendFactor;
-  CGFloat alpha;
   
   CGFloat lifetime;
   CGFloat timeToLive;
   GLKVector3 initialPosition;
+  GLKVector4 initialColor;
   CGFloat initialScale;
-  CGFloat initialAlpha;
+  CGFloat initialColorBlendFactor;
   CGFloat speed;
 } R4ParticleAttributes;
 

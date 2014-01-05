@@ -397,4 +397,13 @@
   }
 }
 
+- (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node
+{
+  if ([node.children containsObject:self]) {
+    return GLKVector3Add(node.position, point);
+  } else {
+    return point;
+  }
+}
+
 @end

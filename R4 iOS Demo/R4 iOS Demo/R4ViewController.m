@@ -40,7 +40,7 @@
   stacy.blendMode = R4BlendModeAlpha;
   [stacyBase addChild:stacy];
 
-#if 1
+#if 0
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       R4Node *c2 = [stacy copy];
@@ -59,7 +59,7 @@
   stacy.highlightColor = [UIColor redColor];
   stacy.position = GLKVector3Make(0, 0, 4);
 
-  R4DrawableNode *base = [R4PrimitiveNode boxWithSize:GLKVector3Make(12, 0.01, 12)];
+  R4DrawableNode *base = [R4PrimitiveNode boxWithSize:GLKVector3Make(3, .01, 4)];
   base.name = @"base";
   base.position = GLKVector3Make(0, 0, 0);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
@@ -73,13 +73,22 @@
   [self addChild:light];
 #endif
 
-  self.currentCamera.position = GLKVector3Make(0, 3, 8);
-  self.currentCamera.targetNode = stacy;
+  self.currentCamera.position = GLKVector3Make(-4, 1, 5);
+  //self.currentCamera.targetNode = stacy;
   //[stacy addChild:self.currentCamera];
   
-  R4EmitterNode *emitter = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"MyParticle"];
-  [self addChild:emitter];
+  //R4EmitterNode *fire = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"FireParticle"];
+  //fire.position = GLKVector3Make(1, 0, 0);
+  //[self addChild:fire];
   
+  R4EmitterNode *smoke = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"SparkParticle"];
+  smoke.position = GLKVector3Make(-1, 0, 0);
+  [self addChild:smoke];
+  
+  R4EmitterNode *sparks = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"SnowParticle"];
+  sparks.position = GLKVector3Make(0, 4, 0);
+  sparks.particlePositionRange = GLKVector3Make(10, 0, 10);
+  [self addChild:sparks];
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
 
