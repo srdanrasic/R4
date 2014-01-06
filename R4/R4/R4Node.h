@@ -38,7 +38,7 @@
 //@property (nonatomic, strong) R4PhysicsBody *physicsBody;
 @property (nonatomic, strong) NSMutableDictionary *userData;
 
-- (CGRect)calculateAccumulatedFrame;
+- (R4Box)calculateAccumulatedFrame;
 
 - (void)setUniformScale:(CGFloat)scale; // setScale
 

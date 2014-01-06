@@ -60,9 +60,9 @@
                     self.size.width, self.size.height);
 }
 
-- (CGRect)calculateAccumulatedFrame
+- (R4Box)calculateAccumulatedFrame
 {
-  return self.frame;
+  return R4BoxZero;
 }
 
 - (void)setSize:(CGSize)size
@@ -106,6 +106,24 @@
       [child updateAtTime:time];
     }
   }
+}
+
+#pragma mark - UIResponder overrides
+
+- (R4Node *)hitTest:(R4Ray)ray event:(UIEvent *)event
+{
+  R4Node *node = [super hitTest:ray event:event];
+  
+  if (node == self) {
+    return nil;
+  } else {
+    return node;
+  }
+}
+
+- (UIResponder *)nextResponder
+{
+  return self.view;
 }
 
 @end

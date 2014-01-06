@@ -48,4 +48,9 @@
   return transform;
 }
 
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled
+{
+  [super setUserInteractionEnabled:NO];
+}
+
 @end

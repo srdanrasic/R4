@@ -9,6 +9,7 @@
 #import "R4Renderer.h"
 #import "R4View_private.h"
 #import "R4Scene_private.h"
+#import "R4Camera_private.h"
 #import "R4Node_private.h"
 
 @interface R4View ()
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) NSTimeInterval timeOfLastUpdate;
 @property (nonatomic, strong) UILabel *fpsLabel;
+@property (nonatomic, weak) R4Node *firstResponder;
 @end
 
 @implementation R4View
@@ -52,6 +54,8 @@
   
   layer.opaque = YES;
   layer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking: @(NO), kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8};
+  
+  self.responderChain = [NSMutableArray arrayWithCapacity:15];
   
   self.rendered = [R4Renderer new];
   if (!self.rendered) @throw [NSException exceptionWithName:@"Failure" reason:@"Unable to initialize OpenGL" userInfo:nil];
@@ -168,23 +172,109 @@
   return nil;
 }
 
-- (CGPoint)convertPoint:(CGPoint)point fromScene:(R4Scene *)scene
-{
-  point.y = self.frame.size.height - (scene.anchorPoint.y * self.frame.size.height + point.y);
-  point.x = scene.anchorPoint.x * self.frame.size.width + point.x;
-  return point;
-}
-
-- (CGPoint)convertPoint:(CGPoint)point toScene:(R4Scene *)scene
-{
-  // TODO
-  return CGPointMake(0, 0);
-}
-
 - (GLKMatrix4)projectionMatrix
 {
   float aspect = fabsf(self.scene.size.width / self.scene.size.height);
   return GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+}
+
+- (CGPoint)convertPoint:(GLKVector3)point fromScene:(R4Scene *)scene
+{
+  GLint viewport[4] = {};
+  glGetIntegerv(GL_VIEWPORT, viewport);
+  for (int i = 0; i < 4; i++) { viewport[i] /= [UIScreen mainScreen].scale; }
+  GLKVector3 result = GLKMathProject(point, self.scene.currentCamera.inversedTransform, self.scene.view.projectionMatrix, viewport);
+  
+  return CGPointMake(result.x, result.y);
+}
+
+- (R4Ray)convertPoint:(CGPoint)point toScene:(R4Scene *)scene
+{
+  bool success = NO;
+  GLint viewport[4] = {};
+  glGetIntegerv(GL_VIEWPORT, viewport);
+  for (int i = 0; i < 4; i++) { viewport[i] /= [UIScreen mainScreen].scale; }
+  
+  GLKVector3 originInWindowNear = GLKVector3Make(point.x, viewport[3] - point.y, 0.0f);
+  GLKVector3 resultNear = GLKMathUnproject(originInWindowNear, self.scene.currentCamera.inversedTransform, self.scene.view.projectionMatrix, viewport, &success);
+  
+  GLKVector3 originInWindowFar = GLKVector3Make(point.x, viewport[3] - point.y, 1.0f);
+  GLKVector3 resultFar = GLKMathUnproject(originInWindowFar, self.scene.currentCamera.inversedTransform, self.scene.view.projectionMatrix, viewport, &success);
+
+  GLKVector3 direction = GLKVector3Subtract(resultFar, resultNear);
+  R4Ray ray = R4RayMake(resultNear, direction);
+  NSLog(@"R: %@", NSStringFromR4Ray(ray));
+  return ray;
+}
+
+#pragma mark - UIResponder overrides
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+  [self.responderChain removeAllObjects];
+  
+  if (self.scene.userInteractionEnabled && [self pointInside:point withEvent:event]) {
+    R4Ray ray = [self convertPoint:point toScene:self.scene];
+    self.firstResponder = [self.scene hitTest:ray event:event];
+    
+    [self.responderChain sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+      R4Node *n1 = (R4Node *)obj1;
+      R4Node *n2 = (R4Node *)obj2;
+      return n1->_distanceToCamera < n2->_distanceToCamera;
+    }];
+    
+    if (self.firstResponder) {
+      NSLog(@"First responder: %@", self.firstResponder);
+      return self;
+    }
+  }
+  
+  for (UIView *view in self.subviews) {
+    if ([view pointInside:[self convertPoint:point toView:view] withEvent:event]) {
+      UIView *hitTestView = [view hitTest:[self convertPoint:point toView:view] withEvent:event];
+      if (hitTestView) {
+        return hitTestView;
+      }
+    }
+  }
+  
+  return nil;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  if (self.firstResponder) {
+    [self.firstResponder touchesBegan:touches withEvent:event];
+  } else {
+    [super touchesBegan:touches withEvent:event];
+  }
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  if (self.firstResponder) {
+    [self.firstResponder touchesMoved:touches withEvent:event];
+  } else {
+    [super touchesMoved:touches withEvent:event];
+  }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  if (self.firstResponder) {
+    [self.firstResponder touchesEnded:touches withEvent:event];
+  } else {
+    [super touchesEnded:touches withEvent:event];
+  }
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  if (self.firstResponder) {
+    [self.firstResponder touchesCancelled:touches withEvent:event];
+  } else {
+    [super touchesCancelled:touches withEvent:event];
+  }
 }
 
 @end

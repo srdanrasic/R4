@@ -14,7 +14,6 @@
 @interface R4EmitterNode ()
 @property (nonatomic, assign) NSTimeInterval timeOfLastUpdate;
 @property (nonatomic, assign) NSTimeInterval previousDT;
-@property (nonatomic, assign) NSInteger maxParticeCount;
 @end
 
 @implementation R4EmitterNode
@@ -108,6 +107,11 @@
   free(self.particleAttributes);
 }
 
+- (R4Box)boundingBox
+{
+  return R4BoxMake(GLKVector3Make(-.5f, -.5f, -.5f), GLKVector3Make(.5f, .5f, .5f));
+}
+
 - (void)setEmissionAxis:(GLKVector3)emissionAxis
 {
   _emissionAxis = GLKVector3Normalize(emissionAxis);
@@ -115,10 +119,10 @@
 
 - (void)commonInit
 {
-  self.maxParticeCount = (self.particleLifetime + self.particleLifetimeRange) * self.particleBirthRate;
+  maxParticeCount = (self.particleLifetime + self.particleLifetimeRange) * self.particleBirthRate;
   
   if (self.numParticlesToEmit != 0) {
-    self.maxParticeCount = MIN(maxParticeCount, self.numParticlesToEmit);
+    maxParticeCount = MIN(maxParticeCount, self.numParticlesToEmit);
   }
   
   self.particleCount = 0;
@@ -168,7 +172,7 @@
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArrayOES(0);
   
-  self.particleAttributes = malloc(self.maxParticeCount * sizeof(R4ParticleAttributes));
+  self.particleAttributes = malloc(maxParticeCount * sizeof(R4ParticleAttributes));
   
   [self resetSimulation];
 }
@@ -182,11 +186,6 @@
 - (void)updateAtTime:(NSTimeInterval)time
 {
   NSTimeInterval dt = time - self.timeOfLastUpdate;
-
-  if (dt > 0.1) {
-    dt = 0.1;
-  }
-  NSLog(@"Particle count: %d", self.particleCount);
     
   /* First update existing particles */
   GLKMatrix4 invR = GLKMatrix4Invert(self.scene.currentCamera.inversedTransform, NULL);
@@ -252,7 +251,7 @@
   
   GLKVector3 worldspacePosition = [self convertPoint:self.position toNode:self.scene];
   
-  for (unsigned i = 0; i < particles_to_emit && self.particleCount < self.maxParticeCount - 1; i++) {
+  for (unsigned i = 0; i < particles_to_emit && self.particleCount < maxParticeCount - 1; i++) {
     R4ParticleAttributes *p = &self.particleAttributes[self.particleCount++];
     
     /* Initialise particle */

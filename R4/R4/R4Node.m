@@ -115,6 +115,7 @@
 - (void)setParent:(R4Node *)parent
 {
   _parent = parent;
+  _scene = parent.scene;
 }
 
 - (R4Node *)childNodeWithName:(NSString *)name
@@ -226,7 +227,7 @@
 
 - (BOOL)containsPoint:(CGPoint)p
 {
-  return CGRectContainsPoint(self.calculateAccumulatedFrame, p);
+  return NO; // TODO //CGRectContainsPoint(self.calculateAccumulatedFrame, p);
 }
 
 - (R4Node *)nodeAtPoint:(CGPoint)p
@@ -327,23 +328,23 @@
   return _modelViewMatrix;
 }
 
-- (CGRect)calculateAccumulatedFrame
+- (R4Box)calculateAccumulatedFrame
 {
-  if (_dirty) {
-    GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(self.scene.view.projectionMatrix, self.parent.modelViewMatrix);
-    GLKVector3 startPoint = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, self.position);
+  GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
+  GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
+
+  _accumulatedFrame.min = GLKVector3Minimum(min, max);
+  _accumulatedFrame.max = GLKVector3Maximum(min, max);
   
-    GLKVector3 leftAxis = GLKVector3MakeWithArray(GLKMatrix4GetColumn(self.parent.modelViewMatrix, 0).v);
-    leftAxis = GLKVector3MultiplyScalar(leftAxis, self.boundingBox.max.x);
-    leftAxis = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, GLKVector3Add(self.position, leftAxis));
-    
-    GLKVector3 upAxis = GLKVector3MakeWithArray(GLKMatrix4GetColumn(self.parent.modelViewMatrix, 1).v);
-    upAxis = GLKVector3MultiplyScalar(upAxis, self.boundingBox.max.x);
-    upAxis = GLKMatrix4MultiplyAndProjectVector3(modelViewProjectionMatrix, GLKVector3Add(self.position, upAxis));
-    
-    GLKVector3 sizeX = GLKVector3Subtract(leftAxis, startPoint);
-    GLKVector3 sizeY = GLKVector3Subtract(upAxis, startPoint);
-    _accumulatedFrame = CGRectMake(startPoint.x - sizeX.x/2.0f, startPoint.y - sizeY.y/2.0f, sizeX.x, sizeY.y);
+  for (R4Node *node in self.children) {
+    R4Box bb = [node calculateAccumulatedFrame];
+    _accumulatedFrame.min = GLKVector3Minimum(_accumulatedFrame.min, bb.min);
+    _accumulatedFrame.max = GLKVector3Maximum(_accumulatedFrame.max, bb.max);
+  }
+  
+  if ([self.name isEqualToString:@"stacyBase"]) {
+    NSLog(@"StacB BB: %@", NSStringFromR4Box(_accumulatedFrame));
+    NSLog(@"StacY BB: %@", NSStringFromR4Box([self childNodeWithName:@"stacy"]->_accumulatedFrame));
   }
   
   return _accumulatedFrame;
@@ -352,6 +353,16 @@
 - (R4Box)boundingBox
 {
   return R4BoxZero;
+}
+
+- (GLKVector3)wsPosition
+{
+  if (self.parent) {
+    GLKVector4 wsPos = GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4Make(0.f, 0.f, 0.f, 1.f));
+    return GLKVector3MakeWithArray(wsPos.v);
+  } else {
+    return self.position;
+  }
 }
 
 - (void)willTraverse
@@ -404,6 +415,99 @@
   } else {
     return point;
   }
+}
+
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"Node named [%@] at [%@]", self.name, NSStringFromGLKVector3(self.wsPosition)];
+}
+
+#pragma mark - UIResponder overrides
+
+- (R4Node *)hitTest:(R4Ray)ray event:(UIEvent *)event
+{
+  GLKVector3 o = ray.startPoint;
+  CGFloat maxLen = CGFLOAT_MAX;
+  R4Node *hitTestNode = self;
+  
+  for (R4Node *node in self.children) {
+    if (!node.userInteractionEnabled) {
+      continue;
+    }
+
+    GLKVector3 invDirection = GLKVector3Make(1.f/ray.direction.x, 1.f/ray.direction.y, 1.f/ray.direction.z);
+    R4Box bb = node.calculateAccumulatedFrame;
+    BOOL intersects = NO;
+    CGFloat distance;
+    
+    // lb is the corner of AABB with minimal coordinates - left bottom, rt is maximal corner
+    // r.org is origin of ray
+    float t1 = (bb.min.x - ray.startPoint.x) * invDirection.x;
+    float t2 = (bb.max.x - ray.startPoint.x) * invDirection.x;
+    float t3 = (bb.min.y - ray.startPoint.y) * invDirection.y;
+    float t4 = (bb.max.y - ray.startPoint.y) * invDirection.y;
+    float t5 = (bb.min.z - ray.startPoint.z) * invDirection.z;
+    float t6 = (bb.max.z - ray.startPoint.z) * invDirection.z;
+    
+    float tmin = MAX(MAX(MIN(t1, t2), MIN(t3, t4)), MIN(t5, t6));
+    float tmax = MIN(MIN(MAX(t1, t2), MAX(t3, t4)), MAX(t5, t6));
+    
+    // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
+    if (tmax < 0) {
+      distance = tmax;
+    } else if (tmin > tmax) { // if tmin > tmax, ray doesn't intersect AABB
+      distance = tmax;
+    } else {
+      distance = tmin;
+      intersects = YES;
+    }
+    
+    if (intersects) {
+      NSLog(@"Possible [%@] len [%f]", node.name, distance);
+      node->_distanceToCamera = distance;
+      [self.scene.view.responderChain addObject:node];
+      
+      R4Node *possibleHitTest = [node hitTest:ray event:event];
+      if (possibleHitTest && distance < maxLen) {
+        hitTestNode = possibleHitTest;
+        maxLen = distance;
+      }
+    } else {
+      NSLog(@"Not possible [%@]", node.name);
+      node->_distanceToCamera = -1;
+    }
+  }
+  
+  return hitTestNode;
+}
+
+- (UIResponder *)nextResponder
+{
+  NSInteger idx = [self.scene.view.responderChain indexOfObject:self];
+  if (idx != NSNotFound && idx > 0) {
+    return [self.scene.view.responderChain objectAtIndex:idx-1];
+  }
+  return nil;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [[self nextResponder] touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [[self nextResponder] touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [[self nextResponder] touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  [[self nextResponder] touchesCancelled:touches withEvent:event];
 }
 
 @end

@@ -17,6 +17,8 @@
 		EC0D16A11879A94F00BC6DE7 /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */; };
 		EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */; };
 		EC3C31F21879F62E002A6734 /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31F11879F62E002A6734 /* SnowParticle.sks */; };
+		EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868CF187B0999000583BC /* AudioToolbox.framework */; };
+		EC8868D3187B09C1000583BC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868D2187B09C1000583BC /* CoreAudio.framework */; };
 		ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */; };
 		ECC58CCC17F8500D00BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCB17F8500D00BBAD28 /* Foundation.framework */; };
 		ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */; };
@@ -60,6 +62,8 @@
 		EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmokeParticle.sks; path = Resources/SmokeParticle.sks; sourceTree = "<group>"; };
 		EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FirefliesParticle.sks; path = Resources/FirefliesParticle.sks; sourceTree = "<group>"; };
 		EC3C31F11879F62E002A6734 /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SnowParticle.sks; path = Resources/SnowParticle.sks; sourceTree = "<group>"; };
+		EC8868CF187B0999000583BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EC8868D2187B09C1000583BC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SparkParticle.sks; path = Resources/SparkParticle.sks; sourceTree = "<group>"; };
 		ECC58CC817F8500D00BBAD28 /* R4 iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "R4 iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58CCB17F8500D00BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8868D3187B09C1000583BC /* CoreAudio.framework in Frameworks */,
+				EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */,
 				ECC78C8D181C40C0000FBC19 /* libstdc++.dylib in Frameworks */,
 				ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */,
 				ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */,
@@ -133,6 +139,8 @@
 		ECC58CCA17F8500D00BBAD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC8868D2187B09C1000583BC /* CoreAudio.framework */,
+				EC8868CF187B0999000583BC /* AudioToolbox.framework */,
 				ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */,
 				ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */,
 				ECC58D3B17F850B900BBAD28 /* libR4.a */,

@@ -25,7 +25,7 @@
 
 //- (R4Texture *)textureFromNode:(R4Node *)node;
 
-- (CGPoint)convertPoint:(CGPoint)point fromScene:(R4Scene *)scene;
-- (CGPoint)convertPoint:(CGPoint)point toScene:(R4Scene *)scene;
+- (CGPoint)convertPoint:(GLKVector3)point fromScene:(R4Scene *)scene;
+- (R4Ray)convertPoint:(CGPoint)point toScene:(R4Scene *)scene;
 
 @end

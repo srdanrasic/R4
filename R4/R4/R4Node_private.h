@@ -12,9 +12,12 @@
   NSMutableArray *_children;
   NSMutableArray *_actions;
   
-  CGRect _accumulatedFrame;
+  R4Box _accumulatedFrame;
   BOOL _dirty;
   BOOL _visited;
+  
+@public
+  CGFloat _distanceToCamera;
 }
 
 @property (nonatomic, readwrite) R4Scene *scene;
@@ -23,10 +26,13 @@
 @property (nonatomic, readwrite) NSArray *actions;
 
 @property (nonatomic) GLKMatrix4 modelViewMatrix;
+@property (nonatomic, assign, readonly) GLKVector3 wsPosition;
 
 - (void)willTraverse;
 - (void)didTraverse;
 
 - (void)updateActionsAtTime:(NSTimeInterval)time;
+
+- (R4Node *)hitTest:(R4Ray)ray event:(UIEvent *)event;
 
 @end

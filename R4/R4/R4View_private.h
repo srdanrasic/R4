@@ -13,5 +13,6 @@
 @interface R4View ()
 
 @property (nonatomic) GLKMatrix4 projectionMatrix;
+@property (nonatomic, strong) NSMutableArray *responderChain;
 
 @end

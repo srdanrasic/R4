@@ -274,7 +274,7 @@ void setupBlendMode(R4BlendMode mode)
   
   glBindFramebuffer(GL_FRAMEBUFFER, _defaultFramebuffer);
   
-  glEnable(GL_CULL_FACE);
+  //glEnable(GL_CULL_FACE);
   glDepthMask(GL_TRUE);
 
   glClearColor(0, 0, 0, 1);

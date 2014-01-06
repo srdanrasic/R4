@@ -24,9 +24,26 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
 };
 
 typedef struct {
-  GLKVector3 min;
-  GLKVector3 max;
+  GLKVector3 startPoint;
+  GLKVector3 direction;
+} R4Ray;
+
+typedef union {
+  struct { GLKVector3 min; GLKVector3 max; };
+  GLKVector3 bounds[2];
 } R4Box;
+
+static inline R4Ray R4RayMake(GLKVector3 startPoint, GLKVector3 direction)
+{
+  R4Ray ray = {startPoint, GLKVector3Normalize(direction)};
+  return ray;
+}
+
+static inline NSString *NSStringFromR4Ray(R4Ray ray)
+{
+  return [NSString stringWithFormat:@"{%@, %@}", NSStringFromGLKVector3(ray.startPoint), NSStringFromGLKVector3(ray.direction)];
+}
+
 
 static inline R4Box R4BoxMake(GLKVector3 min, GLKVector3 max)
 {
@@ -44,7 +61,7 @@ static inline NSString *NSStringFromR4Box(R4Box box)
   return [NSString stringWithFormat:@"{%@, %@}", NSStringFromGLKVector3(box.min), NSStringFromGLKVector3(box.max)];
 }
 
-static const R4Box R4BoxZero = {{0, 0, 0}, {0, 0, 0}};
+static const R4Box R4BoxZero = { .min = {0, 0, 0}, .max = {0, 0, 0}};
 
 static inline CGFloat randCGFloat(CGFloat min, CGFloat max)
 {

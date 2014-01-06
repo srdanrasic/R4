@@ -115,7 +115,7 @@ GLfloat gPlainVertexData[48] =
 
     glBindVertexArrayOES(0);
     
-    self.drawableObject.geometryBoundingBox = R4BoxMake(GLKVector3Make(-.5f, -.5f, -.5f), GLKVector3Make(.5f, .5f, .5f));
+    self.drawableObject.geometryBoundingBox = R4BoxMake(GLKVector3Multiply(GLKVector3Make(-.5f, -.5f, -.5f), size), GLKVector3Multiply(GLKVector3Make(.5f, .5f, .5f), size));
   }
   return self;
 }
@@ -158,7 +158,7 @@ GLfloat gPlainVertexData[48] =
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE,  sizeof(GLfloat) * 8, BUFFER_OFFSET(24));
     
     NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES],
-                              GLKTextureLoaderGenerateMipmaps: [NSNumber numberWithBool:NO]};
+                              GLKTextureLoaderGenerateMipmaps: [NSNumber numberWithBool:YES]};
     GLKTextureInfo *texture = [GLKTextureLoader textureWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spark" ofType:@"png"] options:options error:nil];
     
     if (texture) {
