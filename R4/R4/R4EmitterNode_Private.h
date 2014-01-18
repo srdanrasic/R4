@@ -9,14 +9,6 @@
 #import "R4EmitterNode.h"
 #import "R4PrimitiveNode.h"
 
-typedef enum {
-  R4VertexAttribPosition,
-  R4VertexAttribTexCoord,
-  R4VertexAttribColor,
-  R4VertexAttribColorBlendFactor,
-  R4VertexAttribMVM
-} R4VertexAttrib;
-
 typedef struct {
   GLKMatrix4 MVM;
   GLKVector4 color;

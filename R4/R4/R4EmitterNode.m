@@ -136,38 +136,36 @@
   
   glBindBuffer(GL_ARRAY_BUFFER, particleAttributesVertexBuffer);
   
-  glEnableVertexAttribArray(R4VertexAttribMVM + 0);
-  glEnableVertexAttribArray(R4VertexAttribMVM + 1);
-  glEnableVertexAttribArray(R4VertexAttribMVM + 2);
-  glEnableVertexAttribArray(R4VertexAttribMVM + 3);
+  glEnableVertexAttribArray(R4VertexAttributeMVM + 0);
+  glEnableVertexAttribArray(R4VertexAttributeMVM + 1);
+  glEnableVertexAttribArray(R4VertexAttributeMVM + 2);
+  glEnableVertexAttribArray(R4VertexAttributeMVM + 3);
   
-  glVertexAttribPointer(R4VertexAttribMVM + 0, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 0));
-  glVertexAttribPointer(R4VertexAttribMVM + 1, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 1));
-  glVertexAttribPointer(R4VertexAttribMVM + 2, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 2));
-  glVertexAttribPointer(R4VertexAttribMVM + 3, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 3));
+  glVertexAttribPointer(R4VertexAttributeMVM + 0, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 0));
+  glVertexAttribPointer(R4VertexAttributeMVM + 1, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 1));
+  glVertexAttribPointer(R4VertexAttributeMVM + 2, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 2));
+  glVertexAttribPointer(R4VertexAttributeMVM + 3, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 3));
   
-  glVertexAttribDivisorEXT(R4VertexAttribMVM + 0, 1);
-  glVertexAttribDivisorEXT(R4VertexAttribMVM + 1, 1);
-  glVertexAttribDivisorEXT(R4VertexAttribMVM + 2, 1);
-  glVertexAttribDivisorEXT(R4VertexAttribMVM + 3, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 0, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 1, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 2, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 3, 1);
   
-  glEnableVertexAttribArray(R4VertexAttribColor);
-  glVertexAttribPointer(R4VertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, color));
-  glVertexAttribDivisorEXT(R4VertexAttribColor, 1);
+  glEnableVertexAttribArray(R4VertexAttributeColor);
+  glVertexAttribPointer(R4VertexAttributeColor, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, color));
+  glVertexAttribDivisorEXT(R4VertexAttributeColor, 1);
 
-  glEnableVertexAttribArray(R4VertexAttribColorBlendFactor);
-  glVertexAttribPointer(R4VertexAttribColorBlendFactor, 1, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, colorBlendFactor));
-  glVertexAttribDivisorEXT(R4VertexAttribColorBlendFactor, 1);
+  glEnableVertexAttribArray(R4VertexAttributeColorBlendFactor);
+  glVertexAttribPointer(R4VertexAttributeColorBlendFactor, 1, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, colorBlendFactor));
+  glVertexAttribDivisorEXT(R4VertexAttributeColorBlendFactor, 1);
 
   glBindBuffer(GL_ARRAY_BUFFER, self.particleDrawable.drawableObject->vertexBuffer);
   
-  glEnableVertexAttribArray(R4VertexAttribPosition);
-  glVertexAttribPointer(R4VertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));
+  glEnableVertexAttribArray(R4VertexAttributePosition);
+  glVertexAttribPointer(R4VertexAttributePosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));
   
-  glEnableVertexAttribArray(R4VertexAttribTexCoord);
-  glVertexAttribPointer(R4VertexAttribTexCoord, 2, GL_FLOAT, GL_FALSE,  sizeof(GLfloat) * 8, BUFFER_OFFSET(24));
-  
-  
+  glEnableVertexAttribArray(R4VertexAttributeTexCoord0);
+  glVertexAttribPointer(R4VertexAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE,  sizeof(GLfloat) * 8, BUFFER_OFFSET(24));
   
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArrayOES(0);

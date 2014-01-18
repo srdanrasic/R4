@@ -17,22 +17,12 @@
 #import "R4DrawableObject.h"
 #import "R4EmitterNode_Private.h"
 #import "R4PrimitiveNode.h"
-#import "R4GPUProgram.h"
 
 #import "R4Program.h"
 #import "R4Material.h"
 #import "R4Technique.h"
 #import "R4Pass.h"
 #import "R4TextureUnit.h"
-
-enum
-{
-  UNIFORM_MODELVIEWPROJECTION_MATRIX,
-  UNIFORM_TEXTURE_SAMPLER,
-  NUM_UNIFORMS
-};
-GLint uniforms[NUM_UNIFORMS];
-
 
 @interface R4Renderer () {
   EAGLContext* _context;
@@ -177,36 +167,44 @@ void setupBlendMode(R4BlendMode mode)
   setupBlendMode(R4BlendModeAlpha);
   
   // Get sorted drawables (TODO cache)
-  NSMutableDictionary *drawables = [NSMutableDictionary dictionary];
-  NSMutableArray *lights = [NSMutableArray array];
-  NSMutableArray *emitters = [NSMutableArray array];
-  __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
-    for (R4Node *node in root.children) {
-      dfs(node);
-      
-      if ([node isKindOfClass:[R4DrawableNode class]]) {
-        R4DrawableNode *drawable = (R4DrawableNode *)node;
-        NSValue *key = [NSValue valueWithNonretainedObject:drawable.drawableObject];
-        NSMutableArray *array = [drawables objectForKey:key];
-        
-        if (!array) {
-          array = [NSMutableArray array];
-          [drawables setObject:array forKey:key];
-        }
-        
-        [array addObject:drawable];
-      } else if ([node isKindOfClass:[R4LightNode class]]) {
-        [lights addObject:node];
-      } else if ([node isKindOfClass:[R4EmitterNode class]]) {
-        [emitters addObject:node];
-      }
-    }
-  };
-  dfs(scene);
+  static NSMutableDictionary *drawables = nil;
+  static NSMutableArray *lights = nil;
+  static NSMutableArray *emitters = nil;
   
-  if (lights.count > 3) {
-    @throw [NSException exceptionWithName:@"Error" reason:@"Scene is limited to 3 lights." userInfo:nil];
+  if (drawables == nil) {
+    drawables = [NSMutableDictionary dictionary];
+    lights = [NSMutableArray array];
+    emitters = [NSMutableArray array];
+    
+    __block __unsafe_unretained void (^dfs)() = ^void(R4Node *root) {
+      for (R4Node *node in root.children) {
+        dfs(node);
+        
+        if ([node isKindOfClass:[R4DrawableNode class]]) {
+          R4DrawableNode *drawable = (R4DrawableNode *)node;
+          NSValue *key = [NSValue valueWithNonretainedObject:drawable.drawableObject];
+          NSMutableArray *array = [drawables objectForKey:key];
+          
+          if (!array) {
+            array = [NSMutableArray array];
+            [drawables setObject:array forKey:key];
+          }
+          
+          [array addObject:drawable];
+        } else if ([node isKindOfClass:[R4LightNode class]]) {
+          [lights addObject:node];
+        } else if ([node isKindOfClass:[R4EmitterNode class]]) {
+          [emitters addObject:node];
+        }
+      }
+    };
+    dfs(scene);
+    
+    if (lights.count > 3) {
+      @throw [NSException exceptionWithName:@"Error" reason:@"Scene is limited to 3 lights." userInfo:nil];
+    }
   }
+
   
   // Render the scene
   GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
@@ -223,7 +221,7 @@ void setupBlendMode(R4BlendMode mode)
       if (lightNumber < lights.count) {
         R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
         effectProperty.enabled = GL_TRUE;
-        effect.lightingType = GLKLightingTypePerPixel;
+        effect.lightingType = GLKLightingTypePerVertex;
         effectProperty.ambientColor = lightNode.ambientColor;
         effectProperty.diffuseColor = lightNode.diffuseColor;
         effectProperty.specularColor = lightNode.specularColor;

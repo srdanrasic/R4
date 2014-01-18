@@ -14,7 +14,6 @@
 		EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */; };
 		EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
 		EC678738186B08CC009921C2 /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
-		ECADD131188AA7CC004736E1 /* R4GPUProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD130188AA7CC004736E1 /* R4GPUProgram.m */; };
 		ECADD135188AD23E004736E1 /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
 		ECADD138188AD262004736E1 /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
 		ECADD13C188AD2A2004736E1 /* R4TextureUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */; };
@@ -77,8 +76,6 @@
 		ECA3D12D186B96A500D92087 /* R4Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Shaders.h; sourceTree = "<group>"; };
 		ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.fsh; path = Shaders/ParticleShader.fsh; sourceTree = "<group>"; };
 		ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.vsh; path = Shaders/ParticleShader.vsh; sourceTree = "<group>"; };
-		ECADD12F188AA7CC004736E1 /* R4GPUProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4GPUProgram.h; sourceTree = "<group>"; };
-		ECADD130188AA7CC004736E1 /* R4GPUProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4GPUProgram.m; sourceTree = "<group>"; };
 		ECADD133188AD23E004736E1 /* R4Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Material.h; sourceTree = "<group>"; };
 		ECADD134188AD23E004736E1 /* R4Material.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Material.m; sourceTree = "<group>"; };
 		ECADD136188AD262004736E1 /* R4Pass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Pass.h; sourceTree = "<group>"; };
@@ -166,8 +163,6 @@
 		ECADD139188AD273004736E1 /* Rendering System */ = {
 			isa = PBXGroup;
 			children = (
-				ECADD12F188AA7CC004736E1 /* R4GPUProgram.h */,
-				ECADD130188AA7CC004736E1 /* R4GPUProgram.m */,
 				ECADD143188ADC3C004736E1 /* R4Shader.h */,
 				ECADD144188ADC3C004736E1 /* R4Shader.m */,
 				ECADD140188ADC31004736E1 /* R4Program.h */,
@@ -342,7 +337,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECADD131188AA7CC004736E1 /* R4GPUProgram.m in Sources */,
 				ECC58D4F17F8538900BBAD28 /* R4Texture.m in Sources */,
 				EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */,
 				ECE91899186C7ED4000E11A7 /* R4EmitterNode.m in Sources */,
