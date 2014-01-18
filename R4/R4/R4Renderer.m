@@ -17,6 +17,13 @@
 #import "R4DrawableObject.h"
 #import "R4EmitterNode_Private.h"
 #import "R4PrimitiveNode.h"
+#import "R4GPUProgram.h"
+
+#import "R4Program.h"
+#import "R4Material.h"
+#import "R4Technique.h"
+#import "R4Pass.h"
+#import "R4TextureUnit.h"
 
 enum
 {
@@ -31,9 +38,10 @@ GLint uniforms[NUM_UNIFORMS];
   EAGLContext* _context;
   GLuint _defaultFramebuffer, _depthRenderbuffer, _colorRenderbuffer;
   GLint _backingWidth, _backingHeight;
-  GLuint particleProgram;
   R4BlendMode _currentBlendMode;
 }
+
+@property (nonatomic, strong) R4Material *particleMaterial;
 
 @end
 
@@ -59,7 +67,7 @@ GLint uniforms[NUM_UNIFORMS];
   
   glGenFramebuffers(1, &_defaultFramebuffer);
   glBindFramebuffer(GL_FRAMEBUFFER, _defaultFramebuffer);
-
+  
   glGenRenderbuffers(1, &_colorRenderbuffer);
   glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderbuffer);
@@ -70,159 +78,13 @@ GLint uniforms[NUM_UNIFORMS];
   
   glEnable(GL_DEPTH_TEST);
   
-  [self loadShaders];
-  
-  return YES;
-}
-  
-- (BOOL)loadShaders
-{
-  GLuint vertShader, fragShader;
-  
-  // Create shader program.
-  GLuint program = glCreateProgram();
-  
-  // Create and compile vertex shader.
-  if (![self compileShader:&vertShader type:GL_VERTEX_SHADER source:vshParticleShaderSourceString]) {
-    NSLog(@"Failed to compile vertex shader");
-    return NO;
-  }
-  
-  // Create and compile fragment shader.
-  if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER source:fshParticleShaderSourceString]) {
-    NSLog(@"Failed to compile fragment shader");
-    return NO;
-  }
-  
-  // Attach vertex shader to program.
-  glAttachShader(program, vertShader);
-  
-  // Attach fragment shader to program.
-  glAttachShader(program, fragShader);
-  
-  // Bind attribute locations.
-  // This needs to be done prior to linking.
-  glBindAttribLocation(program, R4VertexAttribPosition, "position");
-  glBindAttribLocation(program, R4VertexAttribTexCoord, "texcoord");
-  glBindAttribLocation(program, R4VertexAttribColor, "instanceColor");
-  glBindAttribLocation(program, R4VertexAttribColorBlendFactor, "instanceColorBlendFactor");
-  glBindAttribLocation(program, R4VertexAttribMVM, "instanceMVM");
-
-  // Link program.
-  if (![self linkProgram:program]) {
-    NSLog(@"Failed to link program: %d", program);
-    
-    if (vertShader) {
-      glDeleteShader(vertShader);
-      vertShader = 0;
-    }
-    if (fragShader) {
-      glDeleteShader(fragShader);
-      fragShader = 0;
-    }
-    if (program) {
-      glDeleteProgram(program);
-      program = 0;
-    }
-    
-    return NO;
-  }
-  
-  // Get uniform locations.
-  uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(program, "model_view_projection_matrix");
-  uniforms[UNIFORM_TEXTURE_SAMPLER] = glGetUniformLocation(program, "texture_sampler");
-  
-  // Release vertex and fragment shaders.
-  if (vertShader) {
-    glDetachShader(program, vertShader);
-    glDeleteShader(vertShader);
-  }
-  if (fragShader) {
-    glDetachShader(program, fragShader);
-    glDeleteShader(fragShader);
-  }
-  
-  particleProgram = program;
-  return YES;
-}
-
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type source:(const char *)source
-{
-  GLint status;
-  
-  if (!source) {
-    NSLog(@"Failed to load vertex shader");
-    return NO;
-  }
-  
-  *shader = glCreateShader(type);
-  glShaderSource(*shader, 1, &source, NULL);
-  glCompileShader(*shader);
-  
-#if defined(DEBUG)
-  GLint logLength;
-  glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0) {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetShaderInfoLog(*shader, logLength, &logLength, log);
-    NSLog(@"Shader compile log:\n%s", log);
-    free(log);
-  }
-#endif
-  
-  glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-  if (status == 0) {
-    glDeleteShader(*shader);
-    return NO;
-  }
+  R4Pass *pass = [[R4Pass alloc] initWithParticleShaders];
+  R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];
+  self.particleMaterial = [[R4Material alloc] initWithTechniques:@[technique]];
   
   return YES;
 }
 
-- (BOOL)linkProgram:(GLuint)prog
-{
-  GLint status;
-  glLinkProgram(prog);
-  
-#if defined(DEBUG)
-  GLint logLength;
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0) {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    NSLog(@"Program link log:\n%s", log);
-    free(log);
-  }
-#endif
-  
-  glGetProgramiv(prog, GL_LINK_STATUS, &status);
-  if (status == 0) {
-    return NO;
-  }
-  
-  return YES;
-}
-
-- (BOOL)validateProgram:(GLuint)prog
-{
-  GLint logLength, status;
-  
-  glValidateProgram(prog);
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0) {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    NSLog(@"Program validate log:\n%s", log);
-    free(log);
-  }
-  
-  glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
-  if (status == 0) {
-    return NO;
-  }
-  
-  return YES;
-}
 
 - (void)dealloc
 {
@@ -276,7 +138,7 @@ void setupBlendMode(R4BlendMode mode)
   
   //glEnable(GL_CULL_FACE);
   glDepthMask(GL_TRUE);
-
+  
   glClearColor(0, 0, 0, 1);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   
@@ -291,7 +153,7 @@ void setupBlendMode(R4BlendMode mode)
   if (scene.scaleMode == R4SceneScaleModeAspectFill || scene.scaleMode == R4SceneScaleModeAspectFit) {
     glViewport((_backingWidth - scene.size.width / scale) / 2, (_backingHeight - scene.size.height / scale) / 2,
                scene.size.width / scale, scene.size.height / scale);
-
+    
   } else {
     glViewport(0, 0, _backingWidth, _backingHeight);
   }
@@ -305,7 +167,7 @@ void setupBlendMode(R4BlendMode mode)
     glScissor(0, 0, _backingWidth, _backingHeight);
   }
   
-
+  
   GLfloat r, g, b, a;
   [scene.backgroundColor getRed:&r green:&g blue:&b alpha:&a];
   glClearColor(r, g, b, a);
@@ -374,14 +236,14 @@ void setupBlendMode(R4BlendMode mode)
         effectProperty.enabled = GL_FALSE;
       }
     }
-
+    
     glBindVertexArrayOES(drawableObject->vertexArray);
-
+    
     for (R4DrawableNode *drawable in drawables[key]) {
       GLKVector4 constantColor = effect.constantColor;
       
       effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, drawable.modelViewMatrix);
-
+      
       int lightNumber = 0;
       for (GLKEffectPropertyLight *effectProperty in @[effect.light0, effect.light1, effect.light2]) {
         if (lightNumber < lights.count) {
@@ -415,29 +277,44 @@ void setupBlendMode(R4BlendMode mode)
   }
   
   glDepthMask(GL_FALSE);
-
-  glUseProgram(particleProgram);
+  
   for (R4EmitterNode *emitter in emitters) {
-    setupBlendMode(emitter.particleBlendMode);
     
-    glBindVertexArrayOES(emitter->particleAttributesVertexArray);
-    glBindBuffer(GL_ARRAY_BUFFER, emitter->particleAttributesVertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
+    R4Material *material = self.particleMaterial;
+    R4Technique *technique = [material optimalTechnique];
     
-    GLKMatrix4 mvpm = GLKMatrix4Multiply(scene.view.projectionMatrix, cameraTransform);
-    //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, GL_FALSE, mvpm.m);
     
-    glUniform1i(uniforms[UNIFORM_TEXTURE_SAMPLER], 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(emitter.particleDrawable.drawableObject.effect.texture2d0.target, emitter.particleDrawable.drawableObject.effect.texture2d0.name);
-    
-    glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, emitter.particleCount);
+    for (R4Pass *pass in technique.passes) {
+      glUseProgram(pass.program.programName);
+      
+      setupBlendMode(emitter.particleBlendMode);
+      
+      glBindVertexArrayOES(emitter->particleAttributesVertexArray);
+      glBindBuffer(GL_ARRAY_BUFFER, emitter->particleAttributesVertexBuffer);
+      glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
+      
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(emitter.particleDrawable.drawableObject.effect.texture2d0.target, emitter.particleDrawable.drawableObject.effect.texture2d0.name);
+      
+      for (NSString *name in pass.program.autoUniforms) {
+        NSInteger location = [[pass.program.autoUniforms objectForKey:name] integerValue];
+        
+        if ([name isEqualToString:@"model_view_projection_matrix"]) {
+          GLKMatrix4 mvpm = GLKMatrix4Multiply(scene.view.projectionMatrix, cameraTransform);
+          //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
+          glUniformMatrix4fv(location, 1, GL_FALSE, mvpm.m);
+        } else if ([name isEqualToString:@"texture_sampler"]) {
+          glUniform1i(location, 0);
+        }
+      }
+      
+      glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, emitter.particleCount);
+    }
   }
   
   const GLenum discards[]  = {GL_DEPTH_ATTACHMENT};
   glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
-
+  
   glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);
   [_context presentRenderbuffer:GL_RENDERBUFFER];
   

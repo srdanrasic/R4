@@ -13,6 +13,12 @@
 
 #define R4Color UIColor
 
+typedef NS_ENUM(NSInteger, R4DeviceCPU) {
+  R4DeviceCPUA4,
+  R4DeviceCPUA5,
+  R4DeviceCPUA6
+};
+
 typedef NS_ENUM(NSInteger, R4BlendMode) {
   R4BlendModeAlpha        = 0,    // Blends the source and destination colors by multiplying the source alpha value.
   R4BlendModeAdd          = 1,    // Blends the source and destination colors by adding them up.
@@ -21,6 +27,16 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
   R4BlendModeMultiplyX2   = 4,    // Blends the source and destination colors by multiplying them and doubling the result.
   R4BlendModeScreen       = 5,    // FIXME: Description needed
   R4BlendModeReplace      = 6     // Replaces the destination with the source (ignores alpha).
+};
+
+typedef NS_ENUM(NSInteger, R4VertexAttribute) {
+  R4VertexAttributePosition,
+  R4VertexAttributeTexCoord0,
+  R4VertexAttributeTexCoord1,
+  R4VertexAttributeColor,
+  R4VertexAttributeColorBlendFactor,
+  R4VertexAttributeMVM,
+  R4VertexAttributeCount
 };
 
 typedef struct {

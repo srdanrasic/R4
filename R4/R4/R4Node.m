@@ -426,7 +426,7 @@
 
 - (R4Node *)hitTest:(R4Ray)ray event:(UIEvent *)event
 {
-  GLKVector3 o = ray.startPoint;
+  //GLKVector3 o = ray.startPoint;
   CGFloat maxLen = CGFLOAT_MAX;
   R4Node *hitTestNode = self;
   
