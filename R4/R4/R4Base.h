@@ -30,7 +30,8 @@ typedef NS_ENUM(NSInteger, R4BlendMode) {
 };
 
 typedef NS_ENUM(NSInteger, R4VertexAttribute) {
-  R4VertexAttributePosition,
+  R4VertexAttributePositionModelSpace,
+  R4VertexAttributeNormalModelSpace,
   R4VertexAttributeTexCoord0,
   R4VertexAttributeTexCoord1,
   R4VertexAttributeColor,
@@ -38,6 +39,8 @@ typedef NS_ENUM(NSInteger, R4VertexAttribute) {
   R4VertexAttributeMVM,
   R4VertexAttributeCount
 };
+
+
 
 typedef struct {
   GLKVector3 startPoint;

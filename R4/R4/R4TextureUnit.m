@@ -10,4 +10,16 @@
 
 @implementation R4TextureUnit
 
++ (R4TextureUnit *)textureUnitWithTexture:(R4Texture *)texture
+{
+  R4TextureUnit *tu = [[R4TextureUnit alloc] init];
+  tu.texture = texture;
+  return tu;
+}
+
+- (void)dealloc
+{
+  NSLog(@"Deleting texture unit.");
+}
+
 @end

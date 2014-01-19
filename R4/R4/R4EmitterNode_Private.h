@@ -7,7 +7,8 @@
 //
 
 #import "R4EmitterNode.h"
-#import "R4PrimitiveNode.h"
+
+@class R4Mesh, R4Material;
 
 typedef struct {
   GLKMatrix4 MVM;
@@ -33,7 +34,8 @@ typedef struct {
 
 @property (nonatomic, assign) NSInteger particleCount;
 @property (nonatomic, assign) R4ParticleAttributes *particleAttributes;
-@property (strong, nonatomic) R4PrimitiveNode *particleDrawable;
+@property (nonatomic, strong) R4Mesh *particleMesh;
+@property (nonatomic, strong) R4Material *material;
 
 - (void)updateAtTime:(NSTimeInterval)time;
 

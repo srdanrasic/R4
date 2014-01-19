@@ -11,6 +11,15 @@
 
 @implementation R4Material
 
+- (instancetype)init
+{
+  self = [super init];
+  if (self) {
+    self.techniques = [NSMutableArray arrayWithObject:[[R4Technique alloc] init]];
+  }
+  return self;
+}
+
 - (instancetype)initWithTechniques:(NSArray *)techniques
 {
   self = [super init];
@@ -31,6 +40,16 @@
     }
   }
   return nil;
+}
+
+- (R4Technique *)firstTechnique
+{
+  return [self.techniques firstObject];
+}
+
+- (R4Technique *)techniqueAtIndex:(NSUInteger)index
+{
+  return [self.techniques objectAtIndex:index];
 }
 
 @end

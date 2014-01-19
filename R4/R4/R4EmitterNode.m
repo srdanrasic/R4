@@ -7,7 +7,11 @@
 //
 
 #import "R4EmitterNode_Private.h"
-#import "R4DrawableNode_private.h"
+#import "R4Mesh.h"
+#import "R4Material.h"
+#import "R4Shader.h"
+#import "R4Shaders.h"
+#import "R4Texture.h"
 #import "R4Scene_private.h"
 #import "R4Camera_private.h"
 
@@ -126,9 +130,30 @@
   }
   
   self.particleCount = 0;
-  
-  self.particleDrawable = [R4PrimitiveNode plainWithSize:CGSizeMake(1, 1)];
+  self.particleMesh = [R4Mesh plainWithSize:CGSizeMake(1, 1)];
 
+  R4Pass *pass = [[R4Pass alloc] init];
+  pass.sceneBlend = R4BlendModeAlpha;
+  pass.lighting = YES;
+  pass.depthTest = YES;
+  pass.depthWrite = NO;
+  
+  [pass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"spark.png"]]];
+  
+  NSDictionary *vshMapping = @{ @"position_modelspace": @(R4VertexAttributePositionModelSpace),
+                                @"texcoord": @(R4VertexAttributeTexCoord0),
+                                @"instanceColor": @(R4VertexAttributeColor),
+                                @"instanceColorBlendFactor": @(R4VertexAttributeColorBlendFactor),
+                                @"instanceMVM": @(R4VertexAttributeMVM)
+                                };
+  
+  pass.vertexShader = [[R4Shader alloc] initVertexShaderWithSourceString:vshParticleShaderSourceString attributeMapping:vshMapping];
+  pass.fragmentShader = [[R4Shader alloc] initFragmentShaderWithSourceString:fshParticleShaderSourceString attributeMapping:nil];
+  [pass program];
+  
+  R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];
+  self.material = [[R4Material alloc] initWithTechniques:@[technique]];
+  
   glGenVertexArraysOES(1, &particleAttributesVertexArray);
   glGenBuffers(1, &particleAttributesVertexBuffer);
   
@@ -159,10 +184,10 @@
   glVertexAttribPointer(R4VertexAttributeColorBlendFactor, 1, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, colorBlendFactor));
   glVertexAttribDivisorEXT(R4VertexAttributeColorBlendFactor, 1);
 
-  glBindBuffer(GL_ARRAY_BUFFER, self.particleDrawable.drawableObject->vertexBuffer);
+  glBindBuffer(GL_ARRAY_BUFFER, self.particleMesh->vertexBuffer);
   
-  glEnableVertexAttribArray(R4VertexAttributePosition);
-  glVertexAttribPointer(R4VertexAttributePosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));
+  glEnableVertexAttribArray(R4VertexAttributePositionModelSpace);
+  glVertexAttribPointer(R4VertexAttributePositionModelSpace, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));
   
   glEnableVertexAttribArray(R4VertexAttributeTexCoord0);
   glVertexAttribPointer(R4VertexAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE,  sizeof(GLfloat) * 8, BUFFER_OFFSET(24));

@@ -17,7 +17,10 @@ typedef NS_ENUM(NSInteger, R4TextureFilteringMode) {
 
 @interface R4Texture : NSObject <NSCopying, NSCoding>
 
-//+ (R4Texture *)textureWithImageNamed:(NSString *)name;
+@property (nonatomic, assign) R4TextureFilteringMode filteringMode;
+@property (nonatomic, assign) BOOL usesMipmaps;
+
++ (R4Texture *)textureWithImageNamed:(NSString *)name;
 //+ (R4Texture *)textureWithRect:(CGRect)rect inTexture:(R4Texture *)texture;
 //+ (R4Texture *)textureWithCGImage:(CGImageRef)image;
 //+ (R4Texture *)textureWithImage:(UIImage *)image;
@@ -27,8 +30,7 @@ typedef NS_ENUM(NSInteger, R4TextureFilteringMode) {
 //- (CGRect)textureRect; // {(0,0) (1,1)}
 //- (CGSize)size; // points
 
-//@property (nonatomic) R4TextureFilteringMode filteringMode;
-//@property (nonatomic) BOOL usesMipmaps; // 2^n
+- (GLuint)textureName;
 
 //+ (void)preloadTextures:(NSArray *)textures withCompletionHandler:(void(^)(void))completionHandler;
 //- (void)preloadWithCompletionHandler:(void(^)(void))completionHandler;

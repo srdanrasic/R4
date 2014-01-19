@@ -12,7 +12,7 @@
 @interface R4Program () {
   GLuint _programName;
 }
-@property (nonatomic, strong, readwrite) NSDictionary *autoUniforms;
+@property (nonatomic, strong, readwrite) NSDictionary *uniforms;
 @end
 
 
@@ -70,7 +70,7 @@
     glGetProgramiv(program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformNameLength);
     GLchar *nameData = malloc(sizeof(GLchar) * maxUniformNameLength);
     
-    NSMutableDictionary *autoUniforms = [NSMutableDictionary dictionary];
+    NSMutableDictionary *uniforms = [NSMutableDictionary dictionary];
 
     for(int unif = 0; unif < numActiveUniforms; ++unif) {
       GLint arraySize = 0;
@@ -80,10 +80,12 @@
       NSString *name = [NSString stringWithCString:nameData encoding:NSUTF8StringEncoding];
       
       GLint loc = glGetUniformLocation(program, nameData);
-      [autoUniforms setObject:@(loc) forKey:name];
+      [uniforms setObject:@(loc) forKey:name];
+      
+      // IDEA: Generete block that sets up all known uniforms 
     }
     
-    self.autoUniforms = autoUniforms;
+    self.uniforms = uniforms;
     
     // Release vertex and fragment shaders.
     if (vertShader) {
@@ -153,6 +155,138 @@
 - (GLuint)programName
 {
   return _programName;
+}
+
+- (void)setUniform1f:(NSString *)name v0:(GLfloat)v0
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform1f([location integerValue], v0);
+}
+
+- (void)setUniform2f:(NSString *)name v0:(GLfloat)v0 v1:(GLfloat)v1
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform2f([location integerValue], v0, v1);
+}
+
+- (void)setUniform3f:(NSString *)name v0:(GLfloat)v0 v1:(GLfloat)v1 v2:(GLfloat)v2
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform3f([location integerValue], v0, v1, v2);
+}
+- (void)setUniform4f:(NSString *)name v0:(GLfloat)v0 v1:(GLfloat)v1 v2:(GLfloat)v2 v3:(GLfloat)v3
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform4f([location integerValue], v0, v1, v2, v3);
+}
+
+- (void)setUniform1i:(NSString *)name v0:(GLint)v0
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform1i([location integerValue], v0);
+}
+
+- (void)setUniform2i:(NSString *)name v0:(GLint)v0 v1:(GLint)v1
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform2i([location integerValue], v0, v1);
+}
+
+- (void)setUniform3i:(NSString *)name v0:(GLint)v0 v1:(GLint)v1 v2:(GLint)v2
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform3i([location integerValue], v0, v1, v2);
+}
+
+- (void)setUniform4i:(NSString *)name v0:(GLint)v0 v1:(GLint)v1 v2:(GLint)v2 v3:(GLint)v3
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform4i([location integerValue], v0, v1, v2, v3);
+}
+
+- (void)setUniform1fv:(NSString *)name count:(GLsizei)count v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform1fv([location integerValue], count, v);
+}
+
+- (void)setUniform2fv:(NSString *)name count:(GLsizei)count v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform2fv([location integerValue], count, v);
+}
+
+- (void)setUniform3fv:(NSString *)name count:(GLsizei)count v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform3fv([location integerValue], count, v);
+}
+
+- (void)setUniform4fv:(NSString *)name count:(GLsizei)count v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform4fv([location integerValue], count, v);
+}
+
+- (void)setUniform1iv:(NSString *)name count:(GLsizei)count v:(const GLint *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform1iv([location integerValue], count, v);
+}
+
+- (void)setUniform2iv:(NSString *)name count:(GLsizei)count v:(const GLint *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform2iv([location integerValue], count, v);
+}
+
+- (void)setUniform3iv:(NSString *)name count:(GLsizei)count v:(const GLint *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform3iv([location integerValue], count, v);
+}
+
+- (void)setUniform4iv:(NSString *)name count:(GLsizei)count v:(const GLint *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniform4iv([location integerValue], count, v);
+}
+
+- (void)setUniformMatrix2fv:(NSString *)name count:(GLsizei)count transpose:(GLboolean)transpose v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniformMatrix2fv([location integerValue], count, transpose, v);
+}
+
+- (void)setUniformMatrix3fv:(NSString *)name count:(GLsizei)count transpose:(GLboolean)transpose v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniformMatrix3fv([location integerValue], count, transpose, v);
+}
+
+- (void)setUniformMatrix4fv:(NSString *)name count:(GLsizei)count transpose:(GLboolean)transpose v:(const GLfloat *)v
+{
+  NSNumber *location = [_uniforms objectForKey:name];
+  NSAssert1(location, @"No uniform named [%@]", name);
+  glUniformMatrix4fv([location integerValue], count, transpose, v);
 }
 
 @end

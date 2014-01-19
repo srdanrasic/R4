@@ -20,29 +20,19 @@
 
 @implementation R4Pass
 
-- (instancetype)initWithParticleShaders
+- (instancetype)init
 {
   self = [super init];
   if (self) {
-    self.sceneBlend = R4BlendModeAlpha;
-    self.lighting = YES;
-    self.depthTest = YES;
-    self.depthWrite = NO;
-    self.textureUnits = nil;
-    
-    NSDictionary *vshMapping = @{ @"position": @(R4VertexAttributePosition),
-                                  @"texcoord": @(R4VertexAttributeTexCoord0),
-                                  @"instanceColor": @(R4VertexAttributeColor),
-                                  @"instanceColorBlendFactor": @(R4VertexAttributeColorBlendFactor),
-                                  @"instanceMVM": @(R4VertexAttributeMVM)
-                                  };
-    
-    self.vertexShader = [[R4Shader alloc] initVertexShaderWithSourceString:[NSString stringWithCString:vshParticleShaderSourceString encoding:NSUTF8StringEncoding] attributeMapping:vshMapping];
-    self.fragmentShader = [[R4Shader alloc] initFragmentShaderWithSourceString:[NSString stringWithCString:fshParticleShaderSourceString encoding:NSUTF8StringEncoding] attributeMapping:nil];
-    
-    [self program];
+    // init default pass
+    self.textureUnits = [NSMutableArray array];
   }
   return self;
+}
+
+- (void)dealloc
+{
+  NSLog(@"Deleting pass.");
 }
 
 - (void)setVertexShader:(R4Shader *)vertexShader
@@ -71,6 +61,25 @@
   } else {
     return _program;
   }
+}
+
+- (void)addTextureUnit:(R4TextureUnit *)textureUnit
+{
+  [self.textureUnits addObject:textureUnit];
+}
+
+- (R4TextureUnit *)firstTextureUnit
+{
+  return [self.textureUnits firstObject];
+}
+
+- (R4TextureUnit *)textureUnitAtIndex:(NSUInteger)index
+{
+  return [self.textureUnits objectAtIndex:index];
+}
+
+- (void)prepareToDraw
+{
 }
 
 @end

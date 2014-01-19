@@ -7,7 +7,7 @@
 
 uniform mat4 model_view_projection_matrix;
 
-attribute vec4 position;
+attribute vec4 position_modelspace;
 attribute mediump vec2 texcoord;
 
 attribute vec4  instanceColor;
@@ -23,5 +23,5 @@ void main()
   out_color = instanceColor;
   out_texcoord = texcoord;
   out_colorBlendFactor = instanceColorBlendFactor;
-  gl_Position = model_view_projection_matrix * instanceMVM * position;
+  gl_Position = model_view_projection_matrix * instanceMVM * position_modelspace;
 }

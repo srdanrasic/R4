@@ -11,6 +11,15 @@
 
 @implementation R4Technique
 
+- (instancetype)init
+{
+  self = [super init];
+  if (self) {
+    self.passes = [NSMutableArray arrayWithObject:[[R4Pass alloc] init]];
+  }
+  return self;
+}
+
 - (instancetype)initWithPasses:(NSArray *)passes
 {
   self = [super init];
@@ -21,6 +30,16 @@
     self.passes = [passes mutableCopy];
   }
   return self;
+}
+
+- (R4Pass *)firstPass
+{
+  return [self.passes firstObject];
+}
+
+- (R4Pass *)passAtIndex:(NSUInteger)index
+{
+  return [self.passes objectAtIndex:index];
 }
 
 - (BOOL)isUsable

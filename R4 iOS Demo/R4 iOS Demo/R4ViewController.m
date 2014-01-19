@@ -10,8 +10,6 @@
 #import <R4/R4View.h>
 #import <R4/R4Scene.h>
 #import <R4/R4Action.h>
-#import <R4/R4PrimitiveNode.h>
-#import <R4/R4ModelNode.h>
 #import <R4/R4Camera.h>
 #import <R4/R4LightNode.h>
 #import <R4/R4EmitterNode.h>
@@ -21,7 +19,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import <AudioToolbox/AudioServices.h>
 
-@interface Stacy : R4ModelNode
+#import <R4/R4EntityNode.h>
+#import <R4/R4Mesh.h>
+
+
+@interface Stacy : R4EntityNode
 @end
 
 @implementation Stacy
@@ -29,7 +31,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
   NSLog(@"Stacy touchesBegin");
-  self.highlightColor = [UIColor redColor];
+  //self.highlightColor = [UIColor redColor];
   AudioServicesPlaySystemSound (1104);
 }
 
@@ -44,31 +46,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  self.highlightColor = nil;
-}
-
-@end
-
-
-@interface MovablePrimitive : R4PrimitiveNode
-@end
-
-@implementation MovablePrimitive
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  NSLog(@"Emitter touchesBegin");
-}
-
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  NSLog(@"Sparks touchesMoved");
-  R4Ray ray = [self.scene.view convertPoint:[[touches anyObject] locationInView:self.scene.view] toScene:self.scene];
-  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), GLKVector3Make(0, 1, 0)) / GLKVector3DotProduct(ray.direction, GLKVector3Make(0, 1, 0));
-  GLKVector3 point = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
-  
-  [self setPosition:point];
+  //self.highlightColor = nil;
 }
 
 @end
@@ -115,12 +93,12 @@
 
   [self addChild:stacyBase];
   
-  R4DrawableNode *stacy = [[Stacy alloc] initWithModelNamed:@"stacy.obj" normalize:YES center:NO];
+  R4EntityNode *stacy = [R4EntityNode entityWithMesh:[R4Mesh OBJMeshNamed:@"stacy.obj" normalize:YES center:NO]];
   stacy.name = @"stacy";
   stacy.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
   stacy.scale = GLKVector3Make(1, 1, 1);
   stacy.speed = 1;
-  stacy.blendMode = R4BlendModeAlpha;
+  //stacy.blendMode = R4BlendModeAlpha;
   stacy.userInteractionEnabled = YES;
   [stacyBase addChild:stacy];
 
@@ -142,12 +120,12 @@
   [stacy removeAllActions];
   stacy.position = GLKVector3Make(0, 0, 4);
 
-  R4DrawableNode *base = [R4PrimitiveNode boxWithSize:GLKVector3Make(15, .01, 15)];
+  R4EntityNode *base = [R4EntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(15, .01, 15)]];
   base.name = @"base";
   base.userInteractionEnabled = YES;
   base.position = GLKVector3Make(0, 0, 0);
   ///spaceship2.orientation = GLKQuaternionMakeWithAngleAndAxis(0.6, 0, 1, -1);
-  base.highlightColor = [UIColor colorWithRed:0.1 green:0.05 blue:0.1 alpha:1.0];
+  //base.highlightColor = [UIColor colorWithRed:0.1 green:0.05 blue:0.1 alpha:1.0];
   [self addChild:base];
   
 #if 1
@@ -173,7 +151,7 @@
   sparks.name = @"sparks";
   [self addChild:sparks];
   
-  MovablePrimitive *mp = [MovablePrimitive boxWithSize:GLKVector3Make(1, 5, 1)];
+  R4EntityNode *mp = [R4EntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 5, 1)]];
   mp.userInteractionEnabled = YES;
   [self addChild:mp];
   

@@ -8,8 +8,12 @@
 
 #import "R4Base.h"
 
+@class R4Texture;
+
 @interface R4TextureUnit : NSObject
 
+@property (nonatomic, strong) R4Texture *texture;
 
++ (R4TextureUnit *)textureUnitWithTexture:(R4Texture *)texture;
 
 @end

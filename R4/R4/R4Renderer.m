@@ -13,16 +13,18 @@
 #import "R4View_private.h"
 #import "R4Camera_private.h"
 #import "R4LightNode_Private.h"
-#import "R4DrawableNode_private.h"
-#import "R4DrawableObject.h"
 #import "R4EmitterNode_Private.h"
-#import "R4PrimitiveNode.h"
 
 #import "R4Program.h"
 #import "R4Material.h"
 #import "R4Technique.h"
 #import "R4Pass.h"
 #import "R4TextureUnit.h"
+#import "R4Shader.h"
+
+#import "R4EntityNode.h"
+#import "R4Mesh.h"
+#import "R4Texture.h"
 
 @interface R4Renderer () {
   EAGLContext* _context;
@@ -32,6 +34,7 @@
 }
 
 @property (nonatomic, strong) R4Material *particleMaterial;
+@property (nonatomic, strong) R4Material *plainMaterial;
 
 @end
 
@@ -67,11 +70,7 @@
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
   
   glEnable(GL_DEPTH_TEST);
-  
-  R4Pass *pass = [[R4Pass alloc] initWithParticleShaders];
-  R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];
-  self.particleMaterial = [[R4Material alloc] initWithTechniques:@[technique]];
-  
+
   return YES;
 }
 
@@ -167,12 +166,12 @@ void setupBlendMode(R4BlendMode mode)
   setupBlendMode(R4BlendModeAlpha);
   
   // Get sorted drawables (TODO cache)
-  static NSMutableDictionary *drawables = nil;
+  static NSMutableDictionary *entities = nil;
   static NSMutableArray *lights = nil;
   static NSMutableArray *emitters = nil;
   
-  if (drawables == nil) {
-    drawables = [NSMutableDictionary dictionary];
+  if (entities == nil) {
+    entities = [NSMutableDictionary dictionary];
     lights = [NSMutableArray array];
     emitters = [NSMutableArray array];
     
@@ -180,17 +179,17 @@ void setupBlendMode(R4BlendMode mode)
       for (R4Node *node in root.children) {
         dfs(node);
         
-        if ([node isKindOfClass:[R4DrawableNode class]]) {
-          R4DrawableNode *drawable = (R4DrawableNode *)node;
-          NSValue *key = [NSValue valueWithNonretainedObject:drawable.drawableObject];
-          NSMutableArray *array = [drawables objectForKey:key];
+        if ([node isKindOfClass:[R4EntityNode class]]) {
+          R4EntityNode *entity = (R4EntityNode *)node;
+          NSValue *key = [NSValue valueWithNonretainedObject:entity.mesh];
+          NSMutableArray *array = [entities objectForKey:key];
           
           if (!array) {
             array = [NSMutableArray array];
-            [drawables setObject:array forKey:key];
+            [entities setObject:array forKey:key];
           }
           
-          [array addObject:drawable];
+          [array addObject:entity];
         } else if ([node isKindOfClass:[R4LightNode class]]) {
           [lights addObject:node];
         } else if ([node isKindOfClass:[R4EmitterNode class]]) {
@@ -204,83 +203,60 @@ void setupBlendMode(R4BlendMode mode)
       @throw [NSException exceptionWithName:@"Error" reason:@"Scene is limited to 3 lights." userInfo:nil];
     }
   }
-
   
   // Render the scene
-  GLKMatrix4 cameraTransform = [scene.currentCamera inversedTransform];
-  
-  for (NSValue *key in drawables.allKeys) {
-    R4DrawableObject *drawableObject = [key nonretainedObjectValue];
-    GLKBaseEffect *effect = drawableObject.effect;
-    BOOL hasElements = (drawableObject->indexBuffer != GL_INVALID_VALUE);
+  GLKMatrix4 viewMatrix = [scene.currentCamera inversedTransform];
+  GLKMatrix4 projectionMatrix = [scene.view projectionMatrix];
+
+  for (NSValue *key in entities.allKeys) {
+    R4Mesh *mesh = [key nonretainedObjectValue];
+    glBindVertexArrayOES(mesh->vertexArray);
     
-    effect.transform.projectionMatrix = [scene.view projectionMatrix];
-    
-    int lightNumber = 0;
-    for (GLKEffectPropertyLight *effectProperty in @[effect.light0, effect.light1, effect.light2]) {
-      if (lightNumber < lights.count) {
-        R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
-        effectProperty.enabled = GL_TRUE;
-        effect.lightingType = GLKLightingTypePerVertex;
-        effectProperty.ambientColor = lightNode.ambientColor;
-        effectProperty.diffuseColor = lightNode.diffuseColor;
-        effectProperty.specularColor = lightNode.specularColor;
-        effectProperty.spotCutoff = lightNode.spotCutoff;
-        effectProperty.spotExponent = lightNode.spotExponent;
-        effectProperty.constantAttenuation = lightNode.constantAttenuation;
-        effectProperty.linearAttenuation = lightNode.linearAttenuation;
-        effectProperty.quadraticAttenuation = lightNode.quadraticAttenuation;
-      } else {
-        effectProperty.enabled = GL_FALSE;
-      }
-    }
-    
-    glBindVertexArrayOES(drawableObject->vertexArray);
-    
-    for (R4DrawableNode *drawable in drawables[key]) {
-      GLKVector4 constantColor = effect.constantColor;
+    for (R4EntityNode *entity in entities[key]) {
+      R4Material *material = entity.material;
+      R4Technique *technique = [material optimalTechnique];
       
-      effect.transform.modelviewMatrix = GLKMatrix4Multiply(cameraTransform, drawable.modelViewMatrix);
-      
-      int lightNumber = 0;
-      for (GLKEffectPropertyLight *effectProperty in @[effect.light0, effect.light1, effect.light2]) {
-        if (lightNumber < lights.count) {
-          R4LightNode *lightNode = [lights objectAtIndex:lightNumber++];
-          effectProperty.position = lightNode.homogeneousPosition;
-          effectProperty.spotDirection = lightNode.spotDirection;
+      for (R4Pass *pass in technique.passes) {
+        R4Program *program = pass.program;
+        glUseProgram(program.programName);
+        
+        GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(viewMatrix, entity.modelViewMatrix);
+        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+        
+        [program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:modelViewProjectionMatrix.m];
+        [program setUniform4fv:@"surface_diffuse_color" count:1 v:GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f).v];
+        [program setUniform1i:@"texture_sampler" v0:0];
+        
+        if (material.optimalTechnique.firstPass.firstTextureUnit.texture) {
+          glActiveTexture(GL_TEXTURE0);
+          glBindTexture(GL_TEXTURE_2D, pass.firstTextureUnit.texture.textureName);
+          [program setUniform1f:@"texture_mask" v0:0.0f];
+        } else {
+          [program setUniform1f:@"texture_mask" v0:1.0f];
+        }
+        
+
+        R4BlendMode blendMode = pass.sceneBlend;
+        if (_currentBlendMode != blendMode) {
+          setupBlendMode(blendMode);
+          _currentBlendMode = blendMode;
+        }
+        
+        if ((mesh->indexBuffer != GL_INVALID_VALUE)) {
+          glDrawElements(GL_TRIANGLES, mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+        } else {
+          glDrawArrays(GL_TRIANGLES, 0, mesh->elementCount);
         }
       }
-      
-      if (drawable.highlightColor) {
-        GLfloat r, g, b, a;
-        [drawable.highlightColor getRed:&r green:&g blue:&b alpha:&a];
-        effect.constantColor = GLKVector4Make(r, g, b, a);
-      }
-      
-      [effect prepareToDraw];
-      
-      if (_currentBlendMode != drawable.blendMode) {
-        setupBlendMode(drawable.blendMode);
-        _currentBlendMode = drawable.blendMode;
-      }
-      
-      if (hasElements) {
-        glDrawElements(GL_TRIANGLES, drawableObject->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
-      } else {
-        glDrawArrays(GL_TRIANGLES, 0, drawableObject->elementCount);
-      }
-      
-      effect.constantColor = constantColor;
     }
   }
-  
+
+  // Render particle emitters
   glDepthMask(GL_FALSE);
   
   for (R4EmitterNode *emitter in emitters) {
-    
-    R4Material *material = self.particleMaterial;
+    R4Material *material = emitter.material;
     R4Technique *technique = [material optimalTechnique];
-    
     
     for (R4Pass *pass in technique.passes) {
       glUseProgram(pass.program.programName);
@@ -292,19 +268,13 @@ void setupBlendMode(R4BlendMode mode)
       glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
       
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(emitter.particleDrawable.drawableObject.effect.texture2d0.target, emitter.particleDrawable.drawableObject.effect.texture2d0.name);
+      glBindTexture(GL_TEXTURE_2D, material.optimalTechnique.firstPass.firstTextureUnit.texture.textureName);
       
-      for (NSString *name in pass.program.autoUniforms) {
-        NSInteger location = [[pass.program.autoUniforms objectForKey:name] integerValue];
-        
-        if ([name isEqualToString:@"model_view_projection_matrix"]) {
-          GLKMatrix4 mvpm = GLKMatrix4Multiply(scene.view.projectionMatrix, cameraTransform);
-          //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
-          glUniformMatrix4fv(location, 1, GL_FALSE, mvpm.m);
-        } else if ([name isEqualToString:@"texture_sampler"]) {
-          glUniform1i(location, 0);
-        }
-      }
+      GLKMatrix4 mvpm = GLKMatrix4Multiply(projectionMatrix, viewMatrix);
+      //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
+      
+      [pass.program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:mvpm.m];
+      [pass.program setUniform1i:@"texture_sampler" v0:0];
       
       glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, emitter.particleCount);
     }
