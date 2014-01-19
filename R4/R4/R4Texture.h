@@ -15,10 +15,10 @@ typedef NS_ENUM(NSInteger, R4TextureFilteringMode) {
   R4TextureFilteringLinear,
 };
 
-@interface R4Texture : NSObject <NSCopying, NSCoding>
+@interface R4Texture : NSObject <NSCopying>
 
-@property (nonatomic, assign) R4TextureFilteringMode filteringMode;
-@property (nonatomic, assign) BOOL usesMipmaps;
+@property (nonatomic, assign) R4TextureFilteringMode filteringMode; // will apply to all shared textures!
+@property (nonatomic, assign, readonly) BOOL usesMipmaps;
 
 + (R4Texture *)textureWithImageNamed:(NSString *)name;
 //+ (R4Texture *)textureWithRect:(CGRect)rect inTexture:(R4Texture *)texture;
@@ -28,8 +28,8 @@ typedef NS_ENUM(NSInteger, R4TextureFilteringMode) {
 //+ (R4Texture *)textureWithData:(NSData *)pixelData size:(CGSize)size rowLength:(unsigned int)rowLength alignment:(unsigned int)alignment;
 //- (R4Texture *)textureByApplyingCIFilter:(CIFilter *)filter;
 //- (CGRect)textureRect; // {(0,0) (1,1)}
-//- (CGSize)size; // points
 
+- (CGSize)size;
 - (GLuint)textureName;
 
 //+ (void)preloadTextures:(NSArray *)textures withCompletionHandler:(void(^)(void))completionHandler;

@@ -139,6 +139,7 @@
   pass.depthWrite = NO;
   
   [pass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"spark.png"]]];
+  pass.firstTextureUnit.texture.filteringMode = R4TextureFilteringNearest;
   
   NSDictionary *vshMapping = @{ @"position_modelspace": @(R4VertexAttributePositionModelSpace),
                                 @"texcoord": @(R4VertexAttributeTexCoord0),
