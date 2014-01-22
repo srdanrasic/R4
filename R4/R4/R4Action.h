@@ -12,7 +12,6 @@
 
 @property(nonatomic) NSTimeInterval duration;
 @property(nonatomic) CGFloat speed;
-//@property(nonatomic) R4ActionTimingMode timingMode;
 
 + (R4Action *)moveBy:(GLKVector3)offset duration:(NSTimeInterval)sec;
 + (R4Action *)moveTo:(GLKVector3)newPos duration:(NSTimeInterval)sec;
@@ -27,5 +26,7 @@
 
 - (R4Action *)reversedAction;
 
+/* SpriteKit methods that are not implemented */
+//@property(nonatomic) R4ActionTimingMode timingMode;
 
 @end

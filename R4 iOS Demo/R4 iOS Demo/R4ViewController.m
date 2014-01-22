@@ -10,12 +10,12 @@
 #import <R4/R4View.h>
 #import <R4/R4Scene.h>
 #import <R4/R4Action.h>
-#import <R4/R4Camera.h>
+#import <R4/R4CameraNode.h>
 #import <R4/R4LightNode.h>
 #import <R4/R4EmitterNode.h>
-#import <R4/R4Camera_private.h>
-#import <R4/R4Scene_private.h>
-#import <R4/R4View_private.h>
+#import <R4/R4CameraNodePrivate.h>
+#import <R4/R4ScenePrivate.h>
+#import <R4/R4ViewPrivate.h>
 #import <SpriteKit/SpriteKit.h>
 #import <AudioToolbox/AudioServices.h>
 

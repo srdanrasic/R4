@@ -8,12 +8,12 @@
 
 #import "R4Renderer.h"
 #import "R4Shaders.h"
-#import "R4Node_private.h"
-#import "R4Scene_private.h"
-#import "R4View_private.h"
-#import "R4Camera_private.h"
-#import "R4LightNode_Private.h"
-#import "R4EmitterNode_Private.h"
+#import "R4NodePrivate.h"
+#import "R4ScenePrivate.h"
+#import "R4ViewPrivate.h"
+#import "R4CameraNodePrivate.h"
+#import "R4LightNodePrivate.h"
+#import "R4EmitterNodePrivate.h"
 
 #import "R4Program.h"
 #import "R4Material.h"

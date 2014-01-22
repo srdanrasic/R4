@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Node_private.h"
+#import "R4NodePrivate.h"
 #import "R4LightNode.h"
 
 @interface R4LightNode ()

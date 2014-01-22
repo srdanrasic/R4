@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Camera.h"
-#import "R4Node_private.h"
+#import "R4CameraNode.h"
+#import "R4NodePrivate.h"
 
-@interface R4Camera () {
+@interface R4CameraNode () {
   GLKVector3 _lookAt;
   GLKVector3 _upVector;
 }

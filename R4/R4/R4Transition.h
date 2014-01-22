@@ -17,7 +17,6 @@ typedef NS_ENUM(NSInteger, R4TransitionDirection) {
   R4TransitionDirectionLeft
 };
 
-
 @interface R4Transition : NSObject
 
 //+ (R4Transition *)crossFadeWithDuration:(NSTimeInterval)sec;

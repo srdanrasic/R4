@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Camera_private.h"
+#import "R4CameraNodePrivate.h"
 
-@implementation R4Camera
+@implementation R4CameraNode
 
 + (instancetype)cameraAtPosition:(GLKVector3)position lookingAt:(GLKVector3)lookingAt
 {

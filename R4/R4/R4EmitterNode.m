@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4EmitterNode_Private.h"
+#import "R4EmitterNodePrivate.h"
 #import "R4Mesh.h"
 #import "R4Material.h"
 #import "R4Shader.h"
 #import "R4Shaders.h"
 #import "R4Texture.h"
-#import "R4Scene_private.h"
-#import "R4Camera_private.h"
+#import "R4ScenePrivate.h"
+#import "R4CameraNodePrivate.h"
 
 @interface R4EmitterNode ()
 @property (nonatomic, assign) NSTimeInterval timeOfLastUpdate;

@@ -49,28 +49,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EC0C194C1837E46A00148E7B /* R4Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Camera.h; path = R4/R4Camera.h; sourceTree = "<group>"; };
+		EC0C194C1837E46A00148E7B /* R4CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4CameraNode.h; sourceTree = "<group>"; };
 		EC0C194D1837E46A00148E7B /* R4Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Camera.m; sourceTree = "<group>"; };
-		EC0C194F1837E67400148E7B /* R4Camera_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Camera_private.h; sourceTree = "<group>"; };
-		EC0C8F8617F89D5700E8B229 /* R4Scene_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Scene_private.h; sourceTree = "<group>"; };
-		EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4EmitterNode.h; path = R4/R4EmitterNode.h; sourceTree = "<group>"; };
+		EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4CameraNodePrivate.h; sourceTree = "<group>"; };
+		EC0C8F8617F89D5700E8B229 /* R4ScenePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ScenePrivate.h; sourceTree = "<group>"; };
+		EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4EmitterNode.h; sourceTree = "<group>"; };
 		EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4EmitterNode.m; sourceTree = "<group>"; };
-		EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4EmitterNode_Private.h; sourceTree = "<group>"; };
+		EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4EmitterNodePrivate.h; sourceTree = "<group>"; };
 		EC4A9439181BB41B008B9DC4 /* R4MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4MoveAction.h; sourceTree = "<group>"; };
 		EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4MoveAction.m; sourceTree = "<group>"; };
 		EC4A943C181BC2AF008B9DC4 /* R4SequenceAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4SequenceAction.h; sourceTree = "<group>"; };
 		EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4SequenceAction.m; sourceTree = "<group>"; };
-		EC5BB3951800672F00AB7FE8 /* R4Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Action.h; path = R4/R4Action.h; sourceTree = "<group>"; };
+		EC5BB3951800672F00AB7FE8 /* R4Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Action.h; sourceTree = "<group>"; };
 		EC5BB3961800672F00AB7FE8 /* R4Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Action.m; sourceTree = "<group>"; };
-		EC5BB3991800681100AB7FE8 /* R4Action_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Action_private.h; sourceTree = "<group>"; };
+		EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ActionPrivate.h; sourceTree = "<group>"; };
 		EC5BB39D180069A900AB7FE8 /* R4ScaleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ScaleAction.h; sourceTree = "<group>"; };
 		EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ScaleAction.m; sourceTree = "<group>"; };
 		EC5BB3A018006B6D00AB7FE8 /* R4RepeatAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4RepeatAction.h; sourceTree = "<group>"; };
 		EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4RepeatAction.m; sourceTree = "<group>"; };
-		EC678736186B08CC009921C2 /* R4LightNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4LightNode.h; path = R4/R4LightNode.h; sourceTree = "<group>"; };
+		EC678736186B08CC009921C2 /* R4LightNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4LightNode.h; sourceTree = "<group>"; };
 		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
-		EC678739186B0ACD009921C2 /* R4LightNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNode_Private.h; sourceTree = "<group>"; };
-		EC6FD69F17F8777300ED6AAA /* R4Node_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Node_private.h; sourceTree = "<group>"; };
+		EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNodePrivate.h; sourceTree = "<group>"; };
+		EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4NodePrivate.h; sourceTree = "<group>"; };
 		ECA3D12D186B96A500D92087 /* R4Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Shaders.h; sourceTree = "<group>"; };
 		ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.fsh; path = Shaders/ParticleShader.fsh; sourceTree = "<group>"; };
 		ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.vsh; path = Shaders/ParticleShader.vsh; sourceTree = "<group>"; };
@@ -93,21 +93,21 @@
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "R4-Prefix.pch"; sourceTree = "<group>"; };
-		ECC58D1417F8505600BBAD28 /* R4Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = R4Base.h; path = R4/R4Base.h; sourceTree = "<group>"; };
+		ECC58D1417F8505600BBAD28 /* R4Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Base.h; sourceTree = "<group>"; };
 		ECC58D2017F8505700BBAD28 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		ECC58D3517F8508000BBAD28 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		ECC58D3617F8508000BBAD28 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		ECC58D4117F8519900BBAD28 /* R4View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4View.h; path = R4/R4View.h; sourceTree = "<group>"; };
+		ECC58D4117F8519900BBAD28 /* R4View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4View.h; sourceTree = "<group>"; };
 		ECC58D4217F8519900BBAD28 /* R4View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4View.m; sourceTree = "<group>"; };
-		ECC58D4417F8521900BBAD28 /* R4Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Node.h; path = R4/R4Node.h; sourceTree = "<group>"; };
+		ECC58D4417F8521900BBAD28 /* R4Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Node.h; sourceTree = "<group>"; };
 		ECC58D4517F8521900BBAD28 /* R4Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Node.m; sourceTree = "<group>"; };
-		ECC58D4717F8524F00BBAD28 /* R4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Scene.h; path = R4/R4Scene.h; sourceTree = "<group>"; };
+		ECC58D4717F8524F00BBAD28 /* R4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Scene.h; sourceTree = "<group>"; };
 		ECC58D4817F8524F00BBAD28 /* R4Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Scene.m; sourceTree = "<group>"; };
-		ECC58D4A17F8531B00BBAD28 /* R4Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = R4Transition.h; path = R4/R4Transition.h; sourceTree = "<group>"; };
+		ECC58D4A17F8531B00BBAD28 /* R4Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Transition.h; sourceTree = "<group>"; };
 		ECC58D4B17F8531B00BBAD28 /* R4Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Transition.m; sourceTree = "<group>"; };
 		ECC58D4D17F8538900BBAD28 /* R4Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Texture.h; sourceTree = "<group>"; };
 		ECC58D4E17F8538900BBAD28 /* R4Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Texture.m; sourceTree = "<group>"; };
-		ECC58D5617F8639800BBAD28 /* R4View_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4View_private.h; sourceTree = "<group>"; };
+		ECC58D5617F8639800BBAD28 /* R4ViewPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ViewPrivate.h; sourceTree = "<group>"; };
 		ECC58D5717F866A100BBAD28 /* R4Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Renderer.h; sourceTree = "<group>"; };
 		ECC58D5817F866A100BBAD28 /* R4Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Renderer.m; sourceTree = "<group>"; };
 		ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Mesh.h; sourceTree = "<group>"; };
@@ -133,7 +133,8 @@
 		EC5BB398180067E100AB7FE8 /* R4Action */ = {
 			isa = PBXGroup;
 			children = (
-				EC5BB3991800681100AB7FE8 /* R4Action_private.h */,
+				EC5BB3951800672F00AB7FE8 /* R4Action.h */,
+				EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */,
 				EC5BB3961800672F00AB7FE8 /* R4Action.m */,
 				EC4A9439181BB41B008B9DC4 /* R4MoveAction.h */,
 				EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */,
@@ -164,6 +165,7 @@
 		ECADD139188AD273004736E1 /* Rendering System */ = {
 			isa = PBXGroup;
 			children = (
+				ECA9C2E0186BABC00073A61B /* Shaders */,
 				ECADD143188ADC3C004736E1 /* R4Shader.h */,
 				ECADD144188ADC3C004736E1 /* R4Shader.m */,
 				ECADD140188ADC31004736E1 /* R4Program.h */,
@@ -182,10 +184,20 @@
 			name = "Rendering System";
 			sourceTree = "<group>";
 		};
+		ECBE45E618905444000E88D6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */,
+				ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */,
+				ECC58D4D17F8538900BBAD28 /* R4Texture.h */,
+				ECC58D4E17F8538900BBAD28 /* R4Texture.m */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		ECC58D0317F8505600BBAD28 = {
 			isa = PBXGroup;
 			children = (
-				ECC58D5517F861D100BBAD28 /* Public headers */,
 				ECC58D1117F8505600BBAD28 /* R4 */,
 				ECC58D0E17F8505600BBAD28 /* Frameworks */,
 				ECC58D0D17F8505600BBAD28 /* Products */,
@@ -214,28 +226,32 @@
 		ECC58D1117F8505600BBAD28 /* R4 */ = {
 			isa = PBXGroup;
 			children = (
-				ECA9C2E0186BABC00073A61B /* Shaders */,
+				ECC58D1417F8505600BBAD28 /* R4Base.h */,
+				ECBE45E618905444000E88D6 /* Resources */,
 				ECADD139188AD273004736E1 /* Rendering System */,
-				ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */,
-				ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */,
-				ECC58D4D17F8538900BBAD28 /* R4Texture.h */,
-				ECC58D4E17F8538900BBAD28 /* R4Texture.m */,
+				EC5BB398180067E100AB7FE8 /* R4Action */,
+				ECC58D4117F8519900BBAD28 /* R4View.h */,
+				ECC58D5617F8639800BBAD28 /* R4ViewPrivate.h */,
+				ECC58D4217F8519900BBAD28 /* R4View.m */,
+				ECC58D4417F8521900BBAD28 /* R4Node.h */,
+				EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */,
+				ECC58D4517F8521900BBAD28 /* R4Node.m */,
+				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
+				EC0C8F8617F89D5700E8B229 /* R4ScenePrivate.h */,
+				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
+				EC0C194C1837E46A00148E7B /* R4CameraNode.h */,
+				EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */,
+				EC0C194D1837E46A00148E7B /* R4Camera.m */,
 				ECDE15BF188C3262008EA3A1 /* R4EntityNode.h */,
 				ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */,
-				ECC58D5617F8639800BBAD28 /* R4View_private.h */,
-				ECC58D4217F8519900BBAD28 /* R4View.m */,
-				EC5BB398180067E100AB7FE8 /* R4Action */,
-				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
-				EC6FD69F17F8777300ED6AAA /* R4Node_private.h */,
-				ECC58D4517F8521900BBAD28 /* R4Node.m */,
-				EC0C8F8617F89D5700E8B229 /* R4Scene_private.h */,
-				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
-				EC0C194F1837E67400148E7B /* R4Camera_private.h */,
-				EC0C194D1837E46A00148E7B /* R4Camera.m */,
-				EC678739186B0ACD009921C2 /* R4LightNode_Private.h */,
+				EC678736186B08CC009921C2 /* R4LightNode.h */,
+				EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */,
 				EC678737186B08CC009921C2 /* R4LightNode.m */,
-				EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNode_Private.h */,
+				EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */,
+				EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNodePrivate.h */,
 				EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */,
+				ECC58D4A17F8531B00BBAD28 /* R4Transition.h */,
+				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
 				ECC58D1217F8505600BBAD28 /* Supporting Files */,
 			);
 			path = R4;
@@ -247,22 +263,6 @@
 				ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		ECC58D5517F861D100BBAD28 /* Public headers */ = {
-			isa = PBXGroup;
-			children = (
-				ECC58D1417F8505600BBAD28 /* R4Base.h */,
-				ECC58D4117F8519900BBAD28 /* R4View.h */,
-				EC5BB3951800672F00AB7FE8 /* R4Action.h */,
-				ECC58D4A17F8531B00BBAD28 /* R4Transition.h */,
-				ECC58D4417F8521900BBAD28 /* R4Node.h */,
-				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
-				EC0C194C1837E46A00148E7B /* R4Camera.h */,
-				EC678736186B08CC009921C2 /* R4LightNode.h */,
-				EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */,
-			);
-			name = "Public headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

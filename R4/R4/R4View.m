@@ -7,10 +7,10 @@
 //
 
 #import "R4Renderer.h"
-#import "R4View_private.h"
-#import "R4Scene_private.h"
-#import "R4Camera_private.h"
-#import "R4Node_private.h"
+#import "R4ViewPrivate.h"
+#import "R4ScenePrivate.h"
+#import "R4CameraNodePrivate.h"
+#import "R4NodePrivate.h"
 
 @interface R4View ()
 @property (nonatomic, strong, readwrite) R4Scene *scene;

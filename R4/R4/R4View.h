@@ -15,17 +15,20 @@
 @property (strong, nonatomic, readonly) R4Scene *scene;
 @property (assign, nonatomic, getter = isPaused) BOOL paused;
 @property (assign, nonatomic) BOOL showFPS;
-//@property (assign, nonatomic) BOOL showDrawCount;
-//@property (assign, nonatomic) BOOL showNodeCount;
 @property (assign, nonatomic) NSInteger frameInterval;
-//@property (assign, nonatomic) BOOL ignoresSiblingOrder;
 
 - (void)presentScene:(R4Scene *)scene;
-//- (void)presentScene:(R4Scene *)scene transition:(R4Transition *)transition;
-
-//- (R4Texture *)textureFromNode:(R4Node *)node;
 
 - (CGPoint)convertPoint:(GLKVector3)point fromScene:(R4Scene *)scene;
 - (R4Ray)convertPoint:(CGPoint)point toScene:(R4Scene *)scene;
+
+/* SpriteKit methods that are not implemented */
+
+//@property (assign, nonatomic) BOOL showDrawCount;
+//@property (assign, nonatomic) BOOL showNodeCount;
+//@property (assign, nonatomic) BOOL ignoresSiblingOrder;
+//- (void)presentScene:(R4Scene *)scene transition:(R4Transition *)transition;
+//- (R4Texture *)textureFromNode:(R4Node *)node;
+
 
 @end

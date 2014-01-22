@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Action_private.h"
+#import "R4ActionPrivate.h"
 #import "R4MoveAction.h"
 #import "R4ScaleAction.h"
 #import "R4RepeatAction.h"

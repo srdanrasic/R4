@@ -10,13 +10,6 @@
 
 @interface R4EmitterNode : R4Node
 
-- (instancetype)init;
-- (instancetype)initWithSKEmitterNode:(SKEmitterNode *)skEmitterNode;
-- (instancetype)initWithSKEmitterSKSFileNamed:(NSString *)filename;
-
-//- (void)advanceSimulationTime:(NSTimeInterval)sec;
-- (void)resetSimulation;
-
 @property (nonatomic, retain) SKTexture *particleTexture;
 
 @property (nonatomic) R4BlendMode particleBlendMode;
@@ -83,5 +76,12 @@
 
 //@property (nonatomic, copy) SKAction *particleAction;
 //@property (nonatomic, weak) SKNode *targetNode;
+
+- (instancetype)init;
+- (instancetype)initWithSKEmitterNode:(SKEmitterNode *)skEmitterNode;
+- (instancetype)initWithSKEmitterSKSFileNamed:(NSString *)filename;
+
+//- (void)advanceSimulationTime:(NSTimeInterval)sec;
+- (void)resetSimulation;
 
 @end

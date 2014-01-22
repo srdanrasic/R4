@@ -7,7 +7,7 @@
 //
 
 #import "R4MoveAction.h"
-#import "R4Node_private.h"
+#import "R4NodePrivate.h"
 
 @implementation R4MoveAction
 

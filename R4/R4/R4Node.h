@@ -21,8 +21,6 @@
 @property (nonatomic) GLKQuaternion orientation;
 @property (nonatomic) GLKVector3 scale;
 
-//@property (nonatomic) CGFloat zPosition;
-
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat alpha;
 
@@ -35,7 +33,6 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, readonly) R4Scene* scene;
-//@property (nonatomic, strong) R4PhysicsBody *physicsBody;
 @property (nonatomic, strong) NSMutableDictionary *userData;
 
 - (R4Box)calculateAccumulatedFrame;
@@ -69,13 +66,16 @@
 - (R4Node *)nodeAtPoint:(CGPoint)p;
 - (NSArray *)nodesAtPoint:(CGPoint)p;
 
-//- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
 
+/* SpriteKit methods that are not implemented */
+
+//@property (nonatomic) CGFloat zPosition;
+//@property (nonatomic, strong) R4PhysicsBody *physicsBody;
+//- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
 //- (BOOL)intersectsNode:(R4Node *)node;
 
 @end
-
 
 @interface UITouch (R4NodeTouches)
 - (CGPoint)locationInNode:(R4Node *)node;

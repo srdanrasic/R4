@@ -8,7 +8,10 @@
 
 #import "R4Node.h"
 
-@interface R4Camera : R4Node
-+ (instancetype)cameraAtPosition:(GLKVector3)position lookingAt:(GLKVector3)lookingAt;
+@interface R4CameraNode : R4Node
+
 @property (strong, nonatomic) R4Node *targetNode;
+
++ (instancetype)cameraAtPosition:(GLKVector3)position lookingAt:(GLKVector3)lookingAt;
+
 @end

@@ -40,8 +40,6 @@ typedef NS_ENUM(NSInteger, R4VertexAttribute) {
   R4VertexAttributeCount
 };
 
-
-
 typedef struct {
   GLKVector3 startPoint;
   GLKVector3 direction;

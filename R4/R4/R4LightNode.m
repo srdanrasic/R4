@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4LightNode_Private.h"
+#import "R4LightNodePrivate.h"
 
 @interface R4LightNode ()
 @property (nonatomic, assign) BOOL isDirectional;

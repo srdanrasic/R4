@@ -10,10 +10,6 @@
 
 @interface R4LightNode : R4Node
 
-+ (instancetype)pointLightAtPosition:(GLKVector3)position;
-+ (instancetype)directionalLightWithDirection:(GLKVector3)direction;
-+ (instancetype)spotLightAtPosition:(GLKVector3)position direction:(GLKVector3)direction cutOff:(CGFloat)cutOff;
-
 @property (nonatomic, assign) GLKVector3   direction;       // not used for point light
 @property (nonatomic, assign) GLKVector4   ambientColor;    // { 0.0, 0.0, 0.0, 1.0 }
 @property (nonatomic, assign) GLKVector4   diffuseColor;    // { 1.0, 1.0, 1.0, 1.0 }
@@ -25,6 +21,10 @@
 @property (nonatomic, assign) GLfloat      linearAttenuation;     // 0.0
 @property (nonatomic, assign) GLfloat      quadraticAttenuation;  // 0.0
 
-@property (nonatomic, strong, readonly) NSMutableSet *affectedNodes;  // all if empty
+//@property (nonatomic, strong, readonly) NSMutableSet *affectedNodes;  // all if empty
+
++ (instancetype)pointLightAtPosition:(GLKVector3)position;
++ (instancetype)directionalLightWithDirection:(GLKVector3)direction;
++ (instancetype)spotLightAtPosition:(GLKVector3)position direction:(GLKVector3)direction cutOff:(CGFloat)cutOff;
 
 @end
