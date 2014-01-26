@@ -7,10 +7,11 @@
 //
 
 #import "R4Node.h"
+#import "R4Drawable.h"
 
 @class R4Mesh, R4Material;
 
-@interface R4EntityNode : R4Node
+@interface R4EntityNode : R4Node <R4Drawable>
 
 @property (nonatomic, strong) R4Mesh *mesh;
 @property (nonatomic, strong) R4Material *material;

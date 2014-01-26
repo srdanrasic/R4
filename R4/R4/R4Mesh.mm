@@ -88,6 +88,7 @@ static GLfloat gPlainVertexData[48] =
     R4Pass *pass = [[R4Pass alloc] init];
     pass.sceneBlend = R4BlendModeAlpha;
     pass.depthTest = pass.depthWrite = YES;
+    pass.cullFace = R4CullFaceBack;
     pass.vertexShader = [[R4Shader alloc] initVertexShaderWithSourceString:vshPlainShaderSourceString attributeMapping:attribMap];
     pass.fragmentShader = [[R4Shader alloc] initFragmentShaderWithSourceString:fshPlainShaderSourceString attributeMapping:nil];
     [pass program];

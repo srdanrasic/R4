@@ -16,6 +16,8 @@
 @property (nonatomic, assign) BOOL lighting;
 @property (nonatomic, assign) BOOL depthTest;
 @property (nonatomic, assign) BOOL depthWrite;
+@property (nonatomic, assign) R4FrontFace frontFace;
+@property (nonatomic, assign) R4CullFace cullFace;
 @property (nonatomic, strong) NSMutableArray *textureUnits;
 
 @property (nonatomic, strong) R4Shader *vertexShader;

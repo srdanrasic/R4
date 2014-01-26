@@ -40,6 +40,18 @@ typedef NS_ENUM(NSInteger, R4VertexAttribute) {
   R4VertexAttributeCount
 };
 
+typedef NS_ENUM(NSUInteger, R4FrontFace) {
+  R4FrontFaceCW = GL_CW,
+  R4FrontFaceCCW = GL_CCW
+};
+
+typedef NS_ENUM(NSUInteger, R4CullFace) {
+  R4CullFaceDisabled,
+  R4CullFaceFront = GL_FRONT,
+  R4CullFaceBack = GL_BACK,
+  R4CullFaceFrontAndBack = GL_FRONT_AND_BACK
+};
+
 typedef struct {
   GLKVector3 startPoint;
   GLKVector3 direction;

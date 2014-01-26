@@ -7,8 +7,9 @@
 //
 
 #import "R4Node.h"
+#import "R4Drawable.h"
 
-@interface R4EmitterNode : R4Node
+@interface R4EmitterNode : R4Node <R4Drawable>
 
 @property (nonatomic, retain) SKTexture *particleTexture;
 
@@ -81,7 +82,7 @@
 - (instancetype)initWithSKEmitterNode:(SKEmitterNode *)skEmitterNode;
 - (instancetype)initWithSKEmitterSKSFileNamed:(NSString *)filename;
 
-//- (void)advanceSimulationTime:(NSTimeInterval)sec;
+- (void)advanceSimulationTime:(NSTimeInterval)sec;
 - (void)resetSimulation;
 
 @end

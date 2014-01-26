@@ -18,12 +18,33 @@
   return entity;
 }
 
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+  R4EntityNode *node = [super copyWithZone:zone];
+  node.mesh = self.mesh;
+  node.material = self.material;
+  return node;
+}
+
 - (R4Material *)material
 {
   if (_material == nil) {
     return self.mesh.material;
   } else {
     return _material;
+  }
+}
+
+- (void)prepareToDraw
+{
+}
+
+- (void)drawPass
+{
+  if ((self.mesh->indexBuffer != GL_INVALID_VALUE)) {
+    glDrawElements(GL_TRIANGLES, self.mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+  } else {
+    glDrawArrays(GL_TRIANGLES, 0, self.mesh->elementCount);
   }
 }
 

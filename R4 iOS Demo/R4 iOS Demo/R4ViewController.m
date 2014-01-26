@@ -105,14 +105,14 @@
 #if 0
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      R4Node *c2 = [stacy copy];
+      R4EntityNode *c2 = [stacy copy];
       c2.position = GLKVector3Make(-2 + i, 0, 1-j);
       CGFloat duration = 0.5 + (arc4random() % 100) / 50.0;
       [c2 runAction:[R4Action repeatActionForever:[R4Action sequence:@[
                                                                        [R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:duration],
                                                                        [R4Action scaleTo:GLKVector3Make(1, .5, 1) duration:duration]
                                                                        ]]]];
-      [self addChild:c2];
+      [stacyBase addChild:c2];
     }
   }
 #endif
@@ -155,11 +155,13 @@
   mp.userInteractionEnabled = YES;
   [self addChild:mp];
   
-  R4EmitterNode *smoke = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"SnowParticle"];
-  smoke.position = GLKVector3Make(0, 4, 0);
-  smoke.particlePositionRange = GLKVector3Make(10, 0, 10);
-  smoke.name = @"smoke";
-  [self addChild:smoke];
+  R4EmitterNode *stars = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"StarParticle"];
+  stars.position = GLKVector3Make(0, -4, 0);
+  stars.particlePositionRange = GLKVector3Make(10, 0, 10);
+  stars.name = @"stars";
+  [stars advanceSimulationTime:8];
+  //[self addChild:stars];
+  
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
 
@@ -170,10 +172,9 @@
   [self childNodeWithName:@"stacyBase"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacyBase"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime/2.0, 0, 1, 0));
   //[self childNodeWithName:@"base"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"base"].orientation, GLKQuaternionMakeWithAngleAndAxis(2*elapsedTime, 0, 1, 0));
   
-  //self.currentCamera.position = GLKVector3Make(-sinf(currentTime) * 3, 2, cosf(currentTime) * 3);
+  self.currentCamera.position = GLKVector3Make(-sinf(currentTime) * 5, 2, cosf(currentTime) * 5);
 
   self.timeOfLastUpdate = currentTime;
-  //NSLog(@"FPS: %f", 1.0/elapsedTime);
 }
 
 @end
@@ -195,7 +196,7 @@
 {
   [super viewDidLoad];
   
-	self.r4view = [[R4View alloc] initWithFrame:self.view.bounds];
+  self.r4view = [[R4View alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.r4view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   self.r4view.showFPS = YES;
   [self.view addSubview:self.r4view];
@@ -223,66 +224,6 @@
 {
   [self.scene setPaused:!self.scene.isPaused];
   [sender setTitle:self.scene.isPaused ? @"Resume scene" : @"Pause scene" forState:UIControlStateNormal];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  return [super touchesMoved:touches withEvent:event];
-//  bool success = NO;
-//  return;
-//  GLint viewport[4] = {};
-//  glGetIntegerv(GL_VIEWPORT, viewport);
-//  
-//  for (int i = 0; i < 4; i++) {
-//    viewport[i] /= [UIScreen mainScreen].scale;
-//  }
-//  
-//  NSLog(@"%d, %d, %d, %d", viewport[0], viewport[1], viewport[2], viewport[3]);
-//
-//  CGPoint touchOrigin = [touches.anyObject locationInView:self.view];
-//  NSLog(@"tap coordinates: %8.2f, %8.2f", touchOrigin.x, touchOrigin.y);
-//  
-//  GLKVector3 originInWindowNear = GLKVector3Make(touchOrigin.x, viewport[3] - touchOrigin.y, 0.0f);
-//  GLKVector3 resultNear = GLKMathUnproject(originInWindowNear, self.scene.currentCamera.inversedTransform, self.scene.view.projectionMatrix, viewport, &success);
-//  NSLog(@"NV: %@", NSStringFromGLKVector3(resultNear));
-//  
-//  GLKVector3 originInWindowFar = GLKVector3Make(touchOrigin.x, viewport[3] - touchOrigin.y, 1.0f);
-//  GLKVector3 resultFar = GLKMathUnproject(originInWindowFar, self.scene.currentCamera.inversedTransform, self.scene.view.projectionMatrix, viewport, &success);
-//  NSLog(@"NF: %@", NSStringFromGLKVector3(resultFar));
-//  
-//  GLKVector3 ray = GLKVector3Subtract(resultFar, resultNear);
-//  NSLog(@"Ray: %@", NSStringFromGLKVector3(ray));
-//  
-//  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(resultNear), GLKVector3Make(0, 1, 0)) / GLKVector3DotProduct(ray, GLKVector3Make(0, 1, 0));
-//  GLKVector3 point = GLKVector3Add(resultNear, GLKVector3MultiplyScalar(ray, d));
-//  NSLog(@"Point on xy: %@", NSStringFromGLKVector3(point));
-//
-//  [[self.scene childNodeWithName:@"sparks"] setPosition:point];
-
-  //realY = ;
-  
-  // near
-  
-//  GLKVector3 originInWindowNear = GLKVector3Make(touchOrigin.x, realY, 0.0f);
-//  
-//  GLKVector3 result1 = GLKMathUnproject(originInWindowNear, modelView, projectionMatrix, viewport, &success);
-//  NSAssert(success == YES, @"unproject failure");
-//  
-//  GLKMatrix4 matrix4_1 = GLKMatrix4Translate(GLKMatrix4Identity, result1.x, result1.y, 0.0f);
-//  _squareUnprojectNear.modelMatrixUsage = GLKMatrix4Multiply(matrix4_1, _squareUnprojectNear.modelMatrixBase);
-//  
-//  GLKVector3 rayOrigin = GLKVector3Make(result1.x, result1.y, result1.z);
-//  
-//  // far
-//  
-//  GLKVector3 originInWindowFar = GLKVector3Make(touchOrigin.x, realY, 1.0f);
-//  
-//  GLKVector3 result2 = GLKMathUnproject(originInWindowFar, modelView, projectionMatrix, viewport, &success);
-//  NSAssert(success == YES, @"unproject failure");
-//  
-//  GLKMatrix4 matrix4_2 = GLKMatrix4Translate(GLKMatrix4Identity, result2.x, result2.y, 0.0f);
-//  
-//  GLKVector3 rayDirection = GLKVector3Make(result2.x - rayOrigin.x, result2.y - rayOrigin.y, result2.z - rayOrigin.z);
 }
 
 @end

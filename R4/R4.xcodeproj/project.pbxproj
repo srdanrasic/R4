@@ -90,6 +90,7 @@
 		ECC12C54188BECB4001FE263 /* BlinnPhongShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = BlinnPhongShader.fsh; path = Shaders/BlinnPhongShader.fsh; sourceTree = "<group>"; };
 		ECC12C56188C11B8001FE263 /* PlainShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.vsh; path = Shaders/PlainShader.vsh; sourceTree = "<group>"; };
 		ECC12C57188C11B8001FE263 /* PlainShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.fsh; path = Shaders/PlainShader.fsh; sourceTree = "<group>"; };
+		ECC524391895507200D00510 /* R4Drawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Drawable.h; sourceTree = "<group>"; };
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "R4-Prefix.pch"; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 				ECADD137188AD262004736E1 /* R4Pass.m */,
 				ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */,
 				ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */,
+				ECC524391895507200D00510 /* R4Drawable.h */,
 				ECC58D5717F866A100BBAD28 /* R4Renderer.h */,
 				ECC58D5817F866A100BBAD28 /* R4Renderer.m */,
 			);

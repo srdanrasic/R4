@@ -25,6 +25,8 @@
   self = [super init];
   if (self) {
     // init default pass
+    self.frontFace = R4FrontFaceCCW;
+    self.cullFace = R4CullFaceDisabled;
     self.textureUnits = [NSMutableArray array];
   }
   return self;

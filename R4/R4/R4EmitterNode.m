@@ -121,6 +121,12 @@
   _emissionAxis = GLKVector3Normalize(emissionAxis);
 }
 
+- (void)setParticleBlendMode:(R4BlendMode)particleBlendMode
+{
+  _particleBlendMode = particleBlendMode;
+  self.material.firstTechnique.firstPass.sceneBlend = particleBlendMode;
+}
+
 - (void)commonInit
 {
   maxParticeCount = (self.particleLifetime + self.particleLifetimeRange) * self.particleBirthRate;
@@ -133,11 +139,12 @@
   self.particleMesh = [R4Mesh plainWithSize:CGSizeMake(1, 1)];
 
   R4Pass *pass = [[R4Pass alloc] init];
-  pass.sceneBlend = R4BlendModeAlpha;
-  pass.lighting = YES;
+  pass.sceneBlend = self.particleBlendMode;
+  pass.lighting = NO;
   pass.depthTest = YES;
   pass.depthWrite = NO;
-  
+  pass.cullFace = R4CullFaceDisabled;
+
   [pass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"spark.png"]]];
   pass.firstTextureUnit.texture.filteringMode = R4TextureFilteringNearest;
   
@@ -207,11 +214,16 @@
   self.previousDT = 0.0;
 }
 
+- (void)advanceSimulationTime:(NSTimeInterval)sec
+{
+  // TODO
+}
+
 - (void)updateAtTime:(NSTimeInterval)time
 {
   NSTimeInterval dt = time - self.timeOfLastUpdate;
     
-  /* First update existing particles */
+  /* Update existing particles */
   GLKMatrix4 invR = GLKMatrix4Invert(self.scene.currentCamera.inversedTransform, NULL);
   GLKQuaternion q = GLKQuaternionMakeWithMatrix4(invR);
   
@@ -264,7 +276,7 @@
     }
   }
   
-  /* Then, emit new particles */
+  /* Emit new particles - should make this first!? */
   NSInteger particles_to_emit = (self.previousDT + dt) * self.particleBirthRate;   // dt [ms]
   
   if (particles_to_emit == 0) {
@@ -306,10 +318,21 @@
     }
     
     p->initialColor.a = p->initialColor.a * (self.particleAlpha + self.particleAlphaRange * randCGFloat(-1, 1));
-
   }
   
   self.timeOfLastUpdate = time;
+}
+
+- (void)prepareToDraw
+{
+  glBindVertexArrayOES(particleAttributesVertexArray);
+  glBindBuffer(GL_ARRAY_BUFFER, particleAttributesVertexBuffer);
+  glBufferData(GL_ARRAY_BUFFER, self.particleCount * sizeof(R4ParticleAttributes), self.particleAttributes, GL_STREAM_DRAW);
+}
+
+- (void)drawPass
+{
+  glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, self.particleCount);
 }
 
 @end

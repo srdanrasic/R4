@@ -69,11 +69,8 @@
   glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderbuffer);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderbuffer);
   
-  glEnable(GL_DEPTH_TEST);
-
   return YES;
 }
-
 
 - (void)dealloc
 {
@@ -87,8 +84,9 @@
     _colorRenderbuffer = 0;
   }
   
-  if ([EAGLContext currentContext] == _context)
+  if ([EAGLContext currentContext] == _context) {
     [EAGLContext setCurrentContext:nil];
+  }
   
   _context = nil;
 }
@@ -125,7 +123,6 @@ void setupBlendMode(R4BlendMode mode)
   
   glBindFramebuffer(GL_FRAMEBUFFER, _defaultFramebuffer);
   
-  //glEnable(GL_CULL_FACE);
   glDepthMask(GL_TRUE);
   
   glClearColor(0, 0, 0, 1);
@@ -165,7 +162,7 @@ void setupBlendMode(R4BlendMode mode)
   glEnable(GL_BLEND);
   setupBlendMode(R4BlendModeAlpha);
   
-  // Get sorted drawables (TODO cache)
+  // Get sorted drawables (TODO cache) -> move to SCENE MANAGER
   static NSMutableDictionary *entities = nil;
   static NSMutableArray *lights = nil;
   static NSMutableArray *emitters = nil;
@@ -218,7 +215,27 @@ void setupBlendMode(R4BlendMode mode)
       
       for (R4Pass *pass in technique.passes) {
         R4Program *program = pass.program;
+        
         glUseProgram(program.programName);
+        
+        glFrontFace(pass.frontFace);
+        
+        if (pass.cullFace != R4CullFaceDisabled) {
+          glEnable(GL_CULL_FACE);
+          glCullFace(pass.cullFace);
+        } else {
+          glDisable(GL_CULL_FACE);
+        }
+        
+        glDepthMask(pass.depthWrite);
+        
+        if (pass.depthTest) {
+          glEnable(GL_DEPTH_TEST);
+        } else {
+          glDisable(GL_DEPTH_TEST);
+        }
+        
+        setupBlendMode(pass.sceneBlend);
         
         GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(viewMatrix, entity.modelViewMatrix);
         GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
@@ -227,56 +244,58 @@ void setupBlendMode(R4BlendMode mode)
         [program setUniform4fv:@"surface_diffuse_color" count:1 v:GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f).v];
         [program setUniform1i:@"texture_sampler" v0:0];
         
-        if (material.optimalTechnique.firstPass.firstTextureUnit.texture) {
+        if (pass.firstTextureUnit.texture) {
           glActiveTexture(GL_TEXTURE0);
           glBindTexture(GL_TEXTURE_2D, pass.firstTextureUnit.texture.textureName);
           [program setUniform1f:@"texture_mask" v0:0.0f];
         } else {
-          [program setUniform1f:@"texture_mask" v0:1.0f];
+          [program setUniform1f:@"texture_mask" v0:0.3f];
         }
         
-
-        R4BlendMode blendMode = pass.sceneBlend;
-        if (_currentBlendMode != blendMode) {
-          setupBlendMode(blendMode);
-          _currentBlendMode = blendMode;
-        }
-        
-        if ((mesh->indexBuffer != GL_INVALID_VALUE)) {
-          glDrawElements(GL_TRIANGLES, mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
-        } else {
-          glDrawArrays(GL_TRIANGLES, 0, mesh->elementCount);
-        }
+        [entity drawPass];
       }
     }
   }
 
   // Render particle emitters
-  glDepthMask(GL_FALSE);
-  
   for (R4EmitterNode *emitter in emitters) {
     R4Material *material = emitter.material;
     R4Technique *technique = [material optimalTechnique];
     
+    [emitter prepareToDraw];
+    
     for (R4Pass *pass in technique.passes) {
-      glUseProgram(pass.program.programName);
+      R4Program *program = pass.program;
       
-      setupBlendMode(emitter.particleBlendMode);
+      glUseProgram(program.programName);
       
-      glBindVertexArrayOES(emitter->particleAttributesVertexArray);
-      glBindBuffer(GL_ARRAY_BUFFER, emitter->particleAttributesVertexBuffer);
-      glBufferData(GL_ARRAY_BUFFER, emitter.particleCount * sizeof(R4ParticleAttributes), emitter.particleAttributes, GL_STREAM_DRAW);
+      glFrontFace(pass.frontFace);
+      
+      if (pass.cullFace != R4CullFaceDisabled) {
+        glEnable(GL_CULL_FACE);
+        glCullFace(pass.cullFace);
+      } else {
+        glDisable(GL_CULL_FACE);
+      }
+      
+      glDepthMask(pass.depthWrite);
+      
+      if (pass.depthTest) {
+        glEnable(GL_DEPTH_TEST);
+      } else {
+        glDisable(GL_DEPTH_TEST);
+      }
+      
+      setupBlendMode(pass.sceneBlend);
+      
+      GLKMatrix4 mvpm = GLKMatrix4Multiply(projectionMatrix, viewMatrix);
+      [pass.program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:mvpm.m];
+      [pass.program setUniform1i:@"texture_sampler" v0:0];
       
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, material.optimalTechnique.firstPass.firstTextureUnit.texture.textureName);
       
-      GLKMatrix4 mvpm = GLKMatrix4Multiply(projectionMatrix, viewMatrix);
-      //mvpm = GLKMatrix4Multiply(mvpm, emitter.modelViewMatrix);
-      
-      [pass.program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:mvpm.m];
-      [pass.program setUniform1i:@"texture_sampler" v0:0];
-      
-      glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, emitter.particleCount);
+      [emitter drawPass];
     }
   }
   
