@@ -13,7 +13,7 @@
 + (R4TextureUnit *)textureUnitWithTexture:(R4Texture *)texture
 {
   R4TextureUnit *tu = [[R4TextureUnit alloc] init];
-  tu.texture = texture;
+  tu->_texture = texture;
   return tu;
 }
 

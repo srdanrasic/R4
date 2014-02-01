@@ -7,8 +7,12 @@
 //
 
 #import "R4Base.h"
+#import "R4DrawState.h"
+#import "R4Texture.h"
+#import "R4TextureUnit.h"
+#import "R4ProgramManager.h"
 
-@class R4Shader, R4Program, R4TextureUnit;
+@class R4Shader, R4Program, R4TextureUnit, R4DrawState;
 
 @interface R4Pass : NSObject
 
@@ -22,13 +26,15 @@
 
 @property (nonatomic, strong) R4Shader *vertexShader;
 @property (nonatomic, strong) R4Shader *fragmentShader;
-@property (nonatomic, strong, readonly) R4Program *program;
+@property (nonatomic, readonly) R4Program *program;
 
 - (instancetype)init;
++ (instancetype)pass;
+
 - (void)addTextureUnit:(R4TextureUnit *)textureUnit;
 - (R4TextureUnit *)firstTextureUnit;
 - (R4TextureUnit *)textureUnitAtIndex:(NSUInteger)index;
 
-- (void)prepareToDraw;
+- (void)prepareToDraw:(R4DrawState *)drawState;
 
 @end

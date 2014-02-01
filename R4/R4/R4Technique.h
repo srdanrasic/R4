@@ -17,6 +17,8 @@
 
 - (instancetype)init;
 - (instancetype)initWithPasses:(NSArray *)passes;
++ (R4Technique *)techniqueWithPass:(R4Pass *)pass;
+
 - (R4Pass *)firstPass;
 - (R4Pass *)passAtIndex:(NSUInteger)index;
 - (BOOL)isUsable;

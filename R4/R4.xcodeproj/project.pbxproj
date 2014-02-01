@@ -34,6 +34,12 @@
 		ECDE15BE188C31F5008EA3A1 /* R4Mesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */; };
 		ECDE15C1188C3262008EA3A1 /* R4EntityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */; };
 		ECE91899186C7ED4000E11A7 /* R4EmitterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */; };
+		ECEA3B95189D605B003DB77C /* R4PairKey.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B94189D605B003DB77C /* R4PairKey.m */; };
+		ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B97189D648D003DB77C /* R4TextureManager.m */; };
+		ECEA3B9B189D6AD7003DB77C /* R4DefaultSceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */; };
+		ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4PlainPass.m */; };
+		ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */; };
+		ECEA3BA5189D7F6E003DB77C /* R4DrawState.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA4189D7F6E003DB77C /* R4DrawState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,7 +80,7 @@
 		EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4NodePrivate.h; sourceTree = "<group>"; };
 		EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ProgramManager.h; sourceTree = "<group>"; };
 		EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ProgramManager.m; sourceTree = "<group>"; };
-		ECA3D12D186B96A500D92087 /* R4Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Shaders.h; sourceTree = "<group>"; };
+		ECA3D12D186B96A500D92087 /* R4BuildTimeShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4BuildTimeShaders.h; sourceTree = "<group>"; };
 		ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.fsh; path = Shaders/ParticleShader.fsh; sourceTree = "<group>"; };
 		ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.vsh; path = Shaders/ParticleShader.vsh; sourceTree = "<group>"; };
 		ECADD133188AD23E004736E1 /* R4Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Material.h; sourceTree = "<group>"; };
@@ -118,6 +124,19 @@
 		ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4Mesh.mm; sourceTree = "<group>"; };
 		ECDE15BF188C3262008EA3A1 /* R4EntityNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4EntityNode.h; sourceTree = "<group>"; };
 		ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4EntityNode.m; sourceTree = "<group>"; };
+		ECEA3B93189D605B003DB77C /* R4PairKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4PairKey.h; sourceTree = "<group>"; };
+		ECEA3B94189D605B003DB77C /* R4PairKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4PairKey.m; sourceTree = "<group>"; };
+		ECEA3B96189D648D003DB77C /* R4TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4TextureManager.h; sourceTree = "<group>"; };
+		ECEA3B97189D648D003DB77C /* R4TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4TextureManager.m; sourceTree = "<group>"; };
+		ECEA3B99189D6AD7003DB77C /* R4DefaultSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DefaultSceneManager.h; sourceTree = "<group>"; };
+		ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4DefaultSceneManager.mm; sourceTree = "<group>"; };
+		ECEA3B9C189D6AFC003DB77C /* R4SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4SceneManager.h; sourceTree = "<group>"; };
+		ECEA3B9D189D7616003DB77C /* R4PlainPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4PlainPass.h; sourceTree = "<group>"; };
+		ECEA3B9E189D7616003DB77C /* R4PlainPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4PlainPass.m; sourceTree = "<group>"; };
+		ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ParticlePass.h; sourceTree = "<group>"; };
+		ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ParticlePass.m; sourceTree = "<group>"; };
+		ECEA3BA3189D7F6E003DB77C /* R4DrawState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DrawState.h; sourceTree = "<group>"; };
+		ECEA3BA4189D7F6E003DB77C /* R4DrawState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4DrawState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +174,7 @@
 		ECA9C2E0186BABC00073A61B /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				ECA3D12D186B96A500D92087 /* R4Shaders.h */,
+				ECA3D12D186B96A500D92087 /* R4BuildTimeShaders.h */,
 				ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */,
 				ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */,
 				ECC12C53188BECB4001FE263 /* BlinnPhongShader.vsh */,
@@ -169,24 +188,22 @@
 		ECADD139188AD273004736E1 /* Rendering System */ = {
 			isa = PBXGroup;
 			children = (
-				ECA9C2E0186BABC00073A61B /* Shaders */,
-				ECADD143188ADC3C004736E1 /* R4Shader.h */,
-				ECADD144188ADC3C004736E1 /* R4Shader.m */,
-				EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */,
-				EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */,
-				ECADD140188ADC31004736E1 /* R4Program.h */,
-				ECADD141188ADC31004736E1 /* R4Program.m */,
 				ECADD133188AD23E004736E1 /* R4Material.h */,
 				ECADD134188AD23E004736E1 /* R4Material.m */,
 				ECADD13D188AD6BF004736E1 /* R4Technique.h */,
 				ECADD13E188AD6BF004736E1 /* R4Technique.m */,
 				ECADD136188AD262004736E1 /* R4Pass.h */,
 				ECADD137188AD262004736E1 /* R4Pass.m */,
+				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
+				ECEA3B9E189D7616003DB77C /* R4PlainPass.m */,
+				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
+				ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */,
 				ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */,
 				ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */,
-				ECC524391895507200D00510 /* R4Drawable.h */,
 				ECC58D5717F866A100BBAD28 /* R4Renderer.h */,
 				ECC58D5817F866A100BBAD28 /* R4Renderer.m */,
+				ECEA3BA3189D7F6E003DB77C /* R4DrawState.h */,
+				ECEA3BA4189D7F6E003DB77C /* R4DrawState.m */,
 			);
 			name = "Rendering System";
 			sourceTree = "<group>";
@@ -194,10 +211,19 @@
 		ECBE45E618905444000E88D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */,
-				ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */,
+				ECA9C2E0186BABC00073A61B /* Shaders */,
+				ECADD143188ADC3C004736E1 /* R4Shader.h */,
+				ECADD144188ADC3C004736E1 /* R4Shader.m */,
+				ECADD140188ADC31004736E1 /* R4Program.h */,
+				ECADD141188ADC31004736E1 /* R4Program.m */,
+				EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */,
+				EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */,
 				ECC58D4D17F8538900BBAD28 /* R4Texture.h */,
 				ECC58D4E17F8538900BBAD28 /* R4Texture.m */,
+				ECEA3B96189D648D003DB77C /* R4TextureManager.h */,
+				ECEA3B97189D648D003DB77C /* R4TextureManager.m */,
+				ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */,
+				ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -246,9 +272,13 @@
 				ECC58D4717F8524F00BBAD28 /* R4Scene.h */,
 				EC0C8F8617F89D5700E8B229 /* R4ScenePrivate.h */,
 				ECC58D4817F8524F00BBAD28 /* R4Scene.m */,
+				ECEA3B9C189D6AFC003DB77C /* R4SceneManager.h */,
+				ECEA3B99189D6AD7003DB77C /* R4DefaultSceneManager.h */,
+				ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */,
 				EC0C194C1837E46A00148E7B /* R4CameraNode.h */,
 				EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */,
 				EC0C194D1837E46A00148E7B /* R4Camera.m */,
+				ECC524391895507200D00510 /* R4Drawable.h */,
 				ECDE15BF188C3262008EA3A1 /* R4EntityNode.h */,
 				ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */,
 				EC678736186B08CC009921C2 /* R4LightNode.h */,
@@ -259,6 +289,8 @@
 				EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */,
 				ECC58D4A17F8531B00BBAD28 /* R4Transition.h */,
 				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
+				ECEA3B93189D605B003DB77C /* R4PairKey.h */,
+				ECEA3B94189D605B003DB77C /* R4PairKey.m */,
 				ECC58D1217F8505600BBAD28 /* Supporting Files */,
 			);
 			path = R4;
@@ -331,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OUT=\"${SRCROOT}/R4/R4Shaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
+			shellScript = "OUT=\"${SRCROOT}/R4/R4BuildTimeShaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -344,6 +376,8 @@
 				EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */,
 				ECE91899186C7ED4000E11A7 /* R4EmitterNode.m in Sources */,
 				ECDE15BE188C31F5008EA3A1 /* R4Mesh.mm in Sources */,
+				ECEA3BA5189D7F6E003DB77C /* R4DrawState.m in Sources */,
+				ECEA3B9B189D6AD7003DB77C /* R4DefaultSceneManager.mm in Sources */,
 				EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */,
 				ECADD135188AD23E004736E1 /* R4Material.m in Sources */,
 				EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */,
@@ -351,12 +385,16 @@
 				ECC58D4317F8519900BBAD28 /* R4View.m in Sources */,
 				ECADD138188AD262004736E1 /* R4Pass.m in Sources */,
 				ECC58D4C17F8531B00BBAD28 /* R4Transition.m in Sources */,
+				ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */,
+				ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */,
+				ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */,
 				EC0C194E1837E46A00148E7B /* R4Camera.m in Sources */,
 				ECADD13C188AD2A2004736E1 /* R4TextureUnit.m in Sources */,
 				ECADD142188ADC31004736E1 /* R4Program.m in Sources */,
 				EC4A943E181BC2AF008B9DC4 /* R4SequenceAction.m in Sources */,
 				EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */,
 				ECC58D4617F8521900BBAD28 /* R4Node.m in Sources */,
+				ECEA3B95189D605B003DB77C /* R4PairKey.m in Sources */,
 				ECC58D5917F866A100BBAD28 /* R4Renderer.m in Sources */,
 				EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */,
 				ECADD146188ADE89004736E1 /* R4Shader.m in Sources */,

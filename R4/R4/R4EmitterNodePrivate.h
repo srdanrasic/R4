@@ -36,8 +36,6 @@ typedef struct {
   R4Material *material;
 }
 
-@property (nonatomic, strong, readonly) R4Material *material;
-
 - (void)updateAtTime:(NSTimeInterval)time;
 
 @end

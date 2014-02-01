@@ -10,7 +10,9 @@
 
 @class R4Texture;
 
-@interface R4TextureUnit : NSObject
+@interface R4TextureUnit : NSObject {
+  R4Texture *_texture;
+}
 
 @property (nonatomic, strong) R4Texture *texture;
 

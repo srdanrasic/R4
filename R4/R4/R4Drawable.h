@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class R4Material;
+
 @protocol R4Drawable <NSObject>
 
 @required
+@property (nonatomic, readonly) R4Material *material;
+
 - (void)prepareToDraw;
 - (void)drawPass;
 

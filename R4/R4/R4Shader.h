@@ -15,8 +15,8 @@ typedef NS_ENUM(GLenum, R4ShaderType) {
 
 @interface R4Shader : NSObject
 
-@property (nonatomic, assign, readonly) R4ShaderType shaderType;
 @property (nonatomic, assign, readonly) GLuint shaderName;
+@property (nonatomic, assign, readonly) R4ShaderType shaderType;
 @property (nonatomic, strong, readonly) NSDictionary *attributeMapping;
 
 - (instancetype)initVertexShaderWithSourceString:(NSString *)sourceString attributeMapping:(NSDictionary *)attributeMapping;

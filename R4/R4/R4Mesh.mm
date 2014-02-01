@@ -9,7 +9,7 @@
 #import "R4Mesh.h"
 #import "R4Material.h"
 #import "R4Technique.h"
-#import "R4Pass.h"
+#import "R4PlainPass.h"
 #import "R4Texture.h"
 #import "R4TextureUnit.h"
 #import "R4Shader.h"
@@ -82,20 +82,7 @@ static GLfloat gPlainVertexData[48] =
 {
   self = [super init];
   if (self) {
-    NSDictionary *attribMap = @{@"in_position": @(R4VertexAttributePositionModelSpace),
-                                @"in_texcoord": @(R4VertexAttributeTexCoord0)};
-    
-    R4Pass *pass = [[R4Pass alloc] init];
-    pass.sceneBlend = R4BlendModeAlpha;
-    pass.depthTest = pass.depthWrite = YES;
-    pass.cullFace = R4CullFaceBack;
-    pass.vertexShader = [[R4ProgramManager shared] loadVertexShaderNamed:@"vshPlainShader" attributeMapping:attribMap];
-    pass.fragmentShader = [[R4ProgramManager shared] loadFragmentShaderNamed:@"fshPlainShader" attributeMapping:nil];
-    [pass program];
-    
-    R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];
-    
-    self.material = [[R4Material alloc] initWithTechniques:@[technique]];
+    self.material = [R4Material materialWithTechnique:[R4Technique techniqueWithPass:[R4PlainPass pass]]];
     vertexBuffer = GL_INVALID_VALUE;
     indexBuffer = GL_INVALID_VALUE;
   }
@@ -210,8 +197,8 @@ static GLfloat gPlainVertexData[48] =
   float max_length = 0.0;
   
   GLKVector3 centerOffset = GLKVector3Make(0, 0, 0);
-  GLKVector3 min = GLKVector3Make(9999, 9999, 9999);
-  GLKVector3 max = GLKVector3Make(-9999, -9999, -9999);
+  GLKVector3 min = GLKVector3Make(FLT_MAX, FLT_MAX, FLT_MAX);
+  GLKVector3 max = GLKVector3Make(FLT_MIN, FLT_MIN, FLT_MIN);
   
   std::string material_filename;
   

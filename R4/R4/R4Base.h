@@ -11,7 +11,10 @@
 #import <CoreGraphics/CGGeometry.h>
 #import <SpriteKit/SpriteKit.h>
 
+#import "R4PairKey.h"
+
 #define R4Color UIColor
+#define R4_MAX_TEXTURE_UNITS 8
 
 typedef NS_ENUM(NSInteger, R4DeviceCPU) {
   R4DeviceCPUA4,
@@ -51,6 +54,32 @@ typedef NS_ENUM(NSUInteger, R4CullFace) {
   R4CullFaceBack = GL_BACK,
   R4CullFaceFrontAndBack = GL_FRONT_AND_BACK
 };
+
+void setupBlendMode(R4BlendMode mode)
+{
+  if (mode == R4BlendModeAlpha) {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeAdd) {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeSubtract) {
+    glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendEquation(GL_FUNC_SUBTRACT);
+  } else if (mode == R4BlendModeMultiply) {
+    glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeMultiplyX2) {
+    glBlendFunc(GL_DST_COLOR, GL_SRC_COLOR);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeScreen) {
+    glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ONE);
+    glBlendEquation(GL_FUNC_ADD);
+  } else if (mode == R4BlendModeReplace) {
+    glBlendFunc(GL_ONE, GL_ZERO);
+    glBlendEquation(GL_FUNC_ADD);
+  }
+}
 
 typedef struct {
   GLKVector3 startPoint;

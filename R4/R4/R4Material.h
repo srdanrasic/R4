@@ -22,6 +22,8 @@
 
 - (instancetype)init;
 - (instancetype)initWithTechniques:(NSArray *)techniques;
++ (R4Material *)materialWithTechnique:(R4Technique *)technique;
+
 - (R4Technique *)optimalTechnique;
 - (R4Technique *)firstTechnique;
 - (R4Technique *)techniqueAtIndex:(NSUInteger)index;

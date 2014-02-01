@@ -11,6 +11,7 @@
 #import "R4ViewPrivate.h"
 #import "R4CameraNodePrivate.h"
 #import "R4EmitterNodePrivate.h"
+#import "R4DefaultSceneManager.h"
 
 @implementation R4Scene
 
@@ -28,6 +29,7 @@
     self.scaleMode = R4SceneScaleModeResizeFill;
     self.backgroundColor = [R4Color colorWithRed:0.15 green:0.15 blue:0.15 alpha:1.0];
     self.currentCamera = [R4CameraNode cameraAtPosition:GLKVector3Make(0, 1, 2) lookingAt:GLKVector3Make(0, 0, 0)];
+    self.sceneManager = [[R4DefaultSceneManager alloc] initWithScene:self];
   }
   return self;
 }

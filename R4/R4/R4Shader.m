@@ -9,10 +9,12 @@
 #import "R4Shader.h"
 
 @interface R4Shader () {
-  GLuint _shaderName;
+  GLuint shaderName_;
 }
+
 @property (nonatomic, assign, readwrite) R4ShaderType shaderType;
 @property (nonatomic, strong, readwrite) NSDictionary *attributeMapping;
+
 @end
 
 @implementation R4Shader
@@ -23,7 +25,6 @@
   if (self) {
     self.shaderType = R4ShaderTypeVertex;
     if ([self compileShaderOfType:R4ShaderTypeVertex source:[sourceString cStringUsingEncoding:NSUTF8StringEncoding]]) {
-      // good to go
       self.attributeMapping = attributeMapping;
     } else {
       return nil;
@@ -38,7 +39,6 @@
   if (self) {
     self.shaderType = R4ShaderTypeFragment;
     if ([self compileShaderOfType:R4ShaderTypeFragment source:[sourceString cStringUsingEncoding:NSUTF8StringEncoding]]) {
-      // good to go
       self.attributeMapping = attributeMapping;
     } else {
       return nil;
@@ -49,8 +49,8 @@
 
 - (void)dealloc
 {
-  if (_shaderName) {
-    glDeleteShader(_shaderName);
+  if (shaderName_) {
+    glDeleteShader(shaderName_);
   }
 }
 
@@ -63,24 +63,24 @@
     return NO;
   }
   
-  _shaderName = glCreateShader(type);
-  glShaderSource(_shaderName, 1, &source, NULL);
-  glCompileShader(_shaderName);
+  shaderName_ = glCreateShader(type);
+  glShaderSource(shaderName_, 1, &source, NULL);
+  glCompileShader(shaderName_);
   
 #if defined(DEBUG)
   GLint logLength;
-  glGetShaderiv(_shaderName, GL_INFO_LOG_LENGTH, &logLength);
+  glGetShaderiv(shaderName_, GL_INFO_LOG_LENGTH, &logLength);
   if (logLength > 0) {
     GLchar *log = (GLchar *)malloc(logLength);
-    glGetShaderInfoLog(_shaderName, logLength, &logLength, log);
+    glGetShaderInfoLog(shaderName_, logLength, &logLength, log);
     NSLog(@"Shader compile log:\n%s", log);
     free(log);
   }
 #endif
   
-  glGetShaderiv(_shaderName, GL_COMPILE_STATUS, &status);
+  glGetShaderiv(shaderName_, GL_COMPILE_STATUS, &status);
   if (status == 0) {
-    glDeleteShader(_shaderName);
+    glDeleteShader(shaderName_);
     return NO;
   }
   
@@ -89,7 +89,7 @@
 
 - (GLuint)shaderName
 {
-  return _shaderName;
+  return shaderName_;
 }
 
 @end

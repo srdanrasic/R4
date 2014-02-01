@@ -28,13 +28,13 @@
 
 - (R4Box)boundingBox
 {
-  return self.mesh.geometryBoundingBox;
+  return _mesh.geometryBoundingBox;
 }
 
 - (R4Material *)material
 {
   if (_material == nil) {
-    return self.mesh.material;
+    return _mesh.material;
   } else {
     return _material;
   }
@@ -42,14 +42,15 @@
 
 - (void)prepareToDraw
 {
+  glBindVertexArrayOES(_mesh->vertexArray);
 }
 
 - (void)drawPass
 {
-  if ((self.mesh->indexBuffer != GL_INVALID_VALUE)) {
-    glDrawElements(GL_TRIANGLES, self.mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+  if ((_mesh->indexBuffer != GL_INVALID_VALUE)) {
+    glDrawElements(GL_TRIANGLES, _mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
   } else {
-    glDrawArrays(GL_TRIANGLES, 0, self.mesh->elementCount);
+    glDrawArrays(GL_TRIANGLES, 0, _mesh->elementCount);
   }
 }
 

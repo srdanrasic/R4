@@ -32,6 +32,12 @@
   return self;
 }
 
++ (R4Technique *)techniqueWithPass:(R4Pass *)pass
+{
+  if (!pass) return nil;
+  return [[[self class] alloc] initWithPasses:@[pass]];
+}
+
 - (R4Pass *)firstPass
 {
   return [self.passes firstObject];

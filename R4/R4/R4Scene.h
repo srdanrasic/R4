@@ -8,6 +8,7 @@
 
 #import "R4Node.h"
 
+@protocol R4SceneManager;
 @class R4View, R4CameraNode, R4PhysicsWorld;
 
 typedef NS_ENUM(NSInteger, R4SceneScaleMode) {
@@ -28,6 +29,7 @@ typedef NS_ENUM(NSInteger, R4SceneScaleMode) {
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic, weak, readonly) R4View *view;
 @property (nonatomic, strong, readonly) R4CameraNode *currentCamera;
+@property (nonatomic, strong) id<R4SceneManager> sceneManager;
 
 - (void)update:(NSTimeInterval)currentTime;
 - (void)didEvaluateActions;

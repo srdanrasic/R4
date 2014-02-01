@@ -8,6 +8,7 @@
 
 #import "R4Base.h"
 #import "R4Shader.h"
+#import "R4Program.h"
 
 @class R4Program;
 
@@ -15,8 +16,7 @@
 
 + (R4ProgramManager *)shared;
 
-- (R4Shader *)loadVertexShaderNamed:(NSString *)name attributeMapping:(NSDictionary *)attributeMapping;
-- (R4Shader *)loadFragmentShaderNamed:(NSString *)name attributeMapping:(NSDictionary *)attributeMapping;
+- (R4Shader *)loadShaderNamed:(NSString *)name type:(R4ShaderType)type attributeMapping:(NSDictionary *)attributeMapping;
 
 - (R4Program *)programWithVertexShader:(R4Shader *)vertexShader fragmentShader:(R4Shader *)fragmentShader;
 - (R4Program *)programWithVertexShaderName:(NSString *)vertexShaderName fragmentShaderName:(NSString *)fragmentShaderName;

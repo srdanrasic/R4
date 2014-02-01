@@ -8,7 +8,6 @@
 
 #import "R4Pass.h"
 #import "R4Shader.h"
-#import "R4Shaders.h"
 #import "R4Program.h"
 #import "R4ProgramManager.h"
 
@@ -31,6 +30,11 @@
     self.textureUnits = [NSMutableArray array];
   }
   return self;
+}
+
++ (instancetype)pass
+{
+  return [[[self class] alloc] init];
 }
 
 - (void)dealloc
@@ -81,8 +85,38 @@
   return [self.textureUnits objectAtIndex:index];
 }
 
-- (void)prepareToDraw
+- (void)prepareToDraw:(R4DrawState *)drawState
 {
+  R4Program *program = self.program; // use property!
+  
+  if (drawState->program != program.programName) {
+    glUseProgram(program.programName);
+    drawState->program = program.programName;
+  }
+  
+  glFrontFace(_frontFace);
+  
+  if (_cullFace != R4CullFaceDisabled) {
+    glEnable(GL_CULL_FACE);
+    glCullFace(_cullFace);
+  } else {
+    glDisable(GL_CULL_FACE);
+  }
+  
+  glDepthMask(_depthWrite);
+  
+  if (_depthTest) {
+    glEnable(GL_DEPTH_TEST);
+  } else {
+    glDisable(GL_DEPTH_TEST);
+  }
+  
+  setupBlendMode(_sceneBlend);
+  
+  for (NSInteger idx = 0; idx < _textureUnits.count; idx++) {
+    glActiveTexture(GL_TEXTURE0 + idx);
+    glBindTexture(GL_TEXTURE_2D, [self textureUnitAtIndex:idx].texture.textureName);
+  }
 }
 
 @end

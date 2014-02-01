@@ -10,6 +10,7 @@
 #import "R4ScenePrivate.h"
 #import "R4ViewPrivate.h"
 #import "R4ActionPrivate.h"
+#import "R4SceneManager.h"
 
 @implementation R4Node
 
@@ -114,8 +115,21 @@
 
 - (void)setParent:(R4Node *)parent
 {
+  id sceneManager = self.scene.sceneManager;
+  R4Node *oldParent = _parent;
+  
   _parent = parent;
   _scene = parent.scene;
+  
+  if (_scene) {
+    sceneManager = _scene.sceneManager;
+  }
+  
+  if (!parent && oldParent) {
+    [sceneManager nodeRemoved:self];
+  } else if (!oldParent && parent) {
+    [sceneManager nodeAdded:self];
+  }
 }
 
 - (R4Node *)childNodeWithName:(NSString *)name

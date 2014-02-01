@@ -32,6 +32,12 @@
   return self;
 }
 
++ (R4Material *)materialWithTechnique:(R4Technique *)technique
+{
+  if (!technique) return nil;
+  return [[[self class] alloc] initWithTechniques:@[technique]];
+}
+
 - (R4Technique *)optimalTechnique
 {
   for (R4Technique *technique in self.techniques) {
