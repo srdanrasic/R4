@@ -12,7 +12,7 @@
   GLuint _shaderName;
 }
 @property (nonatomic, assign, readwrite) R4ShaderType shaderType;
-@property (nonatomic, assign, readwrite) NSDictionary *attributeMapping;
+@property (nonatomic, strong, readwrite) NSDictionary *attributeMapping;
 @end
 
 @implementation R4Shader

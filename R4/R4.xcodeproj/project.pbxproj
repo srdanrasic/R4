@@ -14,6 +14,7 @@
 		EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */; };
 		EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
 		EC678738186B08CC009921C2 /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
+		EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */; };
 		ECADD135188AD23E004736E1 /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
 		ECADD138188AD262004736E1 /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
 		ECADD13C188AD2A2004736E1 /* R4TextureUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */; };
@@ -71,6 +72,8 @@
 		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
 		EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNodePrivate.h; sourceTree = "<group>"; };
 		EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4NodePrivate.h; sourceTree = "<group>"; };
+		EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ProgramManager.h; sourceTree = "<group>"; };
+		EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ProgramManager.m; sourceTree = "<group>"; };
 		ECA3D12D186B96A500D92087 /* R4Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Shaders.h; sourceTree = "<group>"; };
 		ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.fsh; path = Shaders/ParticleShader.fsh; sourceTree = "<group>"; };
 		ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ParticleShader.vsh; path = Shaders/ParticleShader.vsh; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				ECA9C2E0186BABC00073A61B /* Shaders */,
 				ECADD143188ADC3C004736E1 /* R4Shader.h */,
 				ECADD144188ADC3C004736E1 /* R4Shader.m */,
+				EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */,
+				EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */,
 				ECADD140188ADC31004736E1 /* R4Program.h */,
 				ECADD141188ADC31004736E1 /* R4Program.m */,
 				ECADD133188AD23E004736E1 /* R4Material.h */,
@@ -326,7 +331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OUT=\"${SRCROOT}/R4/R4Shaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;";
+			shellScript = "OUT=\"${SRCROOT}/R4/R4Shaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -339,6 +344,7 @@
 				EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */,
 				ECE91899186C7ED4000E11A7 /* R4EmitterNode.m in Sources */,
 				ECDE15BE188C31F5008EA3A1 /* R4Mesh.mm in Sources */,
+				EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */,
 				ECADD135188AD23E004736E1 /* R4Material.m in Sources */,
 				EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */,
 				ECC58D4917F8524F00BBAD28 /* R4Scene.m in Sources */,
@@ -446,7 +452,7 @@
 				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -462,7 +468,7 @@
 				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

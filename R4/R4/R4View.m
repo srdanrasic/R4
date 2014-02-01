@@ -17,6 +17,7 @@
 @property (nonatomic, strong) R4Renderer *rendered;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) NSTimeInterval timeOfLastUpdate;
+@property (nonatomic, assign) NSInteger frameCount;
 @property (nonatomic, strong) UILabel *fpsLabel;
 @property (nonatomic, weak) R4Node *firstResponder;
 @end
@@ -71,6 +72,13 @@
 {
   NSTimeInterval currentTime = CACurrentMediaTime();
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
+  self.frameCount++;
+  
+  if (elapsedTime > 1.0) {
+    self.fpsLabel.text = [NSString stringWithFormat:@"FPS: %d", self.frameCount];
+    self.timeOfLastUpdate = currentTime;
+    self.frameCount = 0;
+  }
   
   if (!self.isPaused) {
     [self.scene update:currentTime];
@@ -87,9 +95,6 @@
   }
 
   [self.rendered render:self.scene];
-  
-  self.fpsLabel.text = [NSString stringWithFormat:@"%.1f", 1.0/elapsedTime];
-  self.timeOfLastUpdate = currentTime;
 }
 
 - (void)layoutSubviews
@@ -203,7 +208,6 @@
 
   GLKVector3 direction = GLKVector3Subtract(resultFar, resultNear);
   R4Ray ray = R4RayMake(resultNear, direction);
-  NSLog(@"R: %@", NSStringFromR4Ray(ray));
   return ray;
 }
 
@@ -224,7 +228,7 @@
     }];
     
     if (self.firstResponder) {
-      NSLog(@"First responder: %@", self.firstResponder);
+      //NSLog(@"First responder: %@", self.firstResponder);
       return self;
     }
   }

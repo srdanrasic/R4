@@ -13,7 +13,7 @@
 
 + (R4EntityNode *)entityWithMesh:(R4Mesh *)mesh
 {
-  R4EntityNode *entity = [[R4EntityNode alloc] init];
+  R4EntityNode *entity = [[[self class] alloc] init];
   entity.mesh = mesh;
   return entity;
 }
@@ -24,6 +24,11 @@
   node.mesh = self.mesh;
   node.material = self.material;
   return node;
+}
+
+- (R4Box)boundingBox
+{
+  return self.mesh.geometryBoundingBox;
 }
 
 - (R4Material *)material

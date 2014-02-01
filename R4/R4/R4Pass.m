@@ -10,6 +10,7 @@
 #import "R4Shader.h"
 #import "R4Shaders.h"
 #import "R4Program.h"
+#import "R4ProgramManager.h"
 
 @interface R4Pass () {
   BOOL _isProgramDirty;
@@ -52,7 +53,7 @@
 - (R4Program *)program
 {
   if (_isProgramDirty) {
-    R4Program *program = [[R4Program alloc] initWithVertexShader:self.vertexShader fragmentShader:self.fragmentShader];
+    R4Program *program = [[R4ProgramManager shared] programWithVertexShader:self.vertexShader fragmentShader:self.fragmentShader];
     if (program) {
       _program = program;
       _isProgramDirty = NO;

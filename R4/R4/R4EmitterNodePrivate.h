@@ -30,12 +30,13 @@ typedef struct {
   GLuint particleAttributesVertexBuffer;
   GLuint particleAttributesVertexArray;
   NSInteger maxParticeCount;
+  NSInteger particleCount;
+  R4ParticleAttributes *particleAttributes;
+  R4Mesh *particleMesh;
+  R4Material *material;
 }
 
-@property (nonatomic, assign) NSInteger particleCount;
-@property (nonatomic, assign) R4ParticleAttributes *particleAttributes;
-@property (nonatomic, strong) R4Mesh *particleMesh;
-@property (nonatomic, strong) R4Material *material;
+@property (nonatomic, strong, readonly) R4Material *material;
 
 - (void)updateAtTime:(NSTimeInterval)time;
 

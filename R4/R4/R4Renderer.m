@@ -31,6 +31,8 @@
   GLuint _defaultFramebuffer, _depthRenderbuffer, _colorRenderbuffer;
   GLint _backingWidth, _backingHeight;
   R4BlendMode _currentBlendMode;
+  
+  GLint lastBoundProgram_;
 }
 
 @property (nonatomic, strong) R4Material *particleMaterial;
@@ -47,6 +49,7 @@
   if (self) {
     if (![self initOpenGL]) return nil;
     _currentBlendMode = -1;
+    lastBoundProgram_ = -1;
   }
   return self;
 }
@@ -216,7 +219,10 @@ void setupBlendMode(R4BlendMode mode)
       for (R4Pass *pass in technique.passes) {
         R4Program *program = pass.program;
         
-        glUseProgram(program.programName);
+        if (lastBoundProgram_ != program.programName) {
+          glUseProgram(program.programName);
+          lastBoundProgram_ = program.programName;
+        }
         
         glFrontFace(pass.frontFace);
         
@@ -267,7 +273,10 @@ void setupBlendMode(R4BlendMode mode)
     for (R4Pass *pass in technique.passes) {
       R4Program *program = pass.program;
       
-      glUseProgram(program.programName);
+      if (lastBoundProgram_ != program.programName) {
+        glUseProgram(program.programName);
+        lastBoundProgram_ = program.programName;
+      }
       
       glFrontFace(pass.frontFace);
       

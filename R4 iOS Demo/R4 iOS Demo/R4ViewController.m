@@ -23,14 +23,14 @@
 #import <R4/R4Mesh.h>
 
 
-@interface Stacy : R4EntityNode
+@interface MovableEntityNode : R4EntityNode
 @end
 
-@implementation Stacy
+@implementation MovableEntityNode
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  NSLog(@"Stacy touchesBegin");
+  //NSLog(@"Stacy touchesBegin");
   //self.highlightColor = [UIColor redColor];
   AudioServicesPlaySystemSound (1104);
 }
@@ -40,7 +40,7 @@
   R4Ray ray = [self.scene.view convertPoint:[[touches anyObject] locationInView:self.scene.view] toScene:self.scene];
   GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), GLKVector3Make(0, 1, 0)) / GLKVector3DotProduct(ray.direction, GLKVector3Make(0, 1, 0));
   GLKVector3 point = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
-  NSLog(@"TM: %@", NSStringFromGLKVector3(point));
+
   [self setPosition:point];
 }
 
@@ -59,13 +59,11 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  NSLog(@"Emitter touchesBegin");
 }
 
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  NSLog(@"Sparks touchesMoved");
   R4Ray ray = [self.scene.view convertPoint:[[touches anyObject] locationInView:self.scene.view] toScene:self.scene];
   GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), GLKVector3Make(0, 1, 0)) / GLKVector3DotProduct(ray.direction, GLKVector3Make(0, 1, 0));
   GLKVector3 point = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
@@ -93,7 +91,7 @@
 
   [self addChild:stacyBase];
   
-  R4EntityNode *stacy = [R4EntityNode entityWithMesh:[R4Mesh OBJMeshNamed:@"stacy.obj" normalize:YES center:NO]];
+  R4EntityNode *stacy = [MovableEntityNode entityWithMesh:[R4Mesh OBJMeshNamed:@"stacy.obj" normalize:YES center:NO]];
   stacy.name = @"stacy";
   stacy.orientation = GLKQuaternionMakeWithAngleAndAxis(0, 0, 0, -1);
   stacy.scale = GLKVector3Make(1, 1, 1);
@@ -102,7 +100,7 @@
   stacy.userInteractionEnabled = YES;
   [stacyBase addChild:stacy];
 
-#if 0
+#if 1
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       R4EntityNode *c2 = [stacy copy];
@@ -135,7 +133,7 @@
   [self addChild:light];
 #endif
   
-  self.currentCamera.position = GLKVector3Make(-1, 10, 1);
+  self.currentCamera.position = GLKVector3Make(-2, 2, 3);
   //self.currentCamera.targetNode = stacy;
   self.currentCamera.name = @"Camera";
   //[stacy addChild:self.currentCamera];
@@ -151,7 +149,7 @@
   sparks.name = @"sparks";
   [self addChild:sparks];
   
-  R4EntityNode *mp = [R4EntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 5, 1)]];
+  R4EntityNode *mp = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 5, 1)]];
   mp.userInteractionEnabled = YES;
   [self addChild:mp];
   
@@ -169,10 +167,10 @@
 {
   NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
   
-  [self childNodeWithName:@"stacyBase"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacyBase"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime/2.0, 0, 1, 0));
+  //[self childNodeWithName:@"stacyBase"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacyBase"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime/2.0, 0, 1, 0));
   //[self childNodeWithName:@"base"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"base"].orientation, GLKQuaternionMakeWithAngleAndAxis(2*elapsedTime, 0, 1, 0));
   
-  self.currentCamera.position = GLKVector3Make(-sinf(currentTime) * 5, 2, cosf(currentTime) * 5);
+  self.currentCamera.position = GLKVector3Make(-sin(currentTime) * 5, 2, cos(currentTime) * 5);
 
   self.timeOfLastUpdate = currentTime;
 }

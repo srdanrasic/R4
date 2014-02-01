@@ -9,8 +9,8 @@
 #import "R4EmitterNodePrivate.h"
 #import "R4Mesh.h"
 #import "R4Material.h"
+#import "R4ProgramManager.h"
 #import "R4Shader.h"
-#import "R4Shaders.h"
 #import "R4Texture.h"
 #import "R4ScenePrivate.h"
 #import "R4CameraNodePrivate.h"
@@ -108,7 +108,7 @@
 - (void)dealloc
 {
   glDeleteBuffers(1, &particleAttributesVertexBuffer);
-  free(self.particleAttributes);
+  free(particleAttributes);
 }
 
 - (R4Box)boundingBox
@@ -124,7 +124,12 @@
 - (void)setParticleBlendMode:(R4BlendMode)particleBlendMode
 {
   _particleBlendMode = particleBlendMode;
-  self.material.firstTechnique.firstPass.sceneBlend = particleBlendMode;
+  material.firstTechnique.firstPass.sceneBlend = particleBlendMode;
+}
+
+- (R4Material *)material
+{
+  return material;    
 }
 
 - (void)commonInit
@@ -135,8 +140,8 @@
     maxParticeCount = MIN(maxParticeCount, self.numParticlesToEmit);
   }
   
-  self.particleCount = 0;
-  self.particleMesh = [R4Mesh plainWithSize:CGSizeMake(1, 1)];
+  particleCount = 0;
+  particleMesh = [R4Mesh plainWithSize:CGSizeMake(1, 1)];
 
   R4Pass *pass = [[R4Pass alloc] init];
   pass.sceneBlend = self.particleBlendMode;
@@ -155,12 +160,12 @@
                                 @"instanceMVM": @(R4VertexAttributeMVM)
                                 };
   
-  pass.vertexShader = [[R4Shader alloc] initVertexShaderWithSourceString:vshParticleShaderSourceString attributeMapping:vshMapping];
-  pass.fragmentShader = [[R4Shader alloc] initFragmentShaderWithSourceString:fshParticleShaderSourceString attributeMapping:nil];
+  pass.vertexShader = [[R4ProgramManager shared] loadVertexShaderNamed:@"vshParticleShader" attributeMapping:vshMapping];
+  pass.fragmentShader = [[R4ProgramManager shared] loadFragmentShaderNamed:@"fshParticleShader" attributeMapping:nil];
   [pass program];
   
   R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];
-  self.material = [[R4Material alloc] initWithTechniques:@[technique]];
+  material = [[R4Material alloc] initWithTechniques:@[technique]];
   
   glGenVertexArraysOES(1, &particleAttributesVertexArray);
   glGenBuffers(1, &particleAttributesVertexBuffer);
@@ -192,7 +197,7 @@
   glVertexAttribPointer(R4VertexAttributeColorBlendFactor, 1, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, colorBlendFactor));
   glVertexAttribDivisorEXT(R4VertexAttributeColorBlendFactor, 1);
 
-  glBindBuffer(GL_ARRAY_BUFFER, self.particleMesh->vertexBuffer);
+  glBindBuffer(GL_ARRAY_BUFFER, particleMesh->vertexBuffer);
   
   glEnableVertexAttribArray(R4VertexAttributePositionModelSpace);
   glVertexAttribPointer(R4VertexAttributePositionModelSpace, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));
@@ -203,7 +208,7 @@
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArrayOES(0);
   
-  self.particleAttributes = malloc(maxParticeCount * sizeof(R4ParticleAttributes));
+  particleAttributes = malloc(maxParticeCount * sizeof(R4ParticleAttributes));
   
   [self resetSimulation];
 }
@@ -227,8 +232,8 @@
   GLKMatrix4 invR = GLKMatrix4Invert(self.scene.currentCamera.inversedTransform, NULL);
   GLKQuaternion q = GLKQuaternionMakeWithMatrix4(invR);
   
-  for (unsigned idx = 0; idx < self.particleCount;) {
-    R4ParticleAttributes *p = &self.particleAttributes[idx];
+  for (unsigned idx = 0; idx < particleCount;) {
+    R4ParticleAttributes *p = &particleAttributes[idx];
     p->timeToLive -= dt;
 
     if (p->timeToLive > 0.f) {
@@ -269,9 +274,9 @@
       
       idx++;
     } else {
-      self.particleCount -= 1;
-      if (idx != self.particleCount) {
-        self.particleAttributes[idx] = self.particleAttributes[self.particleCount];
+      particleCount -= 1;
+      if (idx != particleCount) {
+        particleAttributes[idx] = particleAttributes[particleCount];
       }
     }
   }
@@ -287,8 +292,8 @@
   
   GLKVector3 worldspacePosition = [self convertPoint:self.position toNode:self.scene];
   
-  for (unsigned i = 0; i < particles_to_emit && self.particleCount < maxParticeCount - 1; i++) {
-    R4ParticleAttributes *p = &self.particleAttributes[self.particleCount++];
+  for (unsigned i = 0; i < particles_to_emit && particleCount < maxParticeCount - 1; i++) {
+    R4ParticleAttributes *p = &particleAttributes[particleCount++];
     
     /* Initialise particle */
     p->timeToLive = p->lifetime = self.particleLifetime + self.particleLifetimeRange * randCGFloat(-1, 1);
@@ -327,12 +332,12 @@
 {
   glBindVertexArrayOES(particleAttributesVertexArray);
   glBindBuffer(GL_ARRAY_BUFFER, particleAttributesVertexBuffer);
-  glBufferData(GL_ARRAY_BUFFER, self.particleCount * sizeof(R4ParticleAttributes), self.particleAttributes, GL_STREAM_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, particleCount * sizeof(R4ParticleAttributes), particleAttributes, GL_STREAM_DRAW);
 }
 
 - (void)drawPass
 {
-  glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, self.particleCount);
+  glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, particleCount);
 }
 
 @end

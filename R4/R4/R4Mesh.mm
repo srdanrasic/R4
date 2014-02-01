@@ -13,7 +13,7 @@
 #import "R4Texture.h"
 #import "R4TextureUnit.h"
 #import "R4Shader.h"
-#import "R4Shaders.h"
+#import "R4ProgramManager.h"
 
 #include <fstream>
 #include <vector>
@@ -89,8 +89,8 @@ static GLfloat gPlainVertexData[48] =
     pass.sceneBlend = R4BlendModeAlpha;
     pass.depthTest = pass.depthWrite = YES;
     pass.cullFace = R4CullFaceBack;
-    pass.vertexShader = [[R4Shader alloc] initVertexShaderWithSourceString:vshPlainShaderSourceString attributeMapping:attribMap];
-    pass.fragmentShader = [[R4Shader alloc] initFragmentShaderWithSourceString:fshPlainShaderSourceString attributeMapping:nil];
+    pass.vertexShader = [[R4ProgramManager shared] loadVertexShaderNamed:@"vshPlainShader" attributeMapping:attribMap];
+    pass.fragmentShader = [[R4ProgramManager shared] loadFragmentShaderNamed:@"fshPlainShader" attributeMapping:nil];
     [pass program];
     
     R4Technique *technique = [[R4Technique alloc] initWithPasses:@[pass]];

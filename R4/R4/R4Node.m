@@ -64,7 +64,7 @@
   node.alpha = self.alpha;
   node.paused = self.paused;
   node.hidden = self.hidden;
-  node.userInteractionEnabled = node.userInteractionEnabled;
+  node.userInteractionEnabled = self.userInteractionEnabled;
   node.name = self.name;
   node.children = [[NSMutableArray alloc] initWithArray:self.children copyItems:YES];
   node.actions = [[NSMutableArray alloc] initWithArray:self.actions copyItems:YES];
@@ -342,11 +342,6 @@
     _accumulatedFrame.max = GLKVector3Maximum(_accumulatedFrame.max, bb.max);
   }
   
-  if ([self.name isEqualToString:@"stacyBase"]) {
-    NSLog(@"StacB BB: %@", NSStringFromR4Box(_accumulatedFrame));
-    NSLog(@"StacY BB: %@", NSStringFromR4Box([self childNodeWithName:@"stacy"]->_accumulatedFrame));
-  }
-  
   return _accumulatedFrame;
 }
 
@@ -463,7 +458,7 @@
     }
     
     if (intersects) {
-      NSLog(@"Possible [%@] len [%f]", node.name, distance);
+      //NSLog(@"Possible [%@] len [%f]", node.name, distance);
       node->_distanceToCamera = distance;
       [self.scene.view.responderChain addObject:node];
       
@@ -473,7 +468,7 @@
         maxLen = distance;
       }
     } else {
-      NSLog(@"Not possible [%@]", node.name);
+      //NSLog(@"Not possible [%@]", node.name);
       node->_distanceToCamera = -1;
     }
   }

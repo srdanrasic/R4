@@ -14,3 +14,11 @@ static NSString * const fshPlainShaderSourceString = @"uniform lowp sampler2D te
 
 static NSString * const vshPlainShaderSourceString = @"/* Uniforms */ uniform vec4 surface_diffuse_color; uniform mat4 model_view_projection_matrix; /* Attributes */ attribute vec4 in_position; attribute vec2 in_texcoord; /* Varyings */ varying lowp vec2 out_texcoord; varying lowp vec4 out_color; void main() {   out_texcoord = in_texcoord;   out_color = surface_diffuse_color;      gl_Position = model_view_projection_matrix * in_position; } ";
 
+#define BUILD_TIME_SHADERS_MAP @{\
+  @"fshBlinnPhongShader": fshBlinnPhongShaderSourceString,\
+  @"vshBlinnPhongShader": vshBlinnPhongShaderSourceString,\
+  @"fshParticleShader": fshParticleShaderSourceString,\
+  @"vshParticleShader": vshParticleShaderSourceString,\
+  @"fshPlainShader": fshPlainShaderSourceString,\
+  @"vshPlainShader": vshPlainShaderSourceString,\
+  @"null": @"null" }
