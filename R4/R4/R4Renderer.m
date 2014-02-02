@@ -147,7 +147,7 @@
       drawState->modelViewProjectionMatrix = GLKMatrix4Multiply(drawState->projectionMatrix, drawState->modelViewMatrix);
 
       [pass prepareToDraw:drawState];
-      [node drawPass];
+      [node draw];
     }
   }];
   

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC0C194E1837E46A00148E7B /* R4Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4Camera.m */; };
+		EC0C194E1837E46A00148E7B /* R4CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4CameraNode.m */; };
 		EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */; };
 		EC4A943E181BC2AF008B9DC4 /* R4SequenceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */; };
 		EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3961800672F00AB7FE8 /* R4Action.m */; };
@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		EC0C194C1837E46A00148E7B /* R4CameraNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4CameraNode.h; sourceTree = "<group>"; };
-		EC0C194D1837E46A00148E7B /* R4Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Camera.m; sourceTree = "<group>"; };
+		EC0C194D1837E46A00148E7B /* R4CameraNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4CameraNode.m; sourceTree = "<group>"; };
 		EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4CameraNodePrivate.h; sourceTree = "<group>"; };
 		EC0C8F8617F89D5700E8B229 /* R4ScenePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ScenePrivate.h; sourceTree = "<group>"; };
 		EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4EmitterNode.h; sourceTree = "<group>"; };
@@ -153,6 +153,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0E3AEC189E61B1005D3986 /* Custom Passes */ = {
+			isa = PBXGroup;
+			children = (
+				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
+				ECEA3B9E189D7616003DB77C /* R4PlainPass.m */,
+				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
+				ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */,
+			);
+			name = "Custom Passes";
+			sourceTree = "<group>";
+		};
 		EC5BB398180067E100AB7FE8 /* R4Action */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,10 +205,7 @@
 				ECADD13E188AD6BF004736E1 /* R4Technique.m */,
 				ECADD136188AD262004736E1 /* R4Pass.h */,
 				ECADD137188AD262004736E1 /* R4Pass.m */,
-				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
-				ECEA3B9E189D7616003DB77C /* R4PlainPass.m */,
-				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
-				ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */,
+				EC0E3AEC189E61B1005D3986 /* Custom Passes */,
 				ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */,
 				ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */,
 				ECC58D5717F866A100BBAD28 /* R4Renderer.h */,
@@ -277,7 +285,7 @@
 				ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */,
 				EC0C194C1837E46A00148E7B /* R4CameraNode.h */,
 				EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */,
-				EC0C194D1837E46A00148E7B /* R4Camera.m */,
+				EC0C194D1837E46A00148E7B /* R4CameraNode.m */,
 				ECC524391895507200D00510 /* R4Drawable.h */,
 				ECDE15BF188C3262008EA3A1 /* R4EntityNode.h */,
 				ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */,
@@ -388,7 +396,7 @@
 				ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */,
 				ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */,
 				ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */,
-				EC0C194E1837E46A00148E7B /* R4Camera.m in Sources */,
+				EC0C194E1837E46A00148E7B /* R4CameraNode.m in Sources */,
 				ECADD13C188AD2A2004736E1 /* R4TextureUnit.m in Sources */,
 				ECADD142188ADC31004736E1 /* R4Program.m in Sources */,
 				EC4A943E181BC2AF008B9DC4 /* R4SequenceAction.m in Sources */,

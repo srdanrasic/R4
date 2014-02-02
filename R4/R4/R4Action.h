@@ -8,6 +8,10 @@
 
 #import "R4Base.h"
 
+/*!
+ @discussion Please refer to the SKAction class reference for more info.
+ */
+
 @interface R4Action : NSObject <NSCopying>
 
 @property(nonatomic) NSTimeInterval duration;

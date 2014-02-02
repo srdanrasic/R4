@@ -11,6 +11,13 @@
 #import "R4Pass.h"
 #import "R4TextureUnit.h"
 
+/*!
+ R4Material encapsulates all information on how to render objects (ones that conform to R4Drawable protocol).
+ 
+ @discussion To be more specific, "description" on how to render something is specified by a R4Technique. Each R4Material can have more then one technique, but only one of them will be used to render a object - the optimal technique. Usually, material will have only one technique and that one will be the optimal, but you're able to specify more techniques with different levels of complexity, for example a simple one for iPhone 4 and a more complex one for iPhone 5 and later.
+ @discussion The concept of techniques is in future intended to be extended to allow different techniques for different levels of detail.
+ */
+
 @interface R4Material : NSObject
 
 @property (nonatomic, strong) NSMutableArray *techniques;

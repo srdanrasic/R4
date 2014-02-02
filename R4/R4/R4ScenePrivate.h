@@ -11,7 +11,6 @@
 @interface R4Scene ()
 
 @property (nonatomic, weak, readwrite) R4View *view;
-@property (nonatomic, strong, readwrite) R4CameraNode*currentCamera;
 
 - (void)updateParticleEmittersAtTime:(NSTimeInterval)time;
 

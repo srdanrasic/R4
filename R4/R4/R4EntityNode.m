@@ -45,7 +45,7 @@
   glBindVertexArrayOES(_mesh->vertexArray);
 }
 
-- (void)drawPass
+- (void)draw
 {
   if ((_mesh->indexBuffer != GL_INVALID_VALUE)) {
     glDrawElements(GL_TRIANGLES, _mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));

@@ -36,9 +36,8 @@ typedef std::list<R4Node *> NodeList;
 
 - (void)nodeAdded:(R4Node *)node
 {
-  NSLog(@"Node added [%@]", node.name);
-  
   if ([node.class conformsToProtocol:@protocol(R4Drawable)]) {
+    // TODO: Material sorting
     if ([node isKindOfClass:[R4EmitterNode class]]) {
       drawableList.push_back(node);
     } else {
@@ -51,7 +50,6 @@ typedef std::list<R4Node *> NodeList;
 
 - (void)nodeRemoved:(R4Node *)node
 {
-  NSLog(@"Node removed");
   if ([node.class conformsToProtocol:@protocol(R4Drawable)]) {
     drawableList.remove(node);
   } else if ([node isKindOfClass:[R4LightNode class]]) {

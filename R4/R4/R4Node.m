@@ -239,35 +239,7 @@
   [_actions removeAllObjects];
 }
 
-- (BOOL)containsPoint:(CGPoint)p
-{
-  return NO; // TODO //CGRectContainsPoint(self.calculateAccumulatedFrame, p);
-}
-
-- (R4Node *)nodeAtPoint:(CGPoint)p
-{
-  NSArray *nodes = [self nodesAtPoint:p];
-  return [nodes lastObject];
-}
-
-- (NSArray *)nodesAtPoint:(CGPoint)p
-{
-  NSMutableArray *nodes = [NSMutableArray array];
-  NSMutableArray *nodesToCheck = [_children mutableCopy];
-  
-  while (nodesToCheck.count > 0) {
-    R4Node *node = nodesToCheck.firstObject;
-    if ([node containsPoint:p]) { [nodes addObject:node]; }
-    [nodesToCheck removeObjectAtIndex:0];
-    if (node.children.count) {
-      [nodesToCheck addObjectsFromArray:node.children];
-    }
-  }
-  
-  return nodes;
-}
-
-#pragma mark -  methods
+#pragma mark - Methods
 
 - (void)setScene:(R4Scene *)scene
 {
@@ -342,21 +314,21 @@
   return _modelViewMatrix;
 }
 
-- (R4Box)calculateAccumulatedFrame
+- (R4Box)calculateAccumulatedBoundingBox
 {
   GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
   GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
 
-  _accumulatedFrame.min = GLKVector3Minimum(min, max);
-  _accumulatedFrame.max = GLKVector3Maximum(min, max);
+  _accumulatedBoundingBox.min = GLKVector3Minimum(min, max);
+  _accumulatedBoundingBox.max = GLKVector3Maximum(min, max);
   
   for (R4Node *node in self.children) {
-    R4Box bb = [node calculateAccumulatedFrame];
-    _accumulatedFrame.min = GLKVector3Minimum(_accumulatedFrame.min, bb.min);
-    _accumulatedFrame.max = GLKVector3Maximum(_accumulatedFrame.max, bb.max);
+    R4Box bb = [node calculateAccumulatedBoundingBox];
+    _accumulatedBoundingBox.min = GLKVector3Minimum(_accumulatedBoundingBox.min, bb.min);
+    _accumulatedBoundingBox.max = GLKVector3Maximum(_accumulatedBoundingBox.max, bb.max);
   }
   
-  return _accumulatedFrame;
+  return _accumulatedBoundingBox;
 }
 
 - (R4Box)boundingBox
@@ -419,6 +391,7 @@
 
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node
 {
+  // TODO Deep conversion
   if ([node.children containsObject:self]) {
     return GLKVector3Add(node.position, point);
   } else {
@@ -445,7 +418,7 @@
     }
 
     GLKVector3 invDirection = GLKVector3Make(1.f/ray.direction.x, 1.f/ray.direction.y, 1.f/ray.direction.z);
-    R4Box bb = node.calculateAccumulatedFrame;
+    R4Box bb = node.calculateAccumulatedBoundingBox;
     BOOL intersects = NO;
     CGFloat distance;
     

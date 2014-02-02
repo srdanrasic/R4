@@ -12,7 +12,7 @@
   NSMutableArray *_children;
   NSMutableArray *_actions;
   
-  R4Box _accumulatedFrame;
+  R4Box _accumulatedBoundingBox;
   BOOL _dirty;
   BOOL _visited;
   

@@ -9,6 +9,13 @@
 #import "R4Node.h"
 #import "R4Drawable.h"
 
+/*!
+ A R4EmitterNode object is a node that automatically creates and renders small particle sprites. 
+ 
+ @discussion Class is designed to provide same functionality as SpriteKit's SKEmitterNode, just in 3D space. In fact, you can instantiate R4EmitterNode object from SKEmitterNode object and all conversion to 3D space is done automatically. That means that you can use Xcode's Particle editor to create particle effects, save them in .sks files and instantiate R4EmitterNode object from them.
+ 
+ @discussion During conversion, emitter's position, speed and acceleration values are divided by 100.0 to compensate for differences between spaces. particlePosition.z and zAcceleration are set to 0. emissionAngle is converted to emissionAxis - a vector that defines emission direction - vector (1, 0, 0) rotated by emissionAngle around positive z-axis.
+ */
 @interface R4EmitterNode : R4Node <R4Drawable>
 
 @property (nonatomic, retain) SKTexture *particleTexture;

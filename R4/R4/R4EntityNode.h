@@ -11,6 +11,9 @@
 
 @class R4Mesh, R4Material;
 
+/*!
+ Entity node represents a drawable Mesh - an objects that encapsulates some drawable geometry.
+ */
 @interface R4EntityNode : R4Node <R4Drawable>
 
 @property (nonatomic, strong) R4Mesh *mesh;

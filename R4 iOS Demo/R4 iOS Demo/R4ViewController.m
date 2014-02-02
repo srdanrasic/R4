@@ -154,25 +154,18 @@
   [self addChild:mp];
   
   R4EmitterNode *stars = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"StarParticle"];
-  stars.position = GLKVector3Make(0, -4, 0);
+  stars.position = GLKVector3Make(0, 4, 0);
   stars.particlePositionRange = GLKVector3Make(10, 0, 10);
   stars.name = @"stars";
   [stars advanceSimulationTime:8];
-  //[self addChild:stars];
+  [self addChild:stars];
   
   self.timeOfLastUpdate = CACurrentMediaTime();
 }
 
 - (void)update:(NSTimeInterval)currentTime
 {
-  NSTimeInterval elapsedTime = currentTime - self.timeOfLastUpdate;
-  
-  //[self childNodeWithName:@"stacyBase"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"stacyBase"].orientation, GLKQuaternionMakeWithAngleAndAxis(elapsedTime/2.0, 0, 1, 0));
-  //[self childNodeWithName:@"base"].orientation = GLKQuaternionMultiply([self childNodeWithName:@"base"].orientation, GLKQuaternionMakeWithAngleAndAxis(2*elapsedTime, 0, 1, 0));
-  
   self.currentCamera.position = GLKVector3Make(-sin(currentTime) * 5, 2, cos(currentTime) * 5);
-
-  self.timeOfLastUpdate = currentTime;
 }
 
 @end

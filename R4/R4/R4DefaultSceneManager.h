@@ -9,6 +9,10 @@
 #import "R4Base.h"
 #import "R4SceneManager.h"
 
+/*!
+ Default Scene Manager. 
+ TODO: Sorts nodes by their Material.
+ */
 @interface R4DefaultSceneManager : NSObject <R4SceneManager>
 
 - (instancetype)initWithScene:(R4Scene *)scene;

@@ -318,7 +318,7 @@
   glBufferData(GL_ARRAY_BUFFER, particleCount * sizeof(R4ParticleAttributes), particleAttributes, GL_STREAM_DRAW);
 }
 
-- (void)drawPass
+- (void)draw
 {
   glDrawArraysInstancedEXT(GL_TRIANGLES, 0, 6, particleCount);
 }

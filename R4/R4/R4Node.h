@@ -8,17 +8,43 @@
 
 #import "R4Base.h"
 
-@class R4View, R4Action, R4Scene, R4Texture, R4PhysicsBody;
+@class R4View, R4Action, R4Scene, R4Texture;
 
-@interface R4Node : UIResponder <NSCopying, NSCoding>
+/*!
+ The R4Node class is the fundamental building block of most scene content. All visual elements are drawn using predefined R4Node subclasses.
+ 
+ @discussion For more info and to learn more about non-documented items refer to the SKNode class reference.
+ */
+@interface R4Node : UIResponder <NSCopying>
 
 + (instancetype)node;
 
-@property (nonatomic, readonly) CGRect frame; // bounding box after projection
+/*!
+ Bounding box of the node in the object space.
+ 
+ @discussion Unless overriden by subclass, this method returns R4BoxZero.
+ */
 @property (nonatomic, readonly) R4Box boundingBox;
 
+/*!
+ The position of the node in its parent's coordinate system.
+ 
+ @discussion The default value is (0.0, 0.0, 0.0).
+ */
 @property (nonatomic) GLKVector3 position;
+
+/*!
+ The orientation of the node specified as a quaternion.
+ 
+ @discussion The default value is GLKQuaternionIdentity. Use GLKQuaternionMake family of methods to create new orientation.
+ */
 @property (nonatomic) GLKQuaternion orientation;
+
+/*!
+ The orientation of the node specified as GLKVector3.
+ 
+ @discussion The default value is (1.0, 1.0, 1.0), indicating no scaling is done in any direction.
+ */
 @property (nonatomic) GLKVector3 scale;
 
 @property (nonatomic) CGFloat speed;
@@ -35,9 +61,17 @@
 @property (nonatomic, readonly) R4Scene* scene;
 @property (nonatomic, strong) NSMutableDictionary *userData;
 
-- (R4Box)calculateAccumulatedFrame;
+/*!
+ Calculates a bounding box in the parent’s coordinate system that contains the content of the node and all of its descendants.
+ 
+ @discussion The bounding box takes into the account the cumulative effect of the scale and orientation properties of each node in the subtree.
+ */
+- (R4Box)calculateAccumulatedBoundingBox;
 
-- (void)setUniformScale:(CGFloat)scale; // setScale
+/*!
+ Sets same scale value for all three directions.
+ */
+- (void)setUniformScale:(CGFloat)scale;
 
 - (void)addChild:(R4Node *)node;
 - (void)insertChild:(R4Node *)node atIndex:(NSInteger)index;
@@ -62,14 +96,16 @@
 - (void)removeActionForKey:(NSString *)key;
 - (void)removeAllActions;
 
-- (BOOL)containsPoint:(CGPoint)p;
-- (R4Node *)nodeAtPoint:(CGPoint)p;
-- (NSArray *)nodesAtPoint:(CGPoint)p;
-
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
 
 /* SpriteKit methods that are not implemented */
 
+//- (BOOL)containsPoint:(CGPoint)p;
+//- (R4Node *)nodeAtPoint:(CGPoint)p;
+//- (NSArray *)nodesAtPoint:(CGPoint)p;
+
+
+//@property (nonatomic, readonly) CGRect frame;
 //@property (nonatomic) CGFloat zPosition;
 //@property (nonatomic, strong) R4PhysicsBody *physicsBody;
 //- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;

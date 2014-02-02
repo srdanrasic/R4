@@ -21,8 +21,6 @@
 @property (nonatomic, assign) GLfloat      linearAttenuation;     // 0.0
 @property (nonatomic, assign) GLfloat      quadraticAttenuation;  // 0.0
 
-//@property (nonatomic, strong, readonly) NSMutableSet *affectedNodes;  // all if empty
-
 + (instancetype)pointLightAtPosition:(GLKVector3)position;
 + (instancetype)directionalLightWithDirection:(GLKVector3)direction;
 + (instancetype)spotLightAtPosition:(GLKVector3)position direction:(GLKVector3)direction cutOff:(CGFloat)cutOff;

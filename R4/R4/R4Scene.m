@@ -56,13 +56,7 @@
   return GLKVector3Make(0, 0, 0);
 }
 
-- (CGRect)frame
-{
-  return CGRectMake(-self.size.width * self.anchorPoint.x, -self.size.height * self.anchorPoint.y,
-                    self.size.width, self.size.height);
-}
-
-- (R4Box)calculateAccumulatedFrame
+- (R4Box)calculateAccumulatedBoundingBox
 {
   return R4BoxZero;
 }

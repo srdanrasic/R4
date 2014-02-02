@@ -10,6 +10,13 @@
 
 @class R4Pass;
 
+/*!
+ R4Technique describes how to render a R4Drawable. It does that by specifiying one or more passes that draw an object.
+ 
+ @discussion Rendering is done by the R4Pass object. You can create more than one pass to achieve complex effects.
+ 
+ @discussion There can be more techniques defined in one R4Material, but only the optimal one will be used for rendering. To determine which one is optimal for current device, class inspects technique's propertis that specify required device capabilities, like device or CPU model.
+ */
 @interface R4Technique : NSObject
 
 @property (nonatomic, assign) R4DeviceCPU minRequiredCPU;
