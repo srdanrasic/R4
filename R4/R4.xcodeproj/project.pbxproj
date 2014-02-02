@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EC87C4A5189ECE7B00487304 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EC87C4A8189ECE7B00487304 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				EC87C4A9189ECEAC00487304 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		EC0C194E1837E46A00148E7B /* R4CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4CameraNode.m */; };
 		EC4A943B181BB41B008B9DC4 /* R4MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */; };
@@ -78,6 +92,8 @@
 		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
 		EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNodePrivate.h; sourceTree = "<group>"; };
 		EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4NodePrivate.h; sourceTree = "<group>"; };
+		EC87C49E189ECCC800487304 /* README.md */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
+		EC87C49F189ECCDA00487304 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ProgramManager.h; sourceTree = "<group>"; };
 		EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ProgramManager.m; sourceTree = "<group>"; };
 		ECA3D12D186B96A500D92087 /* R4BuildTimeShaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4BuildTimeShaders.h; sourceTree = "<group>"; };
@@ -239,6 +255,8 @@
 		ECC58D0317F8505600BBAD28 = {
 			isa = PBXGroup;
 			children = (
+				EC87C49F189ECCDA00487304 /* LICENSE */,
+				EC87C49E189ECCC800487304 /* README.md */,
 				ECC58D1117F8505600BBAD28 /* R4 */,
 				ECC58D0E17F8505600BBAD28 /* Frameworks */,
 				ECC58D0D17F8505600BBAD28 /* Products */,
@@ -355,11 +373,25 @@
 			projectRoot = "";
 			targets = (
 				ECC58D0B17F8505600BBAD28 /* R4 */,
+				EC87C4A5189ECE7B00487304 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		EC87C4A9189ECEAC00487304 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Srdan Rasic\" \\\n--company-id \"com.srdanrasic\" \\\n--output \"~/Projects/Help/${PROJECT_NAME}\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n--ignore \"*Private.h\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--index-desc \"${PROJECT_DIR}/README.md\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"\n\nrm -rf ${PROJECT_DIR}/../docs\nmv ~/Projects/Help/${PROJECT_NAME}/html ${PROJECT_DIR}/../docs";
+		};
 		ECA9C2DF186B97BA0073A61B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +447,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		EC87C4A6189ECE7B00487304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC87C4A7189ECE7B00487304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		ECC58D2D17F8505700BBAD28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -522,6 +568,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC87C4A8189ECE7B00487304 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC87C4A6189ECE7B00487304 /* Debug */,
+				EC87C4A7189ECE7B00487304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		ECC58D0717F8505600BBAD28 /* Build configuration list for PBXProject "R4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

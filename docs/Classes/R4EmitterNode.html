@@ -1,0 +1,1283 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>R4EmitterNode Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">R4 </a></h1>
+				<a id="developerHome" href="../index.html">Srdan Rasic</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">R4EmitterNode Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/emissionAngleRange">&nbsp;&nbsp;&nbsp;&nbsp;emissionAngleRange</option>
+	
+	<option value="//api/name/emissionAxis">&nbsp;&nbsp;&nbsp;&nbsp;emissionAxis</option>
+	
+	<option value="//api/name/numParticlesToEmit">&nbsp;&nbsp;&nbsp;&nbsp;numParticlesToEmit</option>
+	
+	<option value="//api/name/particleAlpha">&nbsp;&nbsp;&nbsp;&nbsp;particleAlpha</option>
+	
+	<option value="//api/name/particleAlphaRange">&nbsp;&nbsp;&nbsp;&nbsp;particleAlphaRange</option>
+	
+	<option value="//api/name/particleAlphaSequence">&nbsp;&nbsp;&nbsp;&nbsp;particleAlphaSequence</option>
+	
+	<option value="//api/name/particleAlphaSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleAlphaSpeed</option>
+	
+	<option value="//api/name/particleBirthRate">&nbsp;&nbsp;&nbsp;&nbsp;particleBirthRate</option>
+	
+	<option value="//api/name/particleBlendMode">&nbsp;&nbsp;&nbsp;&nbsp;particleBlendMode</option>
+	
+	<option value="//api/name/particleColor">&nbsp;&nbsp;&nbsp;&nbsp;particleColor</option>
+	
+	<option value="//api/name/particleColorAlphaRange">&nbsp;&nbsp;&nbsp;&nbsp;particleColorAlphaRange</option>
+	
+	<option value="//api/name/particleColorAlphaSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleColorAlphaSpeed</option>
+	
+	<option value="//api/name/particleColorBlendFactor">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlendFactor</option>
+	
+	<option value="//api/name/particleColorBlendFactorRange">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlendFactorRange</option>
+	
+	<option value="//api/name/particleColorBlendFactorSequence">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlendFactorSequence</option>
+	
+	<option value="//api/name/particleColorBlendFactorSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlendFactorSpeed</option>
+	
+	<option value="//api/name/particleColorBlueRange">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlueRange</option>
+	
+	<option value="//api/name/particleColorBlueSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleColorBlueSpeed</option>
+	
+	<option value="//api/name/particleColorGreenRange">&nbsp;&nbsp;&nbsp;&nbsp;particleColorGreenRange</option>
+	
+	<option value="//api/name/particleColorGreenSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleColorGreenSpeed</option>
+	
+	<option value="//api/name/particleColorRedRange">&nbsp;&nbsp;&nbsp;&nbsp;particleColorRedRange</option>
+	
+	<option value="//api/name/particleColorRedSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleColorRedSpeed</option>
+	
+	<option value="//api/name/particleColorSequence">&nbsp;&nbsp;&nbsp;&nbsp;particleColorSequence</option>
+	
+	<option value="//api/name/particleLifetime">&nbsp;&nbsp;&nbsp;&nbsp;particleLifetime</option>
+	
+	<option value="//api/name/particleLifetimeRange">&nbsp;&nbsp;&nbsp;&nbsp;particleLifetimeRange</option>
+	
+	<option value="//api/name/particlePosition">&nbsp;&nbsp;&nbsp;&nbsp;particlePosition</option>
+	
+	<option value="//api/name/particlePositionRange">&nbsp;&nbsp;&nbsp;&nbsp;particlePositionRange</option>
+	
+	<option value="//api/name/particleRotation">&nbsp;&nbsp;&nbsp;&nbsp;particleRotation</option>
+	
+	<option value="//api/name/particleRotationAxis">&nbsp;&nbsp;&nbsp;&nbsp;particleRotationAxis</option>
+	
+	<option value="//api/name/particleRotationAxisRange">&nbsp;&nbsp;&nbsp;&nbsp;particleRotationAxisRange</option>
+	
+	<option value="//api/name/particleRotationRange">&nbsp;&nbsp;&nbsp;&nbsp;particleRotationRange</option>
+	
+	<option value="//api/name/particleRotationSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleRotationSpeed</option>
+	
+	<option value="//api/name/particleScale">&nbsp;&nbsp;&nbsp;&nbsp;particleScale</option>
+	
+	<option value="//api/name/particleScaleRange">&nbsp;&nbsp;&nbsp;&nbsp;particleScaleRange</option>
+	
+	<option value="//api/name/particleScaleSequence">&nbsp;&nbsp;&nbsp;&nbsp;particleScaleSequence</option>
+	
+	<option value="//api/name/particleScaleSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleScaleSpeed</option>
+	
+	<option value="//api/name/particleSize">&nbsp;&nbsp;&nbsp;&nbsp;particleSize</option>
+	
+	<option value="//api/name/particleSpeed">&nbsp;&nbsp;&nbsp;&nbsp;particleSpeed</option>
+	
+	<option value="//api/name/particleSpeedRange">&nbsp;&nbsp;&nbsp;&nbsp;particleSpeedRange</option>
+	
+	<option value="//api/name/particleTexture">&nbsp;&nbsp;&nbsp;&nbsp;particleTexture</option>
+	
+	<option value="//api/name/xAcceleration">&nbsp;&nbsp;&nbsp;&nbsp;xAcceleration</option>
+	
+	<option value="//api/name/yAcceleration">&nbsp;&nbsp;&nbsp;&nbsp;yAcceleration</option>
+	
+	<option value="//api/name/zAcceleration">&nbsp;&nbsp;&nbsp;&nbsp;zAcceleration</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/advanceSimulationTime:">&nbsp;&nbsp;&nbsp;&nbsp;- advanceSimulationTime:</option>
+	
+	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
+	
+	<option value="//api/name/initWithSKEmitterNode:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSKEmitterNode:</option>
+	
+	<option value="//api/name/initWithSKEmitterSKSFileNamed:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSKEmitterSKSFileNamed:</option>
+	
+	<option value="//api/name/resetSimulation">&nbsp;&nbsp;&nbsp;&nbsp;- resetSimulation</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/emissionAngleRange">emissionAngleRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/emissionAxis">emissionAxis</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numParticlesToEmit">numParticlesToEmit</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleAlpha">particleAlpha</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleAlphaRange">particleAlphaRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleAlphaSequence">particleAlphaSequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleAlphaSpeed">particleAlphaSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleBirthRate">particleBirthRate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleBlendMode">particleBlendMode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColor">particleColor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorAlphaRange">particleColorAlphaRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorAlphaSpeed">particleColorAlphaSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlendFactor">particleColorBlendFactor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlendFactorRange">particleColorBlendFactorRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlendFactorSequence">particleColorBlendFactorSequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlendFactorSpeed">particleColorBlendFactorSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlueRange">particleColorBlueRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorBlueSpeed">particleColorBlueSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorGreenRange">particleColorGreenRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorGreenSpeed">particleColorGreenSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorRedRange">particleColorRedRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorRedSpeed">particleColorRedSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleColorSequence">particleColorSequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleLifetime">particleLifetime</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleLifetimeRange">particleLifetimeRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particlePosition">particlePosition</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particlePositionRange">particlePositionRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleRotation">particleRotation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleRotationAxis">particleRotationAxis</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleRotationAxisRange">particleRotationAxisRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleRotationRange">particleRotationRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleRotationSpeed">particleRotationSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleScale">particleScale</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleScaleRange">particleScaleRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleScaleSequence">particleScaleSequence</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleScaleSpeed">particleScaleSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleSize">particleSize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleSpeed">particleSpeed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleSpeedRange">particleSpeedRange</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/particleTexture">particleTexture</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/xAcceleration">xAcceleration</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/yAcceleration">yAcceleration</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zAcceleration">zAcceleration</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/advanceSimulationTime:">advanceSimulationTime:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSKEmitterNode:">initWithSKEmitterNode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSKEmitterSKSFileNamed:">initWithSKEmitterSKSFileNamed:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetSimulation">resetSimulation</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="R4EmitterNode Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">R4EmitterNode Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/R4Node.html">R4Node</a> : UIResponder</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/R4Drawable.html">R4Drawable</a></td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">R4EmitterNode.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A R4EmitterNode object is a node that automatically creates and renders small particle sprites.</p><p>Class is designed to provide same functionality as SpriteKit&rsquo;s SKEmitterNode, just in 3D space. In fact, you can instantiate R4EmitterNode object from SKEmitterNode object and all conversion to 3D space is done automatically. That means that you can use Xcode&rsquo;s Particle editor to create particle effects, save them in .sks files and instantiate R4EmitterNode object from them.</p><p>During conversion, emitter&rsquo;s position, speed and acceleration values are divided by 100.0 to compensate for differences between spaces. <a href="#//api/name/particlePosition">particlePosition</a>.z and <a href="#//api/name/zAcceleration">zAcceleration</a> are set to 0. emissionAngle is converted to <a href="#//api/name/emissionAxis">emissionAxis</a> - a vector that defines emission direction - vector (1, 0, 0) rotated by emissionAngle around positive z-axis.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleTexture">&nbsp;&nbsp;particleTexture</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleBlendMode">&nbsp;&nbsp;particleBlendMode</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColor">&nbsp;&nbsp;particleColor</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorRedRange">&nbsp;&nbsp;particleColorRedRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorGreenRange">&nbsp;&nbsp;particleColorGreenRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlueRange">&nbsp;&nbsp;particleColorBlueRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorAlphaRange">&nbsp;&nbsp;particleColorAlphaRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorRedSpeed">&nbsp;&nbsp;particleColorRedSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorGreenSpeed">&nbsp;&nbsp;particleColorGreenSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlueSpeed">&nbsp;&nbsp;particleColorBlueSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorAlphaSpeed">&nbsp;&nbsp;particleColorAlphaSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorSequence">&nbsp;&nbsp;particleColorSequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlendFactor">&nbsp;&nbsp;particleColorBlendFactor</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlendFactorRange">&nbsp;&nbsp;particleColorBlendFactorRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlendFactorSpeed">&nbsp;&nbsp;particleColorBlendFactorSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleColorBlendFactorSequence">&nbsp;&nbsp;particleColorBlendFactorSequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particlePosition">&nbsp;&nbsp;particlePosition</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particlePositionRange">&nbsp;&nbsp;particlePositionRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleSpeed">&nbsp;&nbsp;particleSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleSpeedRange">&nbsp;&nbsp;particleSpeedRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/emissionAxis">&nbsp;&nbsp;emissionAxis</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/emissionAngleRange">&nbsp;&nbsp;emissionAngleRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/xAcceleration">&nbsp;&nbsp;xAcceleration</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/yAcceleration">&nbsp;&nbsp;yAcceleration</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/zAcceleration">&nbsp;&nbsp;zAcceleration</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleBirthRate">&nbsp;&nbsp;particleBirthRate</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numParticlesToEmit">&nbsp;&nbsp;numParticlesToEmit</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleLifetime">&nbsp;&nbsp;particleLifetime</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleLifetimeRange">&nbsp;&nbsp;particleLifetimeRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleRotation">&nbsp;&nbsp;particleRotation</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleRotationAxis">&nbsp;&nbsp;particleRotationAxis</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleRotationRange">&nbsp;&nbsp;particleRotationRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleRotationAxisRange">&nbsp;&nbsp;particleRotationAxisRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleRotationSpeed">&nbsp;&nbsp;particleRotationSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleSize">&nbsp;&nbsp;particleSize</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleScale">&nbsp;&nbsp;particleScale</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleScaleRange">&nbsp;&nbsp;particleScaleRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleScaleSpeed">&nbsp;&nbsp;particleScaleSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleScaleSequence">&nbsp;&nbsp;particleScaleSequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleAlpha">&nbsp;&nbsp;particleAlpha</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleAlphaRange">&nbsp;&nbsp;particleAlphaRange</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleAlphaSpeed">&nbsp;&nbsp;particleAlphaSpeed</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/particleAlphaSequence">&nbsp;&nbsp;particleAlphaSequence</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithSKEmitterNode:">&ndash;&nbsp;initWithSKEmitterNode:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithSKEmitterSKSFileNamed:">&ndash;&nbsp;initWithSKEmitterSKSFileNamed:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/advanceSimulationTime:">&ndash;&nbsp;advanceSimulationTime:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resetSimulation">&ndash;&nbsp;resetSimulation</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/emissionAngleRange" title="emissionAngleRange"></a>
+	<h3 class="subsubtitle method-title">emissionAngleRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 emissionAngleRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/emissionAxis" title="emissionAxis"></a>
+	<h3 class="subsubtitle method-title">emissionAxis</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 emissionAxis</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numParticlesToEmit" title="numParticlesToEmit"></a>
+	<h3 class="subsubtitle method-title">numParticlesToEmit</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger numParticlesToEmit</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleAlpha" title="particleAlpha"></a>
+	<h3 class="subsubtitle method-title">particleAlpha</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleAlpha</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleAlphaRange" title="particleAlphaRange"></a>
+	<h3 class="subsubtitle method-title">particleAlphaRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleAlphaRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleAlphaSequence" title="particleAlphaSequence"></a>
+	<h3 class="subsubtitle method-title">particleAlphaSequence</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) SKKeyframeSequence *particleAlphaSequence</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleAlphaSpeed" title="particleAlphaSpeed"></a>
+	<h3 class="subsubtitle method-title">particleAlphaSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleAlphaSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleBirthRate" title="particleBirthRate"></a>
+	<h3 class="subsubtitle method-title">particleBirthRate</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleBirthRate</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleBlendMode" title="particleBlendMode"></a>
+	<h3 class="subsubtitle method-title">particleBlendMode</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) R4BlendMode particleBlendMode</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColor" title="particleColor"></a>
+	<h3 class="subsubtitle method-title">particleColor</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIColor *particleColor</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorAlphaRange" title="particleColorAlphaRange"></a>
+	<h3 class="subsubtitle method-title">particleColorAlphaRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorAlphaRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorAlphaSpeed" title="particleColorAlphaSpeed"></a>
+	<h3 class="subsubtitle method-title">particleColorAlphaSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorAlphaSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlendFactor" title="particleColorBlendFactor"></a>
+	<h3 class="subsubtitle method-title">particleColorBlendFactor</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorBlendFactor</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlendFactorRange" title="particleColorBlendFactorRange"></a>
+	<h3 class="subsubtitle method-title">particleColorBlendFactorRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorBlendFactorRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlendFactorSequence" title="particleColorBlendFactorSequence"></a>
+	<h3 class="subsubtitle method-title">particleColorBlendFactorSequence</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) SKKeyframeSequence *particleColorBlendFactorSequence</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlendFactorSpeed" title="particleColorBlendFactorSpeed"></a>
+	<h3 class="subsubtitle method-title">particleColorBlendFactorSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorBlendFactorSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlueRange" title="particleColorBlueRange"></a>
+	<h3 class="subsubtitle method-title">particleColorBlueRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorBlueRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorBlueSpeed" title="particleColorBlueSpeed"></a>
+	<h3 class="subsubtitle method-title">particleColorBlueSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorBlueSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorGreenRange" title="particleColorGreenRange"></a>
+	<h3 class="subsubtitle method-title">particleColorGreenRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorGreenRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorGreenSpeed" title="particleColorGreenSpeed"></a>
+	<h3 class="subsubtitle method-title">particleColorGreenSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorGreenSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorRedRange" title="particleColorRedRange"></a>
+	<h3 class="subsubtitle method-title">particleColorRedRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorRedRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorRedSpeed" title="particleColorRedSpeed"></a>
+	<h3 class="subsubtitle method-title">particleColorRedSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleColorRedSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleColorSequence" title="particleColorSequence"></a>
+	<h3 class="subsubtitle method-title">particleColorSequence</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) SKKeyframeSequence *particleColorSequence</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleLifetime" title="particleLifetime"></a>
+	<h3 class="subsubtitle method-title">particleLifetime</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleLifetime</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleLifetimeRange" title="particleLifetimeRange"></a>
+	<h3 class="subsubtitle method-title">particleLifetimeRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleLifetimeRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particlePosition" title="particlePosition"></a>
+	<h3 class="subsubtitle method-title">particlePosition</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 particlePosition</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particlePositionRange" title="particlePositionRange"></a>
+	<h3 class="subsubtitle method-title">particlePositionRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 particlePositionRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleRotation" title="particleRotation"></a>
+	<h3 class="subsubtitle method-title">particleRotation</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleRotation</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleRotationAxis" title="particleRotationAxis"></a>
+	<h3 class="subsubtitle method-title">particleRotationAxis</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 particleRotationAxis</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleRotationAxisRange" title="particleRotationAxisRange"></a>
+	<h3 class="subsubtitle method-title">particleRotationAxisRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) GLKVector3 particleRotationAxisRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleRotationRange" title="particleRotationRange"></a>
+	<h3 class="subsubtitle method-title">particleRotationRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleRotationRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleRotationSpeed" title="particleRotationSpeed"></a>
+	<h3 class="subsubtitle method-title">particleRotationSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleRotationSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleScale" title="particleScale"></a>
+	<h3 class="subsubtitle method-title">particleScale</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleScale</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleScaleRange" title="particleScaleRange"></a>
+	<h3 class="subsubtitle method-title">particleScaleRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleScaleRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleScaleSequence" title="particleScaleSequence"></a>
+	<h3 class="subsubtitle method-title">particleScaleSequence</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) SKKeyframeSequence *particleScaleSequence</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleScaleSpeed" title="particleScaleSpeed"></a>
+	<h3 class="subsubtitle method-title">particleScaleSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleScaleSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleSize" title="particleSize"></a>
+	<h3 class="subsubtitle method-title">particleSize</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGSize particleSize</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleSpeed" title="particleSpeed"></a>
+	<h3 class="subsubtitle method-title">particleSpeed</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleSpeed</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleSpeedRange" title="particleSpeedRange"></a>
+	<h3 class="subsubtitle method-title">particleSpeedRange</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat particleSpeedRange</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/particleTexture" title="particleTexture"></a>
+	<h3 class="subsubtitle method-title">particleTexture</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) SKTexture *particleTexture</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/xAcceleration" title="xAcceleration"></a>
+	<h3 class="subsubtitle method-title">xAcceleration</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat xAcceleration</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/yAcceleration" title="yAcceleration"></a>
+	<h3 class="subsubtitle method-title">yAcceleration</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat yAcceleration</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/zAcceleration" title="zAcceleration"></a>
+	<h3 class="subsubtitle method-title">zAcceleration</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat zAcceleration</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/advanceSimulationTime:" title="advanceSimulationTime:"></a>
+	<h3 class="subsubtitle method-title">advanceSimulationTime:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)advanceSimulationTime:(NSTimeInterval)<em>sec</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="subsubtitle method-title">init</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithSKEmitterNode:" title="initWithSKEmitterNode:"></a>
+	<h3 class="subsubtitle method-title">initWithSKEmitterNode:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithSKEmitterNode:(SKEmitterNode *)<em>skEmitterNode</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithSKEmitterSKSFileNamed:" title="initWithSKEmitterSKSFileNamed:"></a>
+	<h3 class="subsubtitle method-title">initWithSKEmitterSKSFileNamed:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithSKEmitterSKSFileNamed:(NSString *)<em>filename</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resetSimulation" title="resetSimulation"></a>
+	<h3 class="subsubtitle method-title">resetSimulation</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)resetSimulation</code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-02)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
