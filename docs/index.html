@@ -34,15 +34,57 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>R4: A SpriteKit in 3D</h1>
+						<h2>R4: A SpriteKit in 3D</h2>
 
-<p>R4 is a 3D graphics rendering and animation libray based on Apple&rsquo;s SpriteKit Framework. Goal of the library is to ease creation of 3D games and applications by providing an infrastructure whose interface resembles interface of the SpriteKit. Someone who is familiar with SpriteKit shouldn&rsquo;t have any problems working with this libaray. Concepts that apply to SpriteKit also apply to R4, just with additional space dimension.</p>
+<p>R4 /rɑː/ is a 3D graphics rendering and animation library based on Apple&rsquo;s SpriteKit Framework. Goal of the library is to ease creation of 3D games and applications by providing an infrastructure whose interface resembles interface of the SpriteKit. Someone who is familiar with SpriteKit shouldn&rsquo;t have any problems working with this library. Concepts that apply to SpriteKit also apply to R4, just with additional space dimension.</p>
 
-<p>The library is in an early phase of the development and lacks some of the SpriteKit&rsquo;s counterparts, most notably physical subsystem, but it&rsquo;s usable for the creation of a simple 3D scenes. It provides scene graph infrastructure with drawable nodes like entities and particle emitters, non-drawable nodes like cameras and lights, and scene managers to organize and improve rendering process.</p>
+<p>The library is in an early phase of the development and lacks some of the SpriteKit&rsquo;s counterparts, most notably physical subsystem, but it&rsquo;s usable for the creation of a simple 3D scenes. It provides scene graph infrastructure with drawable nodes like entities and particle emitters, non-drawable nodes like cameras and lights, and scene managers to organize and improve rendering process. Scene nodes are responder objects and can handle touch events defined by the UIResponder class, just like SKNodes.</p>
 
-<h1>Getting started</h1>
+<p>R4&rsquo;s rendering system is designed to allow easy extension. Main renderer handles basic viewport configuration, frame buffer management and does scene traversal with a help from the scene manager, but forwards actual drawing responsibility to more extendable and configurable components - materials, techniques and passes. A material encapsulates all information on how to render an object, including all possible ways to do it. A technique describes a way to render an object. It does that by specifying one or more passes that perform rendering. Individual passes do actual rendering using shaders and OpenGL framework.</p>
 
-<p>fsd</p>
+<p>To learn more about R4 continue reading classes' reference pages listed below. If you&rsquo;re new to the game development consider reading Apple&rsquo;s <a href="https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Introduction/Introduction.html">Sprite Kit Programming Guide</a>. It provides great starting point and most of the concepts described there apply to R4.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>SpriteKit based design.</li>
+<li><strong>A node tree</strong> based representation of the scene content. See <a href="Classes/R4Node.html">R4Node</a> and <a href="Classes/R4Scene.html">R4Scene</a> for more info.</li>
+<li>The nodes are <strong>responder objects</strong> - they can receive touch events. See <a href="Classes/R4Node.html">R4Node</a> for more info.</li>
+<li>Support for <strong>action</strong> based animations and logic. See <a href="Classes/R4Action.html">R4Action</a> for more info.</li>
+<li><strong>Particle emitters</strong> compatible with Xcode particle editor. See <a href="Classes/R4EmitterNode.html">R4EmitterNode</a> for more info.</li>
+<li><strong>OBJ mesh file loader</strong> for files that contain one polygon group and one texture. See <a href="Classes/R4Mesh.html">R4Mesh</a> for more info.</li>
+<li><strong>User-extendable rendering system</strong> for custom effects. See <a href="Classes/R4Material.html">R4Material</a>, <a href="Classes/R4Technique.html">R4Technique</a> and <a href="Classes/R4Pass.html">R4Pass</a> for more info.</li>
+</ul>
+
+
+<h1>Planned or in progress</h1>
+
+<ul>
+<li>Full NSCopying and NSCoding compliance.</li>
+<li>Support for more 3D file formats and extended OBJ file loader.</li>
+<li>Extended collection of <a href="Classes/R4Action.html">R4Action</a> classes.</li>
+<li>Scene and camera transition support based on SKTransition class.</li>
+<li>More out-of-box materials and shaders.</li>
+<li>Basic physical subsystem.</li>
+<li>Skeletal animation.</li>
+</ul>
+
+
+<h2>Getting started</h2>
+
+<p>TODO</p>
+
+<h2>Contribute</h2>
+
+<p>R4 needs your help to make it better. If you find it useful, consider forking it on <a href="https://github.com/srdanrasic/R4">GitHub</a> and doing improvements. I&rsquo;ll be happy to accept contributions - were they either extensions or improvements of the current codebase. If you do find yourself contributing, please follow these few guidelines:</p>
+
+<ul>
+<li>When working on existing file use same code style that&rsquo;s already used in that file. Although I&rsquo;d prefer, I don&rsquo;t mind different styles in different files. Per file consistency is more important.</li>
+<li>Be sure to update the documentation accordingly to changes you&rsquo;ve made. Especially if something has been changed. Build the Documentation target to recompile it with <a href="http://gentlebytes.com/appledoc/">appledoc</a>.</li>
+<li>Name headers that are used only internally like *Private.h to hide them from users and exclude from the documentation.</li>
+<li>Use properties to define public interfaces. Use ivars for performance critical code.</li>
+</ul>
+
 						
 						
 					</div>
@@ -172,7 +214,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-02)</span><br />
+						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-03)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

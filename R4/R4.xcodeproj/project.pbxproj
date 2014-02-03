@@ -215,8 +215,8 @@
 		ECADD139188AD273004736E1 /* Rendering System */ = {
 			isa = PBXGroup;
 			children = (
-				ECADD133188AD23E004736E1 /* R4Material.h */,
 				ECADD134188AD23E004736E1 /* R4Material.m */,
+				ECADD133188AD23E004736E1 /* R4Material.h */,
 				ECADD13D188AD6BF004736E1 /* R4Technique.h */,
 				ECADD13E188AD6BF004736E1 /* R4Technique.m */,
 				ECADD136188AD262004736E1 /* R4Pass.h */,
@@ -575,6 +575,7 @@
 				EC87C4A7189ECE7B00487304 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ECC58D0717F8505600BBAD28 /* Build configuration list for PBXProject "R4" */ = {
 			isa = XCConfigurationList;
