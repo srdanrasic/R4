@@ -51,6 +51,7 @@ static bool compare_emitters(const R4EmitterNode *first, const R4EmitterNode *se
     // TODO: Material sorting
     if ([node isKindOfClass:[R4EmitterNode class]]) {
       emitterList.push_back(node);
+      emitterList.sort(compare_emitters);
     } else {
       drawableList.push_front(node);
     }
@@ -80,7 +81,6 @@ static bool compare_emitters(const R4EmitterNode *first, const R4EmitterNode *se
     block((R4Node<R4Drawable> *)node);
   }
   
-  emitterList.sort(compare_emitters);
   for (NodeList::const_iterator iter = emitterList.begin(); iter != emitterList.end(); ++iter) {
     R4Node *node = *iter;
     // TODO: Basic frustum culling
