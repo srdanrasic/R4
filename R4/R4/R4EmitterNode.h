@@ -14,15 +14,15 @@
  
  @discussion Class is designed to provide same functionality as SpriteKit's SKEmitterNode, just in 3D space. In fact, you can instantiate R4EmitterNode object from SKEmitterNode object and all conversion to 3D space is done automatically. That means that you can use Xcode's Particle editor to create particle effects, save them in .sks files and instantiate R4EmitterNode object from them.
  
- @discussion During conversion, emitter's position, speed and acceleration values are divided by 100.0 to compensate for differences between spaces. particlePosition.z and zAcceleration are set to 0. emissionAngle is converted to emissionAxis - a vector that defines emission direction - vector (1, 0, 0) rotated by emissionAngle around positive z-axis.
+ @discussion During conversion, emitter's position, speed and acceleration values are divided by 100.0 to compensate for differences between spaces. particlePosition.z and zAcceleration are set to 0. emissionAngle is converted to emissionAxis - a vector that defines emission direction - vector (1, 0, 0) rotated by emissionAngle around positive z-axis. particleTexture is not set and you have to set it manualy to some instance of R4Texture class.
  */
 @interface R4EmitterNode : R4Node <R4Drawable>
 
-@property (nonatomic, retain) SKTexture *particleTexture;
+@property (nonatomic, strong) R4Texture *particleTexture;
 
 @property (nonatomic) R4BlendMode particleBlendMode;
 
-@property (nonatomic, retain) UIColor *particleColor;
+@property (nonatomic, strong) UIColor *particleColor;
 
 @property (nonatomic) CGFloat particleColorRedRange;
 @property (nonatomic) CGFloat particleColorGreenRange;
@@ -34,13 +34,13 @@
 @property (nonatomic) CGFloat particleColorBlueSpeed;
 @property (nonatomic) CGFloat particleColorAlphaSpeed;
 
-@property (nonatomic, retain) SKKeyframeSequence *particleColorSequence;
+@property (nonatomic, strong) SKKeyframeSequence *particleColorSequence;
 
 @property (nonatomic) CGFloat particleColorBlendFactor;
 @property (nonatomic) CGFloat particleColorBlendFactorRange;
 @property (nonatomic) CGFloat particleColorBlendFactorSpeed;
 
-@property (nonatomic, retain) SKKeyframeSequence *particleColorBlendFactorSequence;
+@property (nonatomic, strong) SKKeyframeSequence *particleColorBlendFactorSequence;
 
 @property (nonatomic) GLKVector3 particlePosition;
 @property (nonatomic) GLKVector3 particlePositionRange;
@@ -75,12 +75,12 @@
 @property (nonatomic) CGFloat particleScaleRange;
 @property (nonatomic) CGFloat particleScaleSpeed;
 
-@property (nonatomic, retain) SKKeyframeSequence *particleScaleSequence;
+@property (nonatomic, strong) SKKeyframeSequence *particleScaleSequence;
 
 @property (nonatomic) CGFloat particleAlpha;
 @property (nonatomic) CGFloat particleAlphaRange;
 @property (nonatomic) CGFloat particleAlphaSpeed;
-@property (nonatomic, retain) SKKeyframeSequence *particleAlphaSequence;
+@property (nonatomic, strong) SKKeyframeSequence *particleAlphaSequence;
 
 //@property (nonatomic, copy) SKAction *particleAction;
 //@property (nonatomic, weak) SKNode *targetNode;

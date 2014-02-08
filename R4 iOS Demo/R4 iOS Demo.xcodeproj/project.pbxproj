@@ -18,6 +18,7 @@
 		EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */; };
 		EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31F11879F62E002A6734 /* StarParticle.sks */; };
 		EC83902D18A691A000497E22 /* R4DemoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83902C18A691A000497E22 /* R4DemoScene.m */; };
+		EC83902F18A6B2EB00497E22 /* flame.png in Resources */ = {isa = PBXBuildFile; fileRef = EC83902E18A6B2EB00497E22 /* flame.png */; };
 		EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868CF187B0999000583BC /* AudioToolbox.framework */; };
 		EC8868D3187B09C1000583BC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868D2187B09C1000583BC /* CoreAudio.framework */; };
 		ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */; };
@@ -63,6 +64,7 @@
 		EC3C31F11879F62E002A6734 /* StarParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = StarParticle.sks; path = Resources/StarParticle.sks; sourceTree = "<group>"; };
 		EC83902B18A691A000497E22 /* R4DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DemoScene.h; sourceTree = "<group>"; };
 		EC83902C18A691A000497E22 /* R4DemoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4DemoScene.m; sourceTree = "<group>"; };
+		EC83902E18A6B2EB00497E22 /* flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flame.png; path = "R4 iOS Demo/Resources/flame.png"; sourceTree = SOURCE_ROOT; };
 		EC8868CF187B0999000583BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EC8868D2187B09C1000583BC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SparkParticle.sks; path = Resources/SparkParticle.sks; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				ECC78C7D181C4009000FBC19 /* Meshes */,
 				EC0D169B1879A19400BC6DE7 /* spark.png */,
+				EC83902E18A6B2EB00497E22 /* flame.png */,
 				EC0D169A1879A19400BC6DE7 /* FireParticle.sks */,
 				EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */,
 				ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */,
@@ -294,6 +297,7 @@
 				EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */,
 				EC0C19491837DCEE00148E7B /* stacy.obj in Resources */,
 				EC0D16A11879A94F00BC6DE7 /* SmokeParticle.sks in Resources */,
+				EC83902F18A6B2EB00497E22 /* flame.png in Resources */,
 				EC0D169C1879A19400BC6DE7 /* FireParticle.sks in Resources */,
 				EC0C194B1837DD6500148E7B /* stacy.png in Resources */,
 				ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */,

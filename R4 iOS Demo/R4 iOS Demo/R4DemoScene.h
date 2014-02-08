@@ -17,6 +17,7 @@
 #import <R4/R4ViewPrivate.h>
 #import <R4/R4EntityNode.h>
 #import <R4/R4Mesh.h>
+#import <R4/R4Texture.h>
 #import <SpriteKit/SpriteKit.h>
 #import <AudioToolbox/AudioServices.h>
 

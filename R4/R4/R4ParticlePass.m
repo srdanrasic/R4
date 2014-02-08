@@ -21,10 +21,7 @@
     self.depthTest = YES;
     self.depthWrite = NO;
     self.cullFace = R4CullFaceDisabled;
-    
-    [self addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"spark.png"]]];
-    self.firstTextureUnit.texture.filteringMode = R4TextureFilteringNearest;
-    
+        
     NSDictionary *vshMapping = @{ @"position_modelspace": @(R4VertexAttributePositionModelSpace),
                                   @"texcoord": @(R4VertexAttributeTexCoord0),
                                   @"instanceColor": @(R4VertexAttributeColor),

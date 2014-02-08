@@ -113,10 +113,15 @@
   
   setupBlendMode(_sceneBlend);
   
-  for (NSInteger idx = 0; idx < _textureUnits.count; idx++) {
-    glActiveTexture(GL_TEXTURE0 + idx);
-    glBindTexture(GL_TEXTURE_2D, [self textureUnitAtIndex:idx].texture.textureName);
+  if (_textureUnits.count) {
+    for (NSInteger idx = 0; idx < _textureUnits.count; idx++) {
+      glActiveTexture(GL_TEXTURE0 + idx);
+      glBindTexture(GL_TEXTURE_2D, [self textureUnitAtIndex:idx].texture.textureName);
+    }
+  } else {
+    glBindTexture(GL_TEXTURE_2D, 0);
   }
+  
 }
 
 @end

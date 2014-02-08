@@ -139,6 +139,22 @@
   material.firstTechnique.firstPass.sceneBlend = particleBlendMode;
 }
 
+- (void)setParticleTexture:(R4Texture *)particleTexture
+{
+  if (!particleTexture) {
+    [self.material.firstTechnique.firstPass.textureUnits removeAllObjects];
+    return;
+  }
+  
+  R4TextureUnit *textureUnit = self.material.firstTechnique.firstPass.firstTextureUnit;
+  if (textureUnit) {
+    textureUnit.texture = particleTexture;
+    particleTexture.filteringMode = R4TextureFilteringNearest;
+  } else {
+    [self.material.firstTechnique.firstPass addTextureUnit:[R4TextureUnit textureUnitWithTexture:particleTexture]];
+  }
+}
+
 - (R4Material *)material
 {
   return material;    
