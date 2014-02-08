@@ -142,7 +142,7 @@
     [node prepareToDraw];
     
     for (R4Pass *pass in technique.passes) {
-      drawState->modelMatrix = node.modelViewMatrix;
+      drawState->modelMatrix = node.modelMatrix;
       drawState->modelViewMatrix = GLKMatrix4Multiply(drawState->viewMatrix, drawState->modelMatrix);
       drawState->modelViewProjectionMatrix = GLKMatrix4Multiply(drawState->projectionMatrix, drawState->modelViewMatrix);
 

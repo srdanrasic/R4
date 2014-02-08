@@ -30,20 +30,9 @@
     self.backgroundColor = [R4Color colorWithRed:0.15 green:0.15 blue:0.15 alpha:1.0];
     self.currentCamera = [R4CameraNode cameraAtPosition:GLKVector3Make(0, 1, 2) lookingAt:GLKVector3Make(0, 0, 0)];
     self.sceneManager = [[R4DefaultSceneManager alloc] initWithScene:self];
+    self.particleEmitters = [NSMutableSet set];
   }
   return self;
-}
-
-- (void)addChild:(R4Node *)node
-{
-  [super addChild:node];
-  node.scene = self;
-}
-
-- (void)insertChild:(R4Node *)node atIndex:(NSInteger)index
-{
-  [super insertChild:node atIndex:index];
-  node.scene = self;
 }
 
 - (R4Scene *)scene
@@ -97,10 +86,8 @@
 
 - (void)updateParticleEmittersAtTime:(NSTimeInterval)time
 {
-  for (id child in self.children) {
-    if ([child isKindOfClass:[R4EmitterNode class]]) {
-      [child updateAtTime:time];
-    }
+  for (id emitter in _particleEmitters) {
+    [emitter updateAtTime:time];
   }
 }
 

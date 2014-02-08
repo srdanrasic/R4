@@ -17,6 +17,7 @@
 		EC0D16A11879A94F00BC6DE7 /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */; };
 		EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */; };
 		EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31F11879F62E002A6734 /* StarParticle.sks */; };
+		EC83902D18A691A000497E22 /* R4DemoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83902C18A691A000497E22 /* R4DemoScene.m */; };
 		EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868CF187B0999000583BC /* AudioToolbox.framework */; };
 		EC8868D3187B09C1000583BC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868D2187B09C1000583BC /* CoreAudio.framework */; };
 		ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */; };
@@ -26,9 +27,7 @@
 		ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CD417F8500D00BBAD28 /* InfoPlist.strings */; };
 		ECC58CD817F8500D00BBAD28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CD717F8500D00BBAD28 /* main.m */; };
 		ECC58CDC17F8500D00BBAD28 /* R4AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CDB17F8500D00BBAD28 /* R4AppDelegate.m */; };
-		ECC58CDF17F8500D00BBAD28 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CDD17F8500D00BBAD28 /* Main_iPhone.storyboard */; };
-		ECC58CE217F8500D00BBAD28 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CE017F8500D00BBAD28 /* Main_iPad.storyboard */; };
-		ECC58CE517F8500D00BBAD28 /* R4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CE417F8500D00BBAD28 /* R4ViewController.m */; };
+		ECC58CE517F8500D00BBAD28 /* R4DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */; };
 		ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CE617F8500D00BBAD28 /* Images.xcassets */; };
 		ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3B17F850B900BBAD28 /* libR4.a */; };
 		ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */; };
@@ -62,6 +61,8 @@
 		EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmokeParticle.sks; path = Resources/SmokeParticle.sks; sourceTree = "<group>"; };
 		EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FirefliesParticle.sks; path = Resources/FirefliesParticle.sks; sourceTree = "<group>"; };
 		EC3C31F11879F62E002A6734 /* StarParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = StarParticle.sks; path = Resources/StarParticle.sks; sourceTree = "<group>"; };
+		EC83902B18A691A000497E22 /* R4DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DemoScene.h; sourceTree = "<group>"; };
+		EC83902C18A691A000497E22 /* R4DemoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4DemoScene.m; sourceTree = "<group>"; };
 		EC8868CF187B0999000583BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EC8868D2187B09C1000583BC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SparkParticle.sks; path = Resources/SparkParticle.sks; sourceTree = "<group>"; };
@@ -75,10 +76,8 @@
 		ECC58CD917F8500D00BBAD28 /* R4 iOS Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "R4 iOS Demo-Prefix.pch"; sourceTree = "<group>"; };
 		ECC58CDA17F8500D00BBAD28 /* R4AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4AppDelegate.h; sourceTree = "<group>"; };
 		ECC58CDB17F8500D00BBAD28 /* R4AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R4AppDelegate.m; sourceTree = "<group>"; };
-		ECC58CDE17F8500D00BBAD28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		ECC58CE117F8500D00BBAD28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		ECC58CE317F8500D00BBAD28 /* R4ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ViewController.h; sourceTree = "<group>"; };
-		ECC58CE417F8500D00BBAD28 /* R4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R4ViewController.m; sourceTree = "<group>"; };
+		ECC58CE317F8500D00BBAD28 /* R4DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4DemoViewController.h; sourceTree = "<group>"; };
+		ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R4DemoViewController.m; sourceTree = "<group>"; };
 		ECC58CE617F8500D00BBAD28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECC58D3917F8509900BBAD28 /* R4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = R4.xcodeproj; path = ../R4/R4.xcodeproj; sourceTree = "<group>"; };
 		ECC58D3B17F850B900BBAD28 /* libR4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libR4.a; path = "../R4/build/Debug-iphoneos/libR4.a"; sourceTree = "<group>"; };
@@ -158,10 +157,10 @@
 				ECC78C7B181C3FFE000FBC19 /* Resources */,
 				ECC58CDA17F8500D00BBAD28 /* R4AppDelegate.h */,
 				ECC58CDB17F8500D00BBAD28 /* R4AppDelegate.m */,
-				ECC58CDD17F8500D00BBAD28 /* Main_iPhone.storyboard */,
-				ECC58CE017F8500D00BBAD28 /* Main_iPad.storyboard */,
-				ECC58CE317F8500D00BBAD28 /* R4ViewController.h */,
-				ECC58CE417F8500D00BBAD28 /* R4ViewController.m */,
+				EC83902B18A691A000497E22 /* R4DemoScene.h */,
+				EC83902C18A691A000497E22 /* R4DemoScene.m */,
+				ECC58CE317F8500D00BBAD28 /* R4DemoViewController.h */,
+				ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */,
 				ECC58CE617F8500D00BBAD28 /* Images.xcassets */,
 				ECC58CD217F8500D00BBAD28 /* Supporting Files */,
 			);
@@ -290,7 +289,6 @@
 				EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */,
 				ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */,
 				ECC78C87181C4009000FBC19 /* corn.mtl in Resources */,
-				ECC58CE217F8500D00BBAD28 /* Main_iPad.storyboard in Resources */,
 				EC0C192B1837C67200148E7B /* novcictext.png in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
 				EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */,
@@ -303,7 +301,6 @@
 				EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */,
 				ECC78C88181C4009000FBC19 /* corn.obj in Resources */,
 				ECC78C85181C4009000FBC19 /* 747.obj in Resources */,
-				ECC58CDF17F8500D00BBAD28 /* Main_iPhone.storyboard in Resources */,
 				ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */,
 				ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */,
 				EC0D169D1879A19400BC6DE7 /* spark.png in Resources */,
@@ -318,8 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC58CDC17F8500D00BBAD28 /* R4AppDelegate.m in Sources */,
+				EC83902D18A691A000497E22 /* R4DemoScene.m in Sources */,
 				ECC58CD817F8500D00BBAD28 /* main.m in Sources */,
-				ECC58CE517F8500D00BBAD28 /* R4ViewController.m in Sources */,
+				ECC58CE517F8500D00BBAD28 /* R4DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,22 +330,6 @@
 				ECC58CD517F8500D00BBAD28 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ECC58CDD17F8500D00BBAD28 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ECC58CDE17F8500D00BBAD28 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		ECC58CE017F8500D00BBAD28 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ECC58CE117F8500D00BBAD28 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

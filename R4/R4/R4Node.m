@@ -25,12 +25,11 @@
   if (self) {
     _children = [NSMutableArray array];
     _actions = [NSMutableArray array];
-    _dirty = YES;
+    _transformsDirty = YES;
     _position = GLKVector3Make(0, 0, 0);
     _scale = GLKVector3Make(1, 1, 1);
     _orientation = GLKQuaternionIdentity;
     _speed = 1.0;
-    _alpha = 1.0;
     _paused = NO;
     _hidden = NO;
     _parent = nil;
@@ -62,7 +61,6 @@
   node.scale = self.scale;
   node.orientation = self.orientation;
   node.speed = self.speed;
-  node.alpha = self.alpha;
   node.paused = self.paused;
   node.hidden = self.hidden;
   node.userInteractionEnabled = self.userInteractionEnabled;
@@ -77,6 +75,7 @@
 
 - (void)setUniformScale:(CGFloat)scale
 {
+  _transformsDirty = YES;
   self.scale = GLKVector3Make(scale, scale, scale);
 }
 
@@ -115,21 +114,8 @@
 
 - (void)setParent:(R4Node *)parent
 {
-  id sceneManager = self.scene.sceneManager;
-  R4Node *oldParent = _parent;
-  
   _parent = parent;
-  _scene = parent.scene;
-  
-  if (_scene) {
-    sceneManager = _scene.sceneManager;
-  }
-  
-  if (!parent && oldParent) {
-    [sceneManager nodeRemoved:self];
-  } else if (!oldParent && parent) {
-    [sceneManager nodeAdded:self];
-  }
+  self.scene = parent.scene;
 }
 
 - (R4Node *)childNodeWithName:(NSString *)name
@@ -244,7 +230,15 @@
 - (void)setScene:(R4Scene *)scene
 {
   if (_scene != scene) {
+    
+    if (!scene && _scene) {
+      [_scene.sceneManager nodeRemoved:self];
+    } else if (!_scene && scene) {
+      [scene.sceneManager nodeAdded:self];
+    }
+    
     _scene = scene;
+    
     for (R4Node *node in _children) {
       node.scene = scene;
     }
@@ -280,44 +274,63 @@
 
 - (void)setPosition:(GLKVector3)position
 {
+  _transformsDirty = YES;
   _position = position;
-  _dirty = YES;
 }
 
 - (void)setScale:(GLKVector3)scale
 {
+  _transformsDirty = YES;
   _scale = scale;
-  _dirty = YES;
 }
 
 - (void)setOrientation:(GLKQuaternion)orientation
 {
+  _transformsDirty = YES;
   _orientation = orientation;
-  _dirty = YES;
 }
 
-- (GLKMatrix4)modelViewMatrix
+- (void)updateTransformMatrices
 {
-  if (1) { // if dirty 
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(self.position.x, self.position.y, self.position.z);
-    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, GLKMatrix4MakeWithQuaternion(self.orientation));
-    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale.x, self.scale.y, self.scale.z);
-
-    if (self.parent) {
-      modelViewMatrix = GLKMatrix4Multiply(self.parent.modelViewMatrix, modelViewMatrix);
-    }
-    
-    _modelViewMatrix = modelViewMatrix;
-    _dirty = NO;
+  GLKMatrix4 modelMatrix = GLKMatrix4MakeTranslation(self.position.x, self.position.y, self.position.z);
+  modelMatrix = GLKMatrix4Multiply(modelMatrix, GLKMatrix4MakeWithQuaternion(self.orientation));
+  modelMatrix = GLKMatrix4Scale(modelMatrix, self.scale.x, self.scale.y, self.scale.z);
+  
+  if (self.parent) {
+    modelMatrix = GLKMatrix4Multiply(self.parent.modelMatrix, modelMatrix);
   }
   
-  return _modelViewMatrix;
+  _modelMatrix = modelMatrix;
+  _invModelMatrix = GLKMatrix4Invert(modelMatrix, NULL);
+  _transformsDirty = NO;
+  
+  for (R4Node *child in _children) {
+    child->_transformsDirty = YES;
+  }
+}
+
+- (GLKMatrix4)modelMatrix
+{
+  if (_transformsDirty) {
+    [self updateTransformMatrices];
+  }
+  
+  return _modelMatrix;
+}
+
+- (GLKMatrix4)invModelMatrix
+{
+  if (_transformsDirty) {
+    [self updateTransformMatrices];
+  }
+  
+  return _invModelMatrix;
 }
 
 - (R4Box)calculateAccumulatedBoundingBox
 {
-  GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
-  GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
+  GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
+  GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
 
   _accumulatedBoundingBox.min = GLKVector3Minimum(min, max);
   _accumulatedBoundingBox.max = GLKVector3Maximum(min, max);
@@ -334,32 +347,6 @@
 - (R4Box)boundingBox
 {
   return R4BoxZero;
-}
-
-- (GLKVector3)wsPosition
-{
-  if (self.parent) {
-    GLKVector4 wsPos = GLKMatrix4MultiplyVector4(self.modelViewMatrix, GLKVector4Make(0.f, 0.f, 0.f, 1.f));
-    return GLKVector3MakeWithArray(wsPos.v);
-  } else {
-    return self.position;
-  }
-}
-
-- (void)willTraverse
-{
-}
-
-- (void)prepareEffect:(GLKBaseEffect *)effect
-{
-}
-
-- (void)draw
-{
-}
-
-- (void)didTraverse
-{
 }
 
 - (void)updateActionsAtTime:(NSTimeInterval)time
@@ -391,17 +378,21 @@
 
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node
 {
-  // TODO Deep conversion
-  if ([node.children containsObject:self]) {
-    return GLKVector3Add(node.position, point);
-  } else {
-    return point;
-  }
+  GLKMatrix4 transform = GLKMatrix4Multiply(node.invModelMatrix, self.modelMatrix);
+  GLKVector4 point4 = GLKMatrix4MultiplyVector4(transform, GLKVector4MakeWithVector3(point, 1.0));
+  return GLKVector3MakeWithArray(point4.v);
+}
+
+- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node
+{
+  GLKMatrix4 transform = GLKMatrix4Multiply(self.invModelMatrix, node.modelMatrix);
+  GLKVector4 point4 = GLKMatrix4MultiplyVector4(transform, GLKVector4MakeWithVector3(point, 1.0));
+  return GLKVector3MakeWithArray(point4.v);
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"Node named [%@] at [%@]", self.name, NSStringFromGLKVector3(self.wsPosition)];
+  return [NSString stringWithFormat:@"Node named [%@] at [%@]", self.name, NSStringFromGLKVector3(self.position)];
 }
 
 #pragma mark - UIResponder overrides
@@ -490,6 +481,30 @@
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [[self nextResponder] touchesCancelled:touches withEvent:event];
+}
+
+@end
+
+#pragma mark - UITouch Additions
+
+@implementation UITouch (R4NodeTouches)
+
+- (GLKVector3)locationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal
+{
+  R4Ray ray = [node.scene.view convertPoint:[self locationInView:node.scene.view] toScene:node.scene];
+  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), plainNormal) / GLKVector3DotProduct(ray.direction, plainNormal);
+  GLKVector3 worldPosition = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
+  GLKVector4 nodePosition4 = GLKMatrix4MultiplyVector4(node.invModelMatrix, GLKVector4MakeWithVector3(worldPosition, 1.f));
+  return GLKVector3MakeWithArray(nodePosition4.v);
+}
+
+- (GLKVector3)previousLocationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal
+{
+  R4Ray ray = [node.scene.view convertPoint:[self previousLocationInView:node.scene.view] toScene:node.scene];
+  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), plainNormal) / GLKVector3DotProduct(ray.direction, plainNormal);
+  GLKVector3 worldPosition = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
+  GLKVector4 nodePosition4 = GLKMatrix4MultiplyVector4(node.invModelMatrix, GLKVector4MakeWithVector3(worldPosition, 1.f));
+  return GLKVector3MakeWithArray(nodePosition4.v);
 }
 
 @end

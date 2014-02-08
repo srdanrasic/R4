@@ -42,7 +42,6 @@
 		ECC58D4317F8519900BBAD28 /* R4View.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4217F8519900BBAD28 /* R4View.m */; };
 		ECC58D4617F8521900BBAD28 /* R4Node.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4517F8521900BBAD28 /* R4Node.m */; };
 		ECC58D4917F8524F00BBAD28 /* R4Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4817F8524F00BBAD28 /* R4Scene.m */; };
-		ECC58D4C17F8531B00BBAD28 /* R4Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4B17F8531B00BBAD28 /* R4Transition.m */; };
 		ECC58D4F17F8538900BBAD28 /* R4Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4E17F8538900BBAD28 /* R4Texture.m */; };
 		ECC58D5917F866A100BBAD28 /* R4Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D5817F866A100BBAD28 /* R4Renderer.m */; };
 		ECDE15BE188C31F5008EA3A1 /* R4Mesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */; };
@@ -129,8 +128,6 @@
 		ECC58D4517F8521900BBAD28 /* R4Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Node.m; sourceTree = "<group>"; };
 		ECC58D4717F8524F00BBAD28 /* R4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Scene.h; sourceTree = "<group>"; };
 		ECC58D4817F8524F00BBAD28 /* R4Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Scene.m; sourceTree = "<group>"; };
-		ECC58D4A17F8531B00BBAD28 /* R4Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Transition.h; sourceTree = "<group>"; };
-		ECC58D4B17F8531B00BBAD28 /* R4Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Transition.m; sourceTree = "<group>"; };
 		ECC58D4D17F8538900BBAD28 /* R4Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Texture.h; sourceTree = "<group>"; };
 		ECC58D4E17F8538900BBAD28 /* R4Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Texture.m; sourceTree = "<group>"; };
 		ECC58D5617F8639800BBAD28 /* R4ViewPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ViewPrivate.h; sourceTree = "<group>"; };
@@ -169,7 +166,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC0E3AEC189E61B1005D3986 /* Custom Passes */ = {
+		EC0E3AEC189E61B1005D3986 /* Predefined Passes */ = {
 			isa = PBXGroup;
 			children = (
 				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
@@ -177,7 +174,7 @@
 				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
 				ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */,
 			);
-			name = "Custom Passes";
+			name = "Predefined Passes";
 			sourceTree = "<group>";
 		};
 		EC5BB398180067E100AB7FE8 /* R4Action */ = {
@@ -221,7 +218,7 @@
 				ECADD13E188AD6BF004736E1 /* R4Technique.m */,
 				ECADD136188AD262004736E1 /* R4Pass.h */,
 				ECADD137188AD262004736E1 /* R4Pass.m */,
-				EC0E3AEC189E61B1005D3986 /* Custom Passes */,
+				EC0E3AEC189E61B1005D3986 /* Predefined Passes */,
 				ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */,
 				ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */,
 				ECC58D5717F866A100BBAD28 /* R4Renderer.h */,
@@ -313,8 +310,6 @@
 				EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */,
 				EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNodePrivate.h */,
 				EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */,
-				ECC58D4A17F8531B00BBAD28 /* R4Transition.h */,
-				ECC58D4B17F8531B00BBAD28 /* R4Transition.m */,
 				ECEA3B93189D605B003DB77C /* R4PairKey.h */,
 				ECEA3B94189D605B003DB77C /* R4PairKey.m */,
 				ECC58D1217F8505600BBAD28 /* Supporting Files */,
@@ -424,7 +419,6 @@
 				ECC58D4917F8524F00BBAD28 /* R4Scene.m in Sources */,
 				ECC58D4317F8519900BBAD28 /* R4View.m in Sources */,
 				ECADD138188AD262004736E1 /* R4Pass.m in Sources */,
-				ECC58D4C17F8531B00BBAD28 /* R4Transition.m in Sources */,
 				ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */,
 				ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */,
 				ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */,

@@ -117,6 +117,17 @@
   return R4BoxMake(GLKVector3Make(-.5f, -.5f, -.5f), GLKVector3Make(.5f, .5f, .5f));
 }
 
+- (void)setScene:(R4Scene *)scene
+{
+  if (scene) {
+    [scene.particleEmitters addObject:self];
+  } else {
+    [scene.particleEmitters removeObject:self];
+  }
+  
+  [super setScene:scene];
+}
+
 - (void)setEmissionAxis:(GLKVector3)emissionAxis
 {
   _emissionAxis = GLKVector3Normalize(emissionAxis);
@@ -155,20 +166,20 @@
   
   glBindBuffer(GL_ARRAY_BUFFER, particleAttributesVertexBuffer);
   
-  glEnableVertexAttribArray(R4VertexAttributeMVM + 0);
-  glEnableVertexAttribArray(R4VertexAttributeMVM + 1);
-  glEnableVertexAttribArray(R4VertexAttributeMVM + 2);
-  glEnableVertexAttribArray(R4VertexAttributeMVM + 3);
+  glEnableVertexAttribArray(R4VertexAttributeModelMatrix + 0);
+  glEnableVertexAttribArray(R4VertexAttributeModelMatrix + 1);
+  glEnableVertexAttribArray(R4VertexAttributeModelMatrix + 2);
+  glEnableVertexAttribArray(R4VertexAttributeModelMatrix + 3);
   
-  glVertexAttribPointer(R4VertexAttributeMVM + 0, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 0));
-  glVertexAttribPointer(R4VertexAttributeMVM + 1, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 1));
-  glVertexAttribPointer(R4VertexAttributeMVM + 2, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 2));
-  glVertexAttribPointer(R4VertexAttributeMVM + 3, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 3));
+  glVertexAttribPointer(R4VertexAttributeModelMatrix + 0, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 0));
+  glVertexAttribPointer(R4VertexAttributeModelMatrix + 1, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 1));
+  glVertexAttribPointer(R4VertexAttributeModelMatrix + 2, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 2));
+  glVertexAttribPointer(R4VertexAttributeModelMatrix + 3, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)(offsetof(R4ParticleAttributes, MVM) + sizeof(GLKVector4) * 3));
   
-  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 0, 1);
-  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 1, 1);
-  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 2, 1);
-  glVertexAttribDivisorEXT(R4VertexAttributeMVM + 3, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeModelMatrix + 0, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeModelMatrix + 1, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeModelMatrix + 2, 1);
+  glVertexAttribDivisorEXT(R4VertexAttributeModelMatrix + 3, 1);
   
   glEnableVertexAttribArray(R4VertexAttributeColor);
   glVertexAttribPointer(R4VertexAttributeColor, 4, GL_FLOAT, GL_FALSE, sizeof(R4ParticleAttributes), (GLvoid*)offsetof(R4ParticleAttributes, color));
@@ -273,7 +284,7 @@
     _previousDT = 0.0;
   }
   
-  GLKVector3 worldspacePosition = [self convertPoint:self.position toNode:self.scene];
+  GLKVector3 worldspacePosition = [self convertPoint:GLKVector3Make(0, 0, 0) toNode:self.scene];
   
   for (unsigned i = 0; i < particles_to_emit && particleCount < maxParticeCount - 1; i++) {
     R4ParticleAttributes *p = &particleAttributes[particleCount++];

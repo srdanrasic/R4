@@ -29,7 +29,7 @@
                                   @"texcoord": @(R4VertexAttributeTexCoord0),
                                   @"instanceColor": @(R4VertexAttributeColor),
                                   @"instanceColorBlendFactor": @(R4VertexAttributeColorBlendFactor),
-                                  @"instanceMVM": @(R4VertexAttributeMVM)
+                                  @"instanceModelMatrix": @(R4VertexAttributeModelMatrix)
                                   };
     
     self.vertexShader = [[R4ProgramManager shared] loadShaderNamed:@"vshParticleShader" type:R4ShaderTypeVertex attributeMapping:vshMapping];
@@ -43,7 +43,7 @@
 {
   [super prepareToDraw:drawState];
   
-  [self.program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->viewProjectionMatrix.m];
+  [self.program setUniformMatrix4fv:@"view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->viewProjectionMatrix.m];
   [self.program setUniform1i:@"texture_sampler" v0:0];  
 }
 

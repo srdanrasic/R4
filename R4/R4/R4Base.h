@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, R4VertexAttribute) {
   R4VertexAttributeTexCoord1,
   R4VertexAttributeColor,
   R4VertexAttributeColorBlendFactor,
-  R4VertexAttributeMVM,
+  R4VertexAttributeModelMatrix,
   R4VertexAttributeCount
 };
 

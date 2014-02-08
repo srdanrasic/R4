@@ -13,11 +13,12 @@
   NSMutableArray *_actions;
   
   R4Box _accumulatedBoundingBox;
-  BOOL _dirty;
-  BOOL _visited;
   
 @public
   CGFloat _distanceToCamera;
+  GLKMatrix4 _modelMatrix;
+  GLKMatrix4 _invModelMatrix;
+  BOOL _transformsDirty;
 }
 
 @property (nonatomic, readwrite) R4Scene *scene;
@@ -25,11 +26,8 @@
 @property (nonatomic, readwrite) NSArray *children;
 @property (nonatomic, readwrite) NSArray *actions;
 
-@property (nonatomic) GLKMatrix4 modelViewMatrix;
-@property (nonatomic, assign, readonly) GLKVector3 wsPosition;
-
-- (void)willTraverse;
-- (void)didTraverse;
+@property (nonatomic, readonly) GLKMatrix4 modelMatrix;
+@property (nonatomic, readonly) GLKMatrix4 invModelMatrix;
 
 - (void)updateActionsAtTime:(NSTimeInterval)time;
 

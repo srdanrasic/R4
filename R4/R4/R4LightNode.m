@@ -64,7 +64,7 @@
 
 - (GLKVector3)position
 {
-  return GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.parent.modelViewMatrix, GLKVector4MakeWithVector3([super position], 1.0)).v);
+  return GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.parent.modelMatrix, GLKVector4MakeWithVector3([super position], 1.0)).v);
 }
 
 @end

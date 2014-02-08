@@ -11,6 +11,7 @@
 @interface R4Scene ()
 
 @property (nonatomic, weak, readwrite) R4View *view;
+@property (nonatomic, strong) NSMutableSet *particleEmitters;
 
 - (void)updateParticleEmittersAtTime:(NSTimeInterval)time;
 

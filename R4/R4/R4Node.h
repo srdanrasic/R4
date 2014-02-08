@@ -48,7 +48,6 @@
 @property (nonatomic) GLKVector3 scale;
 
 @property (nonatomic) CGFloat speed;
-@property (nonatomic) CGFloat alpha;
 
 @property (nonatomic, getter = isPaused) BOOL paused;
 @property (nonatomic, getter = isHidden) BOOL hidden;
@@ -81,6 +80,12 @@
 
 - (void)removeFromParent;
 
+/*!
+ Searches for the first child node whose name equals given string.
+ 
+ @param name Name searched for.
+ @return Node whose name equals 'name' or 'nil' if not found.
+ */
 - (R4Node *)childNodeWithName:(NSString *)name;
 - (void)enumerateChildNodesWithName:(NSString *)name usingBlock:(void (^)(R4Node *node, BOOL *stop))block;
 
@@ -97,6 +102,7 @@
 - (void)removeAllActions;
 
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
+- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
 
 /* SpriteKit methods that are not implemented */
 
@@ -104,16 +110,15 @@
 //- (R4Node *)nodeAtPoint:(CGPoint)p;
 //- (NSArray *)nodesAtPoint:(CGPoint)p;
 
-
+//@property (nonatomic) CGFloat alpha;
 //@property (nonatomic, readonly) CGRect frame;
 //@property (nonatomic) CGFloat zPosition;
 //@property (nonatomic, strong) R4PhysicsBody *physicsBody;
-//- (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
 //- (BOOL)intersectsNode:(R4Node *)node;
 
 @end
 
 @interface UITouch (R4NodeTouches)
-- (CGPoint)locationInNode:(R4Node *)node;
-- (CGPoint)previousLocationInNode:(R4Node *)node;
+- (GLKVector3)locationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal;
+- (GLKVector3)previousLocationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal;
 @end

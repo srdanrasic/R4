@@ -1,13 +1,12 @@
 //
-//  R4Transition.m
-//  R4
+//  R4ViewController.h
+//  R4 iOS Demo
 //
 //  Created by Srđan Rašić on 9/29/13.
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4Transition.h"
+#import <UIKit/UIKit.h>
 
-@implementation R4Transition
-
+@interface R4DemoViewController : UIViewController
 @end
