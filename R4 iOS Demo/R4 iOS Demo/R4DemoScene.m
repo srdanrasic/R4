@@ -18,16 +18,16 @@
 
 @implementation R4DemoScene
 
-
 - (void)didMoveToView:(R4View *)view
 {
   self.userInteractionEnabled = YES;
   self.name = @"mainScene";
   
   /* Floor */
-  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(15, .01, 15)]];
+  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh plainWithSize:CGSizeMake(15, 15)]];
+  floor.orientation = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 1, 0, 0);
   floor.name = @"floor";
-  floor.userInteractionEnabled = YES;
+  [floor.material.firstTechnique.firstPass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"floor.png"]]];
   [self addChild:floor];
   
   /* Stacy character */
@@ -35,7 +35,7 @@
   stacy.name = @"stacy";
   stacy.userInteractionEnabled = YES;
   stacy.position = GLKVector3Make(0, 0, 4);
-  [floor addChild:stacy];
+  [self addChild:stacy];
   
 #if 1
   /* Make some clones of Stacy */
@@ -46,38 +46,29 @@
     c2.position = GLKVector3Make(-sinf(2 * M_PI / copies * i) * 2, 0, cosf(2 * M_PI / copies * i) * 2);
     CGFloat duration = 0.5 + (arc4random() % 100) / 50.0;
     [c2 runAction:[R4Action repeatActionForever:[R4Action sequence:@[[R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:duration], [R4Action scaleTo:GLKVector3Make(1, .5, 1) duration:duration]]]]];
-    [floor addChild:c2];
+    [self addChild:c2];
   }
 #endif
   
   /* Create a box */
-  R4EntityNode *mp = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 2, 1)]];
+  R4EntityNode *mp = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 1, 1)]];
   mp.userInteractionEnabled = YES;
-  [floor addChild:mp];
+  [self addChild:mp];
   
   /* Put fire on the box */
   R4EmitterNode *fire = [[MovableEmitterNode alloc] initWithSKEmitterSKSFileNamed:@"FireParticle"];
   fire.particleTexture = [R4Texture textureWithImageNamed:@"flame.png"];
-  fire.position = GLKVector3Make(0, 1, 0);
+  fire.position = GLKVector3Make(0, .5, 0);
   fire.name = @"fire";
   [mp addChild:fire];
   
-  /* Let it snow in color */
-  R4EmitterNode *stars = [[R4EmitterNode alloc] initWithSKEmitterSKSFileNamed:@"StarParticle"];
-  stars.particleTexture = [R4Texture textureWithImageNamed:@"spark.png"];
-  stars.position = GLKVector3Make(0, 4, 0);
-  stars.particlePositionRange = GLKVector3Make(10, 0, 10);
-  stars.name = @"stars";
-  [stars advanceSimulationTime:8];
-  [self addChild:stars];
-  
   /* One more particle emitter */
-  R4EmitterNode *sparks = [[MovableEmitterNode alloc] initWithSKEmitterSKSFileNamed:@"SparkParticle"];
-  sparks.particleTexture = [R4Texture textureWithImageNamed:@"spark.png"];
-  sparks.position = GLKVector3Make(-1, 0, 0);
-  sparks.userInteractionEnabled = YES;
-  sparks.name = @"sparks";
-  [self addChild:sparks];
+  R4EmitterNode *smoke = [[MovableEmitterNode alloc] initWithSKEmitterSKSFileNamed:@"SmokeParticle"];
+  smoke.particleTexture = [R4Texture textureWithImageNamed:@"spark.png"];
+  smoke.position = GLKVector3Make(-2, 0, -2);
+  smoke.userInteractionEnabled = YES;
+  smoke.name = @"smoke";
+  [self addChild:smoke];
   
   /* Move camera */
   self.currentCamera.position = GLKVector3Make(-2, 2, 3);

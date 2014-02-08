@@ -14,14 +14,12 @@
 		EC0C194B1837DD6500148E7B /* stacy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C194A1837DD6500148E7B /* stacy.png */; };
 		EC0D169C1879A19400BC6DE7 /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC0D169A1879A19400BC6DE7 /* FireParticle.sks */; };
 		EC0D169D1879A19400BC6DE7 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0D169B1879A19400BC6DE7 /* spark.png */; };
-		EC0D16A11879A94F00BC6DE7 /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */; };
-		EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */; };
-		EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = EC3C31F11879F62E002A6734 /* StarParticle.sks */; };
 		EC83902D18A691A000497E22 /* R4DemoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83902C18A691A000497E22 /* R4DemoScene.m */; };
 		EC83902F18A6B2EB00497E22 /* flame.png in Resources */ = {isa = PBXBuildFile; fileRef = EC83902E18A6B2EB00497E22 /* flame.png */; };
+		EC83903318A6C2C900497E22 /* floor.png in Resources */ = {isa = PBXBuildFile; fileRef = EC83903218A6C2C900497E22 /* floor.png */; };
 		EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868CF187B0999000583BC /* AudioToolbox.framework */; };
 		EC8868D3187B09C1000583BC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8868D2187B09C1000583BC /* CoreAudio.framework */; };
-		ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */; };
+		ECB3AAA11879B79F00EEF92F /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = ECB3AAA01879B79F00EEF92F /* SmokeParticle.sks */; };
 		ECC58CCC17F8500D00BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCB17F8500D00BBAD28 /* Foundation.framework */; };
 		ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */; };
 		ECC58CD017F8500D00BBAD28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58CCF17F8500D00BBAD28 /* UIKit.framework */; };
@@ -59,15 +57,13 @@
 		EC0C194A1837DD6500148E7B /* stacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stacy.png; sourceTree = "<group>"; };
 		EC0D169A1879A19400BC6DE7 /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FireParticle.sks; path = Resources/FireParticle.sks; sourceTree = "<group>"; };
 		EC0D169B1879A19400BC6DE7 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Resources/spark.png; sourceTree = "<group>"; };
-		EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmokeParticle.sks; path = Resources/SmokeParticle.sks; sourceTree = "<group>"; };
-		EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FirefliesParticle.sks; path = Resources/FirefliesParticle.sks; sourceTree = "<group>"; };
-		EC3C31F11879F62E002A6734 /* StarParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = StarParticle.sks; path = Resources/StarParticle.sks; sourceTree = "<group>"; };
 		EC83902B18A691A000497E22 /* R4DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DemoScene.h; sourceTree = "<group>"; };
 		EC83902C18A691A000497E22 /* R4DemoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4DemoScene.m; sourceTree = "<group>"; };
 		EC83902E18A6B2EB00497E22 /* flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flame.png; path = "R4 iOS Demo/Resources/flame.png"; sourceTree = SOURCE_ROOT; };
+		EC83903218A6C2C900497E22 /* floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = floor.png; path = "R4 iOS Demo/Resources/floor.png"; sourceTree = SOURCE_ROOT; };
 		EC8868CF187B0999000583BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EC8868D2187B09C1000583BC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SparkParticle.sks; path = Resources/SparkParticle.sks; sourceTree = "<group>"; };
+		ECB3AAA01879B79F00EEF92F /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SmokeParticle.sks; path = Resources/SmokeParticle.sks; sourceTree = "<group>"; };
 		ECC58CC817F8500D00BBAD28 /* R4 iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "R4 iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58CCB17F8500D00BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -186,11 +182,9 @@
 				ECC78C7D181C4009000FBC19 /* Meshes */,
 				EC0D169B1879A19400BC6DE7 /* spark.png */,
 				EC83902E18A6B2EB00497E22 /* flame.png */,
+				EC83903218A6C2C900497E22 /* floor.png */,
 				EC0D169A1879A19400BC6DE7 /* FireParticle.sks */,
-				EC0D16A01879A94F00BC6DE7 /* SmokeParticle.sks */,
-				ECB3AAA01879B79F00EEF92F /* SparkParticle.sks */,
-				EC3C31EF1879EFC1002A6734 /* FirefliesParticle.sks */,
-				EC3C31F11879F62E002A6734 /* StarParticle.sks */,
+				ECB3AAA01879B79F00EEF92F /* SmokeParticle.sks */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -289,24 +283,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC78C89181C4009000FBC19 /* f16.obj in Resources */,
-				EC3C31F01879EFC1002A6734 /* FirefliesParticle.sks in Resources */,
 				ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */,
 				ECC78C87181C4009000FBC19 /* corn.mtl in Resources */,
 				EC0C192B1837C67200148E7B /* novcictext.png in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
-				EC3C31F21879F62E002A6734 /* StarParticle.sks in Resources */,
 				EC0C19491837DCEE00148E7B /* stacy.obj in Resources */,
-				EC0D16A11879A94F00BC6DE7 /* SmokeParticle.sks in Resources */,
 				EC83902F18A6B2EB00497E22 /* flame.png in Resources */,
 				EC0D169C1879A19400BC6DE7 /* FireParticle.sks in Resources */,
 				EC0C194B1837DD6500148E7B /* stacy.png in Resources */,
-				ECB3AAA11879B79F00EEF92F /* SparkParticle.sks in Resources */,
+				ECB3AAA11879B79F00EEF92F /* SmokeParticle.sks in Resources */,
 				EC0C192A1837C67200148E7B /* corntext.png in Resources */,
 				EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */,
 				ECC78C88181C4009000FBC19 /* corn.obj in Resources */,
 				ECC78C85181C4009000FBC19 /* 747.obj in Resources */,
 				ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */,
 				ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */,
+				EC83903318A6C2C900497E22 /* floor.png in Resources */,
 				EC0D169D1879A19400BC6DE7 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

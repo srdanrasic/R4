@@ -138,8 +138,8 @@ static GLfloat gPlainVertexData[48] =
   GLfloat vertexData[sizeof(gPlainVertexData)];
   for (int i = 0; i < sizeof(gPlainVertexData); i=i+8) {
     vertexData[i+0] = gPlainVertexData[i+0] * size.width;
-    vertexData[i+1] = gPlainVertexData[i+1];
-    vertexData[i+2] = gPlainVertexData[i+2] * size.height;
+    vertexData[i+1] = gPlainVertexData[i+1] * size.height;
+    vertexData[i+2] = gPlainVertexData[i+2];
     vertexData[i+3] = gPlainVertexData[i+3];
     vertexData[i+4] = gPlainVertexData[i+4];
     vertexData[i+5] = gPlainVertexData[i+5];
@@ -157,9 +157,7 @@ static GLfloat gPlainVertexData[48] =
   
   glEnableVertexAttribArray(R4VertexAttributeTexCoord0);
   glVertexAttribPointer(R4VertexAttributeTexCoord0, 2, GL_FLOAT, GL_FALSE,  sizeof(GLfloat) * 8, BUFFER_OFFSET(24));
-  
-  //[mesh.material.firstTechnique.firstPass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"spark.png"]]];
-  
+    
   glBindVertexArrayOES(0);
   
   mesh.geometryBoundingBox = R4BoxMake(GLKVector3Make(-.5f, -.1f, -.5f), GLKVector3Make(.5f, .1f, .5f));
@@ -356,7 +354,7 @@ static GLfloat gPlainVertexData[48] =
         ss >> texture_filename >> texture_filename;
         NSString *textureFilename = [NSString stringWithCString:texture_filename.c_str() encoding:NSUTF8StringEncoding];
         textureFilename = [[name stringByDeletingLastPathComponent] stringByAppendingPathComponent:textureFilename];
-        [[[mesh.material techniqueAtIndex:0] passAtIndex:0] addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:textureFilename]]];
+        [[[mesh.material techniqueAtIndex:0] passAtIndex:0] addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:textureFilename generateMipmaps:YES]]];
       }
     }
   }

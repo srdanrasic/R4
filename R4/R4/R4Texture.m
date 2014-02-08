@@ -19,7 +19,12 @@
 
 + (R4Texture *)textureWithImageNamed:(NSString *)name
 {
-  return [[R4Texture alloc] initWithTextureInfo:[[R4TextureManager shared] textureNamed:name]];
+  return [[self class] textureWithImageNamed:name generateMipmaps:NO];
+}
+
++ (R4Texture *)textureWithImageNamed:(NSString *)name generateMipmaps:(BOOL)generateMipmaps
+{
+  return [[R4Texture alloc] initWithTextureInfo:[[R4TextureManager shared] textureNamed:name generateMipmaps:generateMipmaps]];
 }
 
 - (instancetype)initWithTextureInfo:(R4TextureInfo *)textureInfo
@@ -45,6 +50,31 @@
 - (void)setFilteringMode:(R4TextureFilteringMode)filteringMode
 {
   [textureInfo_ setFilteringMode:filteringMode];
+}
+
+- (R4TextureFilteringMode)filteringMode
+{
+  return [textureInfo_ filteringMode];
+}
+
+- (void)setWrapModeS:(R4TextureWrapMode)wrapMode
+{
+  [textureInfo_ setWrapModeS:wrapMode];
+}
+
+- (R4TextureWrapMode)wrapModeS
+{
+  return [textureInfo_ wrapModeS];
+}
+
+- (void)setWrapModeT:(R4TextureWrapMode)wrapMode
+{
+  [textureInfo_ setWrapModeT:wrapMode];
+}
+
+- (R4TextureWrapMode)wrapModeT
+{
+  return [textureInfo_ wrapModeT];
 }
 
 - (CGSize)size

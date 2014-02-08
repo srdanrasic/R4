@@ -34,6 +34,22 @@
   _filteringMode = filteringMode;
 }
 
+- (void)setWrapModeS:(R4TextureWrapMode)wrapMode
+{
+  if (_wrapModeS == wrapMode) return;
+  
+  glBindTexture(GL_TEXTURE_2D, name);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
+}
+
+- (void)setWrapModeT:(R4TextureWrapMode)wrapMode
+{
+  if (_wrapModeT == wrapMode) return;
+  
+  glBindTexture(GL_TEXTURE_2D, name);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
+}
+
 @end
 
 #pragma mark -
@@ -60,12 +76,12 @@ static R4TextureManager *_R4TextureManagerInstance = nil;
   return self;
 }
 
-- (R4TextureInfo *)textureNamed:(NSString *)name
+- (R4TextureInfo *)textureNamed:(NSString *)name generateMipmaps:(BOOL)generateMipmaps
 {
   R4TextureInfo *textureInfo = [self.loadedTextures objectForKey:name];
   
   if (!textureInfo) {
-    NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES], GLKTextureLoaderGenerateMipmaps: [NSNumber numberWithBool:YES]};
+    NSDictionary* options = @{GLKTextureLoaderOriginBottomLeft:[NSNumber numberWithBool:YES], GLKTextureLoaderGenerateMipmaps: [NSNumber numberWithBool:generateMipmaps]};
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     
     NSError *error = nil;

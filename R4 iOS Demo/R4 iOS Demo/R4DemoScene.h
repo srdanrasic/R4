@@ -18,6 +18,10 @@
 #import <R4/R4EntityNode.h>
 #import <R4/R4Mesh.h>
 #import <R4/R4Texture.h>
+#import <R4/R4Pass.h>
+#import <R4/R4Material.h>
+#import <R4/R4Technique.h>
+#import <R4/R4TextureUnit.h>
 #import <SpriteKit/SpriteKit.h>
 #import <AudioToolbox/AudioServices.h>
 

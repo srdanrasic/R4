@@ -20,16 +20,20 @@
   NSInteger referenceCount;
   
   R4TextureFilteringMode _filteringMode;
+  R4TextureWrapMode _wrapModeS;
+  R4TextureWrapMode _wrapModeT;
 }
 
 @property (nonatomic, assign) R4TextureFilteringMode filteringMode;
+@property (nonatomic, assign) R4TextureWrapMode wrapModeS;
+@property (nonatomic, assign) R4TextureWrapMode wrapModeT;
 
 @end
 
 @interface R4TextureManager : NSObject
 @property (nonatomic, strong) NSMutableDictionary *loadedTextures;
 + (R4TextureManager *)shared;
-- (R4TextureInfo *)textureNamed:(NSString *)name;
+- (R4TextureInfo *)textureNamed:(NSString *)name generateMipmaps:(BOOL)generateMipmaps;
 - (void)retainTexture:(NSString *)key;
 - (void)releaseTexture:(NSString *)key;
 @end

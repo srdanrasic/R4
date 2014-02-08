@@ -7,17 +7,28 @@
 //
 
 #import "R4DefaultSceneManager.h"
-#import "R4Node.h"
+#import "R4NodePrivate.h"
 #import "R4EmitterNode.h"
 #import "R4Drawable.h"
 #import "R4LightNode.h"
+#import "R4Scene.h"
+#import "R4CameraNode.h"
 
 #include <list>
 
 typedef std::list<R4Node *> NodeList;
 
+/* First emitters with additive blending.
+ * Might also consider distance to camera in future.
+ */
+static bool compare_emitters(const R4EmitterNode *first, const R4EmitterNode *second)
+{
+  return [first particleBlendMode] != R4BlendModeAdd;
+}
+
 @interface R4DefaultSceneManager () {
   NodeList drawableList;
+  NodeList emitterList;
   NSMutableArray *lightArray;
 }
 
@@ -39,7 +50,7 @@ typedef std::list<R4Node *> NodeList;
   if ([node.class conformsToProtocol:@protocol(R4Drawable)]) {
     // TODO: Material sorting
     if ([node isKindOfClass:[R4EmitterNode class]]) {
-      drawableList.push_back(node);
+      emitterList.push_back(node);
     } else {
       drawableList.push_front(node);
     }
@@ -51,7 +62,11 @@ typedef std::list<R4Node *> NodeList;
 - (void)nodeRemoved:(R4Node *)node
 {
   if ([node.class conformsToProtocol:@protocol(R4Drawable)]) {
-    drawableList.remove(node);
+    if ([node isKindOfClass:[R4EmitterNode class]]) {
+      emitterList.remove(node);
+    } else {
+      drawableList.remove(node);
+    }
   } else if ([node isKindOfClass:[R4LightNode class]]) {
     [lightArray removeObject:node];
   }
@@ -60,6 +75,13 @@ typedef std::list<R4Node *> NodeList;
 - (void)enumerateDrawableNodesWithBlock:(void (^)(R4Node<R4Drawable> *))block
 {
   for (NodeList::const_iterator iter = drawableList.begin(); iter != drawableList.end(); ++iter) {
+    R4Node *node = *iter;
+    // TODO: Basic frustum culling
+    block((R4Node<R4Drawable> *)node);
+  }
+  
+  emitterList.sort(compare_emitters);
+  for (NodeList::const_iterator iter = emitterList.begin(); iter != emitterList.end(); ++iter) {
     R4Node *node = *iter;
     // TODO: Basic frustum culling
     block((R4Node<R4Drawable> *)node);
