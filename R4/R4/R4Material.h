@@ -18,7 +18,13 @@
  @discussion The concept of techniques is in future intended to be extended to allow different techniques for different levels of detail.
  */
 
-@interface R4Material : NSObject
+@interface R4Material : NSObject {
+@public
+  GLKVector4 _ambientColor;
+  GLKVector4 _diffuseColor;
+  GLKVector4 _specularColor;
+  GLfloat _shininess;
+}
 
 @property (nonatomic, strong) NSMutableArray *techniques;
 

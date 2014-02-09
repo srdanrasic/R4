@@ -55,6 +55,20 @@
 @property (nonatomic, assign) R4CullFace cullFace;
 
 /*!
+ Defines number of times geometry should be drawn.
+ 
+ @discussion Method prepareForIteration:drawState: will be called prior to each iteration.
+ */
+@property (nonatomic, assign) NSUInteger numberOfIterations;
+
+/*!
+ Defines whether the pass should be exectued per each light.
+ 
+ @discussion Enables you to perform drawing separately for each light that affects object. If you set this to YES, only one iteration will be done (numberOfIterations will be ignored).
+ */
+@property (nonatomic, assign) BOOL iteratePerLight;
+
+/*!
  An array of texture units.
  
  @discussion Prior to drawing, each texture unit will be bound to the current OpenGL context in order specified by this array. First unit will be bound to GL_TEXTURE0, second to GL_TEXTURE0+1, etc. Texture will be bound to corresponding units.
@@ -88,10 +102,19 @@
 - (R4TextureUnit *)textureUnitAtIndex:(NSUInteger)index;
 
 /*!
- Called by the renderer prior to drawing the geometry.
+ Called by the renderer prior to drawing.
  
- @discussion Here is your chance to configure shaders' uniforms.
+ @discussion Pass should configure OpenGL state common to all iterations, e.g. configure shaders' uniforms.
  */
-- (void)prepareToDraw:(R4DrawState *)drawState;
+- (void)prepareForDrawing:(R4DrawState *)drawState;
+
+/*!
+ Called by the renderer prior to each drawing iteration.
+ 
+ @param iteration Iteration number. By default goes from 0 to numberOfIterations - 1. If you have set iteratePerLight property to YES, this will correspond to the index of currently bound light to the drawState.
+ 
+ @discussion Here is your last chance to configure OpenGL state, e.g. configure shaders' uniforms that depend on iteration or light number.
+ */
+- (void)prepareForIteration:(NSUInteger)iteration drawState:(R4DrawState *)drawState;
 
 @end

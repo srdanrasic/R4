@@ -16,6 +16,7 @@
   self = [super init];
   if (self) {
     self.techniques = [NSMutableArray arrayWithObject:[[R4Technique alloc] init]];
+    [self commonInit];
   }
   return self;
 }
@@ -28,6 +29,7 @@
       NSAssert([technique isKindOfClass:[R4Technique class]], @"Techniques array must contain only instances of class R4Technique or its descendants.");
     }
     self.techniques = [techniques mutableCopy];
+    [self commonInit];
   }
   return self;
 }
@@ -36,6 +38,14 @@
 {
   if (!technique) return nil;
   return [[[self class] alloc] initWithTechniques:@[technique]];
+}
+
+- (void)commonInit
+{
+  self.ambientColor = GLKVector4Make(0.5, 0.5, 0.5, 1.0);
+  self.diffuseColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
+  self.specularColor = GLKVector4Make(0.0, 0.0, 0.0, 0.0);
+  self.shininess = 0;
 }
 
 - (R4Technique *)optimalTechnique

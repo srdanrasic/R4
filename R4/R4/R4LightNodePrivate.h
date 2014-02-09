@@ -11,6 +11,4 @@
 
 @interface R4LightNode ()
 
-@property (nonatomic, assign, readonly) GLKVector4 homogeneousPosition;
-
 @end

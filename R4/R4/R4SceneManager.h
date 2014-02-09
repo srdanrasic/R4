@@ -44,13 +44,18 @@
 - (void)enumerateDrawableNodesWithBlock:(void (^)(R4Node<R4Drawable> *node))block;
 
 /*!
- Provides means of enumeration of Light Nodes of the scene.
+ Provides means of enumeration of R4LightNodes of the scene.
  
- @param node Node for which Lights are to be enumerated.
- @param block Block object that should get invoked with each Light Node.
+ @param node Node for which lights are to be enumerated.
+ @param block Block object that should get invoked with each R4LightNodes.
  
  @discussion Preferably, nodes are enumerated by the distance from the Node.
  */
 - (void)enumerateLightsFromNode:(R4Node *)node withBlock:(void (^)(R4LightNode *node))block;
+
+/*!
+ Returns an array of R4LightNodes that affect given node.
+ */
+- (NSArray *)lightsFromNode:(R4Node *)node;
 
 @end

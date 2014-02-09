@@ -90,9 +90,16 @@ static bool compare_emitters(const R4EmitterNode *first, const R4EmitterNode *se
 
 - (void)enumerateLightsFromNode:(R4Node *)node withBlock:(void (^)(R4LightNode *))block
 {
+  // TODO Only lights that affect the node
   for (R4LightNode *light in lightArray) {
     block(light);
   }
+}
+
+- (NSArray *)lightsFromNode:(R4Node *)node
+{
+  // TODO Only lights that affect the node
+  return lightArray;
 }
 
 @end

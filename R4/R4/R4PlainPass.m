@@ -8,6 +8,7 @@
 
 #import "R4PlainPass.h"
 #import "R4ProgramManager.h"
+#import "R4Material.h"
 
 @implementation R4PlainPass
 
@@ -28,20 +29,20 @@
   return self;
 }
 
-- (void)prepareToDraw:(R4DrawState *)drawState
+- (void)prepareForDrawing:(R4DrawState *)drawState
 {
-  [super prepareToDraw:drawState];
+  [super prepareForDrawing:drawState];
   
   R4Program *program = self.program;
   
   [program setUniformMatrix4fv:@"model_view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->modelViewProjectionMatrix.m];
-  [program setUniform4fv:@"surface_diffuse_color" count:1 v:GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f).v];
+  [program setUniform4fv:@"surface_diffuse_color" count:1 v:drawState->material.diffuseColor.v];
   [program setUniform1i:@"texture_sampler" v0:0];
   
   if (self.firstTextureUnit.texture) {
     [program setUniform1f:@"texture_mask" v0:0.0f];
   } else {
-    [program setUniform1f:@"texture_mask" v0:0.3f];
+    [program setUniform1f:@"texture_mask" v0:1.0f];
   }
 }
 

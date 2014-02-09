@@ -28,6 +28,7 @@
     self.frontFace = R4FrontFaceCCW;
     self.cullFace = R4CullFaceDisabled;
     self.textureUnits = [NSMutableArray array];
+    self.numberOfIterations = 1;
   }
   return self;
 }
@@ -85,7 +86,7 @@
   return [self.textureUnits objectAtIndex:index];
 }
 
-- (void)prepareToDraw:(R4DrawState *)drawState
+- (void)prepareForDrawing:(R4DrawState *)drawState
 {
   R4Program *program = self.program; // use property!
   
@@ -119,8 +120,11 @@
       glBindTexture(GL_TEXTURE_2D, [self textureUnitAtIndex:idx].texture.textureName);
     }
   } else {
-    glBindTexture(GL_TEXTURE_2D, 0);
   }
+}
+
+- (void)prepareForIteration:(NSUInteger)iteration drawState:(R4DrawState *)drawState
+{
   
 }
 

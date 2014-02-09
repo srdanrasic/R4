@@ -18,6 +18,8 @@
   CGFloat _distanceToCamera;
   GLKMatrix4 _modelMatrix;
   GLKMatrix4 _invModelMatrix;
+  GLKVector3 _positionWorldSpace;
+  
   BOOL _transformsDirty;
 }
 
@@ -28,6 +30,8 @@
 
 @property (nonatomic, readonly) GLKMatrix4 modelMatrix;
 @property (nonatomic, readonly) GLKMatrix4 invModelMatrix;
+
+@property (nonatomic, readonly) GLKVector3 positionWorldSpace;
 
 - (void)updateActionsAtTime:(NSTimeInterval)time;
 

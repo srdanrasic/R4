@@ -139,15 +139,30 @@
     R4Material *material = node.material;
     R4Technique *technique = [material optimalTechnique];
     
-    [node prepareToDraw];
+    drawState->material = material;
     
+    [node prepareToDraw];
+       
     for (R4Pass *pass in technique.passes) {
       drawState->modelMatrix = node.modelMatrix;
       drawState->modelViewMatrix = GLKMatrix4Multiply(drawState->viewMatrix, drawState->modelMatrix);
       drawState->modelViewProjectionMatrix = GLKMatrix4Multiply(drawState->projectionMatrix, drawState->modelViewMatrix);
+      drawState->normalMatrix = GLKMatrix4GetMatrix3(GLKMatrix4InvertAndTranspose(drawState->modelViewMatrix, NULL));
+      
+      if (pass.lighting) {
+        drawState->lightNodes = [scene.sceneManager lightsFromNode:node];
+      } else {
+        drawState->lightNodes = nil;
+      }
+      
+      [pass prepareForDrawing:drawState];
+      
+      NSUInteger numberOfIterations = (pass.iteratePerLight) ? numberOfIterations = drawState->lightNodes.count : pass.numberOfIterations;
 
-      [pass prepareToDraw:drawState];
-      [node draw];
+      for (NSInteger iteration = 0; iteration < numberOfIterations; iteration++) {
+        [pass prepareForIteration:iteration drawState:drawState];
+        [node draw];
+      }
     }
   }];
   

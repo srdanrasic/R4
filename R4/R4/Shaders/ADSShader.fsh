@@ -1,5 +1,5 @@
 //
-//  BlinnPhongShader.m
+//  Blinn Phong Shader
 //  R4
 //
 //  Created by Srđan Rašić on 19/01/14.
@@ -9,7 +9,7 @@
 uniform lowp sampler2D texture_sampler;
 uniform lowp float texture_mask;
 
-varying lowp vec4 texcoord;
+varying lowp vec2 texcoord;
 varying lowp vec4 frag_color_primary;
 varying lowp vec4 frag_color_secondary;
 

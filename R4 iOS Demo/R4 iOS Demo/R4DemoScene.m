@@ -24,18 +24,25 @@
   self.name = @"mainScene";
   
   /* Floor */
-  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh plainWithSize:CGSizeMake(15, 15)]];
+  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh plainWithSize:CGSizeMake(1, 1)]];
   floor.orientation = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 1, 0, 0);
   floor.name = @"floor";
   [floor.material.firstTechnique.firstPass addTextureUnit:[R4TextureUnit textureUnitWithTexture:[R4Texture textureWithImageNamed:@"floor.png"]]];
-  [self addChild:floor];
+  floor.material.specularColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
+  floor.material.shininess = 2;
+  
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      R4Node *b = [floor copy];
+      b.position = GLKVector3Make(i - 5, 0, j - 5);
+      [self addChild:b];
+    }
+  }
   
   /* Stacy character */
-  R4EntityNode *stacy = [MovableEntityNode entityWithMesh:[R4Mesh OBJMeshNamed:@"stacy.obj" normalize:YES center:NO]];
+  R4EntityNode *stacy = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(0.5, 2, 0.5)]];
   stacy.name = @"stacy";
   stacy.userInteractionEnabled = YES;
-  stacy.position = GLKVector3Make(0, 0, 4);
-  [self addChild:stacy];
   
 #if 1
   /* Make some clones of Stacy */
@@ -44,6 +51,7 @@
     R4EntityNode *c2 = [stacy copy];
     c2.name = @"stacy clone";
     c2.position = GLKVector3Make(-sinf(2 * M_PI / copies * i) * 2, 0, cosf(2 * M_PI / copies * i) * 2);
+    c2.orientation = GLKQuaternionMakeWithAngleAndAxis(2 * M_PI / copies * i, 0, -1, 0);
     CGFloat duration = 0.5 + (arc4random() % 100) / 50.0;
     [c2 runAction:[R4Action repeatActionForever:[R4Action sequence:@[[R4Action scaleTo:GLKVector3Make(1, 1, 1) duration:duration], [R4Action scaleTo:GLKVector3Make(1, .5, 1) duration:duration]]]]];
     [self addChild:c2];
@@ -53,6 +61,7 @@
   /* Create a box */
   R4EntityNode *mp = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(1, 1, 1)]];
   mp.userInteractionEnabled = YES;
+  mp.name = @"problem";
   [self addChild:mp];
   
   /* Put fire on the box */
@@ -71,17 +80,12 @@
   [self addChild:smoke];
   
   /* Move camera */
-  self.currentCamera.position = GLKVector3Make(-2, 2, 3);
-  //self.currentCamera.targetNode = stacy;
+  self.currentCamera.position = GLKVector3Make(0, 2, 3);
+  //self.currentCamera.targetNode = mp;
   self.currentCamera.name = @"Camera";
   
-  
-#if 1
-  R4LightNode *light = [R4LightNode pointLightAtPosition:GLKVector3Make(0, 2, 2)];
-  light.constantAttenuation = 0;
-  light.linearAttenuation = 1;
-  [self addChild:light];
-#endif
+  R4LightNode *light = [R4LightNode pointLightAtPosition:GLKVector3Make(0, 2, 0)];
+  [mp addChild:light];
 }
 
 - (void)update:(NSTimeInterval)currentTime

@@ -27,6 +27,7 @@
 		EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3961800672F00AB7FE8 /* R4Action.m */; };
 		EC5BB39F180069A900AB7FE8 /* R4ScaleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */; };
 		EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
+		EC5D9E8E18A788F900AFB2D3 /* R4ADSPass.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */; };
 		EC678738186B08CC009921C2 /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
 		EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */; };
 		ECADD135188AD23E004736E1 /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
@@ -87,6 +88,8 @@
 		EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ScaleAction.m; sourceTree = "<group>"; };
 		EC5BB3A018006B6D00AB7FE8 /* R4RepeatAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4RepeatAction.h; sourceTree = "<group>"; };
 		EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4RepeatAction.m; sourceTree = "<group>"; };
+		EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ADSPass.h; sourceTree = "<group>"; };
+		EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ADSPass.m; sourceTree = "<group>"; };
 		EC678736186B08CC009921C2 /* R4LightNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4LightNode.h; sourceTree = "<group>"; };
 		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
 		EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNodePrivate.h; sourceTree = "<group>"; };
@@ -110,8 +113,8 @@
 		ECADD141188ADC31004736E1 /* R4Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Program.m; sourceTree = "<group>"; };
 		ECADD143188ADC3C004736E1 /* R4Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Shader.h; sourceTree = "<group>"; };
 		ECADD144188ADC3C004736E1 /* R4Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Shader.m; sourceTree = "<group>"; };
-		ECC12C53188BECB4001FE263 /* BlinnPhongShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = BlinnPhongShader.vsh; path = Shaders/BlinnPhongShader.vsh; sourceTree = "<group>"; };
-		ECC12C54188BECB4001FE263 /* BlinnPhongShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = BlinnPhongShader.fsh; path = Shaders/BlinnPhongShader.fsh; sourceTree = "<group>"; };
+		ECC12C53188BECB4001FE263 /* ADSShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ADSShader.vsh; path = Shaders/ADSShader.vsh; sourceTree = "<group>"; };
+		ECC12C54188BECB4001FE263 /* ADSShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ADSShader.fsh; path = Shaders/ADSShader.fsh; sourceTree = "<group>"; };
 		ECC12C56188C11B8001FE263 /* PlainShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.vsh; path = Shaders/PlainShader.vsh; sourceTree = "<group>"; };
 		ECC12C57188C11B8001FE263 /* PlainShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.fsh; path = Shaders/PlainShader.fsh; sourceTree = "<group>"; };
 		ECC524391895507200D00510 /* R4Drawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Drawable.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 			children = (
 				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
 				ECEA3B9E189D7616003DB77C /* R4PlainPass.m */,
+				EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */,
+				EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */,
 				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
 				ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */,
 			);
@@ -201,8 +206,8 @@
 				ECA3D12D186B96A500D92087 /* R4BuildTimeShaders.h */,
 				ECA9C2E2186BABCE0073A61B /* ParticleShader.vsh */,
 				ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */,
-				ECC12C53188BECB4001FE263 /* BlinnPhongShader.vsh */,
-				ECC12C54188BECB4001FE263 /* BlinnPhongShader.fsh */,
+				ECC12C53188BECB4001FE263 /* ADSShader.vsh */,
+				ECC12C54188BECB4001FE263 /* ADSShader.fsh */,
 				ECC12C56188C11B8001FE263 /* PlainShader.vsh */,
 				ECC12C57188C11B8001FE263 /* PlainShader.fsh */,
 			);
@@ -212,8 +217,8 @@
 		ECADD139188AD273004736E1 /* Rendering System */ = {
 			isa = PBXGroup;
 			children = (
-				ECADD134188AD23E004736E1 /* R4Material.m */,
 				ECADD133188AD23E004736E1 /* R4Material.h */,
+				ECADD134188AD23E004736E1 /* R4Material.m */,
 				ECADD13D188AD6BF004736E1 /* R4Technique.h */,
 				ECADD13E188AD6BF004736E1 /* R4Technique.m */,
 				ECADD136188AD262004736E1 /* R4Pass.h */,
@@ -417,6 +422,7 @@
 				ECADD135188AD23E004736E1 /* R4Material.m in Sources */,
 				EC5BB3971800672F00AB7FE8 /* R4Action.m in Sources */,
 				ECC58D4917F8524F00BBAD28 /* R4Scene.m in Sources */,
+				EC5D9E8E18A788F900AFB2D3 /* R4ADSPass.m in Sources */,
 				ECC58D4317F8519900BBAD28 /* R4View.m in Sources */,
 				ECADD138188AD262004736E1 /* R4Pass.m in Sources */,
 				ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */,

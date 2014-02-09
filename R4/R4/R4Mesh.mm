@@ -10,6 +10,7 @@
 #import "R4Material.h"
 #import "R4Technique.h"
 #import "R4PlainPass.h"
+#import "R4ADSPass.h"
 #import "R4Texture.h"
 #import "R4TextureUnit.h"
 #import "R4Shader.h"
@@ -82,7 +83,7 @@ static GLfloat gPlainVertexData[48] =
 {
   self = [super init];
   if (self) {
-    self.material = [R4Material materialWithTechnique:[R4Technique techniqueWithPass:[R4PlainPass pass]]];
+    self.material = [R4Material materialWithTechnique:[R4Technique techniqueWithPass:[R4ADSPass pass]]];
     vertexBuffer = GL_INVALID_VALUE;
     indexBuffer = GL_INVALID_VALUE;
   }

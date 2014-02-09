@@ -301,7 +301,8 @@
   }
   
   _modelMatrix = modelMatrix;
-  _invModelMatrix = GLKMatrix4Invert(modelMatrix, NULL);
+  _invModelMatrix = GLKMatrix4Invert(_modelMatrix, NULL);
+  _positionWorldSpace = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(_modelMatrix, GLKVector4Make(0, 0, 0, 1.f)).v);
   _transformsDirty = NO;
   
   for (R4Node *child in _children) {
@@ -325,6 +326,15 @@
   }
   
   return _invModelMatrix;
+}
+
+- (GLKVector3)positionWorldSpace
+{
+  if (_transformsDirty) {
+    [self updateTransformMatrices];
+  }
+  
+  return _positionWorldSpace;
 }
 
 - (R4Box)calculateAccumulatedBoundingBox
