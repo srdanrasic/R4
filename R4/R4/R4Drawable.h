@@ -12,6 +12,8 @@
 
 /*!
  Protocol that defines interface for drawable scene nodes.
+ 
+ Any R4Node that implements this protocol and is part of the scene is processed by the renderer. That means that you can use this protocol to make drawable nodes with custom drawing code.
  */
 @protocol R4Drawable <NSObject>
 

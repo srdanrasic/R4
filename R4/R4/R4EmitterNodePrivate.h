@@ -16,10 +16,10 @@ typedef struct {
   GLKVector3 direction;
   CGFloat colorBlendFactor;
   
+  GLKVector4 initialColor;
+  GLKVector3 initialPosition;
   CGFloat lifetime;
   CGFloat timeToLive;
-  GLKVector3 initialPosition;
-  GLKVector4 initialColor;
   CGFloat initialScale;
   CGFloat initialColorBlendFactor;
   CGFloat speed;
