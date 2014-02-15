@@ -1,6 +1,9 @@
-
 R4: A SpriteKit in 3D
 ---------------------
+
+<p align="center">
+  <img src="https://dl.dropboxusercontent.com/u/25219211/r4ss.png" />
+</p>
 
 R4 is a 3D graphics rendering and animation library based on Apple's SpriteKit Framework. Goal of the library is to ease creation of 3D games and applications by providing an infrastructure whose interface resembles interface of the SpriteKit. Someone who is familiar with SpriteKit shouldn't have any problems working with this library. Concepts that apply to SpriteKit also apply to R4, just with additional space dimension.
 
