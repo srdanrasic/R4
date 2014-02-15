@@ -13,7 +13,7 @@
 /*!
  R4Program encapsulates OpenGL Program object. Creation of this object is usually done internally by R4Pass.
  
- @warning You should not instantiate R4Program objects directly, rather R4ProgramManager should be used to create new programs.
+ @warning You should never instantiate R4Program objects directly, rather R4ProgramManager should be used to create new programs.
  */
 @interface R4Program : NSObject
 

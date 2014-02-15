@@ -49,6 +49,10 @@
   
   NSArray *lights = drawState->lightNodes;
   
+  if (!lights.count) {
+    lights = @[[R4LightNode pointLightAtPosition:GLKVector3Make(0, 2, 2)]];
+  }
+  
   for (NSInteger idx = 0; idx < lights.count; idx++) {
     R4LightNode *light = [lights objectAtIndex:idx];
     

@@ -29,6 +29,38 @@
 		EC5BB3A218006B6D00AB7FE8 /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
 		EC5D9E8E18A788F900AFB2D3 /* R4ADSPass.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */; };
 		EC678738186B08CC009921C2 /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
+		EC74505518AFB6FA00C5E36E /* R4Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4E17F8538900BBAD28 /* R4Texture.m */; };
+		EC74505618AFB6FA00C5E36E /* R4ScaleAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */; };
+		EC74505718AFB6FA00C5E36E /* R4EmitterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */; };
+		EC74505818AFB6FA00C5E36E /* R4Mesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECDE15BD188C31F5008EA3A1 /* R4Mesh.mm */; };
+		EC74505918AFB6FA00C5E36E /* R4DrawState.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA4189D7F6E003DB77C /* R4DrawState.m */; };
+		EC74505A18AFB6FA00C5E36E /* R4DefaultSceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */; };
+		EC74505B18AFB6FA00C5E36E /* R4ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */; };
+		EC74505C18AFB6FA00C5E36E /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
+		EC74505D18AFB6FA00C5E36E /* R4Action.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3961800672F00AB7FE8 /* R4Action.m */; };
+		EC74505E18AFB6FA00C5E36E /* R4Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4817F8524F00BBAD28 /* R4Scene.m */; };
+		EC74505F18AFB6FA00C5E36E /* R4ADSPass.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */; };
+		EC74506018AFB6FA00C5E36E /* R4View.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4217F8519900BBAD28 /* R4View.m */; };
+		EC74506118AFB6FA00C5E36E /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
+		EC74506218AFB6FA00C5E36E /* R4ParticlePass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */; };
+		EC74506318AFB6FA00C5E36E /* R4PlainPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4PlainPass.m */; };
+		EC74506418AFB6FA00C5E36E /* R4TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B97189D648D003DB77C /* R4TextureManager.m */; };
+		EC74506518AFB6FA00C5E36E /* R4CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4CameraNode.m */; };
+		EC74506618AFB6FA00C5E36E /* R4TextureUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */; };
+		EC74506718AFB6FA00C5E36E /* R4Program.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD141188ADC31004736E1 /* R4Program.m */; };
+		EC74506818AFB6FA00C5E36E /* R4SequenceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */; };
+		EC74506918AFB6FA00C5E36E /* R4RepeatAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */; };
+		EC74506A18AFB6FA00C5E36E /* R4Node.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4517F8521900BBAD28 /* R4Node.m */; };
+		EC74506B18AFB6FA00C5E36E /* R4PairKey.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B94189D605B003DB77C /* R4PairKey.m */; };
+		EC74506C18AFB6FA00C5E36E /* R4Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D5817F866A100BBAD28 /* R4Renderer.m */; };
+		EC74506D18AFB6FA00C5E36E /* R4MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */; };
+		EC74506E18AFB6FA00C5E36E /* R4Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD144188ADC3C004736E1 /* R4Shader.m */; };
+		EC74506F18AFB6FA00C5E36E /* R4EntityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDE15C0188C3262008EA3A1 /* R4EntityNode.m */; };
+		EC74507018AFB6FA00C5E36E /* R4LightNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC678737186B08CC009921C2 /* R4LightNode.m */; };
+		EC74507118AFB6FA00C5E36E /* R4Technique.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD13E188AD6BF004736E1 /* R4Technique.m */; };
+		EC74507318AFB6FA00C5E36E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3517F8508000BBAD28 /* GLKit.framework */; };
+		EC74507418AFB6FA00C5E36E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3617F8508000BBAD28 /* OpenGLES.framework */; };
+		EC74507518AFB6FA00C5E36E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D0F17F8505600BBAD28 /* Foundation.framework */; };
 		EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */; };
 		ECADD135188AD23E004736E1 /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
 		ECADD138188AD262004736E1 /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
@@ -81,6 +113,7 @@
 		EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4MoveAction.m; sourceTree = "<group>"; };
 		EC4A943C181BC2AF008B9DC4 /* R4SequenceAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4SequenceAction.h; sourceTree = "<group>"; };
 		EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4SequenceAction.m; sourceTree = "<group>"; };
+		EC5101B018AFB2F500F7964F /* R4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4.h; sourceTree = "<group>"; };
 		EC5BB3951800672F00AB7FE8 /* R4Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Action.h; sourceTree = "<group>"; };
 		EC5BB3961800672F00AB7FE8 /* R4Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Action.m; sourceTree = "<group>"; };
 		EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ActionPrivate.h; sourceTree = "<group>"; };
@@ -94,6 +127,7 @@
 		EC678737186B08CC009921C2 /* R4LightNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4LightNode.m; sourceTree = "<group>"; };
 		EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4LightNodePrivate.h; sourceTree = "<group>"; };
 		EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4NodePrivate.h; sourceTree = "<group>"; };
+		EC74507B18AFB6FA00C5E36E /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC87C49E189ECCC800487304 /* README.md */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		EC87C49F189ECCDA00487304 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ProgramManager.h; sourceTree = "<group>"; };
@@ -156,6 +190,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EC74507218AFB6FA00C5E36E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC74507318AFB6FA00C5E36E /* GLKit.framework in Frameworks */,
+				EC74507418AFB6FA00C5E36E /* OpenGLES.framework in Frameworks */,
+				EC74507518AFB6FA00C5E36E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECC58D0917F8505600BBAD28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC58D0C17F8505600BBAD28 /* libR4.a */,
+				EC74507B18AFB6FA00C5E36E /* libR4.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,6 +332,7 @@
 		ECC58D1117F8505600BBAD28 /* R4 */ = {
 			isa = PBXGroup;
 			children = (
+				EC5101B018AFB2F500F7964F /* R4.h */,
 				ECC58D1417F8505600BBAD28 /* R4Base.h */,
 				ECBE45E618905444000E88D6 /* Resources */,
 				ECADD139188AD273004736E1 /* Rendering System */,
@@ -333,10 +379,31 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EC74505118AFB6FA00C5E36E /* R4 Universal Static Library */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC74507818AFB6FA00C5E36E /* Build configuration list for PBXNativeTarget "R4 Universal Static Library" */;
+			buildPhases = (
+				EC74505218AFB6FA00C5E36E /* ShellScript */,
+				EC74505318AFB6FA00C5E36E /* ShellScript */,
+				EC74505418AFB6FA00C5E36E /* Sources */,
+				EC74507218AFB6FA00C5E36E /* Frameworks */,
+				EC74507C18AFB74100C5E36E /* ShellScript */,
+				EC74507E18AFBACA00C5E36E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "R4 Universal Static Library";
+			productName = R4;
+			productReference = EC74507B18AFB6FA00C5E36E /* libR4.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		ECC58D0B17F8505600BBAD28 /* R4 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECC58D2F17F8505700BBAD28 /* Build configuration list for PBXNativeTarget "R4" */;
 			buildPhases = (
+				EC5101AF18AFB22200F7964F /* ShellScript */,
 				ECA9C2DF186B97BA0073A61B /* ShellScript */,
 				ECC58D0817F8505600BBAD28 /* Sources */,
 				ECC58D0917F8505600BBAD28 /* Frameworks */,
@@ -373,12 +440,78 @@
 			projectRoot = "";
 			targets = (
 				ECC58D0B17F8505600BBAD28 /* R4 */,
+				EC74505118AFB6FA00C5E36E /* R4 Universal Static Library */,
 				EC87C4A5189ECE7B00487304 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		EC5101AF18AFB22200F7964F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles R4.h header listing file.\n\nOUT=\"${SRCROOT}/R4/R4.h\"\necho -e \"/* Autocompile header listing. */\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/\"); do\n  if ! [[ $file =~ .*Private.* ]] && [[ $file =~ .*[.]h ]] && ! [[ $file == \"R4.h\" ]]; then\n    echo \"#import \\\"${file}\\\"\" >> $OUT;\n  fi;\ndone;\n";
+		};
+		EC74505218AFB6FA00C5E36E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles R4.h header listing file.\n\nOUT=\"${SRCROOT}/R4/R4.h\"\necho -e \"/* Autocompile header listing. */\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/\"); do\n  if ! [[ $file =~ .*Private.* ]] && [[ $file =~ .*[.]h ]] && ! [[ $file == \"R4.h\" ]]; then\n    echo \"#import \\\"${file}\\\"\" >> $OUT;\n  fi;\ndone;\n";
+		};
+		EC74505318AFB6FA00C5E36E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Compiles R4BuildTimeShaders.h file from shader files in Shaders/\n\nOUT=\"${SRCROOT}/R4/R4BuildTimeShaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
+		};
+		EC74507C18AFB74100C5E36E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "##########################################\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Version 2.7\n#\n# Latest Change:\n# - Supports iPhone 5 / iPod Touch 5 (uses Apple's workaround to lipo bug)\n#\n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nxcrun -sdk iphoneos lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\necho \"Fetching headers from ${PUBLIC_HEADERS_FOLDER_PATH}\"\necho \"  (if you embed your library project in another project, you will need to add\"\necho \"   a \"User Search Headers\" build setting of: (NB INCLUDE THE DOUBLE QUOTES BELOW!)\"\necho '        \"$(TARGET_BUILD_DIR)/usr/local/include/\"'\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"* \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi";
+		};
+		EC74507E18AFBACA00C5E36E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "## Copy headers manually\n\nHEADERS_OUT_DIR=${SYMROOT}/${CONFIGURATION}-universal/include\nrm -rf \"${HEADERS_OUT_DIR}\"\nmkdir \"${HEADERS_OUT_DIR}\"\n\nfor file in $(ls \"${SRCROOT}/R4/\"); do\nif ! [[ $file =~ .*Private.* ]] && [[ $file =~ .*[.]h ]]; then\ncp \"${SRCROOT}/R4/${file}\" \"${HEADERS_OUT_DIR}\"\nfi;\ndone;\n\nopen \"${HEADERS_OUT_DIR}/../\"";
+		};
 		EC87C4A9189ECEAC00487304 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -403,11 +536,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OUT=\"${SRCROOT}/R4/R4BuildTimeShaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
+			shellScript = "# Compiles R4BuildTimeShaders.h file from shader files in Shaders/\n\nOUT=\"${SRCROOT}/R4/R4BuildTimeShaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\n    cat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\n    echo -e \"\\\";\\n\" >> $OUT;\ndone;\n            \necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\n    echo -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\n    echo -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EC74505418AFB6FA00C5E36E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC74505518AFB6FA00C5E36E /* R4Texture.m in Sources */,
+				EC74505618AFB6FA00C5E36E /* R4ScaleAction.m in Sources */,
+				EC74505718AFB6FA00C5E36E /* R4EmitterNode.m in Sources */,
+				EC74505818AFB6FA00C5E36E /* R4Mesh.mm in Sources */,
+				EC74505918AFB6FA00C5E36E /* R4DrawState.m in Sources */,
+				EC74505A18AFB6FA00C5E36E /* R4DefaultSceneManager.mm in Sources */,
+				EC74505B18AFB6FA00C5E36E /* R4ProgramManager.m in Sources */,
+				EC74505C18AFB6FA00C5E36E /* R4Material.m in Sources */,
+				EC74505D18AFB6FA00C5E36E /* R4Action.m in Sources */,
+				EC74505E18AFB6FA00C5E36E /* R4Scene.m in Sources */,
+				EC74505F18AFB6FA00C5E36E /* R4ADSPass.m in Sources */,
+				EC74506018AFB6FA00C5E36E /* R4View.m in Sources */,
+				EC74506118AFB6FA00C5E36E /* R4Pass.m in Sources */,
+				EC74506218AFB6FA00C5E36E /* R4ParticlePass.m in Sources */,
+				EC74506318AFB6FA00C5E36E /* R4PlainPass.m in Sources */,
+				EC74506418AFB6FA00C5E36E /* R4TextureManager.m in Sources */,
+				EC74506518AFB6FA00C5E36E /* R4CameraNode.m in Sources */,
+				EC74506618AFB6FA00C5E36E /* R4TextureUnit.m in Sources */,
+				EC74506718AFB6FA00C5E36E /* R4Program.m in Sources */,
+				EC74506818AFB6FA00C5E36E /* R4SequenceAction.m in Sources */,
+				EC74506918AFB6FA00C5E36E /* R4RepeatAction.m in Sources */,
+				EC74506A18AFB6FA00C5E36E /* R4Node.m in Sources */,
+				EC74506B18AFB6FA00C5E36E /* R4PairKey.m in Sources */,
+				EC74506C18AFB6FA00C5E36E /* R4Renderer.m in Sources */,
+				EC74506D18AFB6FA00C5E36E /* R4MoveAction.m in Sources */,
+				EC74506E18AFB6FA00C5E36E /* R4Shader.m in Sources */,
+				EC74506F18AFB6FA00C5E36E /* R4EntityNode.m in Sources */,
+				EC74507018AFB6FA00C5E36E /* R4LightNode.m in Sources */,
+				EC74507118AFB6FA00C5E36E /* R4Technique.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECC58D0817F8505600BBAD28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +616,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		EC74507918AFB6FA00C5E36E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/R4.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = R4;
+				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EC74507A18AFB6FA00C5E36E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/R4.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = R4;
+				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		EC87C4A6189ECE7B00487304 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -568,6 +772,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC74507818AFB6FA00C5E36E /* Build configuration list for PBXNativeTarget "R4 Universal Static Library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC74507918AFB6FA00C5E36E /* Debug */,
+				EC74507A18AFB6FA00C5E36E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC87C4A8189ECE7B00487304 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
