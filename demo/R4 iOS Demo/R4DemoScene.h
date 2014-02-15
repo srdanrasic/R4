@@ -6,24 +6,7 @@
 //  Copyright (c) 2014 Srđan Rašić. All rights reserved.
 //
 
-#import <R4/R4View.h>
-#import <R4/R4Scene.h>
-#import <R4/R4Action.h>
-#import <R4/R4CameraNode.h>
-#import <R4/R4LightNode.h>
-#import <R4/R4EmitterNode.h>
-#import <R4/R4CameraNodePrivate.h>
-#import <R4/R4ScenePrivate.h>
-#import <R4/R4ViewPrivate.h>
-#import <R4/R4EntityNode.h>
-#import <R4/R4Mesh.h>
-#import <R4/R4Texture.h>
-#import <R4/R4Pass.h>
-#import <R4/R4Material.h>
-#import <R4/R4Technique.h>
-#import <R4/R4TextureUnit.h>
-#import <SpriteKit/SpriteKit.h>
-#import <AudioToolbox/AudioServices.h>
+#import "R4.h"
 
 @interface R4DemoScene : R4Scene
 

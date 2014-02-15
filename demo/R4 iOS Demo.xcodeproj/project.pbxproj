@@ -28,7 +28,6 @@
 		ECC58CDC17F8500D00BBAD28 /* R4AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CDB17F8500D00BBAD28 /* R4AppDelegate.m */; };
 		ECC58CE517F8500D00BBAD28 /* R4DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */; };
 		ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CE617F8500D00BBAD28 /* Images.xcassets */; };
-		ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3B17F850B900BBAD28 /* libR4.a */; };
 		ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */; };
 		ECC78C85181C4009000FBC19 /* 747.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C7E181C4009000FBC19 /* 747.obj */; };
 		ECC78C87181C4009000FBC19 /* corn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C80181C4009000FBC19 /* corn.mtl */; };
@@ -40,11 +39,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EC6FD69D17F8711700ED6AAA /* PBXContainerItemProxy */ = {
+		ECDF867018AFC54F0024694E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ECC58D3917F8509900BBAD28 /* R4.xcodeproj */;
+			containerPortal = ECDF866918AFC54F0024694E /* R4.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = ECC58D0C17F8505600BBAD28;
+			remoteInfo = R4;
+		};
+		ECDF867218AFC54F0024694E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECDF866918AFC54F0024694E /* R4.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC74507B18AFB6FA00C5E36E;
+			remoteInfo = "R4 Universal";
+		};
+		ECDF867518AFC5920024694E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECDF866918AFC54F0024694E /* R4.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = ECC58D0B17F8505600BBAD28;
 			remoteInfo = R4;
 		};
 /* End PBXContainerItemProxy section */
@@ -77,8 +90,6 @@
 		ECC58CE317F8500D00BBAD28 /* R4DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4DemoViewController.h; sourceTree = "<group>"; };
 		ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R4DemoViewController.m; sourceTree = "<group>"; };
 		ECC58CE617F8500D00BBAD28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		ECC58D3917F8509900BBAD28 /* R4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = R4.xcodeproj; path = ../R4/R4.xcodeproj; sourceTree = "<group>"; };
-		ECC58D3B17F850B900BBAD28 /* libR4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libR4.a; path = "../R4/build/Debug-iphoneos/libR4.a"; sourceTree = "<group>"; };
 		ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		ECC78C7E181C4009000FBC19 /* 747.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 747.obj; sourceTree = "<group>"; };
 		ECC78C80181C4009000FBC19 /* corn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corn.mtl; sourceTree = "<group>"; };
@@ -87,6 +98,7 @@
 		ECC78C83181C4009000FBC19 /* novcic.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.mtl; sourceTree = "<group>"; };
 		ECC78C84181C4009000FBC19 /* novcic.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.obj; sourceTree = "<group>"; };
 		ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		ECDF866918AFC54F0024694E /* R4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = R4.xcodeproj; path = ../R4.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +110,6 @@
 				EC8868D0187B0999000583BC /* AudioToolbox.framework in Frameworks */,
 				ECC78C8D181C40C0000FBC19 /* libstdc++.dylib in Frameworks */,
 				ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */,
-				ECC58D3C17F850B900BBAD28 /* libR4.a in Frameworks */,
 				ECC58CCE17F8500D00BBAD28 /* CoreGraphics.framework in Frameworks */,
 				ECC58CD017F8500D00BBAD28 /* UIKit.framework in Frameworks */,
 				ECC58CCC17F8500D00BBAD28 /* Foundation.framework in Frameworks */,
@@ -108,14 +119,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC6FD69A17F8711700ED6AAA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EC6FD69E17F8711700ED6AAA /* libR4.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		ECC58CBF17F8500D00BBAD28 = {
 			isa = PBXGroup;
 			children = (
@@ -136,12 +139,11 @@
 		ECC58CCA17F8500D00BBAD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECDF866918AFC54F0024694E /* R4.xcodeproj */,
 				EC8868D2187B09C1000583BC /* CoreAudio.framework */,
 				EC8868CF187B0999000583BC /* AudioToolbox.framework */,
 				ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */,
 				ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */,
-				ECC58D3B17F850B900BBAD28 /* libR4.a */,
-				ECC58D3917F8509900BBAD28 /* R4.xcodeproj */,
 				ECC58CCB17F8500D00BBAD28 /* Foundation.framework */,
 				ECC58CCD17F8500D00BBAD28 /* CoreGraphics.framework */,
 				ECC58CCF17F8500D00BBAD28 /* UIKit.framework */,
@@ -208,6 +210,15 @@
 			path = Resources/Meshes;
 			sourceTree = "<group>";
 		};
+		ECDF866A18AFC54F0024694E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECDF867118AFC54F0024694E /* libR4.a */,
+				ECDF867318AFC54F0024694E /* libR4.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,6 +233,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				ECDF867618AFC5920024694E /* PBXTargetDependency */,
 			);
 			name = "R4 iOS Demo";
 			productName = "R4 iOS Demo";
@@ -256,8 +268,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = EC6FD69A17F8711700ED6AAA /* Products */;
-					ProjectRef = ECC58D3917F8509900BBAD28 /* R4.xcodeproj */;
+					ProductGroup = ECDF866A18AFC54F0024694E /* Products */;
+					ProjectRef = ECDF866918AFC54F0024694E /* R4.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -268,11 +280,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		EC6FD69E17F8711700ED6AAA /* libR4.a */ = {
+		ECDF867118AFC54F0024694E /* libR4.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libR4.a;
-			remoteRef = EC6FD69D17F8711700ED6AAA /* PBXContainerItemProxy */;
+			remoteRef = ECDF867018AFC54F0024694E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ECDF867318AFC54F0024694E /* libR4.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libR4.a;
+			remoteRef = ECDF867218AFC54F0024694E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -318,6 +337,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ECDF867618AFC5920024694E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = R4;
+			targetProxy = ECDF867518AFC5920024694E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ECC58CD417F8500D00BBAD28 /* InfoPlist.strings */ = {
@@ -423,6 +450,7 @@
 					"../R4/**",
 				);
 				INFOPLIST_FILE = "R4 iOS Demo/R4 iOS Demo-Info.plist";
+				OTHER_LDFLAGS = "-lR4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -445,6 +473,7 @@
 					"../R4/**",
 				);
 				INFOPLIST_FILE = "R4 iOS Demo/R4 iOS Demo-Info.plist";
+				OTHER_LDFLAGS = "-lR4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

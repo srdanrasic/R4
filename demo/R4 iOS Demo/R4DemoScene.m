@@ -7,6 +7,7 @@
 //
 
 #import "R4DemoScene.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface MovableEntityNode : R4EntityNode @end
 @interface MovableEmitterNode : R4EmitterNode @end
