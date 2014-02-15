@@ -49,7 +49,11 @@
 	
 	<option value="//api/name/frontFace">&nbsp;&nbsp;&nbsp;&nbsp;frontFace</option>
 	
+	<option value="//api/name/iteratePerLight">&nbsp;&nbsp;&nbsp;&nbsp;iteratePerLight</option>
+	
 	<option value="//api/name/lighting">&nbsp;&nbsp;&nbsp;&nbsp;lighting</option>
+	
+	<option value="//api/name/numberOfIterations">&nbsp;&nbsp;&nbsp;&nbsp;numberOfIterations</option>
 	
 	<option value="//api/name/program">&nbsp;&nbsp;&nbsp;&nbsp;program</option>
 	
@@ -77,7 +81,9 @@
 	
 	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
 	
-	<option value="//api/name/prepareToDraw:">&nbsp;&nbsp;&nbsp;&nbsp;- prepareToDraw:</option>
+	<option value="//api/name/prepareForDrawing:">&nbsp;&nbsp;&nbsp;&nbsp;- prepareForDrawing:</option>
+	
+	<option value="//api/name/prepareForIteration:drawState:">&nbsp;&nbsp;&nbsp;&nbsp;- prepareForIteration:drawState:</option>
 	
 	<option value="//api/name/textureUnitAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- textureUnitAtIndex:</option>
 	
@@ -115,7 +121,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/frontFace">frontFace</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iteratePerLight">iteratePerLight</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lighting">lighting</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfIterations">numberOfIterations</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/program">program</a></span></li>
 	
@@ -145,7 +155,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareToDraw:">prepareToDraw:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareForDrawing:">prepareForDrawing:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareForIteration:drawState:">prepareForIteration:drawState:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textureUnitAtIndex:">textureUnitAtIndex:</a></span></li>
 	
@@ -186,7 +198,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>R4Pass specifies all informations required to perform a draw operation. It manages vertex and fragment shaders, blending modes, depth writing and testing, face culling, textures, etc.</p><p>If you&rsquo;re implementing a custom <a href="#//api/name/pass">pass</a> and you have to configure shader parameters (uniforms), you must subclass this class and override <a href="#//api/name/prepareToDraw:">prepareToDraw:</a> method in which you do your custom preparation for the draw, like setting up uniforms.</p>
+						<p>R4Pass specifies all informations required to perform a draw operation. It manages vertex and fragment shaders, blending modes, depth writing and testing, face culling, textures, etc.</p><p>If you&rsquo;re implementing a custom <a href="#//api/name/pass">pass</a> and you have to configure shader parameters (uniforms), you must subclass this class and override prepareToDraw: method in which you do your custom preparation for the draw, like setting up uniforms.</p>
 					</div>
 					
 					
@@ -235,6 +247,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cullFace">&nbsp;&nbsp;cullFace</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numberOfIterations">&nbsp;&nbsp;numberOfIterations</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/iteratePerLight">&nbsp;&nbsp;iteratePerLight</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -294,7 +318,13 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/prepareToDraw:">&ndash;&nbsp;prepareToDraw:</a></code>
+		<code><a href="#//api/name/prepareForDrawing:">&ndash;&nbsp;prepareForDrawing:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prepareForIteration:drawState:">&ndash;&nbsp;prepareForIteration:drawState:</a></code>
 	</span>
 	
 	
@@ -497,6 +527,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/iteratePerLight" title="iteratePerLight"></a>
+	<h3 class="subsubtitle method-title">iteratePerLight</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defines whether the <a href="#//api/name/pass">pass</a> should be exectued per each light.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL iteratePerLight</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Enables you to perform drawing separately for each light that affects object. If you set this to YES, only one iteration will be done (<a href="#//api/name/numberOfIterations">numberOfIterations</a> will be ignored).</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">R4Pass.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/lighting" title="lighting"></a>
 	<h3 class="subsubtitle method-title">lighting</h3>
 	
@@ -521,6 +592,47 @@
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Enables you to access lights that affect current <a href="../Protocols/R4Drawable.html">R4Drawable</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">R4Pass.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numberOfIterations" title="numberOfIterations"></a>
+	<h3 class="subsubtitle method-title">numberOfIterations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defines number of times geometry should be drawn.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger numberOfIterations</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Method <a href="#//api/name/prepareForIteration:drawState:">prepareForIteration:drawState:</a> will be called prior to each iteration.</p>
 	</div>
 	
 	
@@ -752,18 +864,18 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/prepareToDraw:" title="prepareToDraw:"></a>
-	<h3 class="subsubtitle method-title">prepareToDraw:</h3>
+	<a name="//api/name/prepareForDrawing:" title="prepareForDrawing:"></a>
+	<h3 class="subsubtitle method-title">prepareForDrawing:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called by the renderer prior to drawing the geometry.</p>
+		<p>Called by the renderer prior to drawing.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)prepareToDraw:(R4DrawState *)<em>drawState</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)prepareForDrawing:(R4DrawState *)<em>drawState</em></code></div>
 
     
 	
@@ -775,7 +887,58 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Here is your chance to configure shaders' uniforms.</p>
+		<p>Pass should configure OpenGL state common to all iterations, e.g. configure shaders' uniforms.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">R4Pass.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareForIteration:drawState:" title="prepareForIteration:drawState:"></a>
+	<h3 class="subsubtitle method-title">prepareForIteration:drawState:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by the renderer prior to each drawing iteration.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)prepareForIteration:(NSUInteger)<em>iteration</em> drawState:(R4DrawState *)<em>drawState</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>iteration</em></dt>
+			<dd><p>Iteration number. By default goes from 0 to <a href="#//api/name/numberOfIterations">numberOfIterations</a> - 1. If you have set <a href="#//api/name/iteratePerLight">iteratePerLight</a> property to YES, this will correspond to the index of currently bound light to the drawState.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Here is your last chance to configure OpenGL state, e.g. configure shaders' uniforms that depend on iteration or light number.</p>
 	</div>
 	
 	
@@ -818,7 +981,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-03)</span><br />
+						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-15)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
