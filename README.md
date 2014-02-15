@@ -33,19 +33,20 @@ Planned or in progress
 * Basic physical subsystem.
 * Skeletal animation.
 
+Requirements
+============
+
+R4 currently supports iOS 7. It can also run on previous versions if you don't use R4EmitterNode class. Simple scenes can be rendered smoothly on older devices like iPhone 4, but anything more complex will require optimizations like using simpler shaders or lowering drawing resolution to support such devices.
+
 
 Getting started
 ---------------
 
-TODO
+Please checkout [Getting started](https://github.com/srdanrasic/R4/wiki/Getting-started) page on Wiki.
 
 
 Contribute
 ----------
 
-R4 needs your help to make it better. If you find it useful, consider forking it on [GitHub](https://github.com/srdanrasic/R4) and doing improvements. I'll be happy to accept contributions - were they either extensions or improvements of the current codebase. If you do find yourself contributing, please follow these few guidelines:
+Please checkout [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
 
-* When working on existing file use same code style that's already used in that file. Although I'd prefer, I don't mind different styles in different files. Per file consistency is more important.
-* Be sure to update the documentation accordingly to changes you've made. Especially if something has been changed. Build the Documentation target to recompile it with [appledoc](http://gentlebytes.com/appledoc/).
-* Name headers that are used only internally like *Private.h to hide them from users and exclude from the documentation.
-* Use properties to define public interfaces. Use ivars for performance critical code.
