@@ -7,10 +7,10 @@
 //
 
 #import "R4ActionPrivate.h"
-#import "R4MoveAction.h"
-#import "R4ScaleAction.h"
-#import "R4RepeatAction.h"
-#import "R4SequenceAction.h"
+#import "R4MoveActionPrivate.h"
+#import "R4ScaleActionPrivate.h"
+#import "R4RepeatActionPrivate.h"
+#import "R4SequenceActionPrivate.h"
 
 @implementation R4Action
 
@@ -32,7 +32,7 @@
 
 - (R4ActionProperties *)newActionPropertiesStruct
 {
-  // TODO performance: Create pool of reusable R4ActionProperties
+  // TODO performance: Create pool of reusable R4ActionProperties ?
   return malloc(sizeof(R4ActionProperties));
 }
 

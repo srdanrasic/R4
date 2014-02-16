@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC0C192A1837C67200148E7B /* corntext.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19281837C67200148E7B /* corntext.png */; };
-		EC0C192B1837C67200148E7B /* novcictext.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19291837C67200148E7B /* novcictext.png */; };
 		EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19461837DCEE00148E7B /* stacy.mtl */; };
 		EC0C19491837DCEE00148E7B /* stacy.obj in Resources */ = {isa = PBXBuildFile; fileRef = EC0C19471837DCEE00148E7B /* stacy.obj */; };
 		EC0C194B1837DD6500148E7B /* stacy.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0C194A1837DD6500148E7B /* stacy.png */; };
@@ -29,12 +27,7 @@
 		ECC58CE517F8500D00BBAD28 /* R4DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */; };
 		ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC58CE617F8500D00BBAD28 /* Images.xcassets */; };
 		ECC58D5117F854DB00BBAD28 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */; };
-		ECC78C85181C4009000FBC19 /* 747.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C7E181C4009000FBC19 /* 747.obj */; };
-		ECC78C87181C4009000FBC19 /* corn.mtl in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C80181C4009000FBC19 /* corn.mtl */; };
-		ECC78C88181C4009000FBC19 /* corn.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C81181C4009000FBC19 /* corn.obj */; };
 		ECC78C89181C4009000FBC19 /* f16.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C82181C4009000FBC19 /* f16.obj */; };
-		ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C83181C4009000FBC19 /* novcic.mtl */; };
-		ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */ = {isa = PBXBuildFile; fileRef = ECC78C84181C4009000FBC19 /* novcic.obj */; };
 		ECC78C8D181C40C0000FBC19 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */; };
 /* End PBXBuildFile section */
 
@@ -63,8 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC0C19281837C67200148E7B /* corntext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corntext.png; sourceTree = "<group>"; };
-		EC0C19291837C67200148E7B /* novcictext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = novcictext.png; sourceTree = "<group>"; };
 		EC0C19461837DCEE00148E7B /* stacy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.mtl; sourceTree = "<group>"; };
 		EC0C19471837DCEE00148E7B /* stacy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stacy.obj; sourceTree = "<group>"; };
 		EC0C194A1837DD6500148E7B /* stacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stacy.png; sourceTree = "<group>"; };
@@ -91,12 +82,7 @@
 		ECC58CE417F8500D00BBAD28 /* R4DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = R4DemoViewController.m; sourceTree = "<group>"; };
 		ECC58CE617F8500D00BBAD28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECC58D5017F854DB00BBAD28 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		ECC78C7E181C4009000FBC19 /* 747.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 747.obj; sourceTree = "<group>"; };
-		ECC78C80181C4009000FBC19 /* corn.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corn.mtl; sourceTree = "<group>"; };
-		ECC78C81181C4009000FBC19 /* corn.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corn.obj; sourceTree = "<group>"; };
 		ECC78C82181C4009000FBC19 /* f16.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = f16.obj; sourceTree = "<group>"; };
-		ECC78C83181C4009000FBC19 /* novcic.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.mtl; sourceTree = "<group>"; };
-		ECC78C84181C4009000FBC19 /* novcic.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novcic.obj; sourceTree = "<group>"; };
 		ECC78C8C181C40C0000FBC19 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		ECDF866918AFC54F0024694E /* R4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = R4.xcodeproj; path = ../R4.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,14 +183,7 @@
 				EC0C194A1837DD6500148E7B /* stacy.png */,
 				EC0C19461837DCEE00148E7B /* stacy.mtl */,
 				EC0C19471837DCEE00148E7B /* stacy.obj */,
-				EC0C19281837C67200148E7B /* corntext.png */,
-				EC0C19291837C67200148E7B /* novcictext.png */,
-				ECC78C7E181C4009000FBC19 /* 747.obj */,
-				ECC78C80181C4009000FBC19 /* corn.mtl */,
-				ECC78C81181C4009000FBC19 /* corn.obj */,
 				ECC78C82181C4009000FBC19 /* f16.obj */,
-				ECC78C83181C4009000FBC19 /* novcic.mtl */,
-				ECC78C84181C4009000FBC19 /* novcic.obj */,
 			);
 			name = Meshes;
 			path = Resources/Meshes;
@@ -302,21 +281,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC78C89181C4009000FBC19 /* f16.obj in Resources */,
-				ECC78C8A181C4009000FBC19 /* novcic.mtl in Resources */,
-				ECC78C87181C4009000FBC19 /* corn.mtl in Resources */,
-				EC0C192B1837C67200148E7B /* novcictext.png in Resources */,
 				ECC58CE717F8500D00BBAD28 /* Images.xcassets in Resources */,
 				EC0C19491837DCEE00148E7B /* stacy.obj in Resources */,
 				EC83902F18A6B2EB00497E22 /* flame.png in Resources */,
 				EC0D169C1879A19400BC6DE7 /* FireParticle.sks in Resources */,
 				EC0C194B1837DD6500148E7B /* stacy.png in Resources */,
 				ECB3AAA11879B79F00EEF92F /* SmokeParticle.sks in Resources */,
-				EC0C192A1837C67200148E7B /* corntext.png in Resources */,
 				EC0C19481837DCEE00148E7B /* stacy.mtl in Resources */,
-				ECC78C88181C4009000FBC19 /* corn.obj in Resources */,
-				ECC78C85181C4009000FBC19 /* 747.obj in Resources */,
 				ECC58CD617F8500D00BBAD28 /* InfoPlist.strings in Resources */,
-				ECC78C8B181C4009000FBC19 /* novcic.obj in Resources */,
 				EC83903318A6C2C900497E22 /* floor.png in Resources */,
 				EC0D169D1879A19400BC6DE7 /* spark.png in Resources */,
 			);

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4ScaleAction.h"
+#import "R4ScaleActionPrivate.h"
 #import "R4NodePrivate.h"
 
 @implementation R4ScaleAction

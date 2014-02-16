@@ -11,6 +11,12 @@
 #import "R4LightNode.h"
 #import "R4Material.h"
 
+@interface R4ADSPass () {
+  NSArray *_defaultLights;
+}
+
+@end
+
 @implementation R4ADSPass
 
 - (instancetype)init
@@ -21,6 +27,7 @@
                                 @"in_texcoord": @(R4VertexAttributeTexCoord0),
                                 @"in_normal": @(R4VertexAttributeNormalModelSpace)};
     
+    _defaultLights = @[[R4LightNode pointLightAtPosition:GLKVector3Make(0, 100, 100)]];
     self.sceneBlend = R4BlendModeAlpha;
     self.depthTest = self.depthWrite = YES;
     self.cullFace = R4CullFaceBack;
@@ -50,7 +57,7 @@
   NSArray *lights = drawState->lightNodes;
   
   if (!lights.count) {
-    lights = @[[R4LightNode pointLightAtPosition:GLKVector3Make(0, 2, 2)]];
+    lights = _defaultLights;
   }
   
   for (NSInteger idx = 0; idx < lights.count; idx++) {

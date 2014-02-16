@@ -83,7 +83,7 @@ static GLfloat gPlainVertexData[48] =
 {
   self = [super init];
   if (self) {
-    self.material = [R4Material materialWithTechnique:[R4Technique techniqueWithPass:[R4ADSPass pass]]];
+    self.material = [R4Material ADSMaterial];
     vertexBuffer = GL_INVALID_VALUE;
     indexBuffer = GL_INVALID_VALUE;
   }

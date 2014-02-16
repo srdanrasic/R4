@@ -18,7 +18,7 @@
 /*!
  R4Pass specifies all informations required to perform a draw operation. It manages vertex and fragment shaders, blending modes, depth writing and testing, face culling, textures, etc.
  
- @discussion If you're implementing a custom pass and you have to configure shader parameters (uniforms), you must subclass this class and override prepareToDraw: method in which you do your custom preparation for the draw, like setting up uniforms.
+ @discussion If you're implementing a custom pass and you have to configure shader parameters (uniforms), you must subclass this class and override prepareForDrawing: method in which you do your custom preparation for the draw, like setting up uniforms.
  */
 @interface R4Pass : NSObject
 
@@ -40,7 +40,7 @@
 @property (nonatomic, assign) BOOL depthTest;
 
 /*!
- Defines whether current drawing pass shoud write depth information to the framebuffer.
+ Defines whether current drawing pass should write depth information to the framebuffer.
  */
 @property (nonatomic, assign) BOOL depthWrite;
 
@@ -64,28 +64,28 @@
 /*!
  Defines whether the pass should be exectued per each light.
  
- @discussion Enables you to perform drawing separately for each light that affects object. If you set this to YES, only one iteration will be done (numberOfIterations will be ignored).
+ @discussion Enables you to perform drawing separately for each light that affects object. If you set this to YES, one iteration will be done for each light (numberOfIterations will be ignored).
  */
 @property (nonatomic, assign) BOOL iteratePerLight;
 
 /*!
  An array of texture units.
  
- @discussion Prior to drawing, each texture unit will be bound to the current OpenGL context in order specified by this array. First unit will be bound to GL_TEXTURE0, second to GL_TEXTURE0+1, etc. Texture will be bound to corresponding units.
+ @discussion Prior to drawing (before prepareForDrawing: is called), each texture unit will be bound to the current OpenGL context in order specified by this array. First unit will be bound to GL_TEXTURE0, second to GL_TEXTURE0+1, etc. Texture will be bound to corresponding units.
  */
 @property (nonatomic, strong) NSMutableArray *textureUnits;
 
 /*!
  Vertex shader to use for drawing.
  
- @warning Changing this might cause program to be re-linked (when not cached).
+ @warning Changing this might cause program to be re-linked (if not cached previousely).
  */
 @property (nonatomic, strong) R4Shader *vertexShader;
 
 /*!
  Fragment shader to use for drawing.
  
- @warning Changing this might cause program to be re-linked (when not cached).
+ @warning Changing this might cause program to be re-linked (if not cached previousely).
  */
 @property (nonatomic, strong) R4Shader *fragmentShader;
 

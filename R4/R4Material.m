@@ -8,6 +8,8 @@
 
 #import "R4Material.h"
 #import "R4Technique.h"
+#import "R4PlainPass.h"
+#import "R4ADSPass.h"
 
 @implementation R4Material
 
@@ -38,6 +40,16 @@
 {
   if (!technique) return nil;
   return [[[self class] alloc] initWithTechniques:@[technique]];
+}
+
++ (R4Material *)plainMaterial
+{
+  return [[self class] materialWithTechnique:[R4Technique techniqueWithPass:[R4PlainPass pass]]];
+}
+
++ (R4Material *)ADSMaterial
+{
+  return [[self class] materialWithTechnique:[R4Technique techniqueWithPass:[R4ADSPass pass]]];
 }
 
 - (void)commonInit
