@@ -416,7 +416,6 @@
 				EC74507218AFB6FA00C5E36E /* Frameworks */,
 				EC74507C18AFB74100C5E36E /* ShellScript */,
 				EC74507E18AFBACA00C5E36E /* ShellScript */,
-				EC74508B18AFC0F900C5E36E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -500,7 +499,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "## Copy headers manually\n\nHEADERS_OUT_DIR=${SYMROOT}/${CONFIGURATION}-universal/include\nrm -rf \"${HEADERS_OUT_DIR}\"\nmkdir \"${HEADERS_OUT_DIR}\"\n\nfor file in $(ls \"${SRCROOT}/R4/\"); do\nif ! [[ $file =~ .*Private.* ]] && [[ $file =~ .*[.]h ]]; then\ncp \"${SRCROOT}/R4/${file}\" \"${HEADERS_OUT_DIR}\"\nfi;\ndone;\n\nopen \"${HEADERS_OUT_DIR}/../\"";
+			shellScript = "## Copy headers manually\n\nDIRECTORY=${SYMROOT}/${CONFIGURATION}-universal\n\nif [ ! -d \"$DIRECTORY\" ]; then\nexit 0\nfi\n\nHEADERS_OUT_DIR=${DIRECTORY}/include\nrm -rf \"${HEADERS_OUT_DIR}\"\nmkdir \"${HEADERS_OUT_DIR}\"\n\nfor file in $(ls \"${SRCROOT}/R4/\"); do\nif ! [[ $file =~ .*Private.* ]] && [[ $file =~ .*[.]h ]]; then\ncp \"${SRCROOT}/R4/${file}\" \"${HEADERS_OUT_DIR}\"\nfi;\ndone;\n\nopen \"${HEADERS_OUT_DIR}/../\"";
 		};
 		EC74508318AFC04400C5E36E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -527,19 +526,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Compiles R4BuildTimeShaders.h file from shader files in Shaders/\n\nOUT=\"${SRCROOT}/R4/R4BuildTimeShaders.h\"\necho -e \"\\n/* File autocompiled from shader files in Shaders/ directory. Changes to this file will be overriden on build! */\\n\\n\" > $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\necho -n \"static NSString * const ${file##*.}${file%.*}SourceString = @\\\"\" >> $OUT;\ncat \"${SRCROOT}/R4/Shaders/${file}\" | sed -e 's://.*::g' -e '/^$/d' | sed 's:\\\":\\\\\\\":g' | tr '\\n' ' ' >> $OUT;\necho -e \"\\\";\\n\" >> $OUT;\ndone;\n\necho \"#define BUILD_TIME_SHADERS_MAP @{\\\\\" >> $OUT\nfor file in $(ls \"${SRCROOT}/R4/Shaders/\"); do\necho -n \"  @\\\"${file##*.}${file%.*}\\\": ${file##*.}${file%.*}SourceString\" >> $OUT;\necho -e \",\\\\\" >> $OUT;\ndone;\necho \"  @\\\"null\\\": @\\\"null\\\" }\" >> $OUT\n";
-		};
-		EC74508B18AFC0F900C5E36E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 		EC87C4A9189ECEAC00487304 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
