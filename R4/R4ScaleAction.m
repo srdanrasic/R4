@@ -35,7 +35,7 @@
 
 - (void)updateWithTarget:(id)target forTime:(NSTimeInterval)time
 {
-  CGFloat speed = self.speed * [target speed];
+  CGFloat speed = self.speed * [(R4Node *)target speed];
   
   NSTimeInterval dT = time - vars->previousTime;
   vars->elapsedTime += dT * speed;
