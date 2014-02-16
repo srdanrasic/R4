@@ -36,13 +36,18 @@
 						
 						<h2>R4: A SpriteKit in 3D</h2>
 
-<p>R4 is a 3D graphics rendering and animation library based on Apple&rsquo;s SpriteKit Framework. Goal of the library is to ease creation of 3D games and applications by providing an infrastructure whose interface resembles interface of the SpriteKit. Someone who is familiar with SpriteKit shouldn&rsquo;t have any problems working with this library. Concepts that apply to SpriteKit also apply to R4, just with additional space dimension.</p>
+<p align="center">
+  <img src="[https://dl.dropboxusercontent.com/u/25219211/r4ss.png](https://dl.dropboxusercontent.com/u/25219211/r4ss.png)" />
+</p>
+
+
+<p>R4 is a 3D graphics rendering and animation library based on Apple&rsquo;s SpriteKit Framework. Goal of the library is to ease creation of 3D games and applications by providing the infrastructure whose interface resembles interface of the SpriteKit. Someone who is familiar with SpriteKit shouldn&rsquo;t have any problems working with this library. Concepts that apply to SpriteKit also apply to R4, just with additional space dimension. R4 is not an extension of the SpriteKit, but a separate library.</p>
 
 <p>The library is in an early phase of the development and lacks some of the SpriteKit&rsquo;s counterparts, most notably physical subsystem, but it&rsquo;s usable for the creation of a simple 3D scenes. It provides scene graph infrastructure with drawable nodes like entities and particle emitters, non-drawable nodes like cameras and lights, and scene managers to organize and improve rendering process. Scene nodes are responder objects and can handle touch events defined by the UIResponder class, just like SKNodes.</p>
 
 <p>R4&rsquo;s rendering system is designed to allow easy extension. Main renderer handles basic viewport configuration, frame buffer management and does scene traversal with a help from the scene manager, but forwards actual drawing responsibility to more extendable and configurable components - materials, techniques and passes. A material encapsulates all information on how to render an object, including all possible ways to do it. A technique describes a way to render an object. It does that by specifying one or more passes that perform rendering. Individual passes do actual rendering using shaders and OpenGL framework.</p>
 
-<p>To learn more about R4 continue reading classes' reference pages listed below. If you&rsquo;re new to the game development consider reading Apple&rsquo;s <a href="https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Introduction/Introduction.html">Sprite Kit Programming Guide</a>. It provides great starting point and most of the concepts described there apply to R4.</p>
+<p>To learn more about R4 check out <a href="https://github.com/srdanrasic/R4/wiki/Getting-started">Getting started</a> page on Wiki. Continue by reading <a href="http://srdanrasic.github.io/R4/docs/">classes' reference pages</a>. If you&rsquo;re new to the game development consider reading Apple&rsquo;s <a href="https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/SpriteKit_PG/Introduction/Introduction.html">Sprite Kit Programming Guide</a>. It provides great starting point and most of the concepts described there apply to R4.</p>
 
 <h2>Features</h2>
 
@@ -57,7 +62,7 @@
 </ul>
 
 
-<h1>Planned or in progress</h1>
+<h2>Planned or in progress</h2>
 
 <ul>
 <li>Full NSCopying and NSCoding compliance.</li>
@@ -70,7 +75,7 @@
 </ul>
 
 
-<h1>Requirements</h1>
+<h2>Requirements</h2>
 
 <p>R4 currently supports iOS 7. It can also run on previous versions if you don&rsquo;t use <a href="Classes/R4EmitterNode.html">R4EmitterNode</a> class. Simple scenes can be rendered smoothly on older devices like iPhone 4, but anything more complex will require optimizations like using simpler shaders or lowering drawing resolution to support such devices.</p>
 
@@ -81,6 +86,29 @@
 <h2>Contribute</h2>
 
 <p>Please checkout <a href="https://github.com/srdanrasic/R4/wiki/Contribute">Contribute</a> page on Wiki.</p>
+
+<h2>Licence</h2>
+
+<p>R4 is made available under the MIT License.</p>
+
+<p>Copyright &copy; 2013 Srđan Rašić</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 						
 						
 					</div>
@@ -113,8 +141,6 @@
 							
 							<li><a href="Classes/R4Mesh.html">R4Mesh</a></li>
 							
-							<li><a href="Classes/R4MoveAction.html">R4MoveAction</a></li>
-							
 							<li><a href="Classes/R4Node.html">R4Node</a></li>
 							
 							<li><a href="Classes/R4PairKey.html">R4PairKey</a></li>
@@ -131,13 +157,7 @@
 							
 							<li><a href="Classes/R4Renderer.html">R4Renderer</a></li>
 							
-							<li><a href="Classes/R4RepeatAction.html">R4RepeatAction</a></li>
-							
-							<li><a href="Classes/R4ScaleAction.html">R4ScaleAction</a></li>
-							
 							<li><a href="Classes/R4Scene.html">R4Scene</a></li>
-							
-							<li><a href="Classes/R4SequenceAction.html">R4SequenceAction</a></li>
 							
 							<li><a href="Classes/R4Shader.html">R4Shader</a></li>
 							
@@ -210,7 +230,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-15)</span><br />
+						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
