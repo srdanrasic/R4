@@ -179,7 +179,7 @@ static GLfloat gPlainVertexData[48] =
   std::ifstream obj_file([path cStringUsingEncoding:NSUTF8StringEncoding]);
   
   if (!obj_file.is_open()) {
-    return NO;
+    return nil;
   }
   
   struct FaceIndices {
