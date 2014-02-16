@@ -53,7 +53,7 @@ Contribute
 
 Please checkout [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
 
-Licence
+License
 -------
 
 R4 is made available under the MIT License.
