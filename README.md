@@ -45,13 +45,13 @@ R4 currently supports iOS 7. It can also run on previous versions if you don't u
 Getting started
 ---------------
 
-Please checkout [Getting started](https://github.com/srdanrasic/R4/wiki/Getting-started) page on Wiki.
+Please check out [Getting started](https://github.com/srdanrasic/R4/wiki/Getting-started) page on Wiki.
 
 
 Contribute
 ----------
 
-Please checkout [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
+Please check out [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
 
 License
 -------
