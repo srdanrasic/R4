@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Srđan Rašić. All rights reserved.
 //
 
-#import "R4SequenceAction.h"
+#import "R4SequenceActionPrivate.h"
 
 @interface R4SequenceAction ()
 @property (strong, nonatomic) NSArray *actions;

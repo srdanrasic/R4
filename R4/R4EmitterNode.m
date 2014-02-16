@@ -235,6 +235,50 @@
 - (void)updateAtTime:(NSTimeInterval)time
 {
   NSTimeInterval dt = time - _timeOfLastUpdate;
+  
+  /* Emit new particles */
+  NSInteger particles_to_emit = (_previousDT + dt) * _particleBirthRate;   // dt [ms]
+  
+  if (particles_to_emit == 0) {
+    _previousDT += dt;
+  } else {
+    _previousDT = 0.0;
+  }
+  
+  GLKVector3 worldspacePosition = [self convertPoint:GLKVector3Make(0, 0, 0) toNode:self.scene];
+  
+  for (unsigned i = 0; i < particles_to_emit && particleCount < maxParticeCount - 1; i++) {
+    R4ParticleAttributes *p = &particleAttributes[particleCount++];
+    
+    /* Initialise particle */
+    p->timeToLive = p->lifetime = _particleLifetime + _particleLifetimeRange * randCGFloat(-1, 1);
+    p->initialPosition = GLKVector3Add(worldspacePosition, GLKVector3Add(_particlePosition, GLKVector3Multiply(_particlePositionRange, randGLKVector3(-1, 1))));
+    p->initialScale = _particleScale + _particleScaleRange * randCGFloat(-1, 1);
+    p->initialColorBlendFactor = _particleColorBlendFactor + _particleColorBlendFactorRange * randCGFloat(-1, 1);
+    p->speed = _particleSpeed + _particleSpeedRange * randCGFloat(-1, 1);
+    
+    p->MVM = GLKMatrix4MakeTranslation(p->initialPosition.x, p->initialPosition.y, p->initialPosition.z);
+    p->MVM = GLKMatrix4Scale(p->MVM, p->initialScale, p->initialScale, p->initialScale);
+    
+    //CGFloat range = _emissionAngleRange / 360.0;
+    p->direction = _emissionAxis;// GLKVector3Add(_emissionAxis, GLKVector3Multiply(GLKVector3Make(range, range, range), randGLKVector3(-1, 1)));
+    
+    GLKVector3 emissionAxis = _emissionAxis;
+    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.x * randCGFloat(0, 1), 1, 0, 0), emissionAxis);
+    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.y * randCGFloat(0, 1), 0, 1, 0), emissionAxis);
+    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.z * randCGFloat(0, 1), 0, 0, 1), emissionAxis);
+    p->direction = emissionAxis;
+    
+    if (!_particleColorSequence) {
+      GLKVector4 color;
+      [_particleColor getRed:&color.r green:&color.g blue:&color.b alpha:&color.a];
+      GLKVector4 particleColorRange = GLKVector4Make(_particleColorRedRange, _particleColorGreenRange,
+                                                     _particleColorBlueRange, _particleColorAlphaRange);
+      p->initialColor = GLKVector4Add(color, GLKVector4Multiply(particleColorRange, randGLKVector4(0, 1)));
+    }
+    
+    p->initialColor.a = p->initialColor.a * (_particleAlpha + _particleAlphaRange * randCGFloat(-1, 1));
+  }
     
   /* Update existing particles */
   GLKMatrix4 invR = GLKMatrix4Invert(self.scene.currentCamera.inversedTransform, NULL);
@@ -258,9 +302,6 @@
       
       p->MVM = GLKMatrix4Scale(GLKMatrix4MakeTranslation(position.x, position.y, position.z), scale, scale, scale);
       p->MVM = GLKMatrix4RotateWithVector3(p->MVM, angle, axis);
-      
-      //p->MVM = GLKMatrix4Scale(p->MVM, scale, scale, scale);
-      //p->MVM = GLKMatrix4RotateWithVector3(p->MVM, self.particleRotation, self.particleRotationAxis);
       
       GLKVector4 particleColor;
       if (_particleColorSequence) {
@@ -289,50 +330,6 @@
         particleAttributes[idx] = particleAttributes[particleCount];
       }
     }
-  }
-  
-  /* Emit new particles - should make this first!? */
-  NSInteger particles_to_emit = (_previousDT + dt) * _particleBirthRate;   // dt [ms]
-  
-  if (particles_to_emit == 0) {
-    _previousDT += dt;
-  } else {
-    _previousDT = 0.0;
-  }
-  
-  GLKVector3 worldspacePosition = [self convertPoint:GLKVector3Make(0, 0, 0) toNode:self.scene];
-  
-  for (unsigned i = 0; i < particles_to_emit && particleCount < maxParticeCount - 1; i++) {
-    R4ParticleAttributes *p = &particleAttributes[particleCount++];
-    
-    /* Initialise particle */
-    p->timeToLive = p->lifetime = _particleLifetime + _particleLifetimeRange * randCGFloat(-1, 1);
-    p->initialPosition = GLKVector3Add(worldspacePosition, GLKVector3Add(_particlePosition, GLKVector3Multiply(_particlePositionRange, randGLKVector3(-1, 1))));
-    p->initialScale = _particleScale + _particleScaleRange * randCGFloat(-1, 1);
-    p->initialColorBlendFactor = _particleColorBlendFactor + _particleColorBlendFactorRange * randCGFloat(-1, 1);
-    p->speed = _particleSpeed + _particleSpeedRange * randCGFloat(-1, 1);
-
-    p->MVM = GLKMatrix4MakeTranslation(p->initialPosition.x, p->initialPosition.y, p->initialPosition.z);
-    p->MVM = GLKMatrix4Scale(p->MVM, p->initialScale, p->initialScale, p->initialScale);
-  
-    //CGFloat range = _emissionAngleRange / 360.0;
-    p->direction = _emissionAxis;// GLKVector3Add(_emissionAxis, GLKVector3Multiply(GLKVector3Make(range, range, range), randGLKVector3(-1, 1)));
-    
-    GLKVector3 emissionAxis = _emissionAxis;
-    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.x * randCGFloat(0, 1), 1, 0, 0), emissionAxis);
-    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.y * randCGFloat(0, 1), 0, 1, 0), emissionAxis);
-    emissionAxis = GLKQuaternionRotateVector3(GLKQuaternionMakeWithAngleAndAxis(_emissionAngleRange.z * randCGFloat(0, 1), 0, 0, 1), emissionAxis);
-    p->direction = emissionAxis;
-    
-    if (!_particleColorSequence) {
-      GLKVector4 color;
-      [_particleColor getRed:&color.r green:&color.g blue:&color.b alpha:&color.a];
-      GLKVector4 particleColorRange = GLKVector4Make(_particleColorRedRange, _particleColorGreenRange,
-                                                     _particleColorBlueRange, _particleColorAlphaRange);
-      p->initialColor = GLKVector4Add(color, GLKVector4Multiply(particleColorRange, randGLKVector4(0, 1)));
-    }
-    
-    p->initialColor.a = p->initialColor.a * (_particleAlpha + _particleAlphaRange * randCGFloat(-1, 1));
   }
   
   _timeOfLastUpdate = time;

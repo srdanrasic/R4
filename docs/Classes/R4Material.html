@@ -54,7 +54,11 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/ADSMaterial">&nbsp;&nbsp;&nbsp;&nbsp;+ ADSMaterial</option>
+	
 	<option value="//api/name/materialWithTechnique:">&nbsp;&nbsp;&nbsp;&nbsp;+ materialWithTechnique:</option>
+	
+	<option value="//api/name/plainMaterial">&nbsp;&nbsp;&nbsp;&nbsp;+ plainMaterial</option>
 	
 	
 	
@@ -111,7 +115,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ADSMaterial">ADSMaterial</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/materialWithTechnique:">materialWithTechnique:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/plainMaterial">plainMaterial</a></span></li>
 	
 </ul></li>
 
@@ -166,7 +174,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>R4Material encapsulates all information on how to render objects (ones that conform to <a href="../Protocols/R4Drawable.html">R4Drawable</a> protocol).</p><p>To be more specific, &ldquo;description&rdquo; on how to render something is specified by a <a href="../Classes/R4Technique.html">R4Technique</a>. Each R4Material can have more then one technique, but only one of them will be used to render a object - the optimal technique. Usually, material will have only one technique and that one will be the optimal, but you&rsquo;re able to specify more <a href="#//api/name/techniques">techniques</a> with different levels of complexity, for example a simple one for iPhone 4 and a more complex one for iPhone 5 and later.</p><p>The concept of <a href="#//api/name/techniques">techniques</a> is in future intended to be extended to allow different <a href="#//api/name/techniques">techniques</a> for different levels of detail.</p>
+						<p>R4Material encapsulates all information on how to render objects (ones that conform to <a href="../Protocols/R4Drawable.html">R4Drawable</a> protocol).</p><p>To be more specific, &ldquo;description&rdquo; on how to render something is specified by an <a href="../Classes/R4Technique.html">R4Technique</a>. Each R4Material can have more then one technique, but only one of them will be used to render an object - the optimal technique. Usually, material will have only one technique and that one will be the optimal, but you&rsquo;re able to specify more <a href="#//api/name/techniques">techniques</a> with different levels of complexity, for example a simple one for iPhone 4 and a more complex one for iPhone 5 and later.</p><p>The concept of <a href="#//api/name/techniques">techniques</a> is in future intended to be extended to allow different <a href="#//api/name/techniques">techniques</a> for different levels of detail.</p>
 					</div>
 					
 					
@@ -227,6 +235,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/materialWithTechnique:">+&nbsp;materialWithTechnique:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/plainMaterial">+&nbsp;plainMaterial</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ADSMaterial">+&nbsp;ADSMaterial</a></code>
 	</span>
 	
 	
@@ -325,6 +345,42 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/ADSMaterial" title="ADSMaterial"></a>
+	<h3 class="subsubtitle method-title">ADSMaterial</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a material with one technique that contains one <a href="../Classes/R4ADSPass.html">R4ADSPass</a>, basic texturing and Ambient-Diffuse-Specular lighting pass.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (R4Material *)ADSMaterial</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">R4Material.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/materialWithTechnique:" title="materialWithTechnique:"></a>
 	<h3 class="subsubtitle method-title">materialWithTechnique:</h3>
 	
@@ -333,6 +389,42 @@
 	<div class="method-subsection method-declaration"><code>+ (R4Material *)materialWithTechnique:(R4Technique *)<em>technique</em></code></div>
 
     
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/plainMaterial" title="plainMaterial"></a>
+	<h3 class="subsubtitle method-title">plainMaterial</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a material with one technique that contains one <a href="../Classes/R4PlainPass.html">R4PlainPass</a>, basic texturing pass without lighting support.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (R4Material *)plainMaterial</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">R4Material.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -413,7 +505,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-15)</span><br />
+						<p><span class="copyright">&copy; 2014 Srdan Rasic. All rights reserved. (Last updated: 2014-02-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

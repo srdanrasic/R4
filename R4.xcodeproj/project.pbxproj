@@ -138,17 +138,17 @@
 		EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4EmitterNode.h; sourceTree = "<group>"; };
 		EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4EmitterNode.m; sourceTree = "<group>"; };
 		EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNodePrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4EmitterNodePrivate.h; sourceTree = "<group>"; };
-		EC4A9439181BB41B008B9DC4 /* R4MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4MoveAction.h; sourceTree = "<group>"; };
+		EC4A9439181BB41B008B9DC4 /* R4MoveActionPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4MoveActionPrivate.h; sourceTree = "<group>"; };
 		EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4MoveAction.m; sourceTree = "<group>"; };
-		EC4A943C181BC2AF008B9DC4 /* R4SequenceAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4SequenceAction.h; sourceTree = "<group>"; };
+		EC4A943C181BC2AF008B9DC4 /* R4SequenceActionPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4SequenceActionPrivate.h; sourceTree = "<group>"; };
 		EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4SequenceAction.m; sourceTree = "<group>"; };
 		EC5101B018AFB2F500F7964F /* R4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4.h; sourceTree = "<group>"; };
 		EC5BB3951800672F00AB7FE8 /* R4Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4Action.h; sourceTree = "<group>"; };
 		EC5BB3961800672F00AB7FE8 /* R4Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Action.m; sourceTree = "<group>"; };
 		EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4ActionPrivate.h; sourceTree = "<group>"; };
-		EC5BB39D180069A900AB7FE8 /* R4ScaleAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ScaleAction.h; sourceTree = "<group>"; };
+		EC5BB39D180069A900AB7FE8 /* R4ScaleActionPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ScaleActionPrivate.h; sourceTree = "<group>"; };
 		EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ScaleAction.m; sourceTree = "<group>"; };
-		EC5BB3A018006B6D00AB7FE8 /* R4RepeatAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4RepeatAction.h; sourceTree = "<group>"; };
+		EC5BB3A018006B6D00AB7FE8 /* R4RepeatActionPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4RepeatActionPrivate.h; sourceTree = "<group>"; };
 		EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4RepeatAction.m; sourceTree = "<group>"; };
 		EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ADSPass.h; sourceTree = "<group>"; };
 		EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ADSPass.m; sourceTree = "<group>"; };
@@ -261,13 +261,13 @@
 				EC5BB3951800672F00AB7FE8 /* R4Action.h */,
 				EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */,
 				EC5BB3961800672F00AB7FE8 /* R4Action.m */,
-				EC4A9439181BB41B008B9DC4 /* R4MoveAction.h */,
+				EC4A9439181BB41B008B9DC4 /* R4MoveActionPrivate.h */,
 				EC4A943A181BB41B008B9DC4 /* R4MoveAction.m */,
-				EC5BB39D180069A900AB7FE8 /* R4ScaleAction.h */,
+				EC5BB39D180069A900AB7FE8 /* R4ScaleActionPrivate.h */,
 				EC5BB39E180069A900AB7FE8 /* R4ScaleAction.m */,
-				EC5BB3A018006B6D00AB7FE8 /* R4RepeatAction.h */,
+				EC5BB3A018006B6D00AB7FE8 /* R4RepeatActionPrivate.h */,
 				EC5BB3A118006B6D00AB7FE8 /* R4RepeatAction.m */,
-				EC4A943C181BC2AF008B9DC4 /* R4SequenceAction.h */,
+				EC4A943C181BC2AF008B9DC4 /* R4SequenceActionPrivate.h */,
 				EC4A943D181BC2AF008B9DC4 /* R4SequenceAction.m */,
 			);
 			name = R4Action;

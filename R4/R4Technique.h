@@ -11,7 +11,7 @@
 @class R4Pass;
 
 /*!
- R4Technique describes how to render a R4Drawable. It does that by specifiying one or more passes that draw an object.
+ R4Technique describes how to render a R4Drawable. It does that by specifiying one or more passes that draw the object.
  
  @discussion Rendering is done by the R4Pass object. You can create more than one pass to achieve complex effects.
  
