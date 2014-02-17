@@ -81,7 +81,7 @@
 		ECADD142188ADC31004736E1 /* R4Program.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD141188ADC31004736E1 /* R4Program.m */; };
 		ECADD146188ADE89004736E1 /* R4Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD144188ADC3C004736E1 /* R4Shader.m */; };
 		ECC58D1017F8505600BBAD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D0F17F8505600BBAD28 /* Foundation.framework */; };
-		ECC58D1517F8505600BBAD28 /* R4Base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = ECC58D1417F8505600BBAD28 /* R4Base.h */; };
+		ECC58D1517F8505600BBAD28 /* R4Base.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D1417F8505600BBAD28 /* R4Base.h */; };
 		ECC58D3717F8508000BBAD28 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3517F8508000BBAD28 /* GLKit.framework */; };
 		ECC58D3817F8508000BBAD28 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3617F8508000BBAD28 /* OpenGLES.framework */; };
 		ECC58D4317F8519900BBAD28 /* R4View.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4217F8519900BBAD28 /* R4View.m */; };
@@ -118,14 +118,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ECC58D0A17F8505600BBAD28 /* CopyFiles */ = {
+		ECC58D0A17F8505600BBAD28 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				ECC58D1517F8505600BBAD28 /* R4Base.h in CopyFiles */,
+				ECC58D1517F8505600BBAD28 /* R4Base.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -183,7 +184,6 @@
 		ECC524391895507200D00510 /* R4Drawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Drawable.h; sourceTree = "<group>"; };
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "R4-Prefix.pch"; sourceTree = "<group>"; };
 		ECC58D1417F8505600BBAD28 /* R4Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Base.h; sourceTree = "<group>"; };
 		ECC58D2017F8505700BBAD28 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		ECC58D3517F8508000BBAD28 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -392,17 +392,8 @@
 				EC3D8EAA186B50AD00CFA6B1 /* R4EmitterNode.m */,
 				ECEA3B93189D605B003DB77C /* R4PairKey.h */,
 				ECEA3B94189D605B003DB77C /* R4PairKey.m */,
-				ECC58D1217F8505600BBAD28 /* Supporting Files */,
 			);
 			path = R4;
-			sourceTree = "<group>";
-		};
-		ECC58D1217F8505600BBAD28 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				ECC58D1317F8505600BBAD28 /* R4-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +424,7 @@
 			buildPhases = (
 				ECC58D0817F8505600BBAD28 /* Sources */,
 				ECC58D0917F8505600BBAD28 /* Frameworks */,
-				ECC58D0A17F8505600BBAD28 /* CopyFiles */,
+				ECC58D0A17F8505600BBAD28 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -774,7 +765,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/R4.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
@@ -790,7 +780,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/R4.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";

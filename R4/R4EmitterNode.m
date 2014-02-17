@@ -34,7 +34,7 @@
   if (self) {
     //self.particleTexture = skEmitterNode.particleTexture;
     
-    self.particleBlendMode = skEmitterNode.particleBlendMode;
+    self.particleBlendMode = (R4BlendMode)skEmitterNode.particleBlendMode;
     
     self.particleColor = skEmitterNode.particleColor;
     
