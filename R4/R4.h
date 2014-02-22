@@ -17,7 +17,7 @@
 #import "R4PairKey.h"
 #import "R4ParticlePass.h"
 #import "R4Pass.h"
-#import "R4PlainPass.h"
+#import "R4PlanePass.h"
 #import "R4Program.h"
 #import "R4ProgramManager.h"
 #import "R4Renderer.h"

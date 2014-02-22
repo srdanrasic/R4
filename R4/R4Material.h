@@ -38,9 +38,9 @@
 + (R4Material *)materialWithTechnique:(R4Technique *)technique;
 
 /*!
- Creates a material with one technique that contains one R4PlainPass, basic texturing pass without lighting support.
+ Creates a material with one technique that contains one R4PlanePass, basic texturing pass without lighting support.
  */
-+ (R4Material *)plainMaterial;
++ (R4Material *)planeMaterial;
 
 /*!
  Creates a material with one technique that contains one R4ADSPass, basic texturing and Ambient-Diffuse-Specular lighting pass.

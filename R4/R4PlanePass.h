@@ -1,5 +1,5 @@
 //
-//  R4PlainPass.h
+//  R4PlanePass.h
 //  R4
 //
 //  Created by Srđan Rašić on 01/02/14.
@@ -8,5 +8,5 @@
 
 #import "R4Pass.h"
 
-@interface R4PlainPass : R4Pass
+@interface R4PlanePass : R4Pass
 @end
