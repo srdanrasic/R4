@@ -119,6 +119,6 @@
 @end
 
 @interface UITouch (R4NodeTouches)
-- (GLKVector3)locationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal;
-- (GLKVector3)previousLocationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal;
+- (GLKVector3)locationInNode:(R4Node *)node onPlane:(GLKVector3)planeNormal;
+- (GLKVector3)previousLocationInNode:(R4Node *)node onPlane:(GLKVector3)planeNormal;
 @end

@@ -10,15 +10,15 @@ static NSString * const fshParticleShaderSourceString = @"uniform lowp sampler2D
 
 static NSString * const vshParticleShaderSourceString = @"uniform mat4 view_projection_matrix; attribute vec4 position_modelspace; attribute mediump vec2 texcoord; attribute vec4  instanceColor; attribute float instanceColorBlendFactor; attribute mat4  instanceModelMatrix; varying lowp vec4   out_color; varying lowp vec2   out_texcoord; varying lowp float  out_colorBlendFactor; void main() {   out_color = instanceColor;   out_texcoord = texcoord;   out_colorBlendFactor = instanceColorBlendFactor;   gl_Position = view_projection_matrix * instanceModelMatrix * position_modelspace; } ";
 
-static NSString * const fshPlainShaderSourceString = @"uniform lowp sampler2D texture_sampler; uniform lowp float texture_mask; varying lowp vec2 out_texcoord; varying lowp vec4 out_color; void main() {   lowp vec4 texel = texture2D(texture_sampler, out_texcoord) + vec4(texture_mask, texture_mask, texture_mask, texture_mask);   gl_FragColor = texel * out_color; } ";
+static NSString * const fshPlaneShaderSourceString = @"uniform lowp sampler2D texture_sampler; uniform lowp float texture_mask; varying lowp vec2 out_texcoord; varying lowp vec4 out_color; void main() {   lowp vec4 texel = texture2D(texture_sampler, out_texcoord) + vec4(texture_mask, texture_mask, texture_mask, texture_mask);   gl_FragColor = texel * out_color; } ";
 
-static NSString * const vshPlainShaderSourceString = @"/* Uniforms */ uniform vec4 surface_diffuse_color; uniform mat4 model_view_projection_matrix; /* Attributes */ attribute vec4 in_position; attribute vec2 in_texcoord; /* Varyings */ varying lowp vec2 out_texcoord; varying lowp vec4 out_color; void main() {   out_texcoord = in_texcoord;   out_color = surface_diffuse_color;      gl_Position = model_view_projection_matrix * in_position; } ";
+static NSString * const vshPlaneShaderSourceString = @"/* Uniforms */ uniform vec4 surface_diffuse_color; uniform mat4 model_view_projection_matrix; /* Attributes */ attribute vec4 in_position; attribute vec2 in_texcoord; /* Varyings */ varying lowp vec2 out_texcoord; varying lowp vec4 out_color; void main() {   out_texcoord = in_texcoord;   out_color = surface_diffuse_color;      gl_Position = model_view_projection_matrix * in_position; } ";
 
 #define BUILD_TIME_SHADERS_MAP @{\
   @"fshADSShader": fshADSShaderSourceString,\
   @"vshADSShader": vshADSShaderSourceString,\
   @"fshParticleShader": fshParticleShaderSourceString,\
   @"vshParticleShader": vshParticleShaderSourceString,\
-  @"fshPlainShader": fshPlainShaderSourceString,\
-  @"vshPlainShader": vshPlainShaderSourceString,\
+  @"fshPlaneShader": fshPlaneShaderSourceString,\
+  @"vshPlaneShader": vshPlaneShaderSourceString,\
   @"null": @"null" }

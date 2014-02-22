@@ -9,7 +9,7 @@
 #import "R4Mesh.h"
 #import "R4Material.h"
 #import "R4Technique.h"
-#import "R4PlainPass.h"
+#import "R4PlanePass.h"
 #import "R4ADSPass.h"
 #import "R4Texture.h"
 #import "R4TextureUnit.h"
@@ -67,7 +67,7 @@ static GLfloat gCubeVertexData[216] =
   -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
 };
 
-static GLfloat gPlainVertexData[48] =
+static GLfloat gPlaneVertexData[48] =
 {
   0.5f, 0.5f, 0.0f,          0.0f, 0.0f, 1.0f,   1.0f, 1.0,
   -0.5f, 0.5f, 0.0f,         0.0f, 0.0f, 1.0f,   0.0f, 1.0,
@@ -125,7 +125,7 @@ static GLfloat gPlainVertexData[48] =
   return mesh;
 }
 
-+ (R4Mesh *)plainWithSize:(CGSize)size
++ (R4Mesh *)planeWithSize:(CGSize)size
 {
   R4Mesh *mesh = [[R4Mesh alloc] init];
   mesh->elementCount = 6;
@@ -136,19 +136,19 @@ static GLfloat gPlainVertexData[48] =
   glGenBuffers(1, &mesh->vertexBuffer);
   glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexBuffer);
   
-  GLfloat vertexData[sizeof(gPlainVertexData)];
-  for (int i = 0; i < sizeof(gPlainVertexData); i=i+8) {
-    vertexData[i+0] = gPlainVertexData[i+0] * size.width;
-    vertexData[i+1] = gPlainVertexData[i+1] * size.height;
-    vertexData[i+2] = gPlainVertexData[i+2];
-    vertexData[i+3] = gPlainVertexData[i+3];
-    vertexData[i+4] = gPlainVertexData[i+4];
-    vertexData[i+5] = gPlainVertexData[i+5];
-    vertexData[i+6] = gPlainVertexData[i+6];
-    vertexData[i+7] = gPlainVertexData[i+7];
+  GLfloat vertexData[sizeof(gPlaneVertexData)];
+  for (int i = 0; i < sizeof(gPlaneVertexData); i=i+8) {
+    vertexData[i+0] = gPlaneVertexData[i+0] * size.width;
+    vertexData[i+1] = gPlaneVertexData[i+1] * size.height;
+    vertexData[i+2] = gPlaneVertexData[i+2];
+    vertexData[i+3] = gPlaneVertexData[i+3];
+    vertexData[i+4] = gPlaneVertexData[i+4];
+    vertexData[i+5] = gPlaneVertexData[i+5];
+    vertexData[i+6] = gPlaneVertexData[i+6];
+    vertexData[i+7] = gPlaneVertexData[i+7];
   }
   
-  glBufferData(GL_ARRAY_BUFFER, sizeof(gPlainVertexData), vertexData, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(gPlaneVertexData), vertexData, GL_STATIC_DRAW);
   
   glEnableVertexAttribArray(R4VertexAttributePositionModelSpace);
   glVertexAttribPointer(R4VertexAttributePositionModelSpace, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, BUFFER_OFFSET(0));

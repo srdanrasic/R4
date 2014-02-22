@@ -20,10 +20,10 @@
   // Child nodes can have user interation enabled only if parent also has it enabled
   self.userInteractionEnabled = YES;
   
-  // Floor template plain
-  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh plainWithSize:CGSizeMake(1, 1)]];
+  // Floor template plane
+  R4EntityNode *floor = [R4EntityNode entityWithMesh:[R4Mesh planeWithSize:CGSizeMake(1, 1)]];
   
-  // By default, plain is on XY axis so we need to rotate it to xz axis
+  // By default, plane is on XY axis so we need to rotate it to xz axis
   floor.orientation = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 1, 0, 0);
   
   // Set texture
@@ -33,7 +33,7 @@
   floor.material.specularColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
   floor.material.shininess = 2;
   
-  // Build floor out of those plains
+  // Build floor out of those planes
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       R4Node *b = [floor copy];
@@ -46,7 +46,7 @@
   R4EntityNode *box = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(0.5, 2, 0.5)]];
   
   // Lets change material to a simpler one - one that does not consider lights in the scene
-  box.material = [R4Material plainMaterial];
+  box.material = [R4Material planeMaterial];
   box.userInteractionEnabled = YES;
   
   // Make some clones in a circle
@@ -104,8 +104,8 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  // Get location where touch intersects y plain, in parent node coordinate system
-  self.position = [[touches anyObject] locationInNode:self.parent onPlain:GLKVector3Make(0, 1, 0)];
+  // Get location where touch intersects y plane, in parent node coordinate system
+  self.position = [[touches anyObject] locationInNode:self.parent onPlane:GLKVector3Make(0, 1, 0)];
 }
 
 @end
