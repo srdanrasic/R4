@@ -1,16 +1,16 @@
 //
-//  R4PlainPass.m
+//  R4BasicPass.m
 //  R4
 //
 //  Created by Srđan Rašić on 01/02/14.
 //  Copyright (c) 2014 Srđan Rašić. All rights reserved.
 //
 
-#import "R4PlainPass.h"
+#import "R4BasicPass.h"
 #import "R4ProgramManager.h"
 #import "R4Material.h"
 
-@implementation R4PlainPass
+@implementation R4BasicPass
 
 - (instancetype)init
 {
@@ -22,8 +22,8 @@
     self.sceneBlend = R4BlendModeAlpha;
     self.depthTest = self.depthWrite = YES;
     self.cullFace = R4CullFaceBack;
-    self.vertexShader = [[R4ProgramManager shared] loadShaderNamed:@"vshPlainShader" type:R4ShaderTypeVertex attributeMapping:attribMap];
-    self.fragmentShader = [[R4ProgramManager shared] loadShaderNamed:@"fshPlainShader" type:R4ShaderTypeFragment attributeMapping:nil];
+    self.vertexShader = [[R4ProgramManager shared] loadShaderNamed:@"vshBasicShader" type:R4ShaderTypeVertex attributeMapping:attribMap];
+    self.fragmentShader = [[R4ProgramManager shared] loadShaderNamed:@"fshBasicShader" type:R4ShaderTypeFragment attributeMapping:nil];
     [self program];
   }
   return self;

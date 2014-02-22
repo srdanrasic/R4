@@ -16,7 +16,7 @@
 
 + (instancetype)node
 {
-  return [[R4Node alloc] init];
+  return [[[self class] alloc] init];
 }
 
 - (instancetype)init
@@ -499,19 +499,19 @@
 
 @implementation UITouch (R4NodeTouches)
 
-- (GLKVector3)locationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal
+- (GLKVector3)locationInNode:(R4Node *)node onPlane:(GLKVector3)planeNormal
 {
   R4Ray ray = [node.scene.view convertPoint:[self locationInView:node.scene.view] toScene:node.scene];
-  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), plainNormal) / GLKVector3DotProduct(ray.direction, plainNormal);
+  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), planeNormal) / GLKVector3DotProduct(ray.direction, planeNormal);
   GLKVector3 worldPosition = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
   GLKVector4 nodePosition4 = GLKMatrix4MultiplyVector4(node.invModelMatrix, GLKVector4MakeWithVector3(worldPosition, 1.f));
   return GLKVector3MakeWithArray(nodePosition4.v);
 }
 
-- (GLKVector3)previousLocationInNode:(R4Node *)node onPlain:(GLKVector3)plainNormal
+- (GLKVector3)previousLocationInNode:(R4Node *)node onPlane:(GLKVector3)planeNormal
 {
   R4Ray ray = [node.scene.view convertPoint:[self previousLocationInView:node.scene.view] toScene:node.scene];
-  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), plainNormal) / GLKVector3DotProduct(ray.direction, plainNormal);
+  GLfloat d = GLKVector3DotProduct(GLKVector3Negate(ray.startPoint), planeNormal) / GLKVector3DotProduct(ray.direction, planeNormal);
   GLKVector3 worldPosition = GLKVector3Add(ray.startPoint, GLKVector3MultiplyScalar(ray.direction, d));
   GLKVector4 nodePosition4 = GLKMatrix4MultiplyVector4(node.invModelMatrix, GLKVector4MakeWithVector3(worldPosition, 1.f));
   return GLKVector3MakeWithArray(nodePosition4.v);

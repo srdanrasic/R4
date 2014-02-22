@@ -10,11 +10,19 @@
 #import <GLKit/GLKit.h>
 #import <CoreGraphics/CGGeometry.h>
 #import <SpriteKit/SpriteKit.h>
+#import <Foundation/Foundation.h>
 
 #import "R4PairKey.h"
 
 #define R4Color UIColor
 #define R4_MAX_TEXTURE_UNITS 8
+
+#ifndef offsetof
+#define offsetof(st, m) __builtin_offsetof(st, m)
+#endif
+
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
 
 typedef NS_ENUM(NSInteger, R4DeviceCPU) {
   R4DeviceCPUA4,

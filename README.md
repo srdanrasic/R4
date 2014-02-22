@@ -41,19 +41,22 @@ Requirements
 
 R4 currently supports iOS 7. It can also run on previous versions if you don't use R4EmitterNode class. Simple scenes can be rendered smoothly on older devices like iPhone 4, but anything more complex will require optimizations like using simpler shaders or lowering drawing resolution to support such devices.
 
+Performance notes
+-----------------
+iOS Simulator performs software rendering so you might want to try debugging on the device. If you're building library by yourself watch for compiler optimizations. There is significant performance difference in doing Debug vs. Release buid.
 
 Getting started
 ---------------
 
-Please checkout [Getting started](https://github.com/srdanrasic/R4/wiki/Getting-started) page on Wiki.
+Please check out [Getting started](https://github.com/srdanrasic/R4/wiki/Getting-started) page on Wiki.
 
 
 Contribute
 ----------
 
-Please checkout [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
+Please check out [Contribute](https://github.com/srdanrasic/R4/wiki/Contribute) page on Wiki.
 
-Licence
+License
 -------
 
 R4 is made available under the MIT License.
