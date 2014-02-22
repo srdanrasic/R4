@@ -84,7 +84,7 @@
 		EC9E498F18B8EC520062DC90 /* R4Material.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD133188AD23E004736E1 /* R4Material.h */; };
 		EC9E499018B8EC520062DC90 /* R4Technique.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD13D188AD6BF004736E1 /* R4Technique.h */; };
 		EC9E499118B8EC520062DC90 /* R4Pass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD136188AD262004736E1 /* R4Pass.h */; };
-		EC9E499218B8EC520062DC90 /* R4PlainPass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B9D189D7616003DB77C /* R4PlainPass.h */; };
+		EC9E499218B8EC520062DC90 /* R4BasicPass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B9D189D7616003DB77C /* R4BasicPass.h */; };
 		EC9E499318B8EC520062DC90 /* R4ADSPass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */; };
 		EC9E499418B8EC520062DC90 /* R4ParticlePass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */; };
 		EC9E499518B8EC520062DC90 /* R4TextureUnit.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */; };
@@ -174,7 +174,7 @@
 				EC9E498F18B8EC520062DC90 /* R4Material.h in Copy Files */,
 				EC9E499018B8EC520062DC90 /* R4Technique.h in Copy Files */,
 				EC9E499118B8EC520062DC90 /* R4Pass.h in Copy Files */,
-				EC9E499218B8EC520062DC90 /* R4PlainPass.h in Copy Files */,
+				EC9E499218B8EC520062DC90 /* R4BasicPass.h in Copy Files */,
 				EC9E499318B8EC520062DC90 /* R4ADSPass.h in Copy Files */,
 				EC9E499418B8EC520062DC90 /* R4ParticlePass.h in Copy Files */,
 				EC9E499518B8EC520062DC90 /* R4TextureUnit.h in Copy Files */,
@@ -711,7 +711,7 @@
 				DSTROOT = /tmp/R4.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = R4;
@@ -729,7 +729,7 @@
 				DSTROOT = /tmp/R4.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "R4/R4-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = R4;
 				PROVISIONING_PROFILE = "F36A73F1-B445-4DA1-B44D-7173829DB6CB";
