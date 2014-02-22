@@ -55,7 +55,7 @@
 		EC74506018AFB6FA00C5E36E /* R4View.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC58D4217F8519900BBAD28 /* R4View.m */; };
 		EC74506118AFB6FA00C5E36E /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
 		EC74506218AFB6FA00C5E36E /* R4ParticlePass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */; };
-		EC74506318AFB6FA00C5E36E /* R4PlainPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4PlainPass.m */; };
+		EC74506318AFB6FA00C5E36E /* R4BasicPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4BasicPass.m */; };
 		EC74506418AFB6FA00C5E36E /* R4TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B97189D648D003DB77C /* R4TextureManager.m */; };
 		EC74506518AFB6FA00C5E36E /* R4CameraNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C194D1837E46A00148E7B /* R4CameraNode.m */; };
 		EC74506618AFB6FA00C5E36E /* R4TextureUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD13B188AD2A2004736E1 /* R4TextureUnit.m */; };
@@ -135,7 +135,7 @@
 		ECEA3B95189D605B003DB77C /* R4PairKey.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B94189D605B003DB77C /* R4PairKey.m */; };
 		ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B97189D648D003DB77C /* R4TextureManager.m */; };
 		ECEA3B9B189D6AD7003DB77C /* R4DefaultSceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */; };
-		ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4PlainPass.m */; };
+		ECEA3B9F189D7616003DB77C /* R4BasicPass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3B9E189D7616003DB77C /* R4BasicPass.m */; };
 		ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */; };
 		ECEA3BA5189D7F6E003DB77C /* R4DrawState.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA3BA4189D7F6E003DB77C /* R4DrawState.m */; };
 /* End PBXBuildFile section */
@@ -259,8 +259,8 @@
 		ECADD144188ADC3C004736E1 /* R4Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4Shader.m; sourceTree = "<group>"; };
 		ECC12C53188BECB4001FE263 /* ADSShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ADSShader.vsh; path = Shaders/ADSShader.vsh; sourceTree = "<group>"; };
 		ECC12C54188BECB4001FE263 /* ADSShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ADSShader.fsh; path = Shaders/ADSShader.fsh; sourceTree = "<group>"; };
-		ECC12C56188C11B8001FE263 /* PlainShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.vsh; path = Shaders/PlainShader.vsh; sourceTree = "<group>"; };
-		ECC12C57188C11B8001FE263 /* PlainShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = PlainShader.fsh; path = Shaders/PlainShader.fsh; sourceTree = "<group>"; };
+		ECC12C56188C11B8001FE263 /* BasicShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = BasicShader.vsh; path = Shaders/BasicShader.vsh; sourceTree = "<group>"; };
+		ECC12C57188C11B8001FE263 /* BasicShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = BasicShader.fsh; path = Shaders/BasicShader.fsh; sourceTree = "<group>"; };
 		ECC524391895507200D00510 /* R4Drawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4Drawable.h; sourceTree = "<group>"; };
 		ECC58D0C17F8505600BBAD28 /* libR4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libR4.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC58D0F17F8505600BBAD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -290,8 +290,8 @@
 		ECEA3B99189D6AD7003DB77C /* R4DefaultSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DefaultSceneManager.h; sourceTree = "<group>"; };
 		ECEA3B9A189D6AD7003DB77C /* R4DefaultSceneManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4DefaultSceneManager.mm; sourceTree = "<group>"; };
 		ECEA3B9C189D6AFC003DB77C /* R4SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = R4SceneManager.h; sourceTree = "<group>"; };
-		ECEA3B9D189D7616003DB77C /* R4PlainPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4PlainPass.h; sourceTree = "<group>"; };
-		ECEA3B9E189D7616003DB77C /* R4PlainPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4PlainPass.m; sourceTree = "<group>"; };
+		ECEA3B9D189D7616003DB77C /* R4BasicPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4BasicPass.h; sourceTree = "<group>"; };
+		ECEA3B9E189D7616003DB77C /* R4BasicPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4BasicPass.m; sourceTree = "<group>"; };
 		ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4ParticlePass.h; sourceTree = "<group>"; };
 		ECEA3BA1189D7A94003DB77C /* R4ParticlePass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = R4ParticlePass.m; sourceTree = "<group>"; };
 		ECEA3BA3189D7F6E003DB77C /* R4DrawState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DrawState.h; sourceTree = "<group>"; };
@@ -325,8 +325,8 @@
 		EC0E3AEC189E61B1005D3986 /* Predefined Passes */ = {
 			isa = PBXGroup;
 			children = (
-				ECEA3B9D189D7616003DB77C /* R4PlainPass.h */,
-				ECEA3B9E189D7616003DB77C /* R4PlainPass.m */,
+				ECEA3B9D189D7616003DB77C /* R4BasicPass.h */,
+				ECEA3B9E189D7616003DB77C /* R4BasicPass.m */,
 				EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */,
 				EC5D9E8D18A788F900AFB2D3 /* R4ADSPass.m */,
 				ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */,
@@ -361,8 +361,8 @@
 				ECA9C2E1186BABCE0073A61B /* ParticleShader.fsh */,
 				ECC12C53188BECB4001FE263 /* ADSShader.vsh */,
 				ECC12C54188BECB4001FE263 /* ADSShader.fsh */,
-				ECC12C56188C11B8001FE263 /* PlainShader.vsh */,
-				ECC12C57188C11B8001FE263 /* PlainShader.fsh */,
+				ECC12C56188C11B8001FE263 /* BasicShader.vsh */,
+				ECC12C57188C11B8001FE263 /* BasicShader.fsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 				EC74506018AFB6FA00C5E36E /* R4View.m in Sources */,
 				EC74506118AFB6FA00C5E36E /* R4Pass.m in Sources */,
 				EC74506218AFB6FA00C5E36E /* R4ParticlePass.m in Sources */,
-				EC74506318AFB6FA00C5E36E /* R4PlainPass.m in Sources */,
+				EC74506318AFB6FA00C5E36E /* R4BasicPass.m in Sources */,
 				EC74506418AFB6FA00C5E36E /* R4TextureManager.m in Sources */,
 				EC74506518AFB6FA00C5E36E /* R4CameraNode.m in Sources */,
 				EC74506618AFB6FA00C5E36E /* R4TextureUnit.m in Sources */,
@@ -668,7 +668,7 @@
 				ECC58D4317F8519900BBAD28 /* R4View.m in Sources */,
 				ECADD138188AD262004736E1 /* R4Pass.m in Sources */,
 				ECEA3BA2189D7A94003DB77C /* R4ParticlePass.m in Sources */,
-				ECEA3B9F189D7616003DB77C /* R4PlainPass.m in Sources */,
+				ECEA3B9F189D7616003DB77C /* R4BasicPass.m in Sources */,
 				ECEA3B98189D648D003DB77C /* R4TextureManager.m in Sources */,
 				EC0C194E1837E46A00148E7B /* R4CameraNode.m in Sources */,
 				ECADD13C188AD2A2004736E1 /* R4TextureUnit.m in Sources */,

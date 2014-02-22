@@ -1,5 +1,5 @@
 //
-//  PlainShader.m
+//  BasicShader.m
 //  R4
 //
 //  Created by Srđan Rašić on 19/01/14.
