@@ -8,7 +8,7 @@
 
 #import "R4Material.h"
 #import "R4Technique.h"
-#import "R4PlanePass.h"
+#import "R4BasicPass.h"
 #import "R4ADSPass.h"
 
 @implementation R4Material
@@ -42,9 +42,9 @@
   return [[[self class] alloc] initWithTechniques:@[technique]];
 }
 
-+ (R4Material *)planeMaterial
++ (R4Material *)basicMaterial
 {
-  return [[self class] materialWithTechnique:[R4Technique techniqueWithPass:[R4PlanePass pass]]];
+  return [[self class] materialWithTechnique:[R4Technique techniqueWithPass:[R4BasicPass pass]]];
 }
 
 + (R4Material *)ADSMaterial

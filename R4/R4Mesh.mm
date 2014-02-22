@@ -9,7 +9,7 @@
 #import "R4Mesh.h"
 #import "R4Material.h"
 #import "R4Technique.h"
-#import "R4PlanePass.h"
+#import "R4BasicPass.h"
 #import "R4ADSPass.h"
 #import "R4Texture.h"
 #import "R4TextureUnit.h"
