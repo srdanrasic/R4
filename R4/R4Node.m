@@ -94,7 +94,7 @@
 - (void)removeChildrenInArray:(NSArray *)nodes
 {
   [nodes enumerateObjectsUsingBlock:^(R4Node *node, NSUInteger idx, BOOL *stop) {
-    [node setParent:nil];
+    node->_parent = nil;
     [_children removeObject:node];
   }];
 }
@@ -102,18 +102,22 @@
 - (void)removeAllChildren
 {
   [_children enumerateObjectsUsingBlock:^(R4Node *node, NSUInteger idx, BOOL *stop) {
-    [node setParent:nil];
+    node->_parent = nil;
   }];
   [_children removeAllObjects];
 }
 
 - (void)removeFromParent
 {
-  [self.parent removeChildrenInArray:@[self]];
+  [_parent removeChildrenInArray:@[self]];
 }
 
 - (void)setParent:(R4Node *)parent
 {
+  if (_parent) {
+    [self removeFromParent];
+  }
+  
   _parent = parent;
   self.scene = parent.scene;
 }
