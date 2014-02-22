@@ -16,7 +16,7 @@
 
 + (instancetype)node
 {
-  return [[R4Node alloc] init];
+  return [[[self class] alloc] init];
 }
 
 - (instancetype)init
