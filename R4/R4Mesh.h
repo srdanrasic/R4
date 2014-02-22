@@ -26,7 +26,7 @@
 @property (assign, nonatomic) R4Box geometryBoundingBox;
 
 + (R4Mesh *)boxWithSize:(GLKVector3)size;
-+ (R4Mesh *)plainWithSize:(CGSize)size;
++ (R4Mesh *)planeWithSize:(CGSize)size;
 + (R4Mesh *)OBJMeshNamed:(NSString *)name normalize:(BOOL)normalize center:(BOOL)center;
 
 @end

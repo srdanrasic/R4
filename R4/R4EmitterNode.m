@@ -169,7 +169,7 @@
   }
   
   particleCount = 0;
-  particleMesh = [R4Mesh plainWithSize:CGSizeMake(1, 1)];
+  particleMesh = [R4Mesh planeWithSize:CGSizeMake(1, 1)];
 
   R4ParticlePass *pass = [R4ParticlePass pass];
   pass.sceneBlend = self.particleBlendMode;
