@@ -73,6 +73,46 @@
 		EC74507318AFB6FA00C5E36E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3517F8508000BBAD28 /* GLKit.framework */; };
 		EC74507418AFB6FA00C5E36E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D3617F8508000BBAD28 /* OpenGLES.framework */; };
 		EC74507518AFB6FA00C5E36E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC58D0F17F8505600BBAD28 /* Foundation.framework */; };
+		EC9E498718B8EC480062DC90 /* R4.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5101B018AFB2F500F7964F /* R4.h */; };
+		EC9E498818B8EC520062DC90 /* R4BuildTimeShaders.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECA3D12D186B96A500D92087 /* R4BuildTimeShaders.h */; };
+		EC9E498918B8EC520062DC90 /* R4Shader.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD143188ADC3C004736E1 /* R4Shader.h */; };
+		EC9E498A18B8EC520062DC90 /* R4Program.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD140188ADC31004736E1 /* R4Program.h */; };
+		EC9E498B18B8EC520062DC90 /* R4ProgramManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC9EBEAE189D28150071C0EA /* R4ProgramManager.h */; };
+		EC9E498C18B8EC520062DC90 /* R4Texture.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D4D17F8538900BBAD28 /* R4Texture.h */; };
+		EC9E498D18B8EC520062DC90 /* R4TextureManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B96189D648D003DB77C /* R4TextureManager.h */; };
+		EC9E498E18B8EC520062DC90 /* R4Mesh.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECDE15BC188C31F5008EA3A1 /* R4Mesh.h */; };
+		EC9E498F18B8EC520062DC90 /* R4Material.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD133188AD23E004736E1 /* R4Material.h */; };
+		EC9E499018B8EC520062DC90 /* R4Technique.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD13D188AD6BF004736E1 /* R4Technique.h */; };
+		EC9E499118B8EC520062DC90 /* R4Pass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD136188AD262004736E1 /* R4Pass.h */; };
+		EC9E499218B8EC520062DC90 /* R4PlainPass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B9D189D7616003DB77C /* R4PlainPass.h */; };
+		EC9E499318B8EC520062DC90 /* R4ADSPass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5D9E8C18A788F900AFB2D3 /* R4ADSPass.h */; };
+		EC9E499418B8EC520062DC90 /* R4ParticlePass.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3BA0189D7A94003DB77C /* R4ParticlePass.h */; };
+		EC9E499518B8EC520062DC90 /* R4TextureUnit.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECADD13A188AD2A2004736E1 /* R4TextureUnit.h */; };
+		EC9E499618B8EC520062DC90 /* R4Renderer.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D5717F866A100BBAD28 /* R4Renderer.h */; };
+		EC9E499718B8EC520062DC90 /* R4DrawState.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3BA3189D7F6E003DB77C /* R4DrawState.h */; };
+		EC9E499818B8EC520062DC90 /* R4Action.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5BB3951800672F00AB7FE8 /* R4Action.h */; };
+		EC9E499918B8EC520062DC90 /* R4ActionPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5BB3991800681100AB7FE8 /* R4ActionPrivate.h */; };
+		EC9E499A18B8EC520062DC90 /* R4MoveActionPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC4A9439181BB41B008B9DC4 /* R4MoveActionPrivate.h */; };
+		EC9E499B18B8EC520062DC90 /* R4ScaleActionPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5BB39D180069A900AB7FE8 /* R4ScaleActionPrivate.h */; };
+		EC9E499C18B8EC520062DC90 /* R4RepeatActionPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC5BB3A018006B6D00AB7FE8 /* R4RepeatActionPrivate.h */; };
+		EC9E499D18B8EC520062DC90 /* R4SequenceActionPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC4A943C181BC2AF008B9DC4 /* R4SequenceActionPrivate.h */; };
+		EC9E499E18B8EC520062DC90 /* R4View.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D4117F8519900BBAD28 /* R4View.h */; };
+		EC9E499F18B8EC520062DC90 /* R4ViewPrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D5617F8639800BBAD28 /* R4ViewPrivate.h */; };
+		EC9E49A018B8EC520062DC90 /* R4Node.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D4417F8521900BBAD28 /* R4Node.h */; };
+		EC9E49A118B8EC520062DC90 /* R4NodePrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC6FD69F17F8777300ED6AAA /* R4NodePrivate.h */; };
+		EC9E49A218B8EC520062DC90 /* R4Scene.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC58D4717F8524F00BBAD28 /* R4Scene.h */; };
+		EC9E49A318B8EC520062DC90 /* R4ScenePrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC0C8F8617F89D5700E8B229 /* R4ScenePrivate.h */; };
+		EC9E49A418B8EC520062DC90 /* R4SceneManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B9C189D6AFC003DB77C /* R4SceneManager.h */; };
+		EC9E49A518B8EC520062DC90 /* R4DefaultSceneManager.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B99189D6AD7003DB77C /* R4DefaultSceneManager.h */; };
+		EC9E49A618B8EC520062DC90 /* R4CameraNode.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC0C194C1837E46A00148E7B /* R4CameraNode.h */; };
+		EC9E49A718B8EC520062DC90 /* R4CameraNodePrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC0C194F1837E67400148E7B /* R4CameraNodePrivate.h */; };
+		EC9E49A818B8EC520062DC90 /* R4Drawable.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECC524391895507200D00510 /* R4Drawable.h */; };
+		EC9E49A918B8EC520062DC90 /* R4EntityNode.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECDE15BF188C3262008EA3A1 /* R4EntityNode.h */; };
+		EC9E49AA18B8EC520062DC90 /* R4LightNode.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC678736186B08CC009921C2 /* R4LightNode.h */; };
+		EC9E49AB18B8EC520062DC90 /* R4LightNodePrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC678739186B0ACD009921C2 /* R4LightNodePrivate.h */; };
+		EC9E49AC18B8EC520062DC90 /* R4EmitterNode.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC3D8EA9186B50AD00CFA6B1 /* R4EmitterNode.h */; };
+		EC9E49AD18B8EC520062DC90 /* R4EmitterNodePrivate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = EC3D8EAF186B6CD500CFA6B1 /* R4EmitterNodePrivate.h */; };
+		EC9E49AE18B8EC520062DC90 /* R4PairKey.h in Copy Files */ = {isa = PBXBuildFile; fileRef = ECEA3B93189D605B003DB77C /* R4PairKey.h */; };
 		EC9EBEB0189D28150071C0EA /* R4ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EBEAF189D28150071C0EA /* R4ProgramManager.m */; };
 		ECADD135188AD23E004736E1 /* R4Material.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD134188AD23E004736E1 /* R4Material.m */; };
 		ECADD138188AD262004736E1 /* R4Pass.m in Sources */ = {isa = PBXBuildFile; fileRef = ECADD137188AD262004736E1 /* R4Pass.m */; };
@@ -124,6 +164,46 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				EC9E498818B8EC520062DC90 /* R4BuildTimeShaders.h in Copy Files */,
+				EC9E498918B8EC520062DC90 /* R4Shader.h in Copy Files */,
+				EC9E498A18B8EC520062DC90 /* R4Program.h in Copy Files */,
+				EC9E498B18B8EC520062DC90 /* R4ProgramManager.h in Copy Files */,
+				EC9E498C18B8EC520062DC90 /* R4Texture.h in Copy Files */,
+				EC9E498D18B8EC520062DC90 /* R4TextureManager.h in Copy Files */,
+				EC9E498E18B8EC520062DC90 /* R4Mesh.h in Copy Files */,
+				EC9E498F18B8EC520062DC90 /* R4Material.h in Copy Files */,
+				EC9E499018B8EC520062DC90 /* R4Technique.h in Copy Files */,
+				EC9E499118B8EC520062DC90 /* R4Pass.h in Copy Files */,
+				EC9E499218B8EC520062DC90 /* R4PlainPass.h in Copy Files */,
+				EC9E499318B8EC520062DC90 /* R4ADSPass.h in Copy Files */,
+				EC9E499418B8EC520062DC90 /* R4ParticlePass.h in Copy Files */,
+				EC9E499518B8EC520062DC90 /* R4TextureUnit.h in Copy Files */,
+				EC9E499618B8EC520062DC90 /* R4Renderer.h in Copy Files */,
+				EC9E499718B8EC520062DC90 /* R4DrawState.h in Copy Files */,
+				EC9E499818B8EC520062DC90 /* R4Action.h in Copy Files */,
+				EC9E499918B8EC520062DC90 /* R4ActionPrivate.h in Copy Files */,
+				EC9E499A18B8EC520062DC90 /* R4MoveActionPrivate.h in Copy Files */,
+				EC9E499B18B8EC520062DC90 /* R4ScaleActionPrivate.h in Copy Files */,
+				EC9E499C18B8EC520062DC90 /* R4RepeatActionPrivate.h in Copy Files */,
+				EC9E499D18B8EC520062DC90 /* R4SequenceActionPrivate.h in Copy Files */,
+				EC9E499E18B8EC520062DC90 /* R4View.h in Copy Files */,
+				EC9E499F18B8EC520062DC90 /* R4ViewPrivate.h in Copy Files */,
+				EC9E49A018B8EC520062DC90 /* R4Node.h in Copy Files */,
+				EC9E49A118B8EC520062DC90 /* R4NodePrivate.h in Copy Files */,
+				EC9E49A218B8EC520062DC90 /* R4Scene.h in Copy Files */,
+				EC9E49A318B8EC520062DC90 /* R4ScenePrivate.h in Copy Files */,
+				EC9E49A418B8EC520062DC90 /* R4SceneManager.h in Copy Files */,
+				EC9E49A518B8EC520062DC90 /* R4DefaultSceneManager.h in Copy Files */,
+				EC9E49A618B8EC520062DC90 /* R4CameraNode.h in Copy Files */,
+				EC9E49A718B8EC520062DC90 /* R4CameraNodePrivate.h in Copy Files */,
+				EC9E49A818B8EC520062DC90 /* R4Drawable.h in Copy Files */,
+				EC9E49A918B8EC520062DC90 /* R4EntityNode.h in Copy Files */,
+				EC9E49AA18B8EC520062DC90 /* R4LightNode.h in Copy Files */,
+				EC9E49AB18B8EC520062DC90 /* R4LightNodePrivate.h in Copy Files */,
+				EC9E49AC18B8EC520062DC90 /* R4EmitterNode.h in Copy Files */,
+				EC9E49AD18B8EC520062DC90 /* R4EmitterNodePrivate.h in Copy Files */,
+				EC9E49AE18B8EC520062DC90 /* R4PairKey.h in Copy Files */,
+				EC9E498718B8EC480062DC90 /* R4.h in Copy Files */,
 				ECC58D1517F8505600BBAD28 /* R4Base.h in Copy Files */,
 			);
 			name = "Copy Files";
