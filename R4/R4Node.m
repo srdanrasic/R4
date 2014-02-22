@@ -359,14 +359,20 @@
   return R4BoxZero;
 }
 
-- (void)updateActionsAtTime:(NSTimeInterval)time
+- (void)updateNodeAtTime:(NSTimeInterval)time
 {
   if (self.paused) {
     return;
   }
   
+  if (_transformsDirty) {
+    for (R4Node *child in _children) {
+      child->_transformsDirty = YES;
+    }
+  }
+  
   for (R4Node *node in _children) {
-    [node updateActionsAtTime:time];
+    [node updateNodeAtTime:time];
   }
   
   for (NSInteger i = _actions.count - 1; i >= 0; i--) {

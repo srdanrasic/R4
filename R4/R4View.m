@@ -84,7 +84,7 @@
     [self.scene update:currentTime];
     
     // evaluate actions
-    [self.scene updateActionsAtTime:currentTime];
+    [self.scene updateNodeAtTime:currentTime];
     [self.scene didEvaluateActions];
     
     // simulate particles

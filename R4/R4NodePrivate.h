@@ -33,7 +33,7 @@
 
 @property (nonatomic, readonly) GLKVector3 positionWorldSpace;
 
-- (void)updateActionsAtTime:(NSTimeInterval)time;
+- (void)updateNodeAtTime:(NSTimeInterval)time;
 
 - (R4Node *)hitTest:(R4Ray)ray event:(UIEvent *)event;
 
