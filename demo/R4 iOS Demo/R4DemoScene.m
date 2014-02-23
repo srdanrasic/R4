@@ -46,7 +46,7 @@
   R4EntityNode *box = [MovableEntityNode entityWithMesh:[R4Mesh boxWithSize:GLKVector3Make(0.5, 2, 0.5)]];
   
   // Lets change material to a simpler one - one that does not consider lights in the scene
-  box.material = [R4Material planeMaterial];
+  box.material = [R4Material basicMaterial];
   box.userInteractionEnabled = YES;
   
   // Make some clones in a circle
