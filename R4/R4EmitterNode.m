@@ -109,6 +109,7 @@
 - (void)dealloc
 {
   glDeleteBuffers(1, &particleAttributesVertexBuffer);
+  glDeleteVertexArraysOES(1, &particleAttributesVertexArray);
   free(particleAttributes);
 }
 
