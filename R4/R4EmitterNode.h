@@ -82,6 +82,12 @@
 @property (nonatomic) CGFloat particleAlphaSpeed;
 @property (nonatomic, strong) SKKeyframeSequence *particleAlphaSequence;
 
+/*
+ If enabled, particles will move relative to emitter node, otherwise particles
+ are defined in world space. Default is NO.
+ */
+@property (nonatomic, assign) BOOL relativeParticlePosition;
+
 //@property (nonatomic, copy) SKAction *particleAction;
 //@property (nonatomic, weak) SKNode *targetNode;
 

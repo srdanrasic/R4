@@ -40,7 +40,12 @@
 {
   [super prepareForDrawing:drawState];
   
-  [self.program setUniformMatrix4fv:@"view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->viewProjectionMatrix.m];
+  if (_relativeParticlePosition) {
+    [self.program setUniformMatrix4fv:@"view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->modelViewProjectionMatrix.m];
+  } else {
+    [self.program setUniformMatrix4fv:@"view_projection_matrix" count:1 transpose:GL_FALSE v:drawState->viewProjectionMatrix.m];
+  }
+  
   [self.program setUniform1i:@"texture_sampler" v0:0];  
 }
 

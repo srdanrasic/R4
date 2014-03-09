@@ -155,6 +155,16 @@
   }
 }
 
+- (void)setRelativeParticlePosition:(BOOL)relativeParticlePosition
+{
+  _relativeParticlePosition = relativeParticlePosition;
+
+  id pass = self.material.firstTechnique.firstPass;
+  if ([pass respondsToSelector:@selector(setRelativeParticlePosition:)]) {
+    [pass setRelativeParticlePosition:relativeParticlePosition];
+  }
+}
+
 - (R4Material *)material
 {
   return material;    
@@ -245,7 +255,11 @@
     _previousDT = 0.0;
   }
   
-  GLKVector3 worldspacePosition = [self convertPoint:GLKVector3Make(0, 0, 0) toNode:self.scene];
+  GLKVector3 worldspacePosition = GLKVector3Make(0, 0, 0);
+  
+  if (!_relativeParticlePosition) {
+    worldspacePosition = [self convertPoint:worldspacePosition toNode:self.scene];
+  }
   
   for (unsigned i = 0; i < particles_to_emit && particleCount < maxParticeCount - 1; i++) {
     R4ParticleAttributes *p = &particleAttributes[particleCount++];

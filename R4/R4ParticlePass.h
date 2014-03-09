@@ -9,4 +9,7 @@
 #import "R4Pass.h"
 
 @interface R4ParticlePass : R4Pass
+
+@property (nonatomic, assign) BOOL relativeParticlePosition;
+
 @end
