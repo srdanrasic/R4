@@ -18,6 +18,8 @@
  */
 @property (strong, nonatomic) R4Node *targetNode;
 
+@property (assign, nonatomic) GLKVector3 upVector;
+
 /*!
  Creates a new camera with position and look at direction.
  

@@ -11,7 +11,6 @@
 
 @interface R4CameraNode () {
   GLKVector3 _lookAt;
-  GLKVector3 _upVector;
 }
 
 - (GLKMatrix4)inversedTransform;

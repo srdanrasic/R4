@@ -95,6 +95,7 @@
 {
   [nodes enumerateObjectsUsingBlock:^(R4Node *node, NSUInteger idx, BOOL *stop) {
     node->_parent = nil;
+    node.scene = nil;
     [_children removeObject:node];
   }];
 }
@@ -103,6 +104,7 @@
 {
   [_children enumerateObjectsUsingBlock:^(R4Node *node, NSUInteger idx, BOOL *stop) {
     node->_parent = nil;
+    node.scene = nil;
   }];
   [_children removeAllObjects];
 }
@@ -343,6 +345,7 @@
 
 - (R4Box)calculateAccumulatedBoundingBox
 {
+  // TODO: Cache
   GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
   GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
 
@@ -408,6 +411,18 @@
   GLKMatrix4 transform = GLKMatrix4Multiply(self.invModelMatrix, node.modelMatrix);
   GLKVector4 point4 = GLKMatrix4MultiplyVector4(transform, GLKVector4MakeWithVector3(point, 1.0));
   return GLKVector3MakeWithArray(point4.v);
+}
+
+- (BOOL)intersectsNode:(R4Node *)node
+{
+  R4Box a = self.calculateAccumulatedBoundingBox;
+  R4Box b = node.calculateAccumulatedBoundingBox;
+  
+  if (a.max.x < b.min.x || a.min.x > b.max.x) return NO;
+  if (a.max.y < b.min.y || a.min.y > b.max.y) return NO;
+  if (a.max.z < b.min.z || a.min.z > b.max.z) return NO;
+  
+  return YES;
 }
 
 - (NSString *)description

@@ -104,6 +104,8 @@
 - (GLKVector3)convertPoint:(GLKVector3)point toNode:(R4Node *)node;
 - (GLKVector3)convertPoint:(GLKVector3)point fromNode:(R4Node *)node;
 
+- (BOOL)intersectsNode:(R4Node *)node;
+
 /* SpriteKit methods that are not implemented */
 
 //- (BOOL)containsPoint:(CGPoint)p;
@@ -114,7 +116,6 @@
 //@property (nonatomic, readonly) CGRect frame;
 //@property (nonatomic) CGFloat zPosition;
 //@property (nonatomic, strong) R4PhysicsBody *physicsBody;
-//- (BOOL)intersectsNode:(R4Node *)node;
 
 @end
 

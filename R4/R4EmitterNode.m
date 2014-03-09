@@ -122,7 +122,7 @@
   if (scene) {
     [scene.particleEmitters addObject:self];
   } else {
-    [scene.particleEmitters removeObject:self];
+    [self.scene.particleEmitters removeObject:self];
   }
   
   [super setScene:scene];

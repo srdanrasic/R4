@@ -26,7 +26,7 @@
   if (self) {
     self.ambientColor = GLKVector4Make(0.1f, 0.1f, 0.1f, 1.0f);
     self.diffuseColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-    self.specularColor = GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+    self.specularColor = GLKVector4Make(0.2f, 0.2f, 0.2f, 1.0f);
   }
   return self;
 }
