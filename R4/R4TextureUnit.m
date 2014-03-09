@@ -19,7 +19,6 @@
 
 - (void)dealloc
 {
-  NSLog(@"Deleting texture unit.");
 }
 
 @end
