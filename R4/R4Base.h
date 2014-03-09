@@ -76,7 +76,7 @@ static inline void setupBlendMode(R4BlendMode mode)
       break;
     case R4BlendModeSubtract:
       glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
-      glBlendEquation(GL_FUNC_SUBTRACT);
+      glBlendEquation(GL_FUNC_REVERSE_SUBTRACT);
       break;
     case R4BlendModeMultiply:
       glBlendFunc(GL_ZERO, GL_SRC_COLOR);

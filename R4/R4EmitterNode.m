@@ -349,6 +349,11 @@
   _timeOfLastUpdate = time;
 }
 
+- (GLKQuaternion)orientation
+{
+  return GLKQuaternionConjugate(GLKQuaternionMakeWithMatrix3(GLKMatrix4GetMatrix3(self.parent.modelMatrix)));
+}
+
 - (void)prepareToDraw
 {
   glBindVertexArrayOES(particleAttributesVertexArray);
