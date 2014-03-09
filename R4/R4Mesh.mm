@@ -86,8 +86,26 @@ static GLfloat gPlaneVertexData[48] =
     self.material = [R4Material ADSMaterial];
     vertexBuffer = GL_INVALID_VALUE;
     indexBuffer = GL_INVALID_VALUE;
+    vertexArray = GL_INVALID_VALUE;
   }
   return self;
+}
+
+- (void)dealloc
+{
+  glBindVertexArrayOES(0);
+  
+  if (indexBuffer != GL_INVALID_VALUE) {
+    glDeleteBuffers(1, &indexBuffer);
+  }
+  
+  if (vertexBuffer != GL_INVALID_VALUE) {
+    glDeleteBuffers(1, &vertexBuffer);
+  }
+  
+  if (vertexArray != GL_INVALID_VALUE) {
+    glDeleteVertexArraysOES(1, &vertexArray);
+  }
 }
 
 + (R4Mesh *)boxWithSize:(GLKVector3)size

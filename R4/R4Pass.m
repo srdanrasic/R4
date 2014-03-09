@@ -40,7 +40,6 @@
 
 - (void)dealloc
 {
-  NSLog(@"Deleting pass.");
 }
 
 - (void)setVertexShader:(R4Shader *)vertexShader

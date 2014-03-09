@@ -180,7 +180,7 @@
 - (GLKMatrix4)projectionMatrix
 {
   float aspect = fabsf(self.scene.size.width / self.scene.size.height);
-  return GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+  return GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 1000.0f);
 }
 
 - (CGPoint)convertPoint:(GLKVector3)point fromScene:(R4Scene *)scene

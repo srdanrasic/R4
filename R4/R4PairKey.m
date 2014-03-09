@@ -32,6 +32,17 @@
   }
 }
 
+- (NSUInteger)hash
+{
+  NSUInteger prime = 31;
+  NSUInteger result = 1;
+  
+  result = prime * result + [o1_ hash];
+  result = prime * result + [o2_ hash];
+  
+  return result;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
   R4PairKey *key = [[[self class] alloc] init];
