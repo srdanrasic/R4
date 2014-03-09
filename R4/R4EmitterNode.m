@@ -307,7 +307,7 @@
 
     if (p->timeToLive > 0.f) {
       CGFloat time = 1.0f - p->timeToLive / p->lifetime;
-      CGFloat age = p->lifetime - p->timeToLive;
+      CGFloat age = p->lifetime - p->timeToLive - dt * randCGFloat(0.f, 1.f);
       
       GLKVector3 position = GLKVector3Make(p->initialPosition.x + p->direction.x * p->speed * age + 0.5 * _xAcceleration * age * age,
                                            p->initialPosition.y + p->direction.y * p->speed * age + 0.5 * _yAcceleration * age * age,
