@@ -54,7 +54,7 @@
 
 - (void)commonInit
 {
-  self.ambientColor = GLKVector4Make(0.5, 0.5, 0.5, 1.0);
+  self.ambientColor = GLKVector4Make(0.5, 0.5, 0.5, 0.5);
   self.diffuseColor = GLKVector4Make(1.0, 1.0, 1.0, 1.0);
   self.specularColor = GLKVector4Make(0.0, 0.0, 0.0, 0.0);
   self.shininess = 0;

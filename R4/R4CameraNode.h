@@ -20,6 +20,8 @@
 
 @property (assign, nonatomic) GLKVector3 upVector;
 
+@property (assign, nonatomic) GLKVector3 lookAt;
+
 /*!
  Creates a new camera with position and look at direction.
  

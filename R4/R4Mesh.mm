@@ -354,15 +354,15 @@ static GLfloat gPlaneVertexData[48] =
       
       if (line[0] == 'K' && line[1] == 'a') {
         GLKVector4 color;
-        ss >> c >> c >> color.r >> color.g >> color.b;
+        ss >> c >> c >> color.r >> color.g >> color.b; color.a = 0.2;
         mesh.material.ambientColor = color;
       } else if (line[0] == 'K' && line[1] == 'd') {
         GLKVector4 color;
-        ss >> c >> c >> color.r >> color.g >> color.b;
+        ss >> c >> c >> color.r >> color.g >> color.b; color.a = 1.0;
         mesh.material.diffuseColor = color;
       } else if (line[0] == 'K' && line[1] == 's') {
         GLKVector4 color;
-        ss >> c >> c >> color.r >> color.g >> color.b;
+        ss >> c >> c >> color.r >> color.g >> color.b; color.a = 0.0;
         mesh.material.specularColor = color;
       } else if (line[0] == 'N' && line[1] == 's') {
         float shininess;

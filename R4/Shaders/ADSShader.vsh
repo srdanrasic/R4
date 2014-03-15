@@ -50,9 +50,9 @@ void main()
   mediump vec3 vertex_normal = normal_matrix * normalize(in_normal);
   mediump vec4 vertex_position_eyespace = model_view_matrix * vec4(in_position, 1.0);
   
-  vec4 ambient = vec4(0.0, 0.0, 0.0, 1.0);
-  vec4 diffuse = vec4(0.0, 0.0, 0.0, 1.0);
-  vec4 specular = vec4(0.0, 0.0, 0.0, 1.0);
+  vec4 ambient = vec4(0.0, 0.0, 0.0, 0.0);
+  vec4 diffuse = vec4(0.0, 0.0, 0.0, 0.0);
+  vec4 specular = vec4(0.0, 0.0, 0.0, 0.0);
   
   for (int i = 0; i < number_of_lights; i++) {
     /* Ambient */
