@@ -147,6 +147,9 @@ static const R4Sphere R4SphereZero = { .center = {0, 0, 0}, .radius = 0 };
 
 static inline BOOL R4SphereSphereTest(R4Sphere a, R4Sphere b)
 {
+  // Algorithm from Real-Time Collision About the CD-ROM 593 Detection by Christer Ericson,
+  // published by Morgan Kaufmann Publishers, © 2005 Elsevier Inc
+  
   GLKVector3 d = GLKVector3Subtract(a.center, b.center);
   CGFloat dist2 = GLKVector3DotProduct(d, d);
   CGFloat radiusSum = a.radius + b.radius;
@@ -155,6 +158,9 @@ static inline BOOL R4SphereSphereTest(R4Sphere a, R4Sphere b)
 
 static inline BOOL R4SphereRayTest(R4Sphere sphere, R4Ray ray, CGFloat *t)
 {
+  // Algorithm from Real-Time Collision About the CD-ROM 593 Detection by Christer Ericson,
+  // published by Morgan Kaufmann Publishers, © 2005 Elsevier Inc
+  
   GLKVector3 m = GLKVector3Subtract(ray.startPoint, sphere.center);
   float b = GLKVector3DotProduct(m, ray.direction);
   float c = GLKVector3DotProduct(m, m) - sphere.radius * sphere.radius;

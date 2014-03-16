@@ -445,6 +445,9 @@
 {
   // TODO Sphere test first
   
+  // Algorithm from Real-Time Collision About the CD-ROM 593 Detection by Christer Ericson,
+  // published by Morgan Kaufmann Publishers, © 2005 Elsevier Inc
+  
   R4OBB a = self.boundingBox;
   R4OBB b = node.boundingBox;
   
