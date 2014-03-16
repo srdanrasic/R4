@@ -233,3 +233,15 @@ static inline GLKVector4 randGLKVector4(CGFloat min, CGFloat max)
   return GLKVector4Make(randCGFloat(min, max), randCGFloat(min, max), randCGFloat(min, max), randCGFloat(min, max));
 }
 
+/* Other */
+
+
+static inline CGFloat normalizeRange(CGFloat value, CGFloat start, CGFloat end )
+{
+  CGFloat width = end - start;
+  CGFloat offsetValue = value - start;
+  
+  return offsetValue - floorf(offsetValue / width) * width + start;
+}
+
+
