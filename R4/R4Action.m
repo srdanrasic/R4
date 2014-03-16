@@ -9,6 +9,7 @@
 #import "R4ActionPrivate.h"
 #import "R4MoveActionPrivate.h"
 #import "R4ScaleActionPrivate.h"
+#import "R4RotateActionPrivate.h"
 #import "R4RepeatActionPrivate.h"
 #import "R4SequenceActionPrivate.h"
 
@@ -54,6 +55,11 @@
 + (R4Action *)scaleTo:(GLKVector3)scale duration:(NSTimeInterval)sec
 {
   return [[R4ScaleAction alloc] initScaleTo:scale duration:sec];
+}
+
++ (R4Action *)rotateBy:(CGFloat)angle axis:(GLKVector3)axis duration:(NSTimeInterval)duration
+{
+  return [[R4RotateAction alloc] initRotateBy:angle axis:axis duration:duration];
 }
 
 + (R4Action *)repeatAction:(R4Action *)action count:(NSUInteger)count

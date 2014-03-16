@@ -25,6 +25,14 @@
 @property (nonatomic, readonly) R4Material *material;
 
 /*!
+ Indicated whether rendered should render bounding volume of the node. Default is NO.
+ 
+ @discussion This feature should be used only for debug purpose.
+ */
+@property (nonatomic, assign) BOOL showBoundingVolume;
+
+
+/*!
  Should prepare for drawing.
  
  @discussion Called by the Renderer prior to drawing. Object should prepare itself for the drawing - e.g. bind any buffers or vertex arrays to the current OpenGL context.

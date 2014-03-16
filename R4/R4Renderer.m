@@ -19,6 +19,8 @@
 #import "R4TextureUnit.h"
 #import "R4DrawState.h"
 #import "R4SceneManager.h"
+#import "R4BasicPass.h"
+#import "R4Mesh.h"
 
 @interface R4Renderer () {
   EAGLContext *eaglContext;
@@ -31,6 +33,8 @@
   GLint backingHeight;
 
   R4DrawState *drawState;
+  
+  R4Mesh *boundingVolumeMesh;
 }
 
 @end
@@ -61,6 +65,10 @@
     drawState = [R4DrawState new];
     drawState->blendMode = -1;
     drawState->program = -1;
+    
+    boundingVolumeMesh = [R4Mesh sphereWithRadius:1 rings:20 sectors:20];
+    boundingVolumeMesh.material = [R4Material basicMaterial];
+    boundingVolumeMesh.material.diffuseColor = GLKVector4Make(1, 0, 1, 1);
   }
   return self;
 }
@@ -162,6 +170,35 @@
       for (NSInteger iteration = 0; iteration < numberOfIterations; iteration++) {
         [pass prepareForIteration:iteration drawState:drawState];
         [node draw];
+      }
+    }
+    
+    
+    if (node.showBoundingVolume) { // debug purposes
+      R4Sphere bbSphere = node.calculateAccumulatedBoundingSphere;
+      CGFloat scale = bbSphere.radius;
+      drawState->modelMatrix.m01 = drawState->modelMatrix.m02 = 0.0;
+      drawState->modelMatrix.m10 = drawState->modelMatrix.m12 = 0.0;
+      drawState->modelMatrix.m20 = drawState->modelMatrix.m21 = 0.0;
+      drawState->modelMatrix.m00 = drawState->modelMatrix.m11 = drawState->modelMatrix.m22 = scale;
+      drawState->modelMatrix.m30 = bbSphere.center.x;
+      drawState->modelMatrix.m31 = bbSphere.center.y;
+      drawState->modelMatrix.m32 = bbSphere.center.z;
+      
+      drawState->modelViewMatrix = GLKMatrix4Multiply(drawState->viewMatrix, drawState->modelMatrix);
+      drawState->modelViewProjectionMatrix = GLKMatrix4Multiply(drawState->projectionMatrix, drawState->modelViewMatrix);
+      drawState->normalMatrix = GLKMatrix4GetMatrix3(GLKMatrix4InvertAndTranspose(drawState->modelViewMatrix, NULL));
+      
+      drawState->material = boundingVolumeMesh.material;
+      [[[drawState->material firstTechnique] firstPass] prepareForDrawing:drawState];
+      [[[drawState->material firstTechnique] firstPass] prepareForIteration:0 drawState:drawState];
+      
+      glBindVertexArrayOES(boundingVolumeMesh->vertexArray);
+      
+      if ((boundingVolumeMesh->indexBuffer != GL_INVALID_VALUE)) {
+        glDrawElements(GL_LINE_STRIP, boundingVolumeMesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+      } else {
+        glDrawArrays(GL_LINE_STRIP, 0, boundingVolumeMesh->elementCount);
       }
     }
   }];

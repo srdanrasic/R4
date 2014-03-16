@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) R4Mesh *mesh;
 @property (nonatomic, strong) R4Material *material;
+@property (nonatomic, assign) BOOL showBoundingVolume;
 
 + (R4EntityNode *)entityWithMesh:(R4Mesh *)mesh;
 

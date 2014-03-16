@@ -23,6 +23,8 @@
 + (R4Action *)scaleBy:(GLKVector3)scale duration:(NSTimeInterval)sec;
 + (R4Action *)scaleTo:(GLKVector3)scale duration:(NSTimeInterval)sec;
 
++ (R4Action *)rotateBy:(CGFloat)angle axis:(GLKVector3)axis duration:(NSTimeInterval)duration;
+
 + (R4Action *)repeatAction:(R4Action *)action count:(NSUInteger)count;
 + (R4Action *)repeatActionForever:(R4Action *)action;
 

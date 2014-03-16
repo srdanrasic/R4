@@ -113,9 +113,18 @@
   free(particleAttributes);
 }
 
-- (R4Box)boundingBox
+- (R4Sphere)boundingSphere
 {
-  return R4BoxMake(GLKVector3Make(-.5f, -.5f, -.5f), GLKVector3Make(.5f, .5f, .5f));
+  R4Sphere s = [super boundingSphere];
+  s.radius = 0.5f;
+  return s;
+}
+
+- (R4OBB)boundingBox
+{
+  R4OBB obb = [super boundingBox];
+  obb.e = GLKVector3Make(0.5f, 0.5f, 0.5f);
+  return obb;
 }
 
 - (void)setScene:(R4Scene *)scene

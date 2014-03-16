@@ -20,11 +20,18 @@
 + (instancetype)node;
 
 /*!
- Bounding box of the node in the object space.
+ Bounding sphere of the node in world space.
  
- @discussion Unless overriden by subclass, this method returns R4BoxZero.
+ @discussion Unless overriden by subclass, this method returns R4Sphere with zero radius and center that equals to node position in world space.
  */
-@property (nonatomic, readonly) R4Box boundingBox;
+@property (nonatomic, readonly) R4Sphere boundingSphere;
+
+/*!
+ Bounding box of the node in world space.
+ 
+ @discussion Unless overriden by subclass, this method returns R4OBB with zero half width, but with center and axes vectors calculated from node's model matrix.
+ */
+@property (nonatomic, readonly) R4OBB boundingBox;
 
 /*!
  The position of the node in its parent's coordinate system.
@@ -61,11 +68,11 @@
 @property (nonatomic, strong) NSMutableDictionary *userData;
 
 /*!
- Calculates a bounding box in the parent’s coordinate system that contains the content of the node and all of its descendants.
+ Calculates a bounding sphere in world coordinate system that contains the content of the node and all of its descendants.
  
- @discussion The bounding box takes into the account the cumulative effect of the scale and orientation properties of each node in the subtree.
+ @discussion The bounding sphere takes into the account the cumulative effect of the scale and orientation properties of each node in the subtree.
  */
-- (R4Box)calculateAccumulatedBoundingBox;
+- (R4Sphere)calculateAccumulatedBoundingSphere;
 
 /*!
  Sets same scale value for all three directions.

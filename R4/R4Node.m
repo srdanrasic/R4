@@ -343,27 +343,55 @@
   return _positionWorldSpace;
 }
 
-- (R4Box)calculateAccumulatedBoundingBox
+- (R4Sphere)calculateAccumulatedBoundingSphere
 {
-  // TODO: Cache
-  GLKVector3 min = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.min, 1.0)).v);
-  GLKVector3 max = GLKVector3MakeWithArray(GLKMatrix4MultiplyVector4(self.modelMatrix, GLKVector4MakeWithVector3(self.boundingBox.max, 1.0)).v);
-
-  _accumulatedBoundingBox.min = GLKVector3Minimum(min, max);
-  _accumulatedBoundingBox.max = GLKVector3Maximum(min, max);
+  // TODO: Cache ?
+  R4Sphere sphere = self.boundingSphere;
   
   for (R4Node *node in self.children) {
-    R4Box bb = [node calculateAccumulatedBoundingBox];
-    _accumulatedBoundingBox.min = GLKVector3Minimum(_accumulatedBoundingBox.min, bb.min);
-    _accumulatedBoundingBox.max = GLKVector3Maximum(_accumulatedBoundingBox.max, bb.max);
+    R4Sphere bs = [node calculateAccumulatedBoundingSphere];
+    
+    GLKVector3 c1 = sphere.center;
+    GLKVector3 c2 = bs.center;
+    CGFloat r1 = sphere.radius;
+    CGFloat r2 = bs.radius;
+    
+    GLKVector3 d = GLKVector3Subtract(c2, c1);
+    CGFloat dd = GLKVector3Length(d);
+    
+    // if bs is already encompassed inside sphere
+    if (dd <= r1 - r2) {
+      continue;
+    }
+    
+    // else, expand sphere to encomapss both sphere and bs
+    CGFloat rn = 0.5f * (dd + r1 + r2);
+    GLKVector3 cn = GLKVector3MultiplyScalar(GLKVector3Add(GLKVector3Add(c1, c2), GLKVector3MultiplyScalar(d, (r2 - r1)/dd)), 0.5f);
+    
+    sphere.radius = rn;
+    sphere.center = cn;
   }
   
-  return _accumulatedBoundingBox;
+  return sphere;
 }
 
-- (R4Box)boundingBox
+- (R4Sphere)boundingSphere
 {
-  return R4BoxZero;
+  if (_transformsDirty) {
+    [self updateTransformMatrices];
+  }
+  
+  return R4SphereMake(self->_positionWorldSpace, 0);
+}
+
+- (R4OBB)boundingBox
+{
+  if (_transformsDirty) {
+    [self updateTransformMatrices];
+  }
+  
+  // TODO Normalize not needed??
+  return R4OBBMake(self->_positionWorldSpace, GLKVector3Normalize(GLKVector3MakeWithArray(&self->_modelMatrix.m00)), GLKVector3Normalize(GLKVector3MakeWithArray(&self->_modelMatrix.m10)), GLKVector3Normalize(GLKVector3MakeWithArray(&self->_modelMatrix.m20)), GLKVector3Make(0, 0, 0));
 }
 
 - (void)updateNodeAtTime:(NSTimeInterval)time
@@ -415,12 +443,90 @@
 
 - (BOOL)intersectsNode:(R4Node *)node
 {
-  R4Box a = self.calculateAccumulatedBoundingBox;
-  R4Box b = node.calculateAccumulatedBoundingBox;
+  // TODO Sphere test first
   
-  if (a.max.x < b.min.x || a.min.x > b.max.x) return NO;
-  if (a.max.y < b.min.y || a.min.y > b.max.y) return NO;
-  if (a.max.z < b.min.z || a.min.z > b.max.z) return NO;
+  R4OBB a = self.boundingBox;
+  R4OBB b = node.boundingBox;
+  
+  float ra, rb;
+  GLKMatrix3 R, AbsR;
+  float EPSILON = 0.00001;
+  
+  // Compute rotation matrix expressing b in a’s coordinate frame
+  for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++)
+      R.m[i*3+j] = GLKVector3DotProduct(a.u[i], b.u[j]);
+  
+  // Compute translation vector t
+  GLKVector3 tr = GLKVector3Subtract(b.c, a.c);
+  
+  // Bring translation into a’s coordinate frame
+  GLKVector3 t = GLKVector3Make(GLKVector3DotProduct(tr, a.u[0]), GLKVector3DotProduct(tr, a.u[1]), GLKVector3DotProduct(tr, a.u[2]));
+  
+  // Compute common subexpressions. Add in an epsilon term to
+  // counteract arithmetic errors when two edges are parallel and // their cross product is (near) null (see text for details)
+  for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++)
+      AbsR.m[i*3+j] = ABS(R.m[i*3+j]) + EPSILON;
+  
+  // Test axes L = A0, L = A1, L = A2
+  for (int i = 0; i < 3; i++) {
+    ra = a.e.v[i];
+    rb = b.e.x * AbsR.m[i*3] + b.e.y * AbsR.m[i*3+1] + b.e.z * AbsR.m[i*3+2];
+    if (ABS(t.v[i]) > ra + rb) return NO;
+  }
+  
+  // Test axes L = B0, L = B1, L = B2
+  for (int i = 0; i < 3; i++) {
+    ra = a.e.x * AbsR.m[i] + a.e.y * AbsR.m[3+i] + a.e.z * AbsR.m[6+i];
+    rb = b.e.v[i];
+    if (ABS(t.x * R.m[i] + t.y * R.m[3+i] + t.z * R.m[6+i]) > ra + rb) return NO;
+  }
+  
+  // Test axis L = A0 x B0
+  ra = a.e.v[1] * AbsR.m[6] + a.e.v[2] * AbsR.m[3];
+  rb = b.e.v[1] * AbsR.m[2] + b.e.v[2] * AbsR.m[1];
+  if (ABS(t.v[2] * R.m[3] - t.v[1] * R.m[6]) > ra + rb) return NO;
+  
+  // Test axis L = A0 x B1
+  ra = a.e.v[1] * AbsR.m[7] + a.e.v[2] * AbsR.m[4];
+  rb = b.e.v[0] * AbsR.m[2] + b.e.v[2] * AbsR.m[0];
+  if (ABS(t.v[2] * R.m[4] - t.v[1] * R.m[7]) > ra + rb) return NO;
+  
+  // Test axis L = A0 x B2
+  ra = a.e.v[1] * AbsR.m[8] + a.e.v[2] * AbsR.m[5];
+  rb = b.e.v[0] * AbsR.m[1] + b.e.v[1] * AbsR.m[0];
+  if (ABS(t.v[2] * R.m[5] - t.v[1] * R.m[8]) > ra + rb) return NO;
+  
+  // Test axis L = A1 x B0
+  ra = a.e.v[0] * AbsR.m[6] + a.e.v[2] * AbsR.m[0];
+  rb = b.e.v[1] * AbsR.m[5] + b.e.v[2] * AbsR.m[4];
+  if (ABS(t.v[0] * R.m[6] - t.v[2] * R.m[0]) > ra + rb) return NO;
+  
+  // Test axis L = A1 x B1
+  ra = a.e.v[0] * AbsR.m[7] + a.e.v[2] * AbsR.m[1];
+  rb = b.e.v[0] * AbsR.m[5] + b.e.v[2] * AbsR.m[3];
+  if (ABS(t.v[0] * R.m[7] - t.v[2] * R.m[1]) > ra + rb) return NO;
+  
+  // Test axis L = A1 x B2
+  ra = a.e.v[0] * AbsR.m[8] + a.e.v[2] * AbsR.m[2];
+  rb = b.e.v[0] * AbsR.m[4] + b.e.v[1] * AbsR.m[3];
+  if (ABS(t.v[0] * R.m[8] - t.v[2] * R.m[2]) > ra + rb) return NO;
+  
+  // Test axis L = A2 x B0
+  ra = a.e.v[0] * AbsR.m[3] + a.e.v[1] * AbsR.m[0];
+  rb = b.e.v[1] * AbsR.m[8] + b.e.v[2] * AbsR.m[7];
+  if (ABS(t.v[1] * R.m[0] - t.v[0] * R.m[3]) > ra + rb) return NO;
+  
+  // Test axis L = A2 x B1
+  ra = a.e.v[0] * AbsR.m[4] + a.e.v[1] * AbsR.m[1];
+  rb = b.e.v[0] * AbsR.m[8] + b.e.v[2] * AbsR.m[6];
+  if (ABS(t.v[1] * R.m[1] - t.v[0] * R.m[4]) > ra + rb) return NO;
+  
+  // Test axis L = A2 x B2
+  ra = a.e.v[0] * AbsR.m[5] + a.e.v[1] * AbsR.m[2];
+  rb = b.e.v[0] * AbsR.m[7] + b.e.v[1] * AbsR.m[6];
+  if (ABS(t.v[1] * R.m[2] - t.v[0] * R.m[5]) > ra + rb) return NO;
   
   return YES;
 }
@@ -443,42 +549,18 @@
       continue;
     }
 
-    GLKVector3 invDirection = GLKVector3Make(1.f/ray.direction.x, 1.f/ray.direction.y, 1.f/ray.direction.z);
-    R4Box bb = node.calculateAccumulatedBoundingBox;
-    BOOL intersects = NO;
-    CGFloat distance;
+    CGFloat t;
+    R4Sphere sphere = node.calculateAccumulatedBoundingSphere;
     
-    // lb is the corner of AABB with minimal coordinates - left bottom, rt is maximal corner
-    // r.org is origin of ray
-    float t1 = (bb.min.x - ray.startPoint.x) * invDirection.x;
-    float t2 = (bb.max.x - ray.startPoint.x) * invDirection.x;
-    float t3 = (bb.min.y - ray.startPoint.y) * invDirection.y;
-    float t4 = (bb.max.y - ray.startPoint.y) * invDirection.y;
-    float t5 = (bb.min.z - ray.startPoint.z) * invDirection.z;
-    float t6 = (bb.max.z - ray.startPoint.z) * invDirection.z;
-    
-    float tmin = MAX(MAX(MIN(t1, t2), MIN(t3, t4)), MIN(t5, t6));
-    float tmax = MIN(MIN(MAX(t1, t2), MAX(t3, t4)), MAX(t5, t6));
-    
-    // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
-    if (tmax < 0) {
-      distance = tmax;
-    } else if (tmin > tmax) { // if tmin > tmax, ray doesn't intersect AABB
-      distance = tmax;
-    } else {
-      distance = tmin;
-      intersects = YES;
-    }
-    
-    if (intersects) {
-      //NSLog(@"Possible [%@] len [%f]", node.name, distance);
-      node->_distanceToCamera = distance;
+    if (R4SphereRayTest(sphere, ray, &t)) {
+      //NSLog(@"Possible [%@] len [%f]", node.name, t);
+      node->_distanceToCamera = t;
       [self.scene.view.responderChain addObject:node];
       
       R4Node *possibleHitTest = [node hitTest:ray event:event];
-      if (possibleHitTest && distance < maxLen) {
+      if (possibleHitTest && t < maxLen) {
         hitTestNode = possibleHitTest;
-        maxLen = distance;
+        maxLen = t;
       }
     } else {
       //NSLog(@"Not possible [%@]", node.name);

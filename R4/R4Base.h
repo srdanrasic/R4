@@ -102,10 +102,26 @@ typedef struct {
   GLKVector3 direction;
 } R4Ray;
 
+
+typedef struct {
+  GLKVector3 center;
+  CGFloat radius;
+} R4Sphere;
+
+
 typedef union {
-  struct { GLKVector3 min; GLKVector3 max; };
+  struct { GLKVector3 center; GLKVector3 halfWidth; };
   GLKVector3 bounds[2];
-} R4Box;
+} R4AABB;
+
+typedef struct {
+  GLKVector3 c; // OBB center point
+  GLKVector3 u[3]; // Local x-, y-, and z-axes
+  GLKVector3 e; // Positive halfwidth extents of OBB along each axis
+} R4OBB;
+
+
+/* Ray */
 
 static inline R4Ray R4RayMake(GLKVector3 startPoint, GLKVector3 direction)
 {
@@ -119,23 +135,82 @@ static inline NSString *NSStringFromR4Ray(R4Ray ray)
 }
 
 
-static inline R4Box R4BoxMake(GLKVector3 min, GLKVector3 max)
+/* R4Sphere */
+
+static inline R4Sphere R4SphereMake(GLKVector3 center, CGFloat radius)
 {
-  R4Box box = {min, max};
+  R4Sphere s = {center, radius};
+  return s;
+}
+
+static const R4Sphere R4SphereZero = { .center = {0, 0, 0}, .radius = 0 };
+
+static inline BOOL R4SphereSphereTest(R4Sphere a, R4Sphere b)
+{
+  GLKVector3 d = GLKVector3Subtract(a.center, b.center);
+  CGFloat dist2 = GLKVector3DotProduct(d, d);
+  CGFloat radiusSum = a.radius + b.radius;
+  return dist2 <= radiusSum * radiusSum;
+}
+
+static inline BOOL R4SphereRayTest(R4Sphere sphere, R4Ray ray, CGFloat *t)
+{
+  GLKVector3 m = GLKVector3Subtract(ray.startPoint, sphere.center);
+  float b = GLKVector3DotProduct(m, ray.direction);
+  float c = GLKVector3DotProduct(m, m) - sphere.radius * sphere.radius;
+  
+  // Exit if r’s origin outside s (c > 0) and r pointing away from s (b > 0)
+  if (c <= 0.0f || b <= 0.0f) {
+    
+    float discr = b*b - c;
+    
+    // A negative discriminant corresponds to ray missing sphere
+    if (discr >= 0.0f) {
+      
+      // Ray now found to intersect sphere, compute smallest t value of intersection
+      *t = -b - sqrtf(discr);
+      
+      // If t is negative, ray started inside sphere so clamp t to zero
+      if (*t < 0.0f) *t = 0.0f;
+      
+      return YES;
+    }
+  }
+  
+  return NO;
+}
+
+/* R4AABB */
+
+static inline R4AABB R4AABBMake(GLKVector3 center, GLKVector3 halfWidth)
+{
+  R4AABB box = {center, halfWidth};
   return box;
 }
 
-static inline GLKVector3 R4BoxSize(R4Box box)
+static inline GLKVector3 R4AABBSize(R4AABB box)
 {
-  return GLKVector3Subtract(box.max, box.min);
+  return GLKVector3MultiplyScalar(box.halfWidth, 2.f);
 }
 
-static inline NSString *NSStringFromR4Box(R4Box box)
+static inline NSString *NSStringFromR4AABB(R4AABB box)
 {
-  return [NSString stringWithFormat:@"{%@, %@}", NSStringFromGLKVector3(box.min), NSStringFromGLKVector3(box.max)];
+  return [NSString stringWithFormat:@"{%@, %@}", NSStringFromGLKVector3(box.center), NSStringFromGLKVector3(box.halfWidth)];
 }
 
-static const R4Box R4BoxZero = { .min = {0, 0, 0}, .max = {0, 0, 0}};
+static const R4AABB R4AABBZero = { .center = {0, 0, 0}, .halfWidth = {0, 0, 0}};
+
+
+/* R4OOB */
+
+static inline R4OBB R4OBBMake(GLKVector3 center, GLKVector3 x, GLKVector3 y, GLKVector3 z, GLKVector3 size)
+{
+  R4OBB obb = {center, x, y, z, size};
+  return obb;
+}
+
+
+/* Random */
 
 static inline CGFloat randCGFloat(CGFloat min, CGFloat max)
 {

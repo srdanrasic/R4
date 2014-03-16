@@ -45,9 +45,9 @@
   return GLKVector3Make(0, 0, 0);
 }
 
-- (R4Box)calculateAccumulatedBoundingBox
+- (R4Sphere)calculateAccumulatedBoundingSphere
 {
-  return R4BoxZero;
+  return R4SphereZero;
 }
 
 - (void)setSize:(CGSize)size

@@ -12,7 +12,7 @@
   NSMutableArray *_children;
   NSMutableArray *_actions;
   
-  R4Box _accumulatedBoundingBox;
+  R4Sphere _accumulatedBoundingSphere;
   
 @public
   CGFloat _distanceToCamera;

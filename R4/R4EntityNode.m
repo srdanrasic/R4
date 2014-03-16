@@ -23,12 +23,24 @@
   R4EntityNode *node = [super copyWithZone:zone];
   node.mesh = self.mesh;
   node.material = self.material;
+  node.showBoundingVolume = self.showBoundingVolume;
   return node;
 }
 
-- (R4Box)boundingBox
+- (R4Sphere)boundingSphere
 {
-  return _mesh.geometryBoundingBox;
+  R4Sphere s = [super boundingSphere];
+  s.center = GLKVector3Add(s.center, _mesh.geometryBoundingSphere.center);
+  s.radius = _mesh.geometryBoundingSphere.radius;
+  return s;
+}
+
+- (R4OBB)boundingBox
+{
+  R4OBB obb = [super boundingBox];
+  obb.c = GLKVector3Add(obb.c, _mesh.geometryBoundingBox.center);
+  obb.e = _mesh.geometryBoundingBox.halfWidth;
+  return obb;
 }
 
 - (R4Material *)material
@@ -48,9 +60,9 @@
 - (void)draw
 {
   if ((_mesh->indexBuffer != GL_INVALID_VALUE)) {
-    glDrawElements(GL_TRIANGLES, _mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+    glDrawElements(_mesh->drawPrimitive, _mesh->elementCount, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
   } else {
-    glDrawArrays(GL_TRIANGLES, 0, _mesh->elementCount);
+    glDrawArrays(_mesh->drawPrimitive, 0, _mesh->elementCount);
   }
 }
 

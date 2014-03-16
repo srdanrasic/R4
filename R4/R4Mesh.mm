@@ -87,6 +87,7 @@ static GLfloat gPlaneVertexData[48] =
     vertexBuffer = GL_INVALID_VALUE;
     indexBuffer = GL_INVALID_VALUE;
     vertexArray = GL_INVALID_VALUE;
+    drawPrimitive = GL_TRIANGLES;
   }
   return self;
 }
@@ -139,7 +140,8 @@ static GLfloat gPlaneVertexData[48] =
   
   glBindVertexArrayOES(0);
   
-  mesh.geometryBoundingBox = R4BoxMake(GLKVector3Multiply(GLKVector3Make(-.5f, -.5f, -.5f), size), GLKVector3Multiply(GLKVector3Make(.5f, .5f, .5f), size));
+  mesh.geometryBoundingBox = R4AABBMake(GLKVector3Make(0, 0, 0), GLKVector3Multiply(GLKVector3Make(.5f, .5f, .5f), size));
+  mesh.geometryBoundingSphere = R4SphereMake(GLKVector3Make(0, 0, 0), GLKVector3Length(mesh.geometryBoundingBox.halfWidth));
   return mesh;
 }
 
@@ -179,7 +181,68 @@ static GLfloat gPlaneVertexData[48] =
     
   glBindVertexArrayOES(0);
   
-  mesh.geometryBoundingBox = R4BoxMake(GLKVector3Make(-.5f, -.1f, -.5f), GLKVector3Make(.5f, .1f, .5f));
+  mesh.geometryBoundingBox = R4AABBMake(GLKVector3Make(0, 0, 0), GLKVector3Make(size.width, size.height, 0.1));
+  mesh.geometryBoundingSphere = R4SphereMake(GLKVector3Make(0, 0, 0), GLKVector3Length(mesh.geometryBoundingBox.halfWidth));
+  return mesh;
+}
+
++ (R4Mesh *)sphereWithRadius:(CGFloat)radius rings:(GLuint)rings sectors:(GLuint)sectors
+{
+  float const R = 1./(float)(rings-1);
+  float const S = 1./(float)(sectors-1);
+  
+  R4Mesh *mesh = [[R4Mesh alloc] init];
+  mesh->elementCount = (rings - 1) * sectors * 2;
+  mesh->drawPrimitive = GL_TRIANGLE_STRIP;
+  
+  glGenVertexArraysOES(1, &mesh->vertexArray);
+  glBindVertexArrayOES(mesh->vertexArray);
+  
+  glGenBuffers(2, &mesh->vertexBuffer);
+  glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexBuffer);
+  
+  GLKVector3 *vertexData = (GLKVector3 *)malloc(sizeof(GLKVector3) * rings * sectors * 2);
+  
+  for (int r = 0; r < rings; r++) {
+    for (int s = 0; s < sectors; s++) {
+      CGFloat y = sinf( -M_PI_2 + M_PI * r * R );
+      CGFloat x = cosf(2*M_PI * s * S) * sin( M_PI * r * R );
+      CGFloat z = sinf(2*M_PI * s * S) * sin( M_PI * r * R );
+      
+      GLKVector3 position = GLKVector3Make(x * radius, y * radius, z * radius);
+      
+      vertexData[r*sectors*2+s*2 + 0] = position;
+      vertexData[r*sectors*2+s*2 + 1] = GLKVector3Negate(position);
+    }
+  }
+  
+  glBufferData(GL_ARRAY_BUFFER, sizeof(GLKVector3) * rings * sectors * 2, vertexData, GL_STATIC_DRAW);
+  free(vertexData);
+  
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->indexBuffer);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->elementCount * sizeof(unsigned short), NULL, GL_STATIC_DRAW);
+  unsigned short *indexData = (unsigned short *)glMapBufferOES(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY_OES);
+  
+  int idx = 0;
+  for (int i = 0; i < rings-1; i++) {
+    for (int j = 0; j < sectors; j++) {
+      indexData[idx++] = i * sectors + j;
+      indexData[idx++] = (i+1) * sectors + j;
+    }
+  }
+  
+  glUnmapBufferOES(GL_ELEMENT_ARRAY_BUFFER);
+  
+  glEnableVertexAttribArray(R4VertexAttributePositionModelSpace);
+  glVertexAttribPointer(R4VertexAttributePositionModelSpace, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3) * 2, BUFFER_OFFSET(0));
+  
+  glEnableVertexAttribArray(R4VertexAttributeNormalModelSpace);
+  glVertexAttribPointer(R4VertexAttributeNormalModelSpace, 3, GL_FLOAT, GL_FALSE, sizeof(GLKVector3) * 2, BUFFER_OFFSET(sizeof(GLKVector3)));
+  
+  glBindVertexArrayOES(0);
+  
+  mesh.geometryBoundingBox = R4AABBMake(GLKVector3Make(0, 0, 0), GLKVector3Make(radius, radius, radius));
+  mesh.geometryBoundingSphere = R4SphereMake(GLKVector3Make(0, 0, 0), radius);
   return mesh;
 }
 
@@ -276,7 +339,9 @@ static GLfloat gPlaneVertexData[48] =
     max = GLKVector3Add(max, centerOffset);
   }
   
-  mesh.geometryBoundingBox = R4BoxMake(min, max);
+  GLKVector3 halfWidth = GLKVector3MultiplyScalar(GLKVector3Subtract(max, min), 0.5f);
+  mesh.geometryBoundingBox = R4AABBMake(GLKVector3Add(min, halfWidth), halfWidth);
+  mesh.geometryBoundingSphere = R4SphereMake(GLKVector3Make(0, 0, 0), GLKVector3Length(halfWidth));
   
   mesh->hasTextures = texcoords.size() > 0;
   mesh->hasNormals = normals.size() > 0;

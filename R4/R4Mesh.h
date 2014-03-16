@@ -18,15 +18,18 @@
   GLuint vertexCount;
   GLuint elementCount;
   GLuint stride;
+  GLuint drawPrimitive;
   BOOL hasTextures;
   BOOL hasNormals;
 }
 
 @property (nonatomic, strong) R4Material *material;
-@property (assign, nonatomic) R4Box geometryBoundingBox;
+@property (assign, nonatomic) R4AABB geometryBoundingBox;
+@property (assign, nonatomic) R4Sphere geometryBoundingSphere;
 
 + (R4Mesh *)boxWithSize:(GLKVector3)size;
 + (R4Mesh *)planeWithSize:(CGSize)size;
++ (R4Mesh *)sphereWithRadius:(CGFloat)radius rings:(GLuint)rings sectors:(GLuint)sectors;
 + (R4Mesh *)OBJMeshNamed:(NSString *)name normalize:(BOOL)normalize center:(BOOL)center;
 
 @end

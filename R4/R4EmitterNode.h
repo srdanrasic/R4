@@ -88,6 +88,8 @@
  */
 @property (nonatomic, assign) BOOL relativeParticlePosition;
 
+@property (nonatomic, assign) BOOL showBoundingVolume;
+
 //@property (nonatomic, copy) SKAction *particleAction;
 //@property (nonatomic, weak) SKNode *targetNode;
 

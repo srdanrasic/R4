@@ -9,11 +9,13 @@
 #import "R4Action.h"
 
 typedef struct {
-  union { GLKVector3 v1, param1; };
+  union { GLKVector3 v1, param1, axis; };
   union { GLKVector3 v2, deltaV; };
   union { NSTimeInterval t1, duration; };
   union { NSTimeInterval t2, elapsedTime; };
   union { NSTimeInterval t3, previousTime; };
+  union { CGFloat angle; };
+  union { CGFloat deltaAngle; };
   BOOL b1;
   union { NSInteger i1, count, current; };
   union { NSInteger i2, countLeft; };
